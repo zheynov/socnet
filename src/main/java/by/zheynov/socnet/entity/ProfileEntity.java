@@ -15,7 +15,6 @@ public class ProfileEntity implements Serializable {
 
     public ProfileEntity() {
     }
-
     @OneToOne(mappedBy = "profileEntity") // OneToOne with UserEntity
     private UserEntity user;
 

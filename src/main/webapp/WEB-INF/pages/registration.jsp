@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<form:form method="POST" action="/regComplete" commandName="UserEntity">
+<form:form method="POST" action="/registrationComplete" commandName="UserEntity">
     <table>
         <tr>
             <td><form:input path="firstName" placeholder="firstName"/> *
@@ -38,8 +38,7 @@
             <td><form:errors path="password"/></td>
         </tr>
         <tr>
-            <td colspan="2">
-                <input class="buttonSignup" type="submit"/>
+            <td colspan="2">  <input class="buttonSignup" type="submit"/>
             </td>
         </tr>
     </table>

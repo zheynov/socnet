@@ -21,7 +21,6 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public void createUser(UserEntity userEntity) {
-
         userDao.createUser(userEntity);
     }
     @Transactional

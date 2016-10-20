@@ -57,13 +57,23 @@
         <constructor-arg ref="sessionFactory"/>
     </bean>
 
+    <bean id="profileDao" class="by.zheynov.socnet.dao.profile.impl.ProfileDaoImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
     <bean id="userService" class="by.zheynov.socnet.service.user.impl.UserServiceImpl">
         <property name="userDao" ref="userDao" />
     </bean>
 
+    <bean id="profileService" class="by.zheynov.socnet.service.profile.impl.ProfileServiceImpl">
+        <property name="profileDao" ref="profileDao" />
+    </bean>
+
+
 
     <bean id="registrationController" class="by.zheynov.socnet.controllers.RegistrationController">
         <property name="userService" ref="userService" />
+        <property name="profileService" ref="profileService" />
     </bean>
 
 

@@ -1,6 +1,9 @@
 package by.zheynov.socnet.controllers;
 
+import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
+import by.zheynov.socnet.service.profile.ProfileService;
+import by.zheynov.socnet.service.profile.impl.ProfileServiceImpl;
 import by.zheynov.socnet.service.user.UserService;
 import by.zheynov.socnet.service.user.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
@@ -9,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- *  Created by vazh on 18.10.2016.
+ * Created by vazh on 18.10.2016.
  */
 
 @Controller
 public class RegistrationController {
 
     private UserService userService;
+    private ProfileService profileService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String initRegistration(Model model) {
@@ -23,14 +27,26 @@ public class RegistrationController {
         return "/registration";
     }
 
-    @RequestMapping(value = "/regComplete", method = RequestMethod.POST)
+    @RequestMapping(value = "/registrationComplete", method = RequestMethod.POST)
     public String displayRegistration(Model model, UserEntity userEntity) {
 
+        ProfileEntity profileEntity = new ProfileEntity();
+        profileEntity.setUser(userEntity);
+        profileEntity.setFirstName(userEntity.getFirstName());
+        profileEntity.setLastName(userEntity.getLastName());
+        profileEntity.setEmail(userEntity.getEmail());
+        userEntity.setProfileEntity(profileEntity);
+        profileService.createProfile(profileEntity);
         userService.createUser(userEntity);
+
         return "loginpage";
     }
 
     public void setUserService(UserServiceImpl userService) {
         this.userService = userService;
+    }
+
+    public void setProfileService(ProfileService profileService) {
+        this.profileService = profileService;
     }
 }
