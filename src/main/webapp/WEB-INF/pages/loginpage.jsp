@@ -12,7 +12,8 @@
 </head>
 <body>
 
-<a href="/registration"> Registration </a>
+<a href="/registration"> Registration </a> <br/>
+<a href="/showAllUsers"> All the users </a>
 
 </body>
 </html>

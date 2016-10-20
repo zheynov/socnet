@@ -6,6 +6,8 @@ import by.zheynov.socnet.service.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by vazh on 19.10.2016.
  */
@@ -25,11 +27,14 @@ public class UserServiceImpl implements UserService {
     }
     @Transactional
     public void updateUser(UserEntity user) {
-
     }
-
     @Transactional
     public void deleteUser(UserEntity profile) {
-
     }
+
+    public List<UserEntity> getAllTheUsers() {
+        return userDao.getAllTheUsers();
+    }
+
+
 }

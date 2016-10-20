@@ -11,34 +11,36 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title> Registration </title>
+    <title> <spring:message code="registration.page.text.title" /> </title>
 </head>
 <body>
 
+<h1><spring:message code="registration.page.text.welcome"/></h1>
+
 <form:form method="POST" action="/registrationComplete" commandName="UserEntity">
     <table>
-        <tr>
-            <td><form:input path="firstName" placeholder="firstName"/> *
+        <tr><spring:message code="registration.page.text.firstname" var="firstname"/>
+            <td><form:input path="firstName" placeholder="${firstname}"/> *
             <td><form:errors path="firstName"/></td>
         </tr>
-        <tr>
-            <td><form:input path="lastName" placeholder="lastName"/> *
+        <tr><spring:message code="registration.page.text.lastname" var="lasttname"/>
+            <td><form:input path="lastName" placeholder="lasttname"/> *
             <td><form:errors path="lastName"/></td>
         </tr>
-        <tr>
-            <td><form:input path="email" placeholder="email"/> *
+        <tr><spring:message code="registration.page.text.email" var="email"/>
+            <td><form:input path="email" placeholder="${email}"/> *
             <td><form:errors path="email"/></td>
         </tr>
-        <tr>
-            <td><form:input path="login" placeholder="login"/> *
+        <tr><spring:message code="login" var="login"/>
+            <td><form:input path="login" placeholder="${login}"/> *
             <td><form:errors path="login"/></td>
         </tr>
-        <tr>
+        <tr><spring:message code="password" var="password"/>
             <td><form:password path="password" placeholder="password"/> *
             <td><form:errors path="password"/></td>
         </tr>
-        <tr>
-            <td colspan="2">  <input class="buttonSignup" type="submit"/>
+        <tr><spring:message code="registration.page.button.complete" var="complete"/>
+            <td colspan="2">  <input type="submit" value="${complete}"/>
             </td>
         </tr>
     </table>

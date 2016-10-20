@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="by.zheynov.socnet.controllers"/>
     <context:component-scan base-package="by.zheynov.socnet.service"/>
@@ -16,6 +17,41 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+
+    <!--___________________________________Localization section __________________________________________ -->
+
+    <!--MessageSource -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:label"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <!--Localization -->
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang"/>
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="ru"/>
+    </bean>
+
+    <!--Localization -->
+    <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors" ref="localeChangeInterceptor"/>
+
+    </bean>
+
+    <!--Localization -->
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang"/>
+        </bean>
+    </mvc:interceptors>
+
+
+
+    <!--______________________________________Hibernate section______________________________________________-->
+
     <!-- Data from jdbc.properties-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>
@@ -24,7 +60,7 @@
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
     </bean>
 
-    <!-- Data sourse - bridge between DB and Hibernate.-->
+    <!-- Data sourse - bridge between DB and Hibernate-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="url" value="${jdbc.url}"/>
@@ -53,6 +89,10 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+
+
+    <!-- _______________________________________B E A N S  ____________________________________________ -->
+
     <bean id="userDao" class="by.zheynov.socnet.dao.user.impl.UserDaoImpl">
         <constructor-arg ref="sessionFactory"/>
     </bean>
@@ -69,13 +109,10 @@
         <property name="profileDao" ref="profileDao" />
     </bean>
 
-
-
     <bean id="registrationController" class="by.zheynov.socnet.controllers.RegistrationController">
         <property name="userService" ref="userService" />
         <property name="profileService" ref="profileService" />
     </bean>
-
 
 
 </beans>

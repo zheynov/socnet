@@ -21,6 +21,14 @@ public class RegistrationController {
     private UserService userService;
     private ProfileService profileService;
 
+    public void setUserService(UserServiceImpl userService) {
+        this.userService = userService;
+    }
+
+    public void setProfileService(ProfileService profileService) {
+        this.profileService = profileService;
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String initRegistration(Model model) {
         model.addAttribute("UserEntity", new UserEntity());
@@ -36,17 +44,17 @@ public class RegistrationController {
         profileEntity.setLastName(userEntity.getLastName());
         profileEntity.setEmail(userEntity.getEmail());
         userEntity.setProfileEntity(profileEntity);
+
         profileService.createProfile(profileEntity);
         userService.createUser(userEntity);
 
-        return "loginpage";
+        return "/loginpage";
     }
 
-    public void setUserService(UserServiceImpl userService) {
-        this.userService = userService;
+    @RequestMapping(value = "/showAllUsers", method = RequestMethod.GET)
+    public String showAllTheUsers(Model model) {
+        model.addAttribute("allTheUsers", userService.getAllTheUsers());
+        return "/alltheusers";
     }
 
-    public void setProfileService(ProfileService profileService) {
-        this.profileService = profileService;
-    }
 }
