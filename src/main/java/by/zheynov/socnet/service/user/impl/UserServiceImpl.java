@@ -22,14 +22,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public void createUser(UserEntity userEntity) {
+    public void createUser(final UserEntity userEntity) {
         userDao.createUser(userEntity);
     }
+
     @Transactional
-    public void updateUser(UserEntity user) {
+    public void updateUser(final UserEntity user) {
     }
+
     @Transactional
-    public void deleteUser(UserEntity profile) {
+    public void deleteUser(final UserEntity profile) {
     }
 
     public List<UserEntity> getAllTheUsers() {

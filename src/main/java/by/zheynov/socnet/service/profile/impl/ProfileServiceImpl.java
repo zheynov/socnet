@@ -15,27 +15,27 @@ public class ProfileServiceImpl implements ProfileService {
 
     private ProfileDao profileDao;
 
-    public void setProfileDao(final ProfileDao profileDao) {
+    public void setProfileDao(ProfileDao profileDao) {
         this.profileDao = profileDao;
     }
 
     @Transactional
-    public void createProfile(ProfileEntity profileEntity) {
+    public void createProfile(final ProfileEntity profileEntity) {
         profileDao.createProfile(profileEntity);
     }
 
     @Transactional
-    public ProfileEntity getProfileById(Long profile_id) {
+    public ProfileEntity getProfileById(final Long profile_id) {
         return null;
     }
 
     @Transactional
-    public void updateProfile(ProfileEntity profile) {
+    public void updateProfile(final ProfileEntity profile) {
 
     }
 
     @Transactional
-    public void deleteProfile(ProfileEntity profile) {
+    public void deleteProfile(final ProfileEntity profile) {
 
     }
 }

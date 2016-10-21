@@ -39,7 +39,7 @@ public class LoginController {
         if (result.hasErrors())
             return "/loginpage";
 
-        session.setAttribute("userDTO", userDTO);
+//        session.setAttribute("userDTO", userDTO);
 
         return "redirect:/showAllUsers";
     }

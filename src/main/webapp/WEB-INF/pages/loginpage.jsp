@@ -18,9 +18,11 @@
 <h1><spring:message code="login.page.text.welcome"/></h1>
 
 
+<%--
 <c:if test="${sessionScope.get('userDTO') ne null}">
     ${pageContext.forward("/showAllUsers")}
 </c:if>
+--%>
 
 <form:form method="POST" action="processLogin" commandName="userDTO">
     <table>
