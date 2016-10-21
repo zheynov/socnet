@@ -49,7 +49,6 @@
     </mvc:interceptors>
 
 
-
     <!--______________________________________Hibernate section______________________________________________-->
 
     <!-- Data from jdbc.properties-->
@@ -76,7 +75,7 @@
 
         <property name="hibernateProperties">
             <props>
-    <!--            <prop key="hibernate.show_sql">true</prop>-->
+                <!--            <prop key="hibernate.show_sql">true</prop>-->
                 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
             </props>
         </property>
@@ -90,7 +89,6 @@
     </bean>
 
 
-
     <!-- _______________________________________B E A N S  ____________________________________________ -->
 
     <bean id="userDao" class="by.zheynov.socnet.dao.user.impl.UserDaoImpl">
@@ -102,17 +100,27 @@
     </bean>
 
     <bean id="userService" class="by.zheynov.socnet.service.user.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao" />
+        <property name="userDao" ref="userDao"/>
     </bean>
 
     <bean id="profileService" class="by.zheynov.socnet.service.profile.impl.ProfileServiceImpl">
-        <property name="profileDao" ref="profileDao" />
+        <property name="profileDao" ref="profileDao"/>
+    </bean>
+
+    <bean id="registrationValidator" class="by.zheynov.socnet.validators.RegistrationValidator">
+    </bean>
+
+    <bean id="loginValidator" class="by.zheynov.socnet.validators.LoginValidator">
     </bean>
 
     <bean id="registrationController" class="by.zheynov.socnet.controllers.RegistrationController">
-        <property name="userService" ref="userService" />
-        <property name="profileService" ref="profileService" />
+        <property name="userService" ref="userService"/>
+        <property name="profileService" ref="profileService"/>
+        <property name="registrationValidator" ref="registrationValidator"/>
     </bean>
 
+    <bean id="loginController" class="by.zheynov.socnet.controllers.LoginController">
+        <property name="loginValidator" ref="loginValidator"/>
+    </bean>
 
 </beans>
