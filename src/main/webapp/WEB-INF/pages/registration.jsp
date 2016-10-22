@@ -17,7 +17,7 @@
 
 <h1><spring:message code="registration.page.text.welcome"/></h1>
 
-<form:form method="POST" action="/registrationComplete" commandName="userEntity">
+<form:form method="POST" action="/registrationComplete" commandName="userDTO">
     <table>
         <tr><spring:message code="registration.page.text.firstname" var="firstname"/>
             <td>

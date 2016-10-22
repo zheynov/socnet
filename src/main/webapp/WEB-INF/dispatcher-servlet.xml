@@ -101,26 +101,35 @@
 
     <bean id="userService" class="by.zheynov.socnet.service.user.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
+        <property name="profileService" ref="profileService"/>
     </bean>
 
     <bean id="profileService" class="by.zheynov.socnet.service.profile.impl.ProfileServiceImpl">
         <property name="profileDao" ref="profileDao"/>
     </bean>
 
-    <bean id="registrationValidator" class="by.zheynov.socnet.validators.RegistrationValidator">
+    <bean id="registrationValidator" class="by.zheynov.socnet.validators.RegistrationFormValidator">
     </bean>
 
-    <bean id="loginValidator" class="by.zheynov.socnet.validators.LoginValidator">
+    <bean id="loginValidator" class="by.zheynov.socnet.validators.LoginFormValidator">
     </bean>
 
     <bean id="registrationController" class="by.zheynov.socnet.controllers.RegistrationController">
-        <property name="userService" ref="userService"/>
-        <property name="profileService" ref="profileService"/>
-        <property name="registrationValidator" ref="registrationValidator"/>
+        <property name="userFacade" ref="userFacade"/>
+
+        <property name="registrationFormValidator" ref="registrationValidator"/>
     </bean>
 
     <bean id="loginController" class="by.zheynov.socnet.controllers.LoginController">
-        <property name="loginValidator" ref="loginValidator"/>
+        <property name="loginFormValidator" ref="loginValidator"/>
     </bean>
+
+
+
+    <bean id="userFacade" class="by.zheynov.socnet.facade.user.impl.UserFacadeImpl">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+
 
 </beans>

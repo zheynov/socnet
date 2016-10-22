@@ -1,7 +1,7 @@
 package by.zheynov.socnet.controllers;
 
 import by.zheynov.socnet.dto.UserDTO;
-import by.zheynov.socnet.validators.LoginValidator;
+import by.zheynov.socnet.validators.LoginFormValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,10 +18,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
-    private LoginValidator loginValidator;
+    private LoginFormValidator loginFormValidator;
 
-    public void setLoginValidator(LoginValidator loginValidator) {
-        this.loginValidator = loginValidator;
+    public void setLoginFormValidator(LoginFormValidator loginFormValidator) {
+        this.loginFormValidator = loginFormValidator;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -34,7 +34,7 @@ public class LoginController {
     public String processLogin(Model model, HttpSession session,
                                @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result) {
 
-        loginValidator.validate(userDTO, result);
+        loginFormValidator.validate(userDTO, result);
 
         if (result.hasErrors())
             return "/loginpage";
