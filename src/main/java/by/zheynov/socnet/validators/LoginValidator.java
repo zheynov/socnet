@@ -17,9 +17,11 @@ public class LoginValidator implements Validator {
         return UserDTO.class.isAssignableFrom(aClass);
     }
 
-    public void validate(Object o, Errors errors) {
+    public void validate(Object targret, Errors errors) {
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login",
                 "login.page.text.validation.emptylogin", "Login mustn't be empty.");
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
                 "login.page.text.validation.emptypassword", "password mustn't be empty.");
     }

@@ -64,7 +64,7 @@ public class RegistrationController {
         profileService.createProfile(profileEntity);
         userService.createUser(userEntity);
 
-        return "/loginpage";
+        return "redirect:/loginpage";
     }
 
     @RequestMapping(value = "/showAllUsers", method = RequestMethod.GET)
