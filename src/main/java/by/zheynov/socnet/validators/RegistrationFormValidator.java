@@ -7,7 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 /**
- *  Created by vazh on 21.10.2016.
+ * Created by vazh on 21.10.2016.
  */
 
 @Component
@@ -19,18 +19,14 @@ public class RegistrationFormValidator implements Validator {
 
     public void validate(Object targret, Errors errors) {
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"login",
-                "registration.page.text.validation.emptylogin", "Login mustn't be empty");
-
         UserDTO userDTO = (UserDTO) targret;
 
         String login = userDTO.getLogin();
-        if ((login.length()) > 16) {
+        if ((login.length() > 16)) {
             errors.rejectValue("login", "registration.page.text.validation.logintoolong", "Login is too long.");
+        } else if ((login.length() < 5)) {
+            errors.rejectValue("login", "registration.page.text.validation.logintoshort", "Login is too short");
         }
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
-                "registration.page.text.validation.emptypassword", "password mustn't be empty");
 
         String password = userDTO.getPassword();
         if ((password.length()) < 7) {
@@ -38,15 +34,11 @@ public class RegistrationFormValidator implements Validator {
                     "registration.page.text.validation.password.length", "Password is too short.");
         }
 
-
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName",
                 "registration.page.text.validation.firstName", "First Name mustn't be empty");
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName",
                 "registration.page.text.validation.lastName", "Last Name mustn't be empty");
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email",
-                "registration.page.text.validation.email", "Email Name mustn't be empty");
 
         String email = userDTO.getEmail();
         if (!EmailValidator.isValidEmailAddress(email)) {

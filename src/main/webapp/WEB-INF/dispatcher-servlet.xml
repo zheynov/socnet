@@ -124,12 +124,8 @@
         <property name="loginFormValidator" ref="loginValidator"/>
     </bean>
 
-
-
     <bean id="userFacade" class="by.zheynov.socnet.facade.user.impl.UserFacadeImpl">
         <property name="userService" ref="userService"/>
     </bean>
-
-
 
 </beans>
