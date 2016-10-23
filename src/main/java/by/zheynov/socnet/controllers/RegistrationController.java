@@ -1,8 +1,9 @@
 package by.zheynov.socnet.controllers;
 
 import by.zheynov.socnet.dto.UserDTO;
-import by.zheynov.socnet.facade.user.UserFacade;
+import by.zheynov.socnet.facade.UserFacade;
 import by.zheynov.socnet.validators.RegistrationFormValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,16 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RegistrationController {
 
+    @Autowired
     private RegistrationFormValidator registrationFormValidator;
+    @Autowired
     private UserFacade userFacade;
-    public void setUserFacade(UserFacade userFacade) {
-        this.userFacade = userFacade;
-    }
-
-    public void setRegistrationFormValidator(RegistrationFormValidator registrationFormValidator) {
-        this.registrationFormValidator = registrationFormValidator;
-    }
-
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String initRegistration(Model model) {

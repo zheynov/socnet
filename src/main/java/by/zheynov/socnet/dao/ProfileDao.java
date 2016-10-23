@@ -1,4 +1,4 @@
-package by.zheynov.socnet.dao.profile;
+package by.zheynov.socnet.dao;
 
 import by.zheynov.socnet.entity.ProfileEntity;
 

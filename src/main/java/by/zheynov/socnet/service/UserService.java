@@ -1,4 +1,4 @@
-package by.zheynov.socnet.service.user;
+package by.zheynov.socnet.service;
 
 import by.zheynov.socnet.entity.UserEntity;
 

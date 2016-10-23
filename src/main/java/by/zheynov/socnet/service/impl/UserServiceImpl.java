@@ -1,10 +1,9 @@
-package by.zheynov.socnet.service.user.impl;
+package by.zheynov.socnet.service.impl;
 
-import by.zheynov.socnet.dao.user.UserDao;
+import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
-import by.zheynov.socnet.service.profile.impl.ProfileServiceImpl;
-import by.zheynov.socnet.service.user.UserService;
+import by.zheynov.socnet.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +18,6 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
     private ProfileServiceImpl profileService;
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    public void setProfileService(ProfileServiceImpl profileService) {
-        this.profileService = profileService;
-    }
 
     @Transactional
     public void createUser(final UserEntity userEntity) {
@@ -54,5 +45,12 @@ public class UserServiceImpl implements UserService {
         return userDao.getAllTheUsers();
     }
 
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    public void setProfileService(ProfileServiceImpl profileService) {
+        this.profileService = profileService;
+    }
 
 }

@@ -1,6 +1,6 @@
-package by.zheynov.socnet.dao.user.impl;
+package by.zheynov.socnet.dao.impl;
 
-import by.zheynov.socnet.dao.user.UserDao;
+import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.entity.UserEntity;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -29,11 +29,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void updateUser(final UserEntity user) {
-
     }
 
     public void deleteUser(final UserEntity user) {
-
     }
 
     public List<UserEntity> getAllTheUsers() {

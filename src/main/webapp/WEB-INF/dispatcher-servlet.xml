@@ -10,6 +10,7 @@
     <context:component-scan base-package="by.zheynov.socnet.dao"/>
     <context:component-scan base-package="by.zheynov.socnet.dto"/>
     <context:component-scan base-package="by.zheynov.socnet.entity"/>
+    <context:component-scan base-package="by.zheynov.socnet.validators"/>
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -91,41 +92,29 @@
 
     <!-- _______________________________________B E A N S  ____________________________________________ -->
 
-    <bean id="userDao" class="by.zheynov.socnet.dao.user.impl.UserDaoImpl">
+    <bean id="userDao" class="by.zheynov.socnet.dao.impl.UserDaoImpl">
         <constructor-arg ref="sessionFactory"/>
     </bean>
 
-    <bean id="profileDao" class="by.zheynov.socnet.dao.profile.impl.ProfileDaoImpl">
+    <bean id="profileDao" class="by.zheynov.socnet.dao.impl.ProfileDaoImpl">
         <constructor-arg ref="sessionFactory"/>
     </bean>
 
-    <bean id="userService" class="by.zheynov.socnet.service.user.impl.UserServiceImpl">
+    <bean id="userService" class="by.zheynov.socnet.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
         <property name="profileService" ref="profileService"/>
     </bean>
 
-    <bean id="profileService" class="by.zheynov.socnet.service.profile.impl.ProfileServiceImpl">
+    <bean id="profileService" class="by.zheynov.socnet.service.impl.ProfileServiceImpl">
         <property name="profileDao" ref="profileDao"/>
     </bean>
 
-    <bean id="registrationValidator" class="by.zheynov.socnet.validators.RegistrationFormValidator">
-    </bean>
-
-    <bean id="loginValidator" class="by.zheynov.socnet.validators.LoginFormValidator">
-    </bean>
-
-    <bean id="registrationController" class="by.zheynov.socnet.controllers.RegistrationController">
-        <property name="userFacade" ref="userFacade"/>
-
-        <property name="registrationFormValidator" ref="registrationValidator"/>
-    </bean>
-
-    <bean id="loginController" class="by.zheynov.socnet.controllers.LoginController">
-        <property name="loginFormValidator" ref="loginValidator"/>
-    </bean>
-
-    <bean id="userFacade" class="by.zheynov.socnet.facade.user.impl.UserFacadeImpl">
+    <bean id="userFacade" class="by.zheynov.socnet.facade.impl.UserFacadeImpl">
         <property name="userService" ref="userService"/>
     </bean>
+
+    <bean id="profileFacade" class="by.zheynov.socnet.facade.impl.ProfileFacadeImpl">
+    </bean>
+
 
 </beans>

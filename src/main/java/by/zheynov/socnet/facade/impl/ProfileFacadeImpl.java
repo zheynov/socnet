@@ -1,4 +1,4 @@
-package by.zheynov.socnet.facade.profile.impl;
+package by.zheynov.socnet.facade.impl;
 
 /**
  * Created by vazh on 21.10.2016.

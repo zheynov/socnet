@@ -7,7 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 /**
  * Created by ZheynovVV on 22.10.2016.
  */
-public class UserDTOToUserEntityConverter implements Converter<UserDTO, UserEntity> {
+public class UserDTOConverter implements Converter<UserDTO, UserEntity> {
 
     public UserEntity convert(UserDTO userDTO) {
 

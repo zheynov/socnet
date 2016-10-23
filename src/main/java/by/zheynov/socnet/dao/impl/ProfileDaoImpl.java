@@ -1,11 +1,8 @@
-package by.zheynov.socnet.dao.profile.impl;
+package by.zheynov.socnet.dao.impl;
 
-import by.zheynov.socnet.dao.profile.ProfileDao;
+import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.entity.ProfileEntity;
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-
-import java.util.List;
 
 /**
  * Created by zheynovvv on 20.10.2016.
@@ -29,11 +26,9 @@ public class ProfileDaoImpl implements ProfileDao {
     }
 
     public void updateProfile(final ProfileEntity profile) {
-
     }
 
     public void deleteProfile(final ProfileEntity profile) {
-
     }
 
 }

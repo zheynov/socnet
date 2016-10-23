@@ -1,4 +1,4 @@
-package by.zheynov.socnet.facade.user;
+package by.zheynov.socnet.facade;
 
 import by.zheynov.socnet.dto.UserDTO;
 import java.util.List;

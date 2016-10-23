@@ -2,6 +2,7 @@ package by.zheynov.socnet.controllers;
 
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.validators.LoginFormValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,11 +19,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
+    @Autowired
     private LoginFormValidator loginFormValidator;
-
-    public void setLoginFormValidator(LoginFormValidator loginFormValidator) {
-        this.loginFormValidator = loginFormValidator;
-    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String initLogin(Model model) {
@@ -43,6 +41,5 @@ public class LoginController {
 
         return "redirect:/showAllUsers";
     }
-
 
 }

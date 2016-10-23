@@ -1,6 +1,5 @@
-package by.zheynov.socnet.service.profile;
+package by.zheynov.socnet.service;
 
-import by.zheynov.socnet.dao.profile.ProfileDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**

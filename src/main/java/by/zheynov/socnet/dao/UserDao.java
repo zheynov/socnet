@@ -1,4 +1,4 @@
-package by.zheynov.socnet.dao.user;
+package by.zheynov.socnet.dao;
 
 import by.zheynov.socnet.entity.UserEntity;
 
