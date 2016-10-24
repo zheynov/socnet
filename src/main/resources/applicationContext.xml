@@ -4,7 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="userDao" class="by.zheynov.socnet.dao.impl.UserDaoImpl">
-        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
+    <bean id="abstractDao" class="by.zheynov.socnet.dao.impl.AbstractBaseDAO" abstract="true">
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <bean id="profileDao" class="by.zheynov.socnet.dao.impl.ProfileDaoImpl">

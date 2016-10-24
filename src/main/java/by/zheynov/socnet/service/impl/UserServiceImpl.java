@@ -5,13 +5,11 @@ import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
 import by.zheynov.socnet.service.ProfileService;
 import by.zheynov.socnet.service.UserService;
-import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by vazh on 19.10.2016.
