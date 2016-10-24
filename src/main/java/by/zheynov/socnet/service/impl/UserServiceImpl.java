@@ -3,11 +3,15 @@ package by.zheynov.socnet.service.impl;
 import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
+import by.zheynov.socnet.service.ProfileService;
 import by.zheynov.socnet.service.UserService;
+import org.apache.log4j.Logger;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by vazh on 19.10.2016.
@@ -16,8 +20,10 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
+  //  private final Logger LOGGER = Logger.getLogger(getClass());
     private UserDao userDao;
-    private ProfileServiceImpl profileService;
+    private ProfileService profileService;
+    private MessageSource messageSource;
 
     @Transactional
     public void createUser(final UserEntity userEntity) {
@@ -31,6 +37,8 @@ public class UserServiceImpl implements UserService {
 
         profileService.createProfile(profileEntity);
         userDao.createUser(userEntity);
+
+     //   LOGGER.info(messageSource.getMessage("service.user.save", new Object[]{userEntity}, Locale.ENGLISH));
     }
 
     @Transactional
@@ -49,8 +57,11 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
-    public void setProfileService(ProfileServiceImpl profileService) {
+    public void setProfileService(ProfileService profileService) {
         this.profileService = profileService;
     }
 
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 }

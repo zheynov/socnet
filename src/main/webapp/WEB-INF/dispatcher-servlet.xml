@@ -18,8 +18,14 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--____________________________________Hibernate section_____________________________________________-->
+    <import resource="classpath:dataBase.xml"/>
 
-    <!--___________________________________Localization section __________________________________________ -->
+    <!--___________________________________Sirvece and DAO layers_________________________________________-->
+
+    <import resource="classpath:applicationContext.xml"/>
+
+    <!--___________________________________Localization section _________________________________________ -->
 
     <!--MessageSource -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -49,72 +55,22 @@
         </bean>
     </mvc:interceptors>
 
-
-    <!--______________________________________Hibernate section______________________________________________-->
-
-    <!-- Data from jdbc.properties-->
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc.properties"/>
-    </bean>
-
-    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
-    </bean>
-
-    <!-- Data sourse - bridge between DB and Hibernate-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-
-    </bean>
-
-    <!-- Hibernate session fabric -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="by.zheynov.socnet.entity"/>
-
-        <property name="hibernateProperties">
-            <props>
-                <!--            <prop key="hibernate.show_sql">true</prop>-->
-                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
-            </props>
-        </property>
-    </bean>
-
-    <!-- For ability to work with @Transactional tx:annotation-driven manages transations using annotations -->
-    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
-    <!-- Transaction manager-->
-    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-
     <!-- _______________________________________B E A N S  ____________________________________________ -->
-
-    <bean id="userDao" class="by.zheynov.socnet.dao.impl.UserDaoImpl">
-        <constructor-arg ref="sessionFactory"/>
-    </bean>
-
-    <bean id="profileDao" class="by.zheynov.socnet.dao.impl.ProfileDaoImpl">
-        <constructor-arg ref="sessionFactory"/>
-    </bean>
-
-    <bean id="userService" class="by.zheynov.socnet.service.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao"/>
-        <property name="profileService" ref="profileService"/>
-    </bean>
-
-    <bean id="profileService" class="by.zheynov.socnet.service.impl.ProfileServiceImpl">
-        <property name="profileDao" ref="profileDao"/>
-    </bean>
 
     <bean id="userFacade" class="by.zheynov.socnet.facade.impl.UserFacadeImpl">
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="profileFacade" class="by.zheynov.socnet.facade.impl.ProfileFacadeImpl">
-    </bean>
+<!--    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="by.zheynov.socnet.facade.converters.UserDTOConverter"/>
+                <bean class="by.zheynov.socnet.facade.converters.UserDTOReverseConverter"/>
+            </list>
+        </property>
+
+    </bean>-->
+
 
 
 </beans>

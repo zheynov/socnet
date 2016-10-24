@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
  * Created by vazh on 21.10.2016.
  */
 
-@Component
+@Component("registrationValidator")
 public class RegistrationFormValidator implements Validator {
 
     public boolean supports(Class<?> aClass) {

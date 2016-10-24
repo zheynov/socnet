@@ -2,11 +2,12 @@ package by.zheynov.socnet.controllers;
 
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.UserFacade;
-import by.zheynov.socnet.validators.RegistrationFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RegistrationController {
 
     @Autowired
-    private RegistrationFormValidator registrationFormValidator;
+    @Qualifier("registrationValidator")
+    private Validator registrationValidator;
     @Autowired
     private UserFacade userFacade;
 
@@ -33,7 +35,7 @@ public class RegistrationController {
     public String displayRegistration(Model model,
                                       @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result) {
 
-        registrationFormValidator.validate(userDTO, result);
+        registrationValidator.validate(userDTO, result);
 
         if (result.hasErrors())
         {

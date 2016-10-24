@@ -38,8 +38,6 @@ public class UserFacadeImpl implements UserFacade {
         }
         return allTheDTOUsers;
     }
-
-
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
