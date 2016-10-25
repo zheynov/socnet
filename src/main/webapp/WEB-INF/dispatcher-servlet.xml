@@ -11,6 +11,7 @@
     <context:component-scan base-package="by.zheynov.socnet.dto"/>
     <context:component-scan base-package="by.zheynov.socnet.entity"/>
     <context:component-scan base-package="by.zheynov.socnet.validators"/>
+    <context:component-scan base-package="by.zheynov.socnet.facade"/>
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -61,7 +62,7 @@
         <property name="userService" ref="userService"/>
     </bean>
 
-<!--    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+   <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
                 <bean class="by.zheynov.socnet.facade.converters.UserDTOConverter"/>
@@ -69,7 +70,7 @@
             </list>
         </property>
 
-    </bean>-->
+    </bean>
 
 
 

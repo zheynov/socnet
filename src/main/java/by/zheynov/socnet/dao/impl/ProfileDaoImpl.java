@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
  * Created by zheynovvv on 20.10.2016.
  */
 
-public class ProfileDaoImpl implements ProfileDao {
+public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao {
 
     private final SessionFactory sessionFactory;
 

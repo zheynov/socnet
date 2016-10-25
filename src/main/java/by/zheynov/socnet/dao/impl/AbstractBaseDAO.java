@@ -1,5 +1,6 @@
 package by.zheynov.socnet.dao.impl;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +29,8 @@ public abstract class AbstractBaseDAO {
     public void delete(Object object) {
     }
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
+    public Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

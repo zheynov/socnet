@@ -3,13 +3,14 @@ package by.zheynov.socnet.facade.converters;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Redlaw on 22.10.2016.
  */
 
+@Service
 public class UserDTOReverseConverter implements Converter<UserEntity, UserDTO> {
-
 
     public UserDTO convert(UserEntity userEntity) {
 

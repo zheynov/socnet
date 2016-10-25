@@ -3,6 +3,7 @@ package by.zheynov.socnet.dao.impl;
 import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.entity.UserEntity;
 import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,9 +30,10 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao {
 
     public List<UserEntity> getAllTheUsers() {
 
-        final Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(UserEntity.class);
+        final Criteria criteria = getCurrentSession().createCriteria(UserEntity.class);
         final List allTheUsers = criteria.list();
         return allTheUsers;
     }
+
 
 }

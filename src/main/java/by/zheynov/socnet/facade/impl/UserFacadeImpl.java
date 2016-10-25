@@ -6,6 +6,8 @@ import by.zheynov.socnet.facade.converters.UserDTOConverter;
 import by.zheynov.socnet.facade.converters.UserDTOReverseConverter;
 import by.zheynov.socnet.facade.UserFacade;
 import by.zheynov.socnet.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +19,13 @@ import java.util.List;
 public class UserFacadeImpl implements UserFacade {
 
     private UserService userService;
-    private UserDTOConverter userDTOConverter = new UserDTOConverter();
-    private UserDTOReverseConverter userDTOReverseConverter = new UserDTOReverseConverter();
+    @Autowired
+    private Converter userDTOConverter;
+    @Autowired
+    private Converter userDTOReverseConverter;
 
     public void createUser(UserDTO userDTO) {
-        userService.createUser(userDTOConverter.convert(userDTO));
+        userService.createUser((UserEntity) userDTOConverter.convert(userDTO));
     }
 
     public void updateUser(UserDTO userEntity) {
@@ -34,11 +38,19 @@ public class UserFacadeImpl implements UserFacade {
 
         List<UserDTO> allTheDTOUsers = new ArrayList<UserDTO>();
         for (UserEntity userEntity : userService.getAllTheUsers()) {
-            allTheDTOUsers.add(userDTOReverseConverter.convert(userEntity));
+            allTheDTOUsers.add((UserDTO) userDTOReverseConverter.convert(userEntity));
         }
         return allTheDTOUsers;
     }
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public void setUserDTOConverter(Converter userDTOConverter) {
+        this.userDTOConverter = userDTOConverter;
+    }
+
+    public void setUserDTOReverseConverter(Converter userDTOReverseConverter) {
+        this.userDTOReverseConverter = userDTOReverseConverter;
     }
 }
