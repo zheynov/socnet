@@ -29,8 +29,14 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <!--            <prop key="hibernate.show_sql">true</prop>-->
                 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+                <prop key="hibernate.c3p0.min_size">5</prop>
+                <prop key="hibernate.c3p0.max_size">20</prop>
+                <prop key="hibernate.c3p0.timeout">1800</prop>
+                <prop key="hibernate.c3p0.max_statements">50</prop>
+
             </props>
         </property>
+
     </bean>
 
     <!-- For ability to work with @Transactional tx:annotation-driven manages transations using annotations -->

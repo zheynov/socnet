@@ -6,7 +6,7 @@ USE socnetDB;
 
 CREATE TABLE socnetDB.profile
 (
-  profileID   LONG PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  id   BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   firstName   VARCHAR(30),
   lastName    VARCHAR(30),
   birthDate   DATE,
@@ -19,20 +19,14 @@ CREATE TABLE socnetDB.profile
 
 CREATE TABLE socnetDB.users
 (
-  userID    LONG PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  id    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   firstName VARCHAR(30)     NOT NULL,
   lastName  VARCHAR(30)     NOT NULL,
   email     VARCHAR(30)     NOT NULL UNIQUE,
   login     VARCHAR(30)     NOT NULL UNIQUE,
   password  VARCHAR(30)     NOT NULL,
-  profileID INT             NOT NULL,
-  FOREIGN KEY (profileID) REFERENCES profile (profileID)
+  profileID BIGINT             NOT NULL,
+  FOREIGN KEY (profileID) REFERENCES profile (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
-
-
-
-
-
-

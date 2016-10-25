@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 
-@Repository("abstractDao")
 @Transactional
 public abstract class AbstractBaseDAO {
 

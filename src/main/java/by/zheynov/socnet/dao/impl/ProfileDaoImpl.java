@@ -17,7 +17,7 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao {
     }
 
     public ProfileEntity createProfile(final ProfileEntity profile) {
-        sessionFactory.getCurrentSession().save(profile);
+        getCurrentSession().save(profile);
         return profile;
     }
 

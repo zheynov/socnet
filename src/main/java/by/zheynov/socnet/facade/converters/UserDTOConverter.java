@@ -2,7 +2,7 @@ package by.zheynov.socnet.facade.converters;
 
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 

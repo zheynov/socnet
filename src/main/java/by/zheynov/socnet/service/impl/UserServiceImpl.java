@@ -5,11 +5,13 @@ import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
 import by.zheynov.socnet.service.ProfileService;
 import by.zheynov.socnet.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by vazh on 19.10.2016.
@@ -18,7 +20,7 @@ import java.util.List;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-  //  private final Logger LOGGER = Logger.getLogger(getClass());
+    private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
     private UserDao userDao;
     private ProfileService profileService;
     private MessageSource messageSource;
@@ -36,7 +38,7 @@ public class UserServiceImpl implements UserService {
         profileService.createProfile(profileEntity);
         userDao.createUser(userEntity);
 
-     //   LOGGER.info(messageSource.getMessage("service.user.save", new Object[]{userEntity}, Locale.ENGLISH));
+        LOGGER.info(messageSource.getMessage("service.user.save", new Object[]{userEntity}, Locale.ENGLISH));
     }
 
     @Transactional

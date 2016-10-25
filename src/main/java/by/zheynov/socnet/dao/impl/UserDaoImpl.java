@@ -13,7 +13,12 @@ import java.util.List;
  * Created by vazh on 19.10.2016.
  */
 
-@Repository("userDao")
+/**
+ * User Dao Implementation.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.dao.impl
+ */
 @Transactional
 public class UserDaoImpl extends AbstractBaseDAO implements UserDao {
 
