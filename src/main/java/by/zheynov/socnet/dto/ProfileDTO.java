@@ -8,15 +8,15 @@ import java.util.Date;
  */
 public class ProfileDTO implements Serializable {
 
-    private Long profileID;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Date birthDate;
+    private Long    profileID;
+    private String  firstname;
+    private String  lastname;
+    private String  email;
+    private Date    birthDate;
     private Integer age;
-    private String sex;
-    private String city;
-    private String phoneNumber;
+    private String  sex;
+    private String  city;
+    private String  phoneNumber;
 
     public Long getProfileID() {
         return profileID;
@@ -26,20 +26,20 @@ public class ProfileDTO implements Serializable {
         this.profileID = profileID;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -98,8 +98,8 @@ public class ProfileDTO implements Serializable {
         ProfileDTO that = (ProfileDTO) o;
 
         if (!getProfileID().equals(that.getProfileID())) return false;
-        if (!getFirstName().equals(that.getFirstName())) return false;
-        if (!getLastName().equals(that.getLastName())) return false;
+        if (!getFirstname().equals(that.getFirstname())) return false;
+        if (!getLastname().equals(that.getLastname())) return false;
         if (!getEmail().equals(that.getEmail())) return false;
         if (getBirthDate() != null ? !getBirthDate().equals(that.getBirthDate()) : that.getBirthDate() != null)
             return false;
@@ -113,8 +113,8 @@ public class ProfileDTO implements Serializable {
     @Override
     public int hashCode() {
         int result = getProfileID().hashCode();
-        result = 31 * result + getFirstName().hashCode();
-        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getFirstname().hashCode();
+        result = 31 * result + getLastname().hashCode();
         result = 31 * result + getEmail().hashCode();
         result = 31 * result + (getBirthDate() != null ? getBirthDate().hashCode() : 0);
         result = 31 * result + (getAge() != null ? getAge().hashCode() : 0);

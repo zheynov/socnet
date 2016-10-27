@@ -7,8 +7,8 @@ USE socnetDB;
 CREATE TABLE socnetDB.profile
 (
   id   BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  firstName   VARCHAR(30),
-  lastName    VARCHAR(30),
+  firstname   VARCHAR(30),
+  lastname    VARCHAR(30),
   birthDate   DATE,
   email       VARCHAR(30) UNIQUE,
   age         INT(30)                  DEFAULT NULL,
@@ -20,8 +20,8 @@ CREATE TABLE socnetDB.profile
 CREATE TABLE socnetDB.users
 (
   id    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  firstName VARCHAR(30)     NOT NULL,
-  lastName  VARCHAR(30)     NOT NULL,
+  firstname VARCHAR(30)     NOT NULL,
+  lastname  VARCHAR(30)     NOT NULL,
   email     VARCHAR(30)     NOT NULL UNIQUE,
   login     VARCHAR(30)     NOT NULL UNIQUE,
   password  VARCHAR(30)     NOT NULL,

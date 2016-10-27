@@ -7,9 +7,9 @@ import java.io.Serializable;
  */
 
 public class UserDTO implements Serializable {
-    private Long id;
-    private String firstName;
-    private String lastName;
+    private Long   id;
+    private String firstname;
+    private String lastname;
     private String email;
     private String login;
     private String password;
@@ -22,20 +22,20 @@ public class UserDTO implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -70,8 +70,8 @@ public class UserDTO implements Serializable {
         UserDTO userDTO = (UserDTO) o;
 
         if (!getId().equals(userDTO.getId())) return false;
-        if (!getFirstName().equals(userDTO.getFirstName())) return false;
-        if (!getLastName().equals(userDTO.getLastName())) return false;
+        if (!getFirstname().equals(userDTO.getFirstname())) return false;
+        if (!getLastname().equals(userDTO.getLastname())) return false;
         if (!getEmail().equals(userDTO.getEmail())) return false;
         if (!getLogin().equals(userDTO.getLogin())) return false;
         return getPassword().equals(userDTO.getPassword());
@@ -81,8 +81,8 @@ public class UserDTO implements Serializable {
     @Override
     public int hashCode() {
         int result = getId().hashCode();
-        result = 31 * result + getFirstName().hashCode();
-        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getFirstname().hashCode();
+        result = 31 * result + getLastname().hashCode();
         result = 31 * result + getEmail().hashCode();
         result = 31 * result + getLogin().hashCode();
         result = 31 * result + getPassword().hashCode();

@@ -15,7 +15,6 @@ import java.util.Locale;
  * Created by zheynovvv on 20.10.2016.
  */
 
-@Service("profileService")
 public class ProfileServiceImpl implements ProfileService
 {
 	private final Logger LOGGER = Logger.getLogger(getClass());

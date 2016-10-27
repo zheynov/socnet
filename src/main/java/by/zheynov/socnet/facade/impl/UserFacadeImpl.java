@@ -2,14 +2,11 @@ package by.zheynov.socnet.facade.impl;
 
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
-import by.zheynov.socnet.facade.converters.UserDTOConverter;
-import by.zheynov.socnet.facade.converters.UserDTOReverseConverter;
 import by.zheynov.socnet.facade.UserFacade;
 import by.zheynov.socnet.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import org.springframework.core.convert.converter.Converter;
 
 import java.util.ArrayList;
 import java.util.List;

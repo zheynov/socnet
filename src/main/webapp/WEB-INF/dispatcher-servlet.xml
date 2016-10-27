@@ -66,10 +66,10 @@
    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
-                <bean class="by.zheynov.socnet.facade.converters.UserDTOConverter"/>
-                <bean class="by.zheynov.socnet.facade.converters.UserDTOReverseConverter"/>
-                <bean class="by.zheynov.socnet.facade.converters.ProfileDTOConverter"/>
-                <bean class="by.zheynov.socnet.facade.converters.ProfileDTOReverseConverter"/>
+                <bean class="by.zheynov.socnet.converters.UserDTOReverseConverter"/>
+                <bean class="by.zheynov.socnet.converters.UserDTOConverter"/>
+                <bean class="by.zheynov.socnet.converters.ProfileDTOReverseConverter"/>
+                <bean class="by.zheynov.socnet.converters.ProfileDTOConverter"/>
             </list>
         </property>
 

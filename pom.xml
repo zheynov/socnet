@@ -103,7 +103,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.17</version>
                 <configuration>
-                    <configLocation>src/config/checkstyle/checktyle.xml</configLocation>
+                    <configLocation>src/config/checktyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                 </configuration>
                 <executions>

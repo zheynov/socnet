@@ -34,13 +34,13 @@
     <table>
         <tr><spring:message code="registration.page.text.firstname" var="firstname"/>
             <td>
-                    <form:input path="firstName" placeholder="${firstname}"/> *
-            <td><form:errors path="firstName"/></td>
+                    <form:input path="firstname" placeholder="${firstname}"/> *
+            <td><form:errors path="firstname"/></td>
         </tr>
         <tr><spring:message code="registration.page.text.lastname" var="lastname"/>
             <td>
-                    <form:input path="lastName" placeholder="${lastname}"/> *
-            <td><form:errors path="lastName"/></td>
+                    <form:input path="lastname" placeholder="${lastname}"/> *
+            <td><form:errors path="lastname"/></td>
         </tr>
         <tr><spring:message code="registration.page.text.email" var="email"/>
             <td>

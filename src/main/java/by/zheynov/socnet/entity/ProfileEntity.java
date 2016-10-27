@@ -26,11 +26,11 @@ public class ProfileEntity implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "firstName", length = 64)
-	private String firstName;
+	@Column(name = "firstname", length = 64)
+	private String firstname;
 
-	@Column(name = "lastName", length = 64)
-	private String lastName;
+	@Column(name = "lastname", length = 64)
+	private String lastname;
 
 	@Column(name = "email", length = 64)
 	private String email;
@@ -92,22 +92,22 @@ public class ProfileEntity implements Serializable
 
 	public String getFirstName()
 	{
-		return firstName;
+		return firstname;
 	}
 
 	public void setFirstName(String firstName)
 	{
-		this.firstName = firstName;
+		this.firstname = firstname;
 	}
 
-	public String getLastName()
+	public String getLastname()
 	{
-		return lastName;
+		return lastname;
 	}
 
-	public void setLastName(String lastName)
+	public void setLastname(String lastname)
 	{
-		this.lastName = lastName;
+		this.lastname = lastname;
 	}
 
 	public String getPhoneNumber()

@@ -19,11 +19,11 @@ public class UserEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firstName", length = 64)
-    private String firstName;
+    @Column(name = "firstname", length = 64)
+    private String firstname;
 
-    @Column(name = "lastName", length = 64)
-    private String lastName;
+    @Column(name = "lastname", length = 64)
+    private String lastname;
 
     @Column(name = "email", length = 64)
     private String email;
@@ -48,11 +48,11 @@ public class UserEntity implements Serializable {
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
 
     public Long getId()
@@ -66,11 +66,11 @@ public class UserEntity implements Serializable {
     }
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getLogin() {

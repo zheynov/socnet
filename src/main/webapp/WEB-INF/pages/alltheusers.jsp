@@ -16,7 +16,7 @@
 <h2> All the users from DB:</h2>
 
 <c:forEach items="${allTheUsers}" var="userEntity"><p>
-    <b> Full name: </b>${userEntity.firstName} ${userEntity.lastName} <br/>
+    <b> Full name: </b>${userEntity.firstname} ${userEntity.lastname} <br/>
     <b> Login: </b>${userEntity.login}<br/>
     <b> Email:</b> ${userEntity.email} </p>
 </c:forEach>

@@ -9,31 +9,39 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by Redlaw on 24.10.2016.
  */
 
-
 @Transactional
-public abstract class AbstractBaseDAO {
+public abstract class AbstractBaseDAO
+{
 
-    private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
-    void save(Object object) {
-        sessionFactory.getCurrentSession().save(object);
-    }
+	void save(Object object)
+	{
+		sessionFactory.getCurrentSession().save(object);
+	}
 
-    public void getById() {
-    }
+	public void getById()
+	{
+	}
 
-    void udate(Object object) {
-    }
+	void udate(Object object)
+	{
+		sessionFactory.getCurrentSession().update(object);
+	}
 
-    void delete(Object object) {
-    }
+	void delete(Object object)
+	{
+		sessionFactory.getCurrentSession().delete(object);
+	}
 
-    Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
-    }
+	Session getCurrentSession()
+	{
+		return sessionFactory.getCurrentSession();
+	}
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	public void setSessionFactory(SessionFactory sessionFactory)
+	{
+		this.sessionFactory = sessionFactory;
+	}
 
 }

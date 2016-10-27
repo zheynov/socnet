@@ -1,4 +1,4 @@
-package by.zheynov.socnet.facade.converters;
+package by.zheynov.socnet.converters;
 
 import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class ProfileDTOConverter implements Converter<ProfileDTO, ProfileEntity> {
+public class ProfileDTOReverseConverter implements Converter<ProfileDTO, ProfileEntity> {
 
     public ProfileEntity convert(ProfileDTO profileDTO) {
 
@@ -20,8 +20,8 @@ public class ProfileDTOConverter implements Converter<ProfileDTO, ProfileEntity>
         final ProfileEntity profileEntity = new ProfileEntity();
 
         profileEntity.setId(profileDTO.getProfileID());
-        profileEntity.setFirstName(profileDTO.getFirstName());
-        profileEntity.setLastName(profileDTO.getLastName());
+        profileEntity.setFirstName(profileDTO.getFirstname());
+        profileEntity.setLastname(profileDTO.getLastname());
         profileEntity.setEmail(profileDTO.getEmail());
         profileEntity.setAge(profileDTO.getAge());
         profileEntity.setBirthDate(profileDTO.getBirthDate());
