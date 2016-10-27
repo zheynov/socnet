@@ -15,20 +15,20 @@ public abstract class AbstractBaseDAO {
 
     private SessionFactory sessionFactory;
 
-    public void save(Object object) {
+    void save(Object object) {
         sessionFactory.getCurrentSession().save(object);
     }
 
     public void getById() {
     }
 
-    public void udate(Object object) {
+    void udate(Object object) {
     }
 
-    public void delete(Object object) {
+    void delete(Object object) {
     }
 
-    public Session getCurrentSession() {
+    Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 

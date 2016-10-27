@@ -3,16 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userDao" class="by.zheynov.socnet.dao.impl.UserDaoImpl" parent="abstractDao">
-    </bean>
+    <bean id="userDao" class="by.zheynov.socnet.dao.impl.UserDaoImpl" parent="abstractDao"/>
+
 
     <bean id="abstractDao" class="by.zheynov.socnet.dao.impl.AbstractBaseDAO" abstract="true">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="profileDao" class="by.zheynov.socnet.dao.impl.ProfileDaoImpl" parent="abstractDao">
-        <constructor-arg ref="sessionFactory"/>
-    </bean>
+    <bean id="profileDao" class="by.zheynov.socnet.dao.impl.ProfileDaoImpl" parent="abstractDao"/>
+
 
     <bean id="profileService" class="by.zheynov.socnet.service.impl.ProfileServiceImpl">
         <property name="profileDao" ref="profileDao"/>
@@ -23,7 +22,6 @@
         <property name="userDao" ref="userDao"/>
         <property name="profileService" ref="profileService"/>
         <property name="messageSource" ref="messageSource"/>
-
     </bean>
 
 

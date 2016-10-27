@@ -20,7 +20,7 @@ import java.util.List;
 
 public class UserFacadeImpl implements UserFacade
 {
-
+	@Autowired
 	private UserService       userService;
 	@Autowired
 	private ConversionService conversionService;
@@ -38,6 +38,10 @@ public class UserFacadeImpl implements UserFacade
 	{
 	}
 
+	public UserEntity getUserByLogin(String login) {
+		return null;
+	}
+
 	public List<UserDTO> getAllTheUsers()
 	{
 
@@ -50,9 +54,15 @@ public class UserFacadeImpl implements UserFacade
 		return allTheDTOUsers;
 	}
 
-	public void setUserService(UserService userService)
-	{
-		this.userService = userService;
+	public boolean isLoginExists(String login) {
+		return userService.isLoginExists(login);
 	}
 
+	public boolean isUserPasswpodlCorrect(UserDTO userDTO) {
+		return userService.isPasswpodlCorrect(userDTO);
+	}
+
+	public boolean isEmailExists(String email) {
+		return userService.isEmailExists(email);
+	}
 }

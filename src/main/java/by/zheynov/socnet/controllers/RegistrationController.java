@@ -37,14 +37,24 @@ public class RegistrationController {
 
         registrationValidator.validate(userDTO, result);
 
-        if (result.hasErrors())
-        {
+        if (result.hasErrors()) {
             return "/registration";
         }
 
-        userFacade.createUser(userDTO);
+        if (!userFacade.isLoginExists(userDTO.getLogin())) {
+            if (!userFacade.isEmailExists(userDTO.getEmail())) {
 
-        return "/loginpage";
+                userFacade.createUser(userDTO);
+                return "/loginpage";
+
+            } else {
+                model.addAttribute("pageNotification", "email");
+                return "/registration";
+            }
+        } else {
+            model.addAttribute("pageNotification", "login");
+            return "/registration";
+        }
     }
 
     @RequestMapping(value = "/showAllUsers", method = RequestMethod.GET)

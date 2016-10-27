@@ -1,7 +1,7 @@
 package by.zheynov.socnet.entity;
 
-import javax.persistence.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 

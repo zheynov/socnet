@@ -1,6 +1,8 @@
 package by.zheynov.socnet.facade;
 
 import by.zheynov.socnet.dto.UserDTO;
+import by.zheynov.socnet.entity.UserEntity;
+
 import java.util.List;
 
 /**
@@ -14,5 +16,13 @@ public interface UserFacade {
 
     void deleteUser(UserDTO userDTO);
 
+    UserEntity getUserByLogin(String login);
+
     List<UserDTO> getAllTheUsers();
+
+    boolean isLoginExists(String login);
+
+    boolean isUserPasswpodlCorrect(UserDTO user);
+
+    boolean isEmailExists(String email);
 }

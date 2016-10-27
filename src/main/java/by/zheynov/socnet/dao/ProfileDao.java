@@ -16,5 +16,4 @@ public interface ProfileDao {
 
     void deleteProfile(ProfileEntity profile);
 
-
 }

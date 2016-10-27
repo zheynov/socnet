@@ -1,5 +1,6 @@
 package by.zheynov.socnet.service;
 
+import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
 
 import java.util.List;
@@ -17,11 +18,11 @@ public interface UserService {
 
     List<UserEntity> getAllTheUsers();
 
-/*    boolean isPasswpodlCorrect(UserDTO user);
+    boolean isPasswpodlCorrect(UserDTO user);
 
     boolean isLoginExists(String login);
 
     boolean isEmailExists(String email);
 
-    UserEntity getUserByLogin(String login);*/
+    UserEntity getUserByLogin(String login);
 }

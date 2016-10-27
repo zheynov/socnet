@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: vazh
@@ -16,6 +17,18 @@
 <body>
 
 <h1><spring:message code="registration.page.text.welcome"/></h1>
+
+<h2>
+    <c:choose>
+        <c:when test="${pageNotification eq 'email'}">
+            <spring:message code="registration.page.text.validation.email.exists"/>
+        </c:when>
+        <c:when test="${pageNotification eq 'login'}">
+            <spring:message code="registration.page.text.validation.login.exists"/>
+        </c:when>
+        <c:otherwise> </c:otherwise>
+    </c:choose>
+</h2>
 
 <form:form method="POST" action="/registrationComplete" commandName="userDTO">
     <table>

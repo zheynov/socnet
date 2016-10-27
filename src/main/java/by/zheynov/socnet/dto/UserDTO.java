@@ -14,33 +14,6 @@ public class UserDTO implements Serializable {
     private String login;
     private String password;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserDTO)) return false;
-
-        UserDTO userDTO = (UserDTO) o;
-
-        if (!getId().equals(userDTO.getId())) return false;
-        if (!getFirstName().equals(userDTO.getFirstName())) return false;
-        if (!getLastName().equals(userDTO.getLastName())) return false;
-        if (!getEmail().equals(userDTO.getEmail())) return false;
-        if (!getLogin().equals(userDTO.getLogin())) return false;
-        return getPassword().equals(userDTO.getPassword());
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + getFirstName().hashCode();
-        result = 31 * result + getLastName().hashCode();
-        result = 31 * result + getEmail().hashCode();
-        result = 31 * result + getLogin().hashCode();
-        result = 31 * result + getPassword().hashCode();
-        return result;
-    }
-
     public Long getId() {
         return id;
     }
@@ -87,5 +60,32 @@ public class UserDTO implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserDTO)) return false;
+
+        UserDTO userDTO = (UserDTO) o;
+
+        if (!getId().equals(userDTO.getId())) return false;
+        if (!getFirstName().equals(userDTO.getFirstName())) return false;
+        if (!getLastName().equals(userDTO.getLastName())) return false;
+        if (!getEmail().equals(userDTO.getEmail())) return false;
+        if (!getLogin().equals(userDTO.getLogin())) return false;
+        return getPassword().equals(userDTO.getPassword());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getFirstName().hashCode();
+        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getEmail().hashCode();
+        result = 31 * result + getLogin().hashCode();
+        result = 31 * result + getPassword().hashCode();
+        return result;
     }
 }

@@ -1,8 +1,10 @@
 package by.zheynov.socnet.service.impl;
 
 import by.zheynov.socnet.dao.UserDao;
+import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
+import by.zheynov.socnet.service.PasswordEncoding;
 import by.zheynov.socnet.service.ProfileService;
 import by.zheynov.socnet.service.UserService;
 import org.apache.log4j.Logger;
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
         profileEntity.setLastName(userEntity.getLastName());
         profileEntity.setEmail(userEntity.getEmail());
         userEntity.setProfileEntity(profileEntity);
-
+        userEntity.setPassword(PasswordEncoding.encodePassword(userEntity.getPassword()));
         profileService.createProfile(profileEntity);
         userDao.createUser(userEntity);
 
@@ -51,6 +53,22 @@ public class UserServiceImpl implements UserService {
 
     public List<UserEntity> getAllTheUsers() {
         return userDao.getAllTheUsers();
+    }
+
+    public boolean isPasswpodlCorrect(UserDTO userDTO) {
+        return userDao.isUserPasswpodlCorrect(userDTO);
+    }
+
+    public boolean isLoginExists(String login) {
+        return userDao.isLoginExists(login);
+    }
+
+    public boolean isEmailExists(String email) {
+        return userDao.isEmailExists(email);
+    }
+
+    public UserEntity getUserByLogin(String login) {
+        return null;
     }
 
     public void setUserDao(UserDao userDao) {

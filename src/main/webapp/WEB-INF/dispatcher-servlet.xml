@@ -58,15 +58,18 @@
 
     <!-- _______________________________________B E A N S  ____________________________________________ -->
 
-    <bean id="userFacade" class="by.zheynov.socnet.facade.impl.UserFacadeImpl">
-        <property name="userService" ref="userService"/>
-    </bean>
+    <bean id="userFacade" class="by.zheynov.socnet.facade.impl.UserFacadeImpl"/>
+
+    <bean id="profileFacade" class="by.zheynov.socnet.facade.impl.ProfileFacadeImpl"/>
+
 
    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
                 <bean class="by.zheynov.socnet.facade.converters.UserDTOConverter"/>
                 <bean class="by.zheynov.socnet.facade.converters.UserDTOReverseConverter"/>
+                <bean class="by.zheynov.socnet.facade.converters.ProfileDTOConverter"/>
+                <bean class="by.zheynov.socnet.facade.converters.ProfileDTOReverseConverter"/>
             </list>
         </property>
 
