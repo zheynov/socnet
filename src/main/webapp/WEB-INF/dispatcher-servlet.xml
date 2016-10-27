@@ -26,6 +26,10 @@
 
     <import resource="classpath:applicationContext.xml"/>
 
+    <!--___________________________________Spring Security config_________________________________________-->
+
+    <import resource="classpath:spring-security.xml"/>
+
     <!--___________________________________Localization section _________________________________________ -->
 
     <!--MessageSource -->

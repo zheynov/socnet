@@ -30,3 +30,13 @@ CREATE TABLE socnetDB.users
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
+
+CREATE TABLE user_roles (
+  user_role_id int(11) NOT NULL AUTO_INCREMENT,
+  login varchar(45) NOT NULL,
+  role varchar(45) NOT NULL,
+  PRIMARY KEY (user_role_id),
+  UNIQUE KEY uni_username_role (role,login),
+  KEY fk_username_idx (login),
+  CONSTRAINT fk_username FOREIGN KEY (login) REFERENCES users (login)
+);
