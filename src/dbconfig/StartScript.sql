@@ -22,8 +22,6 @@ CREATE TABLE profile
 CREATE TABLE users
 (
   id        BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  firstname VARCHAR(30)        NOT NULL,
-  lastname  VARCHAR(30)        NOT NULL,
   email     VARCHAR(30)        NOT NULL UNIQUE,
   login     VARCHAR(30)        NOT NULL UNIQUE,
   password  VARCHAR(30)        NOT NULL,
@@ -34,7 +32,7 @@ CREATE TABLE users
 
 -- Table for mapping user and roles
 CREATE TABLE user_roles (
-  user_role_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   login varchar(45) NOT NULL UNIQUE ,
   role varchar(45) NOT NULL,
   FOREIGN KEY (login) REFERENCES users (login)
@@ -42,12 +40,11 @@ CREATE TABLE user_roles (
 );
 
 -- Insert data
-
 INSERT INTO profile VALUES (1, 'admin', 'admin', NULL, 'admin@admin.com', NULL, NULL, NULL, NULL);
-INSERT INTO users VALUES (1, 'admin', 'admin', 'admin@admin.com', 'admin', '1234567', '1');
+INSERT INTO users VALUES (1, 'admin@admin.com', 'admin', '1234567', '1');
 
 INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', NULL, 'vadim@gmail.com', NULL, NULL, NULL, NULL);
-INSERT INTO users VALUES (2, 'Vadim', 'Zheynov', 'vadim@gmail.com', 'Vadim', '1234567', '2');
+INSERT INTO users VALUES (2, 'vadim@gmail.com', 'Vadim', '1234567', '2');
 
 
 INSERT INTO socnetDB.user_roles VALUES (NULL , 'admin','ROLE_ADMIN');

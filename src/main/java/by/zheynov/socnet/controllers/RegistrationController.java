@@ -45,7 +45,7 @@ public class RegistrationController {
             if (!userFacade.isEmailExists(userDTO.getEmail())) {
 
                 userFacade.createUser(userDTO);
-                return "/loginpage";
+                return "loginpage";
 
             } else {
                 model.addAttribute("pageNotification", "email");

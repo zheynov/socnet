@@ -22,12 +22,6 @@ public class UserEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firstname", length = 64)
-    private String firstname;
-
-    @Column(name = "lastname", length = 64)
-    private String lastname;
-
     @Column(name = "email", length = 64)
     private String email;
 
@@ -51,22 +45,6 @@ public class UserEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getEmail() {
