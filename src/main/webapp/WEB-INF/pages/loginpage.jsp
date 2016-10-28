@@ -22,9 +22,12 @@
 <c:if test="${sessionScope.get('userDTO') ne null}">
     ${pageContext.forward("/showAllUsers")}
 </c:if>
---%>
+action="processLogin"  --%>
 
-<form:form method="POST" action="processLogin" commandName="userDTO">
+
+
+
+<form:form method="POST" action="<c:url value='/j_spring_security_check' />" commandName="userDTO">
     <table>
         <tr><spring:message code="login.page.filed.login" var="login"/>
             <td><form:input path="login" placeholder="${login}"/>

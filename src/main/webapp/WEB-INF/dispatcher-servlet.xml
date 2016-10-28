@@ -76,9 +76,6 @@
                 <bean class="by.zheynov.socnet.converters.ProfileDTOConverter"/>
             </list>
         </property>
-
-    </bean>
-
-
+   </bean>
 
 </beans>
