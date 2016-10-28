@@ -45,6 +45,7 @@
 
 <a href="/registration"> Registration </a> <br/>
 <a href="/showAllUsers"> All the users </a>
+<a href="/welcome"> All the users </a>
 
 </body>
 </html>

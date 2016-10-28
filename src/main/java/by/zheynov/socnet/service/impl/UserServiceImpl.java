@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService
 
 		ProfileEntity profileEntity = new ProfileEntity();
 		profileEntity.setUser(userEntity);
-		profileEntity.setFirstName(userEntity.getFirstName());
-		profileEntity.setLastname(userEntity.getLastName());
+		profileEntity.setFirstName(userEntity.getFirstname());
+		profileEntity.setLastname(userEntity.getLastname());
 		profileEntity.setEmail(userEntity.getEmail());
 		userEntity.setProfileEntity(profileEntity);
 		userEntity.setPassword(PasswordEncoding.encodePassword(userEntity.getPassword()));
