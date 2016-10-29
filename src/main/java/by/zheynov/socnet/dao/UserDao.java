@@ -5,9 +5,6 @@ import by.zheynov.socnet.entity.UserEntity;
 
 import java.util.List;
 
-/**
- * Created by vazh on 19.10.2016.
- */
 
 public interface UserDao {
 
@@ -26,6 +23,5 @@ public interface UserDao {
     boolean isUserPasswpodlCorrect(UserDTO user);
 
     boolean isEmailExists(String email);
-
 
 }

@@ -18,6 +18,7 @@ import java.util.List;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.dao.impl
  */
+
 @Transactional
 public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 {
@@ -54,7 +55,6 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 
 	public boolean isLoginExists(String login)
 	{
-
 		String userHQL = "FROM UserEntity WHERE login = :login";
 		org.hibernate.query.Query query = getCurrentSession().createQuery(userHQL);
 		query.setParameter("login", login);
@@ -88,4 +88,5 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 
 		return userEntities.size() > 0;
 	}
+
 }

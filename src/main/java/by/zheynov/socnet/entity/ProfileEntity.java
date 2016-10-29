@@ -5,10 +5,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by zheynovvv on 19.10.2016.
- */
-
 @Entity
 @Table(name = "profile")
 public class ProfileEntity implements Serializable

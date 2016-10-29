@@ -27,25 +27,24 @@ CREATE TABLE users
   password  VARCHAR(30)        NOT NULL,
   profileID BIGINT             NOT NULL,
   FOREIGN KEY (profileID) REFERENCES profile (id)
-    ON UPDATE CASCADE ON DELETE CASCADE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 -- Table for mapping user and roles
 CREATE TABLE user_roles (
-  id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  login varchar(45) NOT NULL UNIQUE ,
-  role varchar(45) NOT NULL,
-  FOREIGN KEY (login) REFERENCES users (login)
-    ON UPDATE CASCADE ON DELETE CASCADE
+  id    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  login VARCHAR(45)        NOT NULL,
+  role  VARCHAR(45)        NOT NULL
 );
 
 -- Insert data
 INSERT INTO profile VALUES (1, 'admin', 'admin', NULL, 'admin@admin.com', NULL, NULL, NULL, NULL);
-INSERT INTO users VALUES (1, 'admin@admin.com', 'admin', '1234567', '1');
+INSERT INTO users VALUES (1, 'admin@admin.com', 'admin', '2018166326', 1);
 
 INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', NULL, 'vadim@gmail.com', NULL, NULL, NULL, NULL);
-INSERT INTO users VALUES (2, 'vadim@gmail.com', 'Vadim', '1234567', '2');
+INSERT INTO users VALUES (2, 'vadim@gmail.com', 'Vadim', '2018166326', 2);
 
 
-INSERT INTO socnetDB.user_roles VALUES (NULL , 'admin','ROLE_ADMIN');
-INSERT INTO socnetDB.user_roles VALUES (NULL , 'Vadim','ROLE_USER');
+INSERT INTO socnetDB.user_roles VALUES (NULL, 'admin', 'ROLE_ADMIN');
+INSERT INTO socnetDB.user_roles VALUES (NULL, 'Vadim', 'ROLE_USER');

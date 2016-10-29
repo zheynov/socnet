@@ -34,12 +34,6 @@ public class RegistrationFormValidator implements Validator {
                     "registration.page.text.validation.password.length", "Password is too short.");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstname",
-                "registration.page.text.validation.firstname", "First Name mustn't be empty");
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastname",
-                "registration.page.text.validation.lastname", "Last Name mustn't be empty");
-
         String email = userDTO.getEmail();
         if (!EmailValidator.isValidEmailAddress(email)) {
             errors.rejectValue("email", "registration.page.text.validation.emailisnotcorrect", "Email isn't valid");

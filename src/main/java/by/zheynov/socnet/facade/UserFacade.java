@@ -5,9 +5,7 @@ import by.zheynov.socnet.entity.UserEntity;
 
 import java.util.List;
 
-/**
- * Created by vazh on 21.10.2016.
- */
+
 public interface UserFacade {
 
     void createUser(UserDTO userDTO);

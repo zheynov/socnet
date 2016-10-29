@@ -11,9 +11,6 @@ import org.springframework.core.convert.ConversionService;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by vazh on 21.10.2016.
- */
 
 public class UserFacadeImpl implements UserFacade
 {

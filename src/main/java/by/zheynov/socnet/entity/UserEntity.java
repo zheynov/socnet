@@ -1,14 +1,8 @@
 package by.zheynov.socnet.entity;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
-/**
- * Created by zheynovvv on 19.10.2016.
- */
 
 @Entity
 @Table(name = "users")
@@ -35,8 +29,8 @@ public class UserEntity implements Serializable {
     @JoinColumn(name = "profileID")
     private ProfileEntity profileEntity;
 
-    @OneToOne(mappedBy = "userEntity") // OneToOne with RoleEntity
-    private RoleEntity roleEntity;
+/*    @OneToOne(mappedBy = "userEntity") // OneToOne with RoleEntity
+    private RoleEntity roleEntity;*/
 
 
     public Long getId() {
@@ -79,12 +73,5 @@ public class UserEntity implements Serializable {
         this.profileEntity = profileEntity;
     }
 
-    public RoleEntity getRoleEntity() {
-        return roleEntity;
-    }
-
-    public void setRoleEntity(RoleEntity roleEntity) {
-        this.roleEntity = roleEntity;
-    }
 }
 

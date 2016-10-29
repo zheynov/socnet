@@ -11,13 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Locale;
 
-/**
- * Created by zheynovvv on 20.10.2016.
- */
-
 public class ProfileServiceImpl implements ProfileService
 {
-	private final Logger LOGGER = Logger.getLogger(getClass());
+	private final static Logger LOGGER = Logger.getLogger(ProfileServiceImpl.class);
 	private ProfileDao    profileDao;
 	private MessageSource messageSource;
 
@@ -31,17 +27,22 @@ public class ProfileServiceImpl implements ProfileService
 	@Transactional
 	public ProfileEntity getProfileById(final Long profile_id)
 	{
-		return null;
+		LOGGER.info(messageSource.getMessage("service.profile.getById", new Object[] {profile_id}, Locale.ENGLISH));
+		return profileDao.getProfileById(profile_id);
 	}
 
 	@Transactional
-	public void updateProfile(final ProfileEntity profile)
+	public void updateProfile(final ProfileEntity profileEntity)
 	{
+		LOGGER.info(messageSource.getMessage("service.profile.update", new Object[] {profileEntity}, Locale.ENGLISH));
+		profileDao.updateProfile(profileEntity);
 	}
 
 	@Transactional
-	public void deleteProfile(final ProfileEntity profile)
+	public void deleteProfile(final ProfileEntity profileEntity)
 	{
+		LOGGER.info(messageSource.getMessage("service.profile.delete", new Object[] {profileEntity}, Locale.ENGLISH));
+
 	}
 
 	public void setProfileDao(ProfileDao profileDao)

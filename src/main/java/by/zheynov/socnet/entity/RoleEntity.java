@@ -1,6 +1,7 @@
 package by.zheynov.socnet.entity;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 
 /**
@@ -9,45 +10,52 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "user_roles")
-public class RoleEntity implements Serializable {
+public class RoleEntity implements Serializable
+{
+	public RoleEntity()
+	{
+	}
 
-    public RoleEntity() {
-    }
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	/*    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+			@JoinColumn(name = "login")*/
+	@Column(name = "login", length = 45)
+	private String login;
 
-    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "login")
-    private UserEntity userEntity;
+	@Column(name = "role", length = 45)
+	private String role;
 
-    @Column(name = "role", length = 45)
-    private String role;
+	public Long getId()
+	{
+		return id;
+	}
 
+	public void setId(final Long id)
+	{
+		this.id = id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getLogin()
+	{
+		return login;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setLogin(final String login)
+	{
+		this.login = login;
+	}
 
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
+	public String getRole()
+	{
+		return role;
+	}
 
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
+	public void setRole(final String role)
+	{
+		this.role = role;
+	}
 }

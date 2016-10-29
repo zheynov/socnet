@@ -1,11 +1,15 @@
 package by.zheynov.socnet.service.impl;
 
+import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.dao.UserDao;
+import by.zheynov.socnet.dao.UserRoleDao;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
+import by.zheynov.socnet.entity.RoleEntity;
 import by.zheynov.socnet.entity.UserEntity;
 import by.zheynov.socnet.service.PasswordEncoding;
 import by.zheynov.socnet.service.ProfileService;
+import by.zheynov.socnet.service.UserRoleService;
 import by.zheynov.socnet.service.UserService;
 
 import org.apache.log4j.Logger;
@@ -15,17 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by vazh on 19.10.2016.
- */
-
 public class UserServiceImpl implements UserService
 {
 
 	private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
-	private UserDao        userDao;
-	private ProfileService profileService;
-	private MessageSource  messageSource;
+	private UserDao       userDao;
+	private ProfileDao    profileDao;
+	private UserRoleDao   userRoleDao;
+	private MessageSource messageSource;
 
 	@Transactional
 	public void createUser(final UserEntity userEntity)
@@ -34,24 +35,44 @@ public class UserServiceImpl implements UserService
 		ProfileEntity profileEntity = new ProfileEntity();
 		profileEntity.setUser(userEntity);
 		profileEntity.setEmail(userEntity.getEmail());
+
 		userEntity.setProfileEntity(profileEntity);
 		userEntity.setPassword(PasswordEncoding.encodePassword(userEntity.getPassword()));
-		profileService.createProfile(profileEntity);
-		userDao.createUser(userEntity);
 
+		RoleEntity roleEntity = new RoleEntity();
+		roleEntity.setLogin(userEntity.getLogin());
+		roleEntity.setRole("ROLE_USER");
+
+
+		profileDao.createProfile(profileEntity);
+		userDao.createUser(userEntity);
+		userRoleDao.createUserRole(roleEntity);
 		LOGGER.info(messageSource.getMessage("service.user.save", new Object[] {userEntity}, Locale.ENGLISH));
 	}
 
 	@Transactional
-	public void updateUser(final UserEntity user)
+	public void updateUser(final UserEntity userEntity)
 	{
+		userDao.updateUser(userEntity);
+		LOGGER.info(messageSource.getMessage("service.user.update", new Object[] {userEntity}, Locale.ENGLISH));
+
 	}
 
 	@Transactional
-	public void deleteUser(final UserEntity profile)
+	public UserEntity getUserByLogin(String login)
 	{
+		LOGGER.info(messageSource.getMessage("service.user.getByLogin", new Object[] {login}, Locale.ENGLISH));
+		return userDao.getUserByLogin(login);
 	}
 
+	@Transactional
+	public void deleteUser(final UserEntity userEntity)
+	{
+		userDao.deleteUser(userEntity);
+		LOGGER.info(messageSource.getMessage("service.user.delete", new Object[] {userEntity}, Locale.ENGLISH));
+	}
+
+	@Transactional
 	public List<UserEntity> getAllTheUsers()
 	{
 		return userDao.getAllTheUsers();
@@ -72,23 +93,25 @@ public class UserServiceImpl implements UserService
 		return userDao.isEmailExists(email);
 	}
 
-	public UserEntity getUserByLogin(String login)
-	{
-		return null;
-	}
-
 	public void setUserDao(UserDao userDao)
 	{
 		this.userDao = userDao;
 	}
 
-	public void setProfileService(ProfileService profileService)
+	public void setProfileDao(ProfileDao profileDao)
 	{
-		this.profileService = profileService;
+		this.profileDao = profileDao;
 	}
 
 	public void setMessageSource(MessageSource messageSource)
 	{
 		this.messageSource = messageSource;
 	}
+
+	public void setUserRoleDao(UserRoleDao userRoleDao)
+	{
+		this.userRoleDao = userRoleDao;
+	}
+
+
 }

@@ -22,18 +22,28 @@
 <c:if test="${sessionScope.get('userDTO') ne null}">
     ${pageContext.forward("/showAllUsers")}
 </c:if>
-action="processLogin"  --%>
+action="processLogin"   commandName="userDTO"--%>
 
 
-<form:form method="POST" action="<c:url value='/j_spring_security_check'/>" commandName="userDTO">
+<c:if test="${not empty error}">
+    <div class="error">${error}</div>
+</c:if>
+<c:if test="${not empty msg}">
+    <div class="msg">${msg}</div>
+</c:if>
+
+<p>
+
+<form method="POST" action="<c:url value='/j_spring_security_check' />" >
     <table>
+
         <tr><spring:message code="login.page.filed.login" var="login"/>
-            <td><form:input path="login" placeholder="${login}"/>
-            <td><form:errors path="login"/></td>
+            <td><input placeholder="${login}"/>
+
         </tr>
         <tr><spring:message code="login.page.filed.password" var="passwordLabel"/>
-            <td><form:password path="password" placeholder="${passwordLabel}"/>
-            <td><form:errors path="password"/></td>
+            <td><input type="password" placeholder="${passwordLabel}"/>
+
         </tr>
         <td align="center">
             <spring:message code="login.page.loginbutton" var="loginbuttonLabel"/>
@@ -41,12 +51,11 @@ action="processLogin"  --%>
         </td>
 
     </table>
-</form:form>
+</form>
 
 
 <a href="/registration"> Registration </a> <br/>
 <a href="/showAllUsers"> All the users </a>
-<a href="/welcome"> All the users </a>
 
 </body>
 </html>

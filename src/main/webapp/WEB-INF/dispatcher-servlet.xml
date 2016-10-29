@@ -66,6 +66,8 @@
 
     <bean id="profileFacade" class="by.zheynov.socnet.facade.impl.ProfileFacadeImpl"/>
 
+    <bean id="userRoleFacade" class="by.zheynov.socnet.facade.impl.UserRoleFacadeImpl"/>
+
 
    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">

@@ -12,6 +12,8 @@
 
     <bean id="profileDao" class="by.zheynov.socnet.dao.impl.ProfileDaoImpl" parent="abstractDao"/>
 
+    <bean id="userRoleDao" class="by.zheynov.socnet.dao.impl.UserRoleDaoImpl" parent="abstractDao"/>
+
 
     <bean id="profileService" class="by.zheynov.socnet.service.impl.ProfileServiceImpl">
         <property name="profileDao" ref="profileDao"/>
@@ -20,7 +22,13 @@
 
     <bean id="userService" class="by.zheynov.socnet.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
-        <property name="profileService" ref="profileService"/>
+        <property name="profileDao" ref="profileDao"/>
+        <property name="messageSource" ref="messageSource"/>
+        <property name="userRoleDao" ref="userRoleDao"/>
+    </bean>
+
+    <bean id="userRoleService" class="by.zheynov.socnet.service.impl.UserRoleServiceImpl">
+        <property name="userRoleDao" ref="userRoleDao"/>
         <property name="messageSource" ref="messageSource"/>
     </bean>
 
