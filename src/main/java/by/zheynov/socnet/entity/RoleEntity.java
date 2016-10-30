@@ -23,39 +23,33 @@ public class RoleEntity implements Serializable
 
 	/*    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
 			@JoinColumn(name = "login")*/
-	@Column(name = "login", length = 45)
-	private String login;
+	@Column(name = "username", length = 45)
+	private String username;
 
 	@Column(name = "role", length = 45)
 	private String role;
 
-	public Long getId()
-	{
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(final Long id)
-	{
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getLogin()
-	{
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(final String login)
-	{
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getRole()
-	{
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(final String role)
-	{
+	public void setRole(String role) {
 		this.role = role;
 	}
 }

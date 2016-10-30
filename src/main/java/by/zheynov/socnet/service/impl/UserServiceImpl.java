@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService
 		userEntity.setPassword(PasswordEncoding.encodePassword(userEntity.getPassword()));
 
 		RoleEntity roleEntity = new RoleEntity();
-		roleEntity.setLogin(userEntity.getLogin());
+		roleEntity.setUsername(userEntity.getUsername());
 		roleEntity.setRole("ROLE_USER");
 
 

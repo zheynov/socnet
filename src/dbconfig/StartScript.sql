@@ -23,7 +23,7 @@ CREATE TABLE users
 (
   id        BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   email     VARCHAR(30)        NOT NULL UNIQUE,
-  login     VARCHAR(30)        NOT NULL UNIQUE,
+  username  VARCHAR(30)        NOT NULL UNIQUE,
   password  VARCHAR(30)        NOT NULL,
   profileID BIGINT             NOT NULL,
   FOREIGN KEY (profileID) REFERENCES profile (id)
@@ -33,9 +33,9 @@ CREATE TABLE users
 
 -- Table for mapping user and roles
 CREATE TABLE user_roles (
-  id    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  login VARCHAR(45)        NOT NULL,
-  role  VARCHAR(45)        NOT NULL
+  id       BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  username VARCHAR(45)        NOT NULL,
+  role     VARCHAR(45)        NOT NULL
 );
 
 -- Insert data

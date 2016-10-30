@@ -19,8 +19,8 @@ public class UserEntity implements Serializable {
     @Column(name = "email", length = 64)
     private String email;
 
-    @Column(name = "login", length = 64, unique = true)
-    private String login;
+    @Column(name = "username", length = 64, unique = true)
+    private String username;
 
     @Column(name = "password", length = 64)
     private String password;
@@ -28,10 +28,6 @@ public class UserEntity implements Serializable {
     @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "profileID")
     private ProfileEntity profileEntity;
-
-/*    @OneToOne(mappedBy = "userEntity") // OneToOne with RoleEntity
-    private RoleEntity roleEntity;*/
-
 
     public Long getId() {
         return id;
@@ -49,12 +45,12 @@ public class UserEntity implements Serializable {
         this.email = email;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -72,6 +68,5 @@ public class UserEntity implements Serializable {
     public void setProfileEntity(ProfileEntity profileEntity) {
         this.profileEntity = profileEntity;
     }
-
 }
 

@@ -41,7 +41,7 @@ public class RegistrationController
 			return "/registration";
 		}
 
-		if (!userFacade.isLoginExists(userDTO.getLogin()))
+		if (!userFacade.isLoginExists(userDTO.getUsername()))
 		{
 			if (!userFacade.isEmailExists(userDTO.getEmail()))
 			{
@@ -58,7 +58,7 @@ public class RegistrationController
 		}
 		else
 		{
-			model.addAttribute("pageNotification", "login");
+			model.addAttribute("pageNotification", "username");
 			return "/registration";
 		}
 	}

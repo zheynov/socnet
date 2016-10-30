@@ -23,7 +23,7 @@ public class UserDTOConverter implements Converter<UserEntity, UserDTO>
 
 			userDTO.setId(userEntity.getId());
 			userDTO.setEmail(userEntity.getEmail());
-			userDTO.setLogin(userEntity.getLogin());
+			userDTO.setUsername(userEntity.getUsername());
 			userDTO.setPassword(userEntity.getPassword());
 
 			return userDTO;

@@ -23,7 +23,7 @@
         <c:when test="${pageNotification eq 'email'}">
             <spring:message code="registration.page.text.validation.email.exists"/>
         </c:when>
-        <c:when test="${pageNotification eq 'login'}">
+        <c:when test="${pageNotification eq 'username'}">
             <spring:message code="registration.page.text.validation.login.exists"/>
         </c:when>
         <c:otherwise> </c:otherwise>
@@ -37,10 +37,10 @@
                     <form:input path="email" placeholder="${email}"/> *
             <td><form:errors path="email"/></td>
         </tr>
-        <tr><spring:message code="login.page.filed.login" var="login"/>
+        <tr><spring:message code="login.page.filed.username" var="username"/>
             <td>
-                    <form:input path="login" placeholder="${login}"/> *
-            <td><form:errors path="login"/></td>
+                    <form:input path="username" placeholder="${username}"/> *
+            <td><form:errors path="username"/></td>
         </tr>
         <tr><spring:message code="login.page.filed.password" var="password"/>
             <td>

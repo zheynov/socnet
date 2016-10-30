@@ -53,24 +53,24 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 		return allTheUsers;
 	}
 
-	public boolean isLoginExists(String login)
+	public boolean isLoginExists(String username)
 	{
-		String userHQL = "FROM UserEntity WHERE login = :login";
+		String userHQL = "FROM UserEntity WHERE username = :username";
 		org.hibernate.query.Query query = getCurrentSession().createQuery(userHQL);
-		query.setParameter("login", login);
+		query.setParameter("username", username);
 		return query.list().size() > 0;
 	}
 
 	public boolean isUserPasswpodlCorrect(UserDTO user)
 	{
 
-		String login = user.getLogin();
+		String username = user.getUsername();
 		String password = PasswordEncoding.encodePassword(user.getPassword());
 
-		String userHQL = "FROM UserEntity WHERE password=:password AND login=:login";
+		String userHQL = "FROM UserEntity WHERE password=:password AND username=:username";
 		Query query = getCurrentSession().createQuery(userHQL);
 		query.setParameter("password", password);
-		query.setParameter("login", login);
+		query.setParameter("username", username);
 
 		List userEntities = query.list();
 

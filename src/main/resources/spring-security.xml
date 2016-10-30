@@ -10,7 +10,7 @@
         <security:intercept-url pattern="/loginpage*" access="isAnonymous()"/>
         <security:intercept-url pattern="/registration*" access="isAnonymous()"/>
 
-        <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 
         <security:form-login
@@ -19,12 +19,13 @@
                 default-target-url="/showAllUsers"
                 always-use-default-target="true"
                 authentication-failure-url="/loginpage?error"
-                username-parameter="login"
+                username-parameter="username"
                 password-parameter="password"/>
 
         <security:logout logout-url="/j_spring_security_logout"
                          logout-success-url="/loginpage?logout"
                          invalidate-session="true"/>
+        <security:access-denied-handler error-page="/403"/>
 
         <!-- enable csrf protection -->
         <security:csrf disabled="true"/>
@@ -35,11 +36,24 @@
         <security:authentication-provider>
             <security:jdbc-user-service data-source-ref="dataSource"
                                         users-by-username-query=
-                                                "SELECT login, password FROM users WHERE login=?"
+                                                "SELECT username, password FROM users WHERE username=?"
                                         authorities-by-username-query=
-                                                "SELECT login, role FROM user_roles WHERE login =?"/>
+                                                "SELECT username, role FROM user_roles WHERE username =?"/>
         </security:authentication-provider>
     </security:authentication-manager>
+
+<!--    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="admin" password="1234567" authorities="ROLE_USER" />
+                <security:user name="vadim" password="1234567" authorities="ROLE_ADMIN" />
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>-->
+
+
+
+
 
 
 </beans>

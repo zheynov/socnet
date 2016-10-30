@@ -21,11 +21,11 @@ public class RegistrationFormValidator implements Validator {
 
         UserDTO userDTO = (UserDTO) targret;
 
-        String login = userDTO.getLogin();
-        if ((login.length() > 16)) {
-            errors.rejectValue("login", "registration.page.text.validation.logintoolong", "Login is too long.");
-        } else if ((login.length() < 5)) {
-            errors.rejectValue("login", "registration.page.text.validation.logintoshort", "Login is too short");
+        String username = userDTO.getUsername();
+        if ((username.length() > 16)) {
+            errors.rejectValue("username", "registration.page.text.validation.logintoolong", "Login is too long.");
+        } else if ((username.length() < 5)) {
+            errors.rejectValue("username", "registration.page.text.validation.logintoshort", "Login is too short");
         }
 
         String password = userDTO.getPassword();

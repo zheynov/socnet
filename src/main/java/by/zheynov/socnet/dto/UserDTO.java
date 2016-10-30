@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class UserDTO implements Serializable {
     private Long   id;
     private String email;
-    private String login;
+    private String username;
     private String password;
 
     public Long getId() {
@@ -28,12 +28,12 @@ public class UserDTO implements Serializable {
         this.email = email;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -45,42 +45,25 @@ public class UserDTO implements Serializable {
     }
 
     @Override
-    public boolean equals(final Object o)
-    {
-        if (this == o)
-        {
-            return true;
-        }
-        if (!(o instanceof UserDTO))
-        {
-            return false;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserDTO)) return false;
 
         UserDTO userDTO = (UserDTO) o;
 
-        if (!getId().equals(userDTO.getId()))
-        {
-            return false;
-        }
-        if (!getEmail().equals(userDTO.getEmail()))
-        {
-            return false;
-        }
-        if (!getLogin().equals(userDTO.getLogin()))
-        {
-            return false;
-        }
-        return getPassword().equals(userDTO.getPassword());
+        if (!id.equals(userDTO.id)) return false;
+        if (!email.equals(userDTO.email)) return false;
+        if (!username.equals(userDTO.username)) return false;
+        return password.equals(userDTO.password);
 
     }
 
     @Override
-    public int hashCode()
-    {
-        int result = getId().hashCode();
-        result = 31 * result + getEmail().hashCode();
-        result = 31 * result + getLogin().hashCode();
-        result = 31 * result + getPassword().hashCode();
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + username.hashCode();
+        result = 31 * result + password.hashCode();
         return result;
     }
 }
