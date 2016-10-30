@@ -36,24 +36,20 @@
         <security:authentication-provider>
             <security:jdbc-user-service data-source-ref="dataSource"
                                         users-by-username-query=
-                                                "SELECT username, password FROM users WHERE username=?"
+                                                "SELECT username,password FROM users WHERE username=?"
                                         authorities-by-username-query=
-                                                "SELECT username, role FROM user_roles WHERE username =?"/>
+                                                "SELECT username,role FROM user_roles WHERE username =?"/>
         </security:authentication-provider>
     </security:authentication-manager>
 
-<!--    <security:authentication-manager>
-        <security:authentication-provider>
-            <security:user-service>
-                <security:user name="admin" password="1234567" authorities="ROLE_USER" />
-                <security:user name="vadim" password="1234567" authorities="ROLE_ADMIN" />
-            </security:user-service>
-        </security:authentication-provider>
-    </security:authentication-manager>-->
-
-
-
-
+    <!--   <security:authentication-manager>
+            <security:authentication-provider>
+                <security:user-service>
+                    <security:user name="admin" password="1234567" authorities="ROLE_USER" />
+                    <security:user name="vadim" password="1234567" authorities="ROLE_ADMIN" />
+                </security:user-service>
+            </security:authentication-provider>
+        </security:authentication-manager>-->
 
 
 </beans>

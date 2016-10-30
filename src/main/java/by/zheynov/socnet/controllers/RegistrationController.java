@@ -66,6 +66,7 @@ public class RegistrationController
 	@RequestMapping(value = "/showAllUsers", method = RequestMethod.GET)
 	public String showAllTheUsers(Model model)
 	{
+		model.addAttribute("userDTO", new UserDTO());
 		model.addAttribute("allTheUsers", userFacade.getAllTheUsers());
 		return "/alltheusers";
 	}

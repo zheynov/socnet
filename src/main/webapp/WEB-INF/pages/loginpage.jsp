@@ -34,15 +34,15 @@ action="processLogin"   commandName="userDTO"--%>
 
 <p>
 
-<form method="POST" action="<c:url value='/j_spring_security_check' />" >
+<form method="POST" action="<c:url value='/j_spring_security_check' />">
     <table>
 
         <tr><spring:message code="login.page.filed.username" var="username"/>
-            <td><input placeholder="${username}"/>
+            <td><input type='text' name='username' placeholder="${username}"/>
 
         </tr>
         <tr><spring:message code="login.page.filed.password" var="passwordLabel"/>
-            <td><input type="password" placeholder="${passwordLabel}"/>
+            <td><input type="password" name='password' placeholder="${passwordLabel}"/>
 
         </tr>
         <td align="center">
