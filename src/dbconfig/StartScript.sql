@@ -25,6 +25,7 @@ CREATE TABLE users
   email     VARCHAR(30)        NOT NULL UNIQUE,
   username  VARCHAR(30)        NOT NULL UNIQUE,
   password  VARCHAR(30)        NOT NULL,
+  enabled   TINYINT            NOT NULL DEFAULT 1,
   profileID BIGINT             NOT NULL,
   FOREIGN KEY (profileID) REFERENCES profile (id)
     ON UPDATE CASCADE
@@ -40,10 +41,10 @@ CREATE TABLE user_roles (
 
 -- Insert data
 INSERT INTO profile VALUES (1, 'admin', 'admin', NULL, 'admin@admin.com', NULL, NULL, NULL, NULL);
-INSERT INTO users VALUES (1, 'admin@admin.com', 'admin', '2018166326', 1);
+INSERT INTO users VALUES (1, 'admin@admin.com', 'admin', '2018166326', 1, 1);
 
 INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', NULL, 'vadim@gmail.com', NULL, NULL, NULL, NULL);
-INSERT INTO users VALUES (2, 'vadim@gmail.com', 'Vadim', '2018166326', 2);
+INSERT INTO users VALUES (2, 'vadim@gmail.com', 'Vadim', '2018166326', 1, 2);
 
 
 INSERT INTO socnetDB.user_roles VALUES (NULL, 'admin', 'ROLE_ADMIN');
