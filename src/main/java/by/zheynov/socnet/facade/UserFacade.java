@@ -5,22 +5,55 @@ import by.zheynov.socnet.entity.UserEntity;
 
 import java.util.List;
 
+/**
+ * User Facade interface.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.facade
+ */
+public interface UserFacade
+{
+	/**
+	 * Saves.
+	 *
+	 * @param userDTO the dto
+	 */
+	void createUser(UserDTO userDTO);
 
-public interface UserFacade {
+	/**
+	 * Updates.
+	 *
+	 * @param userDTO the dto
+	 */
+	void updateUser(UserDTO userDTO);
 
-    void createUser(UserDTO userDTO);
+	/**
+	 * Deletes.
+	 *
+	 * @param userDTO the dto
+	 */
+	void deleteUser(UserDTO userDTO);
 
-    void updateUser(UserDTO userDTO);
+	UserEntity getUserByLogin(String login);
 
-    void deleteUser(UserDTO userDTO);
+	/**
+	 * Retrieves a list of UserDTO objects.
+	 *
+	 * @return the List<UserDTO>
+	 */
+	List<UserDTO> getAllTheUsers();
 
-    UserEntity getUserByLogin(String login);
+	/**
+	 * Cheks if user with exact login is exists.
+	 *
+	 * @return true if exists
+	 */
+	boolean isLoginExists(String login);
 
-    List<UserDTO> getAllTheUsers();
-
-    boolean isLoginExists(String login);
-
-    boolean isUserPasswpodlCorrect(UserDTO user);
-
-    boolean isEmailExists(String email);
+	/**
+	 * Cheks if user with exact email is exists.
+	 *
+	 * @return true if exists
+	 */
+	boolean isEmailExists(String email);
 }

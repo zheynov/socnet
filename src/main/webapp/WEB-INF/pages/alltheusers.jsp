@@ -19,14 +19,14 @@
 
 <c:if test="${pageContext.request.userPrincipal.name != null}">
     <h2>${username}: ${pageContext.request.userPrincipal.name}
-        | <a href="<c:url value="/j_spring_security_logout" />" > ${logoutButton}</a></h2>
+        | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></h2>
 </c:if>
 
 <h2> All the users from DB:</h2>
 
 <c:forEach items="${allTheUsers}" var="user"><p>
     <b> Login: </b>${user.username} <br/>
-    <b> Email: </b>${user.email}<br/> </p>
+    <b> Email: </b>${user.email}<br/></p>
 </c:forEach>
 
 

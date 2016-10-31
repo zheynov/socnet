@@ -77,5 +77,4 @@ public class RegistrationController
 		model.addAttribute("allTheUsers", userFacade.getAllTheUsers());
 		return "/alltheusers";
 	}
-
 }

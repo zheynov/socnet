@@ -3,17 +3,42 @@ package by.zheynov.socnet.dao;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
- * Created by vazh on 19.10.2016.
+ * Profile Dao interface.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.dao
  */
 
-public interface ProfileDao {
+public interface ProfileDao
+{
+	/**
+	 * Saves.
+	 *
+	 * @param profile the entity
+	 */
+	ProfileEntity createProfile(ProfileEntity profile);
 
-    ProfileEntity createProfile(ProfileEntity profile);
+	/**
+	 * Finds By profileId.
+	 *
+	 * @param profileId the id
+	 *
+	 * @return the ProfileEntity
+	 */
+	ProfileEntity getProfileById(Long profileId);
 
-    ProfileEntity getProfileById(Long profileId);
+	/**
+	 * Updates.
+	 *
+	 * @param profile the entity
+	 */
+	void updateProfile(ProfileEntity profile);
 
-    void updateProfile(ProfileEntity profile);
-
-    void deleteProfile(ProfileEntity profile);
+	/**
+	 * Deletes.
+	 *
+	 * @param profile the entity
+	 */
+	void deleteProfile(ProfileEntity profile);
 
 }

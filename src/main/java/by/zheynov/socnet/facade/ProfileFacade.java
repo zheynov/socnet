@@ -4,15 +4,42 @@ import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
- * Created by vazh on 21.10.2016.
+ * Profile facade interface.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.facade
  */
-public interface ProfileFacade {
-    
-    void createProfile(ProfileDTO profileDTO);
 
-    ProfileEntity getProfileById(Long profile_id);
+public interface ProfileFacade
+{
 
-    void updateProfile(ProfileDTO profileDTO);
+	/**
+	 * Saves.
+	 *
+	 * @param profileDTO the dto
+	 */
+	void createProfile(ProfileDTO profileDTO);
 
-    void deleteProfile(ProfileDTO profileDTO);
+	/**
+	 * Finds By profileId.
+	 *
+	 * @param profileId the id
+	 *
+	 * @return the dto
+	 */
+	ProfileDTO getProfileById(Long profileId);
+
+	/**
+	 * Updates.
+	 *
+	 * @param profileDTO the dto
+	 */
+	void updateProfile(ProfileDTO profileDTO);
+
+	/**
+	 * Deletes.
+	 *
+	 * @param profileDTO the dto
+	 */
+	void deleteProfile(ProfileDTO profileDTO);
 }

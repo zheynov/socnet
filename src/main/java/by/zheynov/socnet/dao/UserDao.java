@@ -1,27 +1,68 @@
 package by.zheynov.socnet.dao;
 
-import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
 
 import java.util.List;
 
+/**
+ * User Dao interface.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.dao
+ */
 
-public interface UserDao {
+public interface UserDao
+{
 
-    UserEntity createUser(UserEntity user);
+	/**
+	 * Saves.
+	 *
+	 * @param user the entity
+	 */
+	UserEntity createUser(UserEntity user);
 
-    void updateUser(UserEntity user);
+	/**
+	 * Updates.
+	 *
+	 * @param user the entity
+	 */
+	void updateUser(UserEntity user);
 
-    void deleteUser(UserEntity user);
+	/**
+	 * Deletes.
+	 *
+	 * @param user the entity
+	 */
+	void deleteUser(UserEntity user);
 
-    UserEntity getUserByLogin(String login);
+	/**
+	 * Finds UserEntity By login.
+	 *
+	 * @param login the login
+	 *
+	 * @return the UserEntity
+	 */
+	UserEntity getUserByLogin(String login);
 
-    List<UserEntity> getAllTheUsers();
+	/**
+	 * Retrieves a list of userEntity objects.
+	 *
+	 * @return the List<UserEntity>
+	 */
+	List<UserEntity> getAllTheUsers();
 
-    boolean isLoginExists(String login);
+	/**
+	 * Cheks if user with exact login is exists.
+	 *
+	 * @return true if exists
+	 */
+	boolean isLoginExists(String login);
 
-    boolean isUserPasswpodlCorrect(UserDTO user);
-
-    boolean isEmailExists(String email);
+	/**
+	 * Cheks if user with exact email is exists.
+	 *
+	 * @return true if exists
+	 */
+	boolean isEmailExists(String email);
 
 }

@@ -27,8 +27,8 @@ public class LoginController
 
 	@RequestMapping(value = "/loginpage", method = RequestMethod.GET)
 	public String login(@RequestParam(value = "error", required = false) final String error,
-	                    @RequestParam(value = "logout", required = false) final String logout,
-	                    final Model model, final HttpServletRequest request)
+	                    @RequestParam(value = "logout", required = false) final String logout, final Model model,
+	                    final HttpServletRequest request)
 	{
 
 		if (error != null)

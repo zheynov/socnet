@@ -1,28 +1,69 @@
 package by.zheynov.socnet.service;
 
-import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
 
 import java.util.List;
 
 /**
- * Created by vazh on 19.10.2016.
+ * User Service interface.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.service
  */
-public interface UserService {
 
-    void createUser(UserEntity userEntity);
+public interface UserService
+{
 
-    void updateUser(UserEntity userEntity);
+	/**
+	 * Saves.
+	 *
+	 * @param userEntity the entity
+	 */
+	void createUser(UserEntity userEntity);
 
-    void deleteUser(UserEntity userEntity);
+	/**
+	 * Updates.
+	 *
+	 * @param userEntity the entity
+	 */
+	void updateUser(UserEntity userEntity);
 
-    List<UserEntity> getAllTheUsers();
+	/**
+	 * Deletes.
+	 *
+	 * @param userEntity the entity
+	 */
+	void deleteUser(UserEntity userEntity);
 
-    boolean isPasswpodlCorrect(UserDTO user);
+	/**
+	 * Finds UserEntity By login.
+	 *
+	 * @param login the login
+	 *
+	 * @return the UserEntity
+	 */
+	UserEntity getUserByLogin(String login);
 
-    boolean isLoginExists(String login);
+	/**
+	 * Retrieves a list of UserEntity objects.
+	 *
+	 * @return the List<UserEntity>
+	 */
+	List<UserEntity> getAllTheUsers();
 
-    boolean isEmailExists(String email);
+	/**
+	 * Cheks if user with exact login is exists.
+	 *
+	 * @return true if exists
+	 */
 
-    UserEntity getUserByLogin(String login);
+	boolean isLoginExists(String login);
+
+	/**
+	 * Cheks if user with exact email is exists.
+	 *
+	 * @return true if exists
+	 */
+	boolean isEmailExists(String email);
+
 }

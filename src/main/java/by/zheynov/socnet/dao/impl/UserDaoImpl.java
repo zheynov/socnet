@@ -21,6 +21,8 @@ import java.util.List;
 @Transactional
 public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 {
+	private static final String GET_USER_BY_USERNAME_QUERY      = "FROM UserEntity WHERE username = :username";
+	private static final String GET_EMAILADDRESS_BY_EMAIL_QUERY = "FROM UserEntity WHERE email = :email";
 
 	public UserEntity createUser(final UserEntity user)
 	{
@@ -54,32 +56,14 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 
 	public boolean isLoginExists(String username)
 	{
-		String userHQL = "FROM UserEntity WHERE username = :username";
-		org.hibernate.query.Query query = getCurrentSession().createQuery(userHQL);
+		org.hibernate.query.Query query = getCurrentSession().createQuery(GET_USER_BY_USERNAME_QUERY);
 		query.setParameter("username", username);
 		return query.list().size() > 0;
 	}
 
-	public boolean isUserPasswpodlCorrect(UserDTO user)
-	{
-		String username = user.getUsername();
-		String password = user.getPassword();
-
-		String userHQL = "FROM UserEntity WHERE password=:password AND username=:username";
-		Query query = getCurrentSession().createQuery(userHQL);
-		query.setParameter("password", password);
-		query.setParameter("username", username);
-
-		List userEntities = query.list();
-
-		return userEntities.size() > 0;
-	}
-
 	public boolean isEmailExists(String email)
 	{
-
-		String userHQL = "FROM UserEntity WHERE email = :email";
-		Query query = getCurrentSession().createQuery(userHQL);
+		Query query = getCurrentSession().createQuery(GET_EMAILADDRESS_BY_EMAIL_QUERY);
 		query.setParameter("email", email);
 
 		List userEntities = query.list();
