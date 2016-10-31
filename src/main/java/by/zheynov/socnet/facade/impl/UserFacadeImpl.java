@@ -52,10 +52,6 @@ public class UserFacadeImpl implements UserFacade
 		return userService.isLoginExists(login);
 	}
 
-	public boolean isUserPasswpodlCorrect(UserDTO userDTO) {
-		return userService.isPasswpodlCorrect(userDTO);
-	}
-
 	public boolean isEmailExists(String email) {
 		return userService.isEmailExists(email);
 	}

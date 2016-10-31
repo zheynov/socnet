@@ -85,11 +85,6 @@ public class UserServiceImpl implements UserService
 		return userDao.getAllTheUsers();
 	}
 
-	public boolean isPasswpodlCorrect(UserDTO userDTO)
-	{
-		return userDao.isUserPasswpodlCorrect(userDTO);
-	}
-
 	public boolean isLoginExists(String login)
 	{
 		return userDao.isLoginExists(login);
