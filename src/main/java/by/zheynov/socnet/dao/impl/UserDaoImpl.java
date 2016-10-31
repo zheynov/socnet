@@ -3,7 +3,6 @@ package by.zheynov.socnet.dao.impl;
 import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
-import by.zheynov.socnet.service.PasswordEncoding;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -63,9 +62,8 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 
 	public boolean isUserPasswpodlCorrect(UserDTO user)
 	{
-
 		String username = user.getUsername();
-		String password = PasswordEncoding.encodePassword(user.getPassword());
+		String password = user.getPassword();
 
 		String userHQL = "FROM UserEntity WHERE password=:password AND username=:username";
 		Query query = getCurrentSession().createQuery(userHQL);

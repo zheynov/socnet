@@ -6,7 +6,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by Redlaw on 24.10.2016.
+ * AbstractBaseDAO.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.dao.impl
  */
 
 @Transactional

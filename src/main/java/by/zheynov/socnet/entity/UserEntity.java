@@ -1,85 +1,113 @@
 package by.zheynov.socnet.entity;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import java.io.Serializable;
 
+/**
+ * UserEntity.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.entity
+ */
 
 @Entity
 @Table(name = "users")
-public class UserEntity implements Serializable {
+public class UserEntity implements Serializable
+{
 
-    public UserEntity() {
-    }
+	public UserEntity()
+	{
+	}
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "email", length = 64)
-    private String email;
+	@Column(name = "email", length = 64)
+	private String email;
 
-    @Column(name = "username", length = 64, unique = true)
-    private String username;
+	@Column(name = "username", length = 64, unique = true)
+	private String username;
 
-    @Column(name = "password", length = 64)
-    private String password;
+	@Column(name = "password", length = 64)
+	private String password;
 
-    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "profileID")
-    private ProfileEntity profileEntity;
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	@JoinColumn(name = "profileID")
+	private ProfileEntity profileEntity;
 
-    @Column(name = "enabled")
-    private boolean enabled;
+	@Column(name = "enabled")
+	private boolean enabled;
 
-    public boolean isEnabled()
-    {
-        return enabled;
-    }
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
 
-    public void setEnabled(final boolean enabled)
-    {
-        this.enabled = enabled;
-    }
+	public void setEnabled(final boolean enabled)
+	{
+		this.enabled = enabled;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId()
+	{
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail()
+	{
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getUsername()
+	{
+		return username;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setUsername(String username)
+	{
+		this.username = username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword()
+	{
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
 
-    public ProfileEntity getProfileEntity() {
-        return profileEntity;
-    }
+	public ProfileEntity getProfileEntity()
+	{
+		return profileEntity;
+	}
 
-    public void setProfileEntity(ProfileEntity profileEntity) {
-        this.profileEntity = profileEntity;
-    }
+	public void setProfileEntity(ProfileEntity profileEntity)
+	{
+		this.profileEntity = profileEntity;
+	}
 }
 

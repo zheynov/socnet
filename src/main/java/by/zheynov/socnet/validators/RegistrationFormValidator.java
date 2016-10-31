@@ -1,42 +1,63 @@
 package by.zheynov.socnet.validators;
 
 import by.zheynov.socnet.dto.UserDTO;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 /**
- * Created by vazh on 21.10.2016.
+ * RegistrationFormValidator.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.validators
  */
 
 @Component("registrationValidator")
-public class RegistrationFormValidator implements Validator {
+public class RegistrationFormValidator implements Validator
+{
+	private static final int USERNAME_MAX_LENGTH = 16;
+	private static final int USERNAME_MIN_LENGTH = 5;
+	private static final int PASSWORD_MIN_LENGTH = 7;
 
-    public boolean supports(Class<?> aClass) {
-        return UserDTO.class.isAssignableFrom(aClass);
-    }
+	public boolean supports(final Class<?> aClass)
+	{
+		return UserDTO.class.isAssignableFrom(aClass);
+	}
 
-    public void validate(Object targret, Errors errors) {
+	public void validate(Object targret, Errors errors)
+	{
+		final UserDTO userDTO = (UserDTO) targret;
+		final String username = userDTO.getUsername();
+		final String password = userDTO.getPassword();
+		final String confirmPassword = userDTO.getConfirmPassword();
 
-        UserDTO userDTO = (UserDTO) targret;
+		if (username.length() > USERNAME_MAX_LENGTH)
+		{
+			errors.rejectValue("username", "registration.page.text.validation.logintoolong", "Login is too long.");
+		}
+		else if (StringUtils.isEmpty(username) || username.length() < USERNAME_MIN_LENGTH)
+		{
+			errors.rejectValue("username", "registration.page.text.validation.logintoshort", "Login is too short");
+		}
 
-        String username = userDTO.getUsername();
-        if ((username.length() > 16)) {
-            errors.rejectValue("username", "registration.page.text.validation.logintoolong", "Login is too long.");
-        } else if ((username.length() < 5)) {
-            errors.rejectValue("username", "registration.page.text.validation.logintoshort", "Login is too short");
-        }
+		if (StringUtils.isEmpty(password) || password.length() < PASSWORD_MIN_LENGTH)
+		{
+			errors.rejectValue("password", "registration.page.text.validation.password.length", "Password is too short.");
+		}
 
-        String password = userDTO.getPassword();
-        if ((password.length()) < 7) {
-            errors.rejectValue("password",
-                    "registration.page.text.validation.password.length", "Password is too short.");
-        }
+		if (!password.equals(confirmPassword))
+		{
+			errors.rejectValue("confirmPassword", "registration.page.text.validation.password.confirmation",
+			                   "Passwords don't match.");
+		}
 
-        String email = userDTO.getEmail();
-        if (!EmailValidator.isValidEmailAddress(email)) {
-            errors.rejectValue("email", "registration.page.text.validation.emailisnotcorrect", "Email isn't valid");
-        }
-    }
+		String email = userDTO.getEmail();
+		if (!EmailValidator.isValidEmailAddress(email))
+		{
+			errors.rejectValue("email", "registration.page.text.validation.emailisnotcorrect", "Email isn't valid");
+		}
+	}
+
 }

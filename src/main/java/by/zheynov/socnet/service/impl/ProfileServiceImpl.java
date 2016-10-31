@@ -6,10 +6,16 @@ import by.zheynov.socnet.service.ProfileService;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Locale;
+
+/**
+ * ProfileServiceImpl.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.dao.impl
+ */
 
 public class ProfileServiceImpl implements ProfileService
 {
@@ -25,10 +31,10 @@ public class ProfileServiceImpl implements ProfileService
 	}
 
 	@Transactional
-	public ProfileEntity getProfileById(final Long profile_id)
+	public ProfileEntity getProfileById(final Long profileId)
 	{
-		LOGGER.info(messageSource.getMessage("service.profile.getById", new Object[] {profile_id}, Locale.ENGLISH));
-		return profileDao.getProfileById(profile_id);
+		LOGGER.info(messageSource.getMessage("service.profile.getById", new Object[] {profileId}, Locale.ENGLISH));
+		return profileDao.getProfileById(profileId);
 	}
 
 	@Transactional

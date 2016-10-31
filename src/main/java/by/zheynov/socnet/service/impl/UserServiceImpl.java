@@ -7,26 +7,32 @@ import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.RoleEntity;
 import by.zheynov.socnet.entity.UserEntity;
-import by.zheynov.socnet.service.PasswordEncoding;
-import by.zheynov.socnet.service.ProfileService;
-import by.zheynov.socnet.service.UserRoleService;
 import by.zheynov.socnet.service.UserService;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * UserService implementation.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.service.impl
+ */
+
 public class UserServiceImpl implements UserService
 {
 
 	private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
-	private UserDao       userDao;
-	private ProfileDao    profileDao;
-	private UserRoleDao   userRoleDao;
-	private MessageSource messageSource;
+	private UserDao         userDao;
+	private ProfileDao      profileDao;
+	private UserRoleDao     userRoleDao;
+	private MessageSource   messageSource;
+	private PasswordEncoder passwordEncoder;
 
 	@Transactional
 	public void createUser(final UserEntity userEntity)
@@ -37,8 +43,8 @@ public class UserServiceImpl implements UserService
 		profileEntity.setEmail(userEntity.getEmail());
 
 		userEntity.setProfileEntity(profileEntity);
-		userEntity.setPassword(PasswordEncoding.encodePassword(userEntity.getPassword()));
 		userEntity.setEnabled(true);
+		userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
 
 		RoleEntity roleEntity = new RoleEntity();
 		roleEntity.setUsername(userEntity.getUsername());
@@ -114,5 +120,8 @@ public class UserServiceImpl implements UserService
 		this.userRoleDao = userRoleDao;
 	}
 
-
+	public void setPasswordEncoder(final PasswordEncoder passwordEncoder)
+	{
+		this.passwordEncoder = passwordEncoder;
+	}
 }

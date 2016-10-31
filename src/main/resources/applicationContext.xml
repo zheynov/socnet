@@ -25,6 +25,7 @@
         <property name="profileDao" ref="profileDao"/>
         <property name="messageSource" ref="messageSource"/>
         <property name="userRoleDao" ref="userRoleDao"/>
+        <property name="passwordEncoder" ref="bcryptEncoder"/>
     </bean>
 
     <bean id="userRoleService" class="by.zheynov.socnet.service.impl.UserRoleServiceImpl">

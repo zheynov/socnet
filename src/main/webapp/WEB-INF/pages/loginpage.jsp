@@ -48,10 +48,19 @@ action="processLogin"   commandName="userDTO"--%>
             <td><input type="password" name='password' placeholder="${passwordLabel}"/>
 
         </tr>
-        <td align="center">
-            <spring:message code="login.page.loginbutton" var="loginbuttonLabel"/>
-            <input type="submit" class="buttonLogin" value="${loginbuttonLabel}"/>
-        </td>
+
+        <!-- if this is login for update, ignore remember me check -->
+        <c:if test="${empty loginUpdate}">
+            <tr><spring:message code="login.page.text.rememberme" var="rememberme"/>
+                <td>${rememberme}: <input type="checkbox" name="remember-me" /></td>
+            </tr>
+        </c:if>
+        <tr>
+            <td colspan='2'>
+                <spring:message code="login.page.loginbutton" var="loginbuttonLabel"/>
+                <input type="submit" class="buttonLogin" value="${loginbuttonLabel}"/>
+            </td>
+        </tr>
 
     </table>
 </form>

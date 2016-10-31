@@ -47,6 +47,13 @@
                     <form:password path="password" placeholder="${password}"/> *
             <td><form:errors path="password"/></td>
         </tr>
+
+        <tr><spring:message code="registration.page.filed.confirmpassword" var="confirmPassword"/>
+            <td>
+                    <form:password path="confirmPassword" placeholder="${confirmPassword}"/> *
+            <td><form:errors path="confirmPassword"/></td>
+        </tr>
+
         <tr><spring:message code="registration.page.button.complete" var="complete"/>
             <td colspan="2"><input type="submit" value="${complete}"/>
             </td>
