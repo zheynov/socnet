@@ -26,11 +26,14 @@ action="processLogin"   commandName="userDTO"--%>
 
 
 <c:if test="${not empty error}">
-    <div class="error">${error}</div>
+    <spring:message code="login.page.text.invalid.credentials" var="invalidCredentials"/>
+    <div class="error">${invalidCredentials}</div>
 </c:if>
 <c:if test="${not empty msg}">
-    <div class="msg">${msg}</div>
+    <spring:message code="page.text.logout.message" var="logoutMessage"/>
+    <div class="msg">${logoutMessage}</div>
 </c:if>
+
 
 <p>
 
