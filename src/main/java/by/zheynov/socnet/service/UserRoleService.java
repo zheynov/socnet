@@ -15,6 +15,8 @@ public interface UserRoleService
 	 * Saves.
 	 *
 	 * @param userRole the entity
+	 *
+	 * @return the entity
 	 */
 	RoleEntity createUserRole(RoleEntity userRole);
 
@@ -28,7 +30,7 @@ public interface UserRoleService
 	/**
 	 * Deletes.
 	 *
-	 * @param userRole the entity
+	 * * @param userRole the entity
 	 */
 	void deleteUserRole(RoleEntity userRole);
 }

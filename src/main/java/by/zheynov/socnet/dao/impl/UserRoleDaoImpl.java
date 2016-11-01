@@ -1,44 +1,51 @@
 package by.zheynov.socnet.dao.impl;
 
-import org.hibernate.SQLQuery;
-import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.zheynov.socnet.dao.UserRoleDao;
 import by.zheynov.socnet.entity.RoleEntity;
 
+/**
+ * User's RoleEntity Implementation.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.dao.impl
+ */
+
 @Transactional
 public class UserRoleDaoImpl extends AbstractBaseDAO implements UserRoleDao
 {
+	/**
+	 * Saves userRole to database.
+	 *
+	 * @param userRole the entity
+	 *
+	 * @return the entity
+	 */
 	public RoleEntity createUserRole(final RoleEntity userRole)
 	{
 		save(userRole);
 		return userRole;
 	}
 
+	/**
+	 * Updates userRole in database.
+	 *
+	 * @param userRole the entity
+	 */
 	public void updateUserRole(final RoleEntity userRole)
 	{
-
 		udate(userRole);
 	}
 
+	/**
+	 * Deletes userRole from database.
+	 *
+	 * @param userRole the entity
+	 */
 	public void deleteUserRole(final RoleEntity userRole)
 	{
 		delete(userRole);
-	}
-
-	private void disableForeighnKeyCkeck()
-	{
-		String disable = "SET FOREIGN_KEY_CHECKS=0";
-		SQLQuery query = getCurrentSession().createSQLQuery(disable);
-		query.executeUpdate();
-	}
-
-	private void enableForeighnKeyCkeck()
-	{
-		String disable = "SET FOREIGN_KEY_CHECKS=1";
-		SQLQuery query = getCurrentSession().createSQLQuery(disable);
-		query.executeUpdate();
 	}
 
 }

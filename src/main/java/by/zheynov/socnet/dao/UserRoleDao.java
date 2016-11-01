@@ -15,6 +15,8 @@ public interface UserRoleDao
 	 * Saves.
 	 *
 	 * @param userRole the entity
+	 *
+	 * @return the entity
 	 */
 	RoleEntity createUserRole(RoleEntity userRole);
 

@@ -24,7 +24,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController
 {
-
+	/**
+	 * Gets user's params and controls login/logout activity.
+	 *
+	 * @param error   the error
+	 * @param logout  the logout
+	 * @param model   the model
+	 * @param request the request
+	 *
+	 * @return the URL
+	 */
 	@RequestMapping(value = "/loginpage", method = RequestMethod.GET)
 	public String login(@RequestParam(value = "error", required = false) final String error,
 	                    @RequestParam(value = "logout", required = false) final String logout, final Model model,
@@ -52,8 +61,15 @@ public class LoginController
 		return "/loginpage";
 	}
 
+	/**
+	 * Rediretcs user to 403 page.
+	 *
+	 * @param model the model
+	 *
+	 * @return the URL
+	 */
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
-	public String accessDenied(Model model)
+	public String accessDenied(final Model model)
 	{
 		final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -66,7 +82,11 @@ public class LoginController
 	}
 
 	/**
-	 * gets targetURL from session
+	 * Gets targetURL from session.
+	 *
+	 * @param request the request
+	 *
+	 * @return the targetUrl
 	 */
 	private String getRememberMeTargetUrlFromSession(final HttpServletRequest request)
 	{

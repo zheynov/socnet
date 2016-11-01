@@ -1,7 +1,6 @@
 package by.zheynov.socnet.facade;
 
 import by.zheynov.socnet.dto.ProfileDTO;
-import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
  * Profile facade interface.

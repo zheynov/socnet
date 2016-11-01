@@ -1,18 +1,28 @@
 package by.zheynov.socnet.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
+/**
+ * Profile Entity class.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.entity
+ */
 
 @Entity
 @Table(name = "profile")
 public class ProfileEntity implements Serializable
 {
-
-	public ProfileEntity()
-	{
-	}
+	private static final int TABLE_COLUMN_MAX_LENGTH = 64;
 
 	@OneToOne(mappedBy = "profileEntity") // OneToOne with UserEntity
 	private UserEntity user;
@@ -22,128 +32,235 @@ public class ProfileEntity implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "firstname", length = 64)
+	@Column(name = "firstname", length = TABLE_COLUMN_MAX_LENGTH)
 	private String firstname;
 
-	@Column(name = "lastname", length = 64)
+	@Column(name = "lastname", length = TABLE_COLUMN_MAX_LENGTH)
 	private String lastname;
 
-	@Column(name = "email", length = 64)
+	@Column(name = "email", length = TABLE_COLUMN_MAX_LENGTH)
 	private String email;
 
-	@Column(name = "birthDate", length = 64)
+	@Column(name = "birthDate", length = TABLE_COLUMN_MAX_LENGTH)
 	private Date birthDate;
 
-	@Column(name = "age", length = 64)
+	@Column(name = "age", length = TABLE_COLUMN_MAX_LENGTH)
 	private Integer age;
 
-	@Column(name = "sex", length = 64)
+	@Column(name = "sex", length = TABLE_COLUMN_MAX_LENGTH)
 	private String sex;
 
-	@Column(name = "city", length = 64)
+	@Column(name = "city", length = TABLE_COLUMN_MAX_LENGTH)
 	private String city;
 
-	@Column(name = "phoneNumber", length = 64)
+	@Column(name = "phoneNumber", length = TABLE_COLUMN_MAX_LENGTH)
 	private String phoneNumber;
 
-	public Integer getAge()
+	/**
+	 * Constructor for ProfileEntity.
+	 */
+	public ProfileEntity()
 	{
-		return age;
 	}
 
-	public void setAge(Integer age)
-	{
-		this.age = age;
-	}
-
-	public Date getBirthDate()
-	{
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate)
-	{
-		this.birthDate = birthDate;
-	}
-
-	public String getCity()
-	{
-		return city;
-	}
-
-	public void setCity(String city)
-	{
-		this.city = city;
-	}
-
-	public String getEmail()
-	{
-		return email;
-	}
-
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
-
-	public String getFirstName()
-	{
-		return firstname;
-	}
-
-	public void setFirstName(String firstName)
-	{
-		this.firstname = firstname;
-	}
-
-	public String getLastname()
-	{
-		return lastname;
-	}
-
-	public void setLastname(String lastname)
-	{
-		this.lastname = lastname;
-	}
-
-	public String getPhoneNumber()
-	{
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber)
-	{
-		this.phoneNumber = phoneNumber;
-	}
-
-	public Long getId()
-	{
-		return id;
-	}
-
-	public void setId(final Long id)
-	{
-		this.id = id;
-	}
-
-	public String getSex()
-	{
-		return sex;
-	}
-
-	public void setSex(String sex)
-	{
-		this.sex = sex;
-	}
-
+	/**
+	 * Gets user.
+	 *
+	 * @return Value of user.
+	 */
 	public UserEntity getUser()
 	{
 		return user;
 	}
 
-	public void setUser(UserEntity user)
+	/**
+	 * Gets sex.
+	 *
+	 * @return Value of sex.
+	 */
+	public String getSex()
+	{
+		return sex;
+	}
+
+	/**
+	 * Sets new sex.
+	 *
+	 * @param sex New value of sex.
+	 */
+	public void setSex(final String sex)
+	{
+		this.sex = sex;
+	}
+
+	/**
+	 * Gets firstname.
+	 *
+	 * @return Value of firstname.
+	 */
+	public String getFirstname()
+	{
+		return firstname;
+	}
+
+	/**
+	 * Sets new age.
+	 *
+	 * @param age New value of age.
+	 */
+	public void setAge(final Integer age)
+	{
+		this.age = age;
+	}
+
+	/**
+	 * Sets new phoneNumber.
+	 *
+	 * @param phoneNumber New value of phoneNumber.
+	 */
+	public void setPhoneNumber(final String phoneNumber)
+	{
+		this.phoneNumber = phoneNumber;
+	}
+
+	/**
+	 * Gets phoneNumber.
+	 *
+	 * @return Value of phoneNumber.
+	 */
+	public String getPhoneNumber()
+	{
+		return phoneNumber;
+	}
+
+	/**
+	 * Sets new email.
+	 *
+	 * @param email New value of email.
+	 */
+	public void setEmail(final String email)
+	{
+		this.email = email;
+	}
+
+	/**
+	 * Sets new id.
+	 *
+	 * @param id New value of id.
+	 */
+	public void setId(final Long id)
+	{
+		this.id = id;
+	}
+
+	/**
+	 * Gets age.
+	 *
+	 * @return Value of age.
+	 */
+	public Integer getAge()
+	{
+		return age;
+	}
+
+	/**
+	 * Sets new firstname.
+	 *
+	 * @param firstname New value of firstname.
+	 */
+	public void setFirstname(final String firstname)
+	{
+		this.firstname = firstname;
+	}
+
+	/**
+	 * Sets new birthDate.
+	 *
+	 * @param birthDate New value of birthDate.
+	 */
+	public void setBirthDate(final Date birthDate)
+	{
+		this.birthDate = birthDate;
+	}
+
+	/**
+	 * Gets birthDate.
+	 *
+	 * @return Value of birthDate.
+	 */
+	public Date getBirthDate()
+	{
+		return birthDate;
+	}
+
+	/**
+	 * Gets city.
+	 *
+	 * @return Value of city.
+	 */
+	public String getCity()
+	{
+		return city;
+	}
+
+	/**
+	 * Gets lastname.
+	 *
+	 * @return Value of lastname.
+	 */
+	public String getLastname()
+	{
+		return lastname;
+	}
+
+	/**
+	 * Sets new lastname.
+	 *
+	 * @param lastname New value of lastname.
+	 */
+	public void setLastname(final String lastname)
+	{
+		this.lastname = lastname;
+	}
+
+	/**
+	 * Sets new user.
+	 *
+	 * @param user New value of user.
+	 */
+	public void setUser(final UserEntity user)
 	{
 		this.user = user;
+	}
+
+	/**
+	 * Sets new city.
+	 *
+	 * @param city New value of city.
+	 */
+	public void setCity(final String city)
+	{
+		this.city = city;
+	}
+
+	/**
+	 * Gets email.
+	 *
+	 * @return Value of email.
+	 */
+	public String getEmail()
+	{
+		return email;
+	}
+
+	/**
+	 * Gets id.
+	 *
+	 * @return Value of id.
+	 */
+	public Long getId()
+	{
+		return id;
 	}
 }
 

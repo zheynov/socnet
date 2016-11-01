@@ -2,7 +2,6 @@ package by.zheynov.socnet.converters;
 
 import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
-
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProfileDTOReverseConverter implements Converter<ProfileDTO, ProfileEntity>
 {
-	public ProfileEntity convert(ProfileDTO profileDTO)
+	/**
+	 * Converts ProfileDTO object to ProfileEntity object.
+	 *
+	 * @param profileDTO the profileDTO
+	 *
+	 * @return the profileEntity
+	 */
+	public ProfileEntity convert(final ProfileDTO profileDTO)
 	{
 
 		if (profileDTO == null)
@@ -27,7 +33,7 @@ public class ProfileDTOReverseConverter implements Converter<ProfileDTO, Profile
 		final ProfileEntity profileEntity = new ProfileEntity();
 
 		profileEntity.setId(profileDTO.getProfileID());
-		profileEntity.setFirstName(profileDTO.getFirstname());
+		profileEntity.setFirstname(profileDTO.getFirstname());
 		profileEntity.setLastname(profileDTO.getLastname());
 		profileEntity.setEmail(profileDTO.getEmail());
 		profileEntity.setAge(profileDTO.getAge());

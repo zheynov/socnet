@@ -5,16 +5,24 @@ import by.zheynov.socnet.entity.UserEntity;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
- * Created by Redlaw on 22.10.2016.
+ * UserDTOConverter.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.converters
  */
-
 @Component
 public class UserDTOConverter implements Converter<UserEntity, UserDTO>
 {
-	public UserDTO convert(UserEntity userEntity)
+	/**
+	 * Converts UserEntity object to UserDTO.
+	 *
+	 * @param userEntity the userEntity
+	 *
+	 * @return the userDTO
+	 */
+	public UserDTO convert(final UserEntity userEntity)
 	{
 		if (userEntity != null)
 		{

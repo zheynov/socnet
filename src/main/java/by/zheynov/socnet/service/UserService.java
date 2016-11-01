@@ -42,7 +42,7 @@ public interface UserService
 	 *
 	 * @return the UserEntity
 	 */
-	UserEntity getUserByLogin(String login);
+	UserEntity getUserByUsername(String login);
 
 	/**
 	 * Retrieves a list of UserEntity objects.
@@ -54,13 +54,17 @@ public interface UserService
 	/**
 	 * Cheks if user with exact login is exists.
 	 *
+	 * @param login the login
+	 *
 	 * @return true if exists
 	 */
 
-	boolean isLoginExists(String login);
+	boolean isUsernameExists(String login);
 
 	/**
 	 * Cheks if user with exact email is exists.
+	 *
+	 * @param email the email
 	 *
 	 * @return true if exists
 	 */

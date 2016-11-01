@@ -4,123 +4,279 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by vazh on 21.10.2016.
+ * Profile data transfer object.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.dto
  */
-public class ProfileDTO implements Serializable {
 
-    private Long    profileID;
-    private String  firstname;
-    private String  lastname;
-    private String  email;
-    private Date    birthDate;
-    private Integer age;
-    private String  sex;
-    private String  city;
-    private String  phoneNumber;
+public class ProfileDTO implements Serializable
+{
+	private static final int HASH_NUMBER = 31;
+	private Long    profileID;
+	private String  firstname;
+	private String  lastname;
+	private String  email;
+	private Date    birthDate;
+	private Integer age;
+	private String  sex;
+	private String  city;
+	private String  phoneNumber;
 
-    public Long getProfileID() {
-        return profileID;
-    }
+	/**
+	 * Gets birthDate.
+	 *
+	 * @return Value of birthDate.
+	 */
+	public Date getBirthDate()
+	{
+		return birthDate;
+	}
 
-    public void setProfileID(Long profileID) {
-        this.profileID = profileID;
-    }
+	/**
+	 * Gets firstname.
+	 *
+	 * @return Value of firstname.
+	 */
+	public String getFirstname()
+	{
+		return firstname;
+	}
 
-    public String getFirstname() {
-        return firstname;
-    }
+	/**
+	 * Gets profileID.
+	 *
+	 * @return Value of profileID.
+	 */
+	public Long getProfileID()
+	{
+		return profileID;
+	}
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	/**
+	 * Gets lastname.
+	 *
+	 * @return Value of lastname.
+	 */
+	public String getLastname()
+	{
+		return lastname;
+	}
 
-    public String getLastname() {
-        return lastname;
-    }
+	/**
+	 * Sets new sex.
+	 *
+	 * @param sex New value of sex.
+	 */
+	public void setSex(final String sex)
+	{
+		this.sex = sex;
+	}
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+	/**
+	 * Sets new phoneNumber.
+	 *
+	 * @param phoneNumber New value of phoneNumber.
+	 */
+	public void setPhoneNumber(final String phoneNumber)
+	{
+		this.phoneNumber = phoneNumber;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	/**
+	 * Sets new city.
+	 *
+	 * @param city New value of city.
+	 */
+	public void setCity(final String city)
+	{
+		this.city = city;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	/**
+	 * Gets sex.
+	 *
+	 * @return Value of sex.
+	 */
+	public String getSex()
+	{
+		return sex;
+	}
 
-    public Date getBirthDate() {
-        return birthDate;
-    }
+	/**
+	 * Sets new email.
+	 *
+	 * @param email New value of email.
+	 */
+	public void setEmail(final String email)
+	{
+		this.email = email;
+	}
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
+	/**
+	 * Sets new lastname.
+	 *
+	 * @param lastname New value of lastname.
+	 */
+	public void setLastname(final String lastname)
+	{
+		this.lastname = lastname;
+	}
 
-    public Integer getAge() {
-        return age;
-    }
+	/**
+	 * Sets new age.
+	 *
+	 * @param age New value of age.
+	 */
+	public void setAge(final Integer age)
+	{
+		this.age = age;
+	}
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+	/**
+	 * Gets email.
+	 *
+	 * @return Value of email.
+	 */
+	public String getEmail()
+	{
+		return email;
+	}
 
-    public String getSex() {
-        return sex;
-    }
+	/**
+	 * Gets city.
+	 *
+	 * @return Value of city.
+	 */
+	public String getCity()
+	{
+		return city;
+	}
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+	/**
+	 * Gets phoneNumber.
+	 *
+	 * @return Value of phoneNumber.
+	 */
+	public String getPhoneNumber()
+	{
+		return phoneNumber;
+	}
 
-    public String getCity() {
-        return city;
-    }
+	/**
+	 * Sets new profileID.
+	 *
+	 * @param profileID New value of profileID.
+	 */
+	public void setProfileID(final Long profileID)
+	{
+		this.profileID = profileID;
+	}
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+	/**
+	 * Sets new birthDate.
+	 *
+	 * @param birthDate New value of birthDate.
+	 */
+	public void setBirthDate(final Date birthDate)
+	{
+		this.birthDate = birthDate;
+	}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	/**
+	 * Sets new firstname.
+	 *
+	 * @param firstname New value of firstname.
+	 */
+	public void setFirstname(final String firstname)
+	{
+		this.firstname = firstname;
+	}
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	/**
+	 * Gets age.
+	 *
+	 * @return Value of age.
+	 */
+	public Integer getAge()
+	{
+		return age;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProfileDTO)) return false;
+	/**
+	 * Compares this ProfileDTO object to the specified one - Object o.
+	 *
+	 * @param o
+	 *
+	 * @return true if objects are the same, otherwise false
+	 */
+	@Override
+	public boolean equals(final Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof ProfileDTO))
+		{
+			return false;
+		}
 
-        ProfileDTO that = (ProfileDTO) o;
+		ProfileDTO that = (ProfileDTO) o;
 
-        if (!getProfileID().equals(that.getProfileID())) return false;
-        if (!getFirstname().equals(that.getFirstname())) return false;
-        if (!getLastname().equals(that.getLastname())) return false;
-        if (!getEmail().equals(that.getEmail())) return false;
-        if (getBirthDate() != null ? !getBirthDate().equals(that.getBirthDate()) : that.getBirthDate() != null)
-            return false;
-        if (getAge() != null ? !getAge().equals(that.getAge()) : that.getAge() != null) return false;
-        if (getSex() != null ? !getSex().equals(that.getSex()) : that.getSex() != null) return false;
-        if (getCity() != null ? !getCity().equals(that.getCity()) : that.getCity() != null) return false;
-        return getPhoneNumber() != null ? getPhoneNumber().equals(that.getPhoneNumber()) : that.getPhoneNumber() == null;
+		if (!getProfileID().equals(that.getProfileID()))
+		{
+			return false;
+		}
+		if (!getFirstname().equals(that.getFirstname()))
+		{
+			return false;
+		}
+		if (!getLastname().equals(that.getLastname()))
+		{
+			return false;
+		}
+		if (!getEmail().equals(that.getEmail()))
+		{
+			return false;
+		}
+		if (getBirthDate() != null ? !getBirthDate().equals(that.getBirthDate()) : that.getBirthDate() != null)
+		{
+			return false;
+		}
+		if (getAge() != null ? !getAge().equals(that.getAge()) : that.getAge() != null)
+		{
+			return false;
+		}
+		if (getSex() != null ? !getSex().equals(that.getSex()) : that.getSex() != null)
+		{
+			return false;
+		}
+		if (getCity() != null ? !getCity().equals(that.getCity()) : that.getCity() != null)
+		{
+			return false;
+		}
+		return getPhoneNumber() != null ? getPhoneNumber().equals(that.getPhoneNumber()) : that.getPhoneNumber() == null;
 
-    }
+	}
 
-    @Override
-    public int hashCode() {
-        int result = getProfileID().hashCode();
-        result = 31 * result + getFirstname().hashCode();
-        result = 31 * result + getLastname().hashCode();
-        result = 31 * result + getEmail().hashCode();
-        result = 31 * result + (getBirthDate() != null ? getBirthDate().hashCode() : 0);
-        result = 31 * result + (getAge() != null ? getAge().hashCode() : 0);
-        result = 31 * result + (getSex() != null ? getSex().hashCode() : 0);
-        result = 31 * result + (getCity() != null ? getCity().hashCode() : 0);
-        result = 31 * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
-        return result;
-    }
+	/**
+	 * Calculates a hashcode for this object.
+	 *
+	 * @return the hash
+	 */
+	@Override
+	public int hashCode()
+	{
+		int result = getProfileID().hashCode();
+		result = HASH_NUMBER * result + getFirstname().hashCode();
+		result = HASH_NUMBER * result + getLastname().hashCode();
+		result = HASH_NUMBER * result + getEmail().hashCode();
+		result = HASH_NUMBER * result + (getBirthDate() != null ? getBirthDate().hashCode() : 0);
+		result = HASH_NUMBER * result + (getAge() != null ? getAge().hashCode() : 0);
+		result = HASH_NUMBER * result + (getSex() != null ? getSex().hashCode() : 0);
+		result = HASH_NUMBER * result + (getCity() != null ? getCity().hashCode() : 0);
+		result = HASH_NUMBER * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
+		return result;
+	}
 }

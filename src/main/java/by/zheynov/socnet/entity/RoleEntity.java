@@ -1,55 +1,102 @@
 package by.zheynov.socnet.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import java.io.Serializable;
 
 /**
- * Created by ZheynovVV on 28.10.2016.
+ * User's role Entity class.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.entity
  */
 
 @Entity
 @Table(name = "user_roles")
 public class RoleEntity implements Serializable
 {
-	public RoleEntity()
-	{
-	}
+	private static final int TABLE_COLUMN_MAX_LENGTH = 45;
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	/*    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-			@JoinColumn(name = "login")*/
-	@Column(name = "username", length = 45)
+	@Column(name = "username", length = TABLE_COLUMN_MAX_LENGTH)
 	private String username;
 
-	@Column(name = "role", length = 45)
+	@Column(name = "role", length = TABLE_COLUMN_MAX_LENGTH)
 	private String role;
 
-	public Long getId() {
+	/**
+	 * Constructor for 	RoleEntity.
+	 */
+	public RoleEntity()
+	{
+	}
+
+	/**
+	 * Gets id.
+	 *
+	 * @return Value of id.
+	 */
+	public Long getId()
+	{
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
+	/**
+	 * Gets username.
+	 *
+	 * @return Value of username.
+	 */
+	public String getUsername()
+	{
 		return username;
 	}
 
-	public void setUsername(String username) {
+	/**
+	 * Sets new username.
+	 *
+	 * @param username New value of username.
+	 */
+	public void setUsername(final String username)
+	{
 		this.username = username;
 	}
 
-	public String getRole() {
+	/**
+	 * Sets new id.
+	 *
+	 * @param id New value of id.
+	 */
+	public void setId(final Long id)
+	{
+		this.id = id;
+	}
+
+	/**
+	 * Gets role.
+	 *
+	 * @return Value of role.
+	 */
+	public String getRole()
+	{
 		return role;
 	}
 
-	public void setRole(String role) {
+	/**
+	 * Sets new role.
+	 *
+	 * @param role New value of role.
+	 */
+	public void setRole(final String role)
+	{
 		this.role = role;
 	}
 }

@@ -2,7 +2,6 @@ package by.zheynov.socnet.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -15,36 +14,64 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public abstract class AbstractBaseDAO
 {
-
 	private SessionFactory sessionFactory;
 
-	void save(Object object)
+	/**
+	 * Saves the object to data base.
+	 *
+	 * @param object the object
+	 */
+	void save(final Object object)
 	{
 		sessionFactory.getCurrentSession().save(object);
 	}
 
-	public void getById()
+	/**
+	 * Gets the object from data base by its id.
+	 *
+	 * @param id the id
+	 */
+	public void getById(final Long id)
 	{
 	}
 
-	void udate(Object object)
+	/**
+	 * Updates the object in data base.
+	 *
+	 * @param object the object
+	 */
+	void udate(final Object object)
 	{
 		sessionFactory.getCurrentSession().update(object);
 	}
 
-	void delete(Object object)
+	/**
+	 * Deletes the object from data base.
+	 *
+	 * @param object the object
+	 */
+	void delete(final Object object)
 	{
 		sessionFactory.getCurrentSession().delete(object);
 	}
 
+	/**
+	 * Obtains current session.
+	 *
+	 * @return the current session.
+	 */
 	Session getCurrentSession()
 	{
 		return sessionFactory.getCurrentSession();
 	}
 
-	public void setSessionFactory(SessionFactory sessionFactory)
+	/**
+	 * Sets new sessionFactory.
+	 *
+	 * @param sessionFactory New value of sessionFactory.
+	 */
+	public void setSessionFactory(final SessionFactory sessionFactory)
 	{
 		this.sessionFactory = sessionFactory;
 	}
-
 }

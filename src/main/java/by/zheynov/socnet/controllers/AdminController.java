@@ -18,6 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminController
 {
 
+	/**
+	 * Redirects user to showAllUsers URL.
+	 *
+	 * @param model the model
+	 * @param request the request
+	 *
+	 * @return the URL
+	 */
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String loginAsAdmin(final Model model, final HttpServletRequest request)
 	{

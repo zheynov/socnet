@@ -6,29 +6,42 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by Redlaw on 27.10.2016.
+ * ProfileDTOConverter.
+ *
+ * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
+ * @package by.zheynov.socnet.converters
  */
 
 @Component
-public class ProfileDTOConverter implements Converter<ProfileEntity, ProfileDTO> {
+public class ProfileDTOConverter implements Converter<ProfileEntity, ProfileDTO>
+{
+	/**
+	 * Converts ProfileEntity object to ProfileDTO object.
+	 *
+	 * @param profileEntity the profileEntity
+	 *
+	 * @return the profileDTO
+	 */
+	public ProfileDTO convert(final ProfileEntity profileEntity)
+	{
 
-    public ProfileDTO convert(ProfileEntity profileEntity) {
+		if (profileEntity == null)
+		{
+			return null;
+		}
 
-        if (profileEntity == null)
-            return null;
+		ProfileDTO profileDTO = new ProfileDTO();
 
-        ProfileDTO profileDTO = new ProfileDTO();
+		profileDTO.setProfileID(profileEntity.getId());
+		profileDTO.setFirstname(profileEntity.getFirstname());
+		profileDTO.setLastname(profileEntity.getLastname());
+		profileDTO.setEmail(profileEntity.getEmail());
+		profileDTO.setBirthDate(profileEntity.getBirthDate());
+		profileDTO.setAge(profileEntity.getAge());
+		profileDTO.setSex(profileEntity.getSex());
+		profileDTO.setCity(profileEntity.getCity());
+		profileDTO.setPhoneNumber(profileEntity.getPhoneNumber());
 
-        profileDTO.setProfileID(profileEntity.getId());
-        profileDTO.setFirstname(profileEntity.getFirstName());
-        profileDTO.setLastname(profileEntity.getLastname());
-        profileDTO.setEmail(profileEntity.getEmail());
-        profileDTO.setBirthDate(profileEntity.getBirthDate());
-        profileDTO.setAge(profileEntity.getAge());
-        profileDTO.setSex(profileEntity.getSex());
-        profileDTO.setCity(profileEntity.getCity());
-        profileDTO.setPhoneNumber(profileEntity.getPhoneNumber());
-
-        return profileDTO;
-    }
+		return profileDTO;
+	}
 }

@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Locale;
 
 /**
- * ProfileServiceImpl.
+ * Profile service implementation.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
- * @package by.zheynov.socnet.dao.impl
+ * @package by.zheynov.socnet.service.impl
  */
 
 public class ProfileServiceImpl implements ProfileService
@@ -23,6 +23,11 @@ public class ProfileServiceImpl implements ProfileService
 	private ProfileDao    profileDao;
 	private MessageSource messageSource;
 
+	/**
+	 * Saves profile entity to database.
+	 *
+	 * @param profileEntity the entity
+	 */
 	@Transactional
 	public void createProfile(final ProfileEntity profileEntity)
 	{
@@ -30,6 +35,13 @@ public class ProfileServiceImpl implements ProfileService
 		LOGGER.info(messageSource.getMessage("service.profile.save", new Object[] {profileEntity}, Locale.ENGLISH));
 	}
 
+	/**
+	 * Gets profile from database by its id.
+	 *
+	 * @param profileId the id
+	 *
+	 * @return the entity
+	 */
 	@Transactional
 	public ProfileEntity getProfileById(final Long profileId)
 	{
@@ -37,6 +49,11 @@ public class ProfileServiceImpl implements ProfileService
 		return profileDao.getProfileById(profileId);
 	}
 
+	/**
+	 * Uptades user's profile in database.
+	 *
+	 * @param profileEntity the entity
+	 */
 	@Transactional
 	public void updateProfile(final ProfileEntity profileEntity)
 	{
@@ -44,6 +61,11 @@ public class ProfileServiceImpl implements ProfileService
 		profileDao.updateProfile(profileEntity);
 	}
 
+	/**
+	 * Deletes user's profile from database.
+	 *
+	 * @param profileEntity the entity
+	 */
 	@Transactional
 	public void deleteProfile(final ProfileEntity profileEntity)
 	{
@@ -51,13 +73,23 @@ public class ProfileServiceImpl implements ProfileService
 
 	}
 
-	public void setProfileDao(ProfileDao profileDao)
-	{
-		this.profileDao = profileDao;
-	}
-
-	public void setMessageSource(MessageSource messageSource)
+	/**
+	 * Sets new messageSource.
+	 *
+	 * @param messageSource New value of messageSource.
+	 */
+	public void setMessageSource(final MessageSource messageSource)
 	{
 		this.messageSource = messageSource;
+	}
+
+	/**
+	 * Sets new profileDao.
+	 *
+	 * @param profileDao New value of profileDao.
+	 */
+	public void setProfileDao(final ProfileDao profileDao)
+	{
+		this.profileDao = profileDao;
 	}
 }

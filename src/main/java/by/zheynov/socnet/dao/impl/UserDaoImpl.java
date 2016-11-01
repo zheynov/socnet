@@ -1,7 +1,6 @@
 package by.zheynov.socnet.dao.impl;
 
 import by.zheynov.socnet.dao.UserDao;
-import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
 
 import org.hibernate.Criteria;
@@ -24,28 +23,57 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	private static final String GET_USER_BY_USERNAME_QUERY      = "FROM UserEntity WHERE username = :username";
 	private static final String GET_EMAILADDRESS_BY_EMAIL_QUERY = "FROM UserEntity WHERE email = :email";
 
+	/**
+	 * Creates user in database.
+	 *
+	 * @param user the entity
+	 *
+	 * @return the entity
+	 */
 	public UserEntity createUser(final UserEntity user)
 	{
 		save(user);
 		return user;
 	}
 
+	/**
+	 * Updates the user in database.
+	 *
+	 * @param user the entity
+	 */
 	public void updateUser(final UserEntity user)
 	{
 		udate(user);
 	}
 
+	/**
+	 * Deletes usre form database.
+	 *
+	 * @param user the entity
+	 */
 	public void deleteUser(final UserEntity user)
 	{
 		delete(user);
 	}
 
-	public UserEntity getUserByLogin(String login)
+	/**
+	 * Gets user from database by its username.
+	 *
+	 * @param username the username
+	 *
+	 * @return the entity
+	 */
+	public UserEntity getUserByUsername(final String username)
 	{
 		Session session = getCurrentSession();
 		return null;
 	}
 
+	/**
+	 * Gets a list of users.
+	 *
+	 * @return List<UserEntity>
+	 */
 	public List<UserEntity> getAllTheUsers()
 	{
 
@@ -54,14 +82,28 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 		return allTheUsers;
 	}
 
-	public boolean isLoginExists(String username)
+	/**
+	 * Ckecks if user with such username already exists in database.
+	 *
+	 * @param username the username
+	 *
+	 * @return true if login is exits, otherwise false
+	 */
+	public boolean isLoginExists(final String username)
 	{
 		org.hibernate.query.Query query = getCurrentSession().createQuery(GET_USER_BY_USERNAME_QUERY);
 		query.setParameter("username", username);
 		return query.list().size() > 0;
 	}
 
-	public boolean isEmailExists(String email)
+	/**
+	 * Ckecks if user with such email already exists in database.
+	 *
+	 * @param email the email
+	 *
+	 * @return true if email is exits, otherwise false
+	 */
+	public boolean isEmailExists(final String email)
 	{
 		Query query = getCurrentSession().createQuery(GET_EMAILADDRESS_BY_EMAIL_QUERY);
 		query.setParameter("email", email);
@@ -70,5 +112,4 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 
 		return userEntities.size() > 0;
 	}
-
 }

@@ -18,6 +18,8 @@ public interface UserDao
 	 * Saves.
 	 *
 	 * @param user the entity
+	 *
+	 * @return the entity
 	 */
 	UserEntity createUser(UserEntity user);
 
@@ -42,7 +44,7 @@ public interface UserDao
 	 *
 	 * @return the UserEntity
 	 */
-	UserEntity getUserByLogin(String login);
+	UserEntity getUserByUsername(String login);
 
 	/**
 	 * Retrieves a list of userEntity objects.
@@ -54,6 +56,7 @@ public interface UserDao
 	/**
 	 * Cheks if user with exact login is exists.
 	 *
+	 * @param login the login
 	 * @return true if exists
 	 */
 	boolean isLoginExists(String login);
@@ -61,6 +64,7 @@ public interface UserDao
 	/**
 	 * Cheks if user with exact email is exists.
 	 *
+	 * @param email the email
 	 * @return true if exists
 	 */
 	boolean isEmailExists(String email);

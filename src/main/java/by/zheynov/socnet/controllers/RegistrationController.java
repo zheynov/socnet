@@ -30,15 +30,34 @@ public class RegistrationController
 	@Autowired
 	private UserFacade userFacade;
 
+	/**
+	 * Adds UserDTO object to model.
+	 *
+	 * @param model the model
+	 *
+	 * @return the URL
+	 */
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
-	public String initRegistration(Model model)
+	public String initRegistration(final Model model)
 	{
 		model.addAttribute("userDTO", new UserDTO());
 		return "/registration";
 	}
 
+	/**
+	 * Controls user's registration process and redirects to the specified URL
+	 * if registration is successful.
+	 *
+	 * @param model   the model
+	 * @param userDTO the userDTO
+	 * @param result  the result
+	 *
+	 * @return the URL
+	 */
+
 	@RequestMapping(value = "/registrationComplete", method = RequestMethod.POST)
-	public String displayRegistration(Model model, @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result)
+	public String displayRegistration(final Model model,
+	                                  @ModelAttribute("userDTO") final UserDTO userDTO, final BindingResult result)
 	{
 
 		registrationValidator.validate(userDTO, result);
@@ -48,7 +67,7 @@ public class RegistrationController
 			return "/registration";
 		}
 
-		if (!userFacade.isLoginExists(userDTO.getUsername()))
+		if (!userFacade.isUsernameExists(userDTO.getUsername()))
 		{
 			if (!userFacade.isEmailExists(userDTO.getEmail()))
 			{
@@ -70,8 +89,15 @@ public class RegistrationController
 		}
 	}
 
+	/**
+	 * Redirects user to alltheusers.jsp.
+	 *
+	 * @param model the model
+	 *
+	 * @return the URL
+	 */
 	@RequestMapping(value = "/showAllUsers", method = RequestMethod.GET)
-	public String showAllTheUsers(Model model)
+	public String showAllTheUsers(final Model model)
 	{
 		model.addAttribute("userDTO", new UserDTO());
 		model.addAttribute("allTheUsers", userFacade.getAllTheUsers());

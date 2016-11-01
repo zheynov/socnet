@@ -15,6 +15,8 @@ public interface UserRoleFacade
 	 * Saves.
 	 *
 	 * @param userRole the entity
+	 *
+	 * @return the entity
 	 */
 	RoleEntity createUserRole(RoleEntity userRole);
 

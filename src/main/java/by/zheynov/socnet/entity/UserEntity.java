@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * UserEntity.
+ * UserEntity class.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.entity
@@ -24,23 +24,20 @@ import java.io.Serializable;
 @Table(name = "users")
 public class UserEntity implements Serializable
 {
-
-	public UserEntity()
-	{
-	}
+	private static final int TABLE_COLUMN_MAX_LENGTH = 64;
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "email", length = 64)
+	@Column(name = "email", length = TABLE_COLUMN_MAX_LENGTH)
 	private String email;
 
-	@Column(name = "username", length = 64, unique = true)
+	@Column(name = "username", length = TABLE_COLUMN_MAX_LENGTH, unique = true)
 	private String username;
 
-	@Column(name = "password", length = 64)
+	@Column(name = "password", length = TABLE_COLUMN_MAX_LENGTH)
 	private String password;
 
 	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
@@ -50,64 +47,131 @@ public class UserEntity implements Serializable
 	@Column(name = "enabled")
 	private boolean enabled;
 
-	public boolean isEnabled()
+	/**
+	 * Constructor for UserEntity.
+	 */
+	public UserEntity()
 	{
-		return enabled;
 	}
 
-	public void setEnabled(final boolean enabled)
-	{
-		this.enabled = enabled;
-	}
-
+	/**
+	 * Gets id.
+	 *
+	 * @return Value of id.
+	 */
 	public Long getId()
 	{
 		return id;
 	}
 
-	public void setId(Long id)
+	/**
+	 * Sets new profileEntity.
+	 *
+	 * @param profileEntity New value of profileEntity.
+	 */
+	public void setProfileEntity(final ProfileEntity profileEntity)
+	{
+		this.profileEntity = profileEntity;
+	}
+
+	/**
+	 * Sets new id.
+	 *
+	 * @param id New value of id.
+	 */
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
 
-	public String getEmail()
-	{
-		return email;
-	}
-
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
-
-	public String getUsername()
-	{
-		return username;
-	}
-
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
-
-	public String getPassword()
-	{
-		return password;
-	}
-
-	public void setPassword(String password)
-	{
-		this.password = password;
-	}
-
+	/**
+	 * Gets profileEntity.
+	 *
+	 * @return Value of profileEntity.
+	 */
 	public ProfileEntity getProfileEntity()
 	{
 		return profileEntity;
 	}
 
-	public void setProfileEntity(ProfileEntity profileEntity)
+	/**
+	 * Sets new username.
+	 *
+	 * @param username New value of username.
+	 */
+	public void setUsername(final String username)
 	{
-		this.profileEntity = profileEntity;
+		this.username = username;
+	}
+
+	/**
+	 * Gets enabled.
+	 *
+	 * @return Value of enabled.
+	 */
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * Gets username.
+	 *
+	 * @return Value of username.
+	 */
+	public String getUsername()
+	{
+		return username;
+	}
+
+	/**
+	 * Gets password.
+	 *
+	 * @return Value of password.
+	 */
+	public String getPassword()
+	{
+		return password;
+	}
+
+	/**
+	 * Sets new email.
+	 *
+	 * @param email New value of email.
+	 */
+	public void setEmail(final String email)
+	{
+		this.email = email;
+	}
+
+	/**
+	 * Sets new enabled.
+	 *
+	 * @param enabled New value of enabled.
+	 */
+	public void setEnabled(final boolean enabled)
+	{
+		this.enabled = enabled;
+	}
+
+	/**
+	 * Sets new password.
+	 *
+	 * @param password New value of password.
+	 */
+	public void setPassword(final String password)
+	{
+		this.password = password;
+	}
+
+	/**
+	 * Gets email.
+	 *
+	 * @return Value of email.
+	 */
+	public String getEmail()
+	{
+		return email;
 	}
 }
 

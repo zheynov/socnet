@@ -15,6 +15,8 @@ public interface ProfileDao
 	 * Saves.
 	 *
 	 * @param profile the entity
+	 *
+	 * @return the entity
 	 */
 	ProfileEntity createProfile(ProfileEntity profile);
 
@@ -23,7 +25,7 @@ public interface ProfileDao
 	 *
 	 * @param profileId the id
 	 *
-	 * @return the ProfileEntity
+	 * @return the entity
 	 */
 	ProfileEntity getProfileById(Long profileId);
 
