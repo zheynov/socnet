@@ -34,7 +34,16 @@
 
     <!--MessageSource -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:label"/>
+        <property name="basenames">
+
+            <list>
+                <value>classpath:logmesagges</value>
+                <value>classpath:label</value>
+            </list>
+        </property>
+
+        <!--<property name="basename" value="classpath:label" />-->
+
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
@@ -69,7 +78,7 @@
     <bean id="userRoleFacade" class="by.zheynov.socnet.facade.impl.UserRoleFacadeImpl"/>
 
 
-   <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
                 <bean class="by.zheynov.socnet.converters.UserDTOConverter"/>
@@ -78,6 +87,6 @@
                 <bean class="by.zheynov.socnet.converters.ProfileDTOConverter"/>
             </list>
         </property>
-   </bean>
+    </bean>
 
 </beans>
