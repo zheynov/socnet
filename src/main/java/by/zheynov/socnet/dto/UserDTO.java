@@ -18,6 +18,7 @@ public class UserDTO implements Serializable
 	private String  password;
 	private boolean enabled;
 	private String  confirmPassword;
+	private Long  profileID;
 
 	/**
 	 * Compares this UserDTO object to the specified Object o.
@@ -194,5 +195,25 @@ public class UserDTO implements Serializable
 	public void setId(final Long id)
 	{
 		this.id = id;
+	}
+
+	/**
+	 * Gets profileID.
+	 *
+	 * @return Value of profileID.
+	 */
+	public Long getProfileID()
+	{
+		return profileID;
+	}
+
+	/**
+	 * Sets new profileID.
+	 *
+	 * @param profileID New value of profileID.
+	 */
+	public void setProfileID(final Long profileID)
+	{
+		this.profileID = profileID;
 	}
 }

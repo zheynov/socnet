@@ -1,8 +1,8 @@
 package by.zheynov.socnet.converters;
 
+
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.UserEntity;
-
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

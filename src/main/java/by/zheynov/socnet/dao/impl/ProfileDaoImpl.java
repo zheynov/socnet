@@ -36,8 +36,7 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 */
 	public ProfileEntity getProfileById(final Long profileId)
 	{
-		Session session = getCurrentSession();
-		return null;
+		return getCurrentSession().get(ProfileEntity.class, profileId);
 	}
 
 	/**

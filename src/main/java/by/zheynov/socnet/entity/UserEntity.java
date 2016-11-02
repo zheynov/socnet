@@ -21,7 +21,7 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class UserEntity implements Serializable
 {
 	private static final int TABLE_COLUMN_MAX_LENGTH = 64;

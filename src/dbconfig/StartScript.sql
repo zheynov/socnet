@@ -18,8 +18,8 @@ CREATE TABLE profile
   phoneNumber VARCHAR(30)
 );
 
--- Table users
-CREATE TABLE users
+-- Table user
+CREATE TABLE user
 (
   id        BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   email     VARCHAR(30)        NOT NULL UNIQUE,
@@ -33,7 +33,7 @@ CREATE TABLE users
 );
 
 -- Table for mapping user and roles
-CREATE TABLE user_roles (
+CREATE TABLE user_role (
   id       BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   username VARCHAR(45)        NOT NULL,
   role     VARCHAR(45)        NOT NULL
@@ -48,15 +48,20 @@ CREATE TABLE persistent_logins (
 );
 
 -- Insert data
-INSERT INTO PROFILE VALUES (1, 'admin', 'admin', NULL, 'admin@admin.com', NULL, NULL, NULL, NULL
+INSERT INTO profile VALUES (1, 'admin', 'admin', NULL, 'admin@admin.com', NULL, NULL, NULL, NULL
 );
-INSERT INTO users VALUES (1, 'admin@admin.com', 'admin',
+INSERT INTO user VALUES (1, 'admin@admin.com', 'admin',
                           '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1);
 
 INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', NULL, 'vadim@gmail.com', NULL, NULL, NULL, NULL);
-INSERT INTO users VALUES (2, 'vadim@gmail.com', 'Vadim',
+INSERT INTO user VALUES (2, 'vadim@gmail.com', 'Vadim',
                           '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2);
 
+INSERT INTO profile VALUES (3, 'Redlaw', 'Redstar', NULL, 'Redlaw@redlaw.by', NULL, NULL, NULL, NULL);
+INSERT INTO user VALUES (3, 'Redlaw@redlaw.by', 'Redlaw',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2);
 
-INSERT INTO socnetDB.user_roles VALUES (NULL, 'admin', 'ROLE_ADMIN');
-INSERT INTO socnetDB.user_roles VALUES (NULL, 'Vadim', 'ROLE_USER');
+
+INSERT INTO socnetDB.user_role VALUES (NULL, 'admin', 'ROLE_ADMIN');
+INSERT INTO socnetDB.user_role VALUES (NULL, 'Vadim', 'ROLE_USER');
+INSERT INTO socnetDB.user_role VALUES (NULL, 'Redlaw', 'ROLE_USER');

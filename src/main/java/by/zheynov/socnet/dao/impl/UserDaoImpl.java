@@ -65,7 +65,13 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public UserEntity getUserByUsername(final String username)
 	{
-		Session session = getCurrentSession();
+		org.hibernate.query.Query query = getCurrentSession().createQuery(GET_USER_BY_USERNAME_QUERY);
+		query.setParameter("username", username);
+
+		List objects = query.list();
+		if (objects.size()>0) {
+			return (UserEntity) objects.get(0);
+		}
 		return null;
 	}
 
@@ -76,7 +82,6 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public List<UserEntity> getAllTheUsers()
 	{
-
 		final Criteria criteria = getCurrentSession().createCriteria(UserEntity.class);
 		final List allTheUsers = criteria.list();
 		return allTheUsers;

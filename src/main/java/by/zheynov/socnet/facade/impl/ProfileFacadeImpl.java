@@ -1,10 +1,12 @@
 package by.zheynov.socnet.facade.impl;
 
 import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.service.ProfileService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
 
 /**
@@ -13,10 +15,8 @@ import org.springframework.core.convert.ConversionService;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade
  */
-
 public class ProfileFacadeImpl implements ProfileFacade
 {
-
 	@Autowired
 	private ProfileService    profileService;
 	@Autowired
@@ -29,7 +29,7 @@ public class ProfileFacadeImpl implements ProfileFacade
 	 */
 	public void createProfile(final ProfileDTO profileDTO)
 	{
-
+		profileService.createProfile(conversionService.convert(profileDTO, ProfileEntity.class));
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class ProfileFacadeImpl implements ProfileFacade
 	 */
 	public ProfileDTO getProfileById(final Long profileId)
 	{
-		return null;
+		return conversionService.convert(profileService.getProfileById(profileId), ProfileDTO.class);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class ProfileFacadeImpl implements ProfileFacade
 	 */
 	public void updateProfile(final ProfileDTO profileDTO)
 	{
-
+		profileService.updateProfile(conversionService.convert(profileDTO, ProfileEntity.class));
 	}
 
 	/**
@@ -61,6 +61,6 @@ public class ProfileFacadeImpl implements ProfileFacade
 	 */
 	public void deleteProfile(final ProfileDTO profileDTO)
 	{
-
+		profileService.deleteProfile(conversionService.convert(profileDTO, ProfileEntity.class));
 	}
 }

@@ -17,7 +17,7 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "user_roles")
+@Table(name = "user_role")
 public class RoleEntity implements Serializable
 {
 	private static final int TABLE_COLUMN_MAX_LENGTH = 45;

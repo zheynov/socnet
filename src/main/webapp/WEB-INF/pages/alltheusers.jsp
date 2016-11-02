@@ -29,6 +29,8 @@
     <b> Email: </b>${user.email}<br/></p>
 </c:forEach>
 
+<p> <a href="/beforeprofilepage">profile</a>
+
 
 </body>
 </html>

@@ -42,6 +42,7 @@ public class UserFacadeImpl implements UserFacade
 	 */
 	public void updateUser(final UserDTO userDTO)
 	{
+		userService.updateUser(conversionService.convert(userDTO, UserEntity.class));
 	}
 
 	/**
@@ -51,6 +52,7 @@ public class UserFacadeImpl implements UserFacade
 	 */
 	public void deleteUser(final UserDTO userDTO)
 	{
+		userService.deleteUser(conversionService.convert(userDTO, UserEntity.class));
 	}
 
 	/**
@@ -62,7 +64,7 @@ public class UserFacadeImpl implements UserFacade
 	 */
 	public UserDTO getUserByUsername(final String username)
 	{
-		return null;
+		return conversionService.convert(userService.getUserByUsername(username), UserDTO.class);
 	}
 
 	/**

@@ -38,11 +38,11 @@ public interface UserService
 	/**
 	 * Finds UserEntity By login.
 	 *
-	 * @param login the login
+	 * @param username the username
 	 *
 	 * @return the UserEntity
 	 */
-	UserEntity getUserByUsername(String login);
+	UserEntity getUserByUsername(String username);
 
 	/**
 	 * Retrieves a list of UserEntity objects.
