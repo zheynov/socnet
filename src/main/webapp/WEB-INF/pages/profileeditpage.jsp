@@ -19,29 +19,32 @@
     <table>
         <form:hidden path="profileID"/>
         <tr>
-            <td><form:input path="firstname" size="30"/></td>
+            <td><form:input path="firstname" placeholder="firstname" size="30"/></td>
         </tr>
         <tr>
-            <td><form:input path="lastname" size="30"/></td>
+            <td><form:input path="lastname" placeholder="lastname" size="30"/></td>
         </tr>
         <tr>
-            <td><form:input path="email" size="30"/></td>
+            <td><form:input path="email" placeholder="email" size="30"/></td>
         </tr>
 
         <tr>
-            <td><form:radiobutton path="sex"/>$</td>
+            <td> Sex: <form:radiobutton path="sex" value="male"/> male
+                <form:radiobutton path="sex" value="female"/>female
+            </td>
+
         </tr>
         <tr>
             <td>
             <form:input type="date" path="birthDate"/></tr>
         <tr>
-            <td><form:input path="age" size="30"/></td>
+            <td><form:input path="age" placeholder="age" size="30"/></td>
         </tr>
         <tr>
-            <td><form:input path="city" size="30"/></td>
+            <td><form:input path="city" placeholder="city" size="30"/></td>
         </tr>
         <tr>
-            <td><form:input path="phoneNumber" size="30"/></td>
+            <td><form:input path="phoneNumber" placeholder="phoneNumber" size="30"/></td>
         </tr>
 
         <tr>

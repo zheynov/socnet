@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,12 +62,14 @@ public class ProfileController
 	 * Edits user's profile.
 	 *
 	 * @param model      the model
+	 * @param result     the result
 	 * @param profileDTO the profileDTO
 	 *
 	 * @return profilepage URL
 	 */
-	@RequestMapping(value = "/editprofile", method = RequestMethod.GET)
-	public String editProfile(final Model model, @ModelAttribute("profileDTO")final ProfileDTO profileDTO)
+	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
+	public String editProfile(final Model model, @ModelAttribute("profileDTO") final ProfileDTO profileDTO,
+	                          final BindingResult result)
 	{
 		profileFacade.updateProfile(profileDTO);
 
