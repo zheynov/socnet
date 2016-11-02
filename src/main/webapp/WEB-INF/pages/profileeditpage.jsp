@@ -19,10 +19,10 @@
     <table>
         <form:hidden path="profileID"/>
         <tr>
-            <td><form:input path="firstName" size="30"/></td>
+            <td><form:input path="firstname" size="30"/></td>
         </tr>
         <tr>
-            <td><form:input path="lastName" size="30"/></td>
+            <td><form:input path="lastname" size="30"/></td>
         </tr>
         <tr>
             <td><form:input path="email" size="30"/></td>
