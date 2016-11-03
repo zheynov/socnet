@@ -112,12 +112,12 @@ public class ProfileController
 	}
 
 	/**
-	 *
 	 * @param binder the binder
 	 */
 
 	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
+	protected void initBinder(final WebDataBinder binder)
+	{
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));

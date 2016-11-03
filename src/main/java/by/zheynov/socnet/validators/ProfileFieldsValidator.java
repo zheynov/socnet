@@ -20,6 +20,7 @@ import by.zheynov.socnet.dto.ProfileDTO;
 public class ProfileFieldsValidator implements Validator
 {
 	private static final int CITY_MAX_LENGTH = 30;
+	private static final int AGE_MAX_VALUE   = 160;
 
 	/**
 	 * Determines if ProfileDTO.class represented by aClass.
@@ -73,7 +74,7 @@ public class ProfileFieldsValidator implements Validator
 
 		if (profileDTO.getAge() != null)
 		{
-			if ((profileDTO.getAge() < 0 || profileDTO.getAge() > 160))
+			if ((profileDTO.getAge() < 0 || profileDTO.getAge() > AGE_MAX_VALUE))
 			{
 				errors.rejectValue("age", "profile.page.field.text.age", "age format isn't valid");
 			}

@@ -4,7 +4,6 @@ import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.entity.UserEntity;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,7 +68,8 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 		query.setParameter("username", username);
 
 		List objects = query.list();
-		if (objects.size()>0) {
+		if (objects.size() > 0)
+		{
 			return (UserEntity) objects.get(0);
 		}
 		return null;

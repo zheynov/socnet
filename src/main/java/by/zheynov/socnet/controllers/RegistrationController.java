@@ -89,17 +89,16 @@ public class RegistrationController
 	}
 
 	/**
-	 * Redirects user to alltheusers.jsp.
+	 * Redirects user to welcome.jsp.
 	 *
 	 * @param model the model
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/showAllUsers", method = RequestMethod.GET)
+	@RequestMapping(value = "/welcomePage", method = RequestMethod.GET)
 	public String showAllTheUsers(final Model model)
 	{
 		model.addAttribute("userDTO", new UserDTO());
-		model.addAttribute("allTheUsers", userFacade.getAllTheUsers());
-		return "/alltheusers";
+		return "/welcome";
 	}
 }

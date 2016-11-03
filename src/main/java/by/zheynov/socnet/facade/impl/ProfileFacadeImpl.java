@@ -9,7 +9,6 @@ import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.service.ProfileService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
 
 /**

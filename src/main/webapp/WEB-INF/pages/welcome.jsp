@@ -1,16 +1,16 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: vazh
-  Date: 03.11.2016
-  Time: 20:53
+  Date: 20.10.2016
+  Time: 19:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Manage user info</title>
+    <title>Title</title>
 </head>
 <body>
 
@@ -22,20 +22,14 @@
         | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></h2>
 </c:if>
 
-<p>
+Привет!
 
-    <b>Email: </b> ${userDTO.email} <br/>
-    <b>Login: </b> ${userDTO.username} <br/>
-    <b>Password: </b> ${userDTO.password} <br/>
-    <b>Active user: </b>>
-        <c:choose>
-        <c:when test="${userDTO.enabled==true}">
-        yes </c:when>
+<p><a href="/beforeprofilepage">profile</a>
 
-        <c:otherwise>
-        no </c:otherwise>
-        </c:choose>
-<p>
+
+    <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
+        <p><a href="/admin/">Admin dashboard</a>
+    </c:if>
 
 
 </body>

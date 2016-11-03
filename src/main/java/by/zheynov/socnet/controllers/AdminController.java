@@ -20,6 +20,7 @@ import by.zheynov.socnet.facade.UserFacade;
  */
 
 @Controller
+@RequestMapping(value = "/admin")
 public class AdminController
 {
 	@Autowired
@@ -34,12 +35,12 @@ public class AdminController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String loginAsAdmin(final Model model)
 	{
 		model.addAttribute("allTheProfiles", profileFacade.getAllTheProfiles());
 
-		return "/adminpage";
+		return "/secure/adminpage";
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class AdminController
 	 * @return userinfo URL
 	 */
 	@RequestMapping(value = "/manageuserinfo/{userID}", method = RequestMethod.GET)
-	public String manageuserInfo(final Model model, @PathVariable(value = "userID") String userID)
+	public String manageuserInfo(final Model model, @PathVariable(value = "userID") final String userID)
 	{
 		ProfileDTO profileDTO = profileFacade.getProfileById(Long.valueOf(userID));
 		for (UserDTO userDTO : userFacade.getAllTheUsers())
@@ -61,7 +62,7 @@ public class AdminController
 				model.addAttribute("userDTO", userDTO);
 			}
 		}
-		return "/userinfo";
+		return "/secure/userinfo";
 	}
 
 }

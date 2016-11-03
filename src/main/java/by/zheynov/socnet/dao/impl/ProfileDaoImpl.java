@@ -6,7 +6,6 @@ import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 
 /**
  * ProfileEntity DAO Implementation.

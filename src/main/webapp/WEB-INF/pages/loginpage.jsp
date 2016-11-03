@@ -67,7 +67,7 @@ action="processLogin"   commandName="userDTO"--%>
 
 
 <a href="/registration"> Registration </a> <br/>
-<a href="/showAllUsers"> All the users </a>
+<a href="/welcomePage"> Main page </a>
 
 </body>
 </html>

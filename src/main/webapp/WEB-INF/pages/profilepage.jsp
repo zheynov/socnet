@@ -24,10 +24,8 @@
 
 
 <h2>Profile page</h2>
-<p>
-    Profile data:
-<p>
 
+<p>
     <b> Firstname: </b> ${profileDTO.firstname} <br/>
     <b> Lastname:</b> ${profileDTO.lastname} <br/>
     <b> Email:</b> ${profileDTO.email} <br/>
@@ -39,7 +37,7 @@
 
 
 <p><a href="/profileedit">Edit profile</a>
-<p><a href="/showAllUsers">Main page</a>
+<p><a href="/welcomePage">Main page</a>
 
 
 </body>

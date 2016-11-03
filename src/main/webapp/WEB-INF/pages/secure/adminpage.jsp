@@ -38,10 +38,13 @@
     <b> City: </b>${profile.city}<br/>
     <b> Phone number: </b>${profile.phoneNumber}<br/>
     <b> Gender: </b>${profile.sex}<br/>
- <a href="/userinfo/${profile.profileID}"><b> Get user info: </b></a>    <br/>
+ <a href="/admin/manageuserinfo/${profile.profileID}"><b> Get user info: </b></a>    <br/>
 
 
     </c:forEach>
+
+<p><a href="/beforeprofilepage">profile</a>
+<p><a href="/welcomePage">Main page</a>
 
 
 </body>
