@@ -59,7 +59,7 @@ public interface UserDao
 	 * @param login the login
 	 * @return true if exists
 	 */
-	boolean isLoginExists(String login);
+	boolean isUsernameExists(String login);
 
 	/**
 	 * Cheks if user with exact email is exists.

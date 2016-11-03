@@ -1,11 +1,19 @@
 package by.zheynov.socnet.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +32,9 @@ import by.zheynov.socnet.facade.UserFacade;
 @Controller
 public class ProfileController
 {
+	@Autowired
+	@Qualifier("profileValidator")
+	private Validator     profileValidator;
 	@Autowired
 	private ProfileFacade profileFacade;
 	@Autowired
@@ -71,6 +82,13 @@ public class ProfileController
 	public String editProfile(final Model model, @ModelAttribute("profileDTO") final ProfileDTO profileDTO,
 	                          final BindingResult result)
 	{
+		profileValidator.validate(profileDTO, result);
+
+		if (result.hasErrors())
+		{
+			return "/profileeditpage";
+		}
+
 		profileFacade.updateProfile(profileDTO);
 
 		model.addAttribute("profileDTO", profileDTO);
@@ -91,6 +109,18 @@ public class ProfileController
 
 		ProfileDTO profileDTO = profileFacade.getProfileById(userDTO.getProfileID());
 		model.addAttribute("profileDTO", profileDTO);
+	}
+
+	/**
+	 *
+	 * @param binder the binder
+	 */
+
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(true);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 
 }

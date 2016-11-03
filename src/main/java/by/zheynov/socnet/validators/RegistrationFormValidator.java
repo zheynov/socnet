@@ -66,7 +66,7 @@ public class RegistrationFormValidator implements Validator
 		}
 
 		String email = userDTO.getEmail();
-		if (!EmailValidator.isValidEmailAddress(email))
+		if (!FieldsValidator.isValidEmailAddress(email))
 		{
 			errors.rejectValue("email", "registration.page.text.validation.emailisnotcorrect", "Email isn't valid");
 		}

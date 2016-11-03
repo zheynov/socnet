@@ -3,6 +3,7 @@ package by.zheynov.socnet.service.impl;
 import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.dao.UserRoleDao;
+import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.RoleEntity;
 import by.zheynov.socnet.entity.UserEntity;
@@ -22,8 +23,10 @@ import java.util.Locale;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.service.impl
  */
+
 public class UserServiceImpl implements UserService
 {
+
 	private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
 	private UserDao         userDao;
 	private ProfileDao      profileDao;
@@ -31,14 +34,10 @@ public class UserServiceImpl implements UserService
 	private MessageSource   messageSource;
 	private PasswordEncoder passwordEncoder;
 
-	/**
-	 * Saves user and profile to database.
-	 *
-	 * @param userEntity the entity
-	 */
 	@Transactional
 	public void createUser(final UserEntity userEntity)
 	{
+
 		ProfileEntity profileEntity = new ProfileEntity();
 		profileEntity.setUser(userEntity);
 		profileEntity.setEmail(userEntity.getEmail());
@@ -51,17 +50,13 @@ public class UserServiceImpl implements UserService
 		roleEntity.setUsername(userEntity.getUsername());
 		roleEntity.setRole("ROLE_USER");
 
+
 		profileDao.createProfile(profileEntity);
 		userDao.createUser(userEntity);
 		userRoleDao.createUserRole(roleEntity);
 		LOGGER.info(messageSource.getMessage("service.user.save", new Object[] {userEntity}, Locale.ENGLISH));
 	}
 
-	/**
-	 * Updates the user in database.
-	 *
-	 * @param userEntity the entity
-	 */
 	@Transactional
 	public void updateUser(final UserEntity userEntity)
 	{
@@ -70,25 +65,13 @@ public class UserServiceImpl implements UserService
 
 	}
 
-	/**
-	 * Gets user from database by its username.
-	 *
-	 * @param username the username
-	 *
-	 * @return the entity
-	 */
 	@Transactional
-	public UserEntity getUserByUsername(final String username)
+	public UserEntity getUserByUsername(String login)
 	{
-		LOGGER.info(messageSource.getMessage("service.user.getByLogin", new Object[] {username}, Locale.ENGLISH));
-		return userDao.getUserByUsername(username);
+		LOGGER.info(messageSource.getMessage("service.user.getByLogin", new Object[] {login}, Locale.ENGLISH));
+		return userDao.getUserByUsername(login);
 	}
 
-	/**
-	 * Deletes user from database.
-	 *
-	 * @param userEntity the entity
-	 */
 	@Transactional
 	public void deleteUser(final UserEntity userEntity)
 	{
@@ -96,88 +79,44 @@ public class UserServiceImpl implements UserService
 		LOGGER.info(messageSource.getMessage("service.user.delete", new Object[] {userEntity}, Locale.ENGLISH));
 	}
 
-	/**
-	 * Gets a list of users.
-	 *
-	 * @return List<UserEntity>
-	 */
 	@Transactional
 	public List<UserEntity> getAllTheUsers()
 	{
 		return userDao.getAllTheUsers();
 	}
 
-	/**
-	 * Ckecks if user with such username already exists in database.
-	 *
-	 * @param username the username
-	 *
-	 * @return true if username is exits, otherwise false
-	 */
-	public boolean isUsernameExists(final String username)
+	public boolean isUsernameExists(String login)
 	{
-		return userDao.isLoginExists(username);
+		return userDao.isUsernameExists(login);
 	}
 
-	/**
-	 * Ckecks if user with such email already exists in database.
-	 *
-	 * @param email the email
-	 *
-	 * @return true if email is exits, otherwise false
-	 */
-	public boolean isEmailExists(final String email)
+	public boolean isEmailExists(String email)
 	{
 		return userDao.isEmailExists(email);
 	}
 
-	/**
-	 * Sets new userDao.
-	 *
-	 * @param userDao New value of userDao.
-	 */
-	public void setUserDao(final UserDao userDao)
+	public void setUserDao(UserDao userDao)
 	{
 		this.userDao = userDao;
 	}
 
-	/**
-	 * Sets new profileDao.
-	 *
-	 * @param profileDao New value of profileDao.
-	 */
-	public void setProfileDao(final ProfileDao profileDao)
+	public void setProfileDao(ProfileDao profileDao)
 	{
 		this.profileDao = profileDao;
 	}
 
-	/**
-	 * Sets new passwordEncoder.
-	 *
-	 * @param passwordEncoder New value of passwordEncoder.
-	 */
-	public void setPasswordEncoder(final PasswordEncoder passwordEncoder)
-	{
-		this.passwordEncoder = passwordEncoder;
-	}
-
-	/**
-	 * Sets new messageSource.
-	 *
-	 * @param messageSource New value of messageSource.
-	 */
-	public void setMessageSource(final MessageSource messageSource)
+	public void setMessageSource(MessageSource messageSource)
 	{
 		this.messageSource = messageSource;
 	}
 
-	/**
-	 * Sets new userRoleDao.
-	 *
-	 * @param userRoleDao New value of userRoleDao.
-	 */
-	public void setUserRoleDao(final UserRoleDao userRoleDao)
+	public void setUserRoleDao(UserRoleDao userRoleDao)
 	{
 		this.userRoleDao = userRoleDao;
+	}
+
+	public void setPasswordEncoder(final PasswordEncoder passwordEncoder)
+	{
+		this.passwordEncoder = passwordEncoder;
 	}
 }

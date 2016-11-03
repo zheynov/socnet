@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RegistrationController
 {
-
 	@Autowired
 	@Qualifier("registrationValidator")
 	private Validator  registrationValidator;

@@ -94,7 +94,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 *
 	 * @return true if login is exits, otherwise false
 	 */
-	public boolean isLoginExists(final String username)
+	public boolean isUsernameExists(final String username)
 	{
 		org.hibernate.query.Query query = getCurrentSession().createQuery(GET_USER_BY_USERNAME_QUERY);
 		query.setParameter("username", username);
