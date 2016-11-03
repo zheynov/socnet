@@ -1,16 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: vazh
-  Date: 20.10.2016
-  Time: 19:41
+  Date: 03.11.2016
+  Time: 20:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Manage user info</title>
 </head>
 <body>
 
@@ -22,22 +22,20 @@
         | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></h2>
 </c:if>
 
+<p>
 
+    <b>Email: </b> ${userDTO.email} <br/>
+    <b>Login: </b> ${userDTO.username} <br/>
+    <b>Password: </b> ${userDTO.password} <br/>
+    <b>Active user: </b>>
+        <c:choose>
+        <c:when test="${userDTO.enabled==true}">
+        yes </c:when>
 
-
-<h2> All the users from DB:</h2>
-
-<c:forEach items="${allTheUsers}" var="user"><p>
-    <b> Login: </b>${user.username} <br/>
-    <b> Email: </b>${user.email}<br/></p>
-</c:forEach>
-
-<p><a href="/beforeprofilepage">profile</a>
-
-
-    <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
-        <p><a href="/admin">Admin dashboard</a>
-    </c:if>
+        <c:otherwise>
+        no </c:otherwise>
+        </c:choose>
+<p>
 
 
 </body>

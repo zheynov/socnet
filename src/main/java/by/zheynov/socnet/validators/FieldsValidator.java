@@ -67,7 +67,7 @@ class FieldsValidator
 	static boolean isValidPhone(final String phone)
 	{
 		//name starts with a letter
-		String ePattern = "/\\(?([0-9]{3})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})/";
+		String ePattern = "\\d{7,15}";
 		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
 		java.util.regex.Matcher m = p.matcher(phone);
 		return m.matches();

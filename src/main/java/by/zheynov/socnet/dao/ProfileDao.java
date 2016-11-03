@@ -1,5 +1,7 @@
 package by.zheynov.socnet.dao;
 
+import java.util.List;
+
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
@@ -14,11 +16,11 @@ public interface ProfileDao
 	/**
 	 * Saves.
 	 *
-	 * @param profile the entity
+	 * @param profileEntity the entity
 	 *
 	 * @return the entity
 	 */
-	ProfileEntity createProfile(ProfileEntity profile);
+	ProfileEntity createProfile(ProfileEntity profileEntity);
 
 	/**
 	 * Finds By profileId.
@@ -32,15 +34,23 @@ public interface ProfileDao
 	/**
 	 * Updates.
 	 *
-	 * @param profile the entity
+	 * @param profileEntity the entity
 	 */
-	void updateProfile(ProfileEntity profile);
+	void updateProfile(ProfileEntity profileEntity);
 
 	/**
 	 * Deletes.
 	 *
-	 * @param profile the entity
+	 * @param profileEntity the entity
 	 */
-	void deleteProfile(ProfileEntity profile);
+	void deleteProfile(ProfileEntity profileEntity);
+
+
+	/**
+	 * Retrieves a list of profileEntity objects.
+	 *
+	 * @return the List<profileEntity>
+	 */
+	List<ProfileEntity> getAllTheProfiles();
 
 }

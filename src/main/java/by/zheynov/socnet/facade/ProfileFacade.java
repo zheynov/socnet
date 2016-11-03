@@ -1,5 +1,7 @@
 package by.zheynov.socnet.facade;
 
+import java.util.List;
+
 import by.zheynov.socnet.dto.ProfileDTO;
 
 /**
@@ -41,4 +43,11 @@ public interface ProfileFacade
 	 * @param profileDTO the dto
 	 */
 	void deleteProfile(ProfileDTO profileDTO);
+
+	/**
+	 * Retrieves a list of ProfileDTO objects.
+	 *
+	 * @return the List<ProfileDTO>
+	 */
+	List<ProfileDTO> getAllTheProfiles();
 }

@@ -1,8 +1,11 @@
 package by.zheynov.socnet.dao.impl;
 
+import java.util.List;
+
 import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 /**
@@ -57,6 +60,18 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	public void deleteProfile(final ProfileEntity profile)
 	{
 		delete(profile);
+	}
+
+	/**
+	 * Gets a list of user's profiles.
+	 *
+	 * @return List<ProfileEntity>
+	 */
+	public List<ProfileEntity> getAllTheProfiles()
+	{
+		final Criteria criteria = getCurrentSession().createCriteria(ProfileEntity.class);
+		final List allTheUsers = criteria.list();
+		return allTheUsers;
 	}
 
 }

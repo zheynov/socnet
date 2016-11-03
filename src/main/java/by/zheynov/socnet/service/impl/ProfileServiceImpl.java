@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -71,6 +72,16 @@ public class ProfileServiceImpl implements ProfileService
 	{
 		LOGGER.info(messageSource.getMessage("service.profile.delete", new Object[] {profileEntity}, Locale.ENGLISH));
 
+	}
+
+	/**
+	 * Retrieves a list of ProfileEntity objects.
+	 *
+	 * @return the List<ProfileEntity>
+	 */
+	public List<ProfileEntity> getAllTheProfiles()
+	{
+		return profileDao.getAllTheProfiles();
 	}
 
 	/**

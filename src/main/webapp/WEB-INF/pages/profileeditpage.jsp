@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: vazh
@@ -13,6 +14,14 @@
     <title>Profile edition</title>
 </head>
 <body>
+
+<spring:message code="login.page.filed.username" var="username"/>
+<spring:message code="page.text.logout.button" var="logoutButton"/>
+
+<c:if test="${pageContext.request.userPrincipal.name != null}">
+    <h2>${username}: ${pageContext.request.userPrincipal.name}
+        | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></h2>
+</c:if>
 
 <form:form method="POST" action="/editprofile" commandName="profileDTO">
 
@@ -32,7 +41,7 @@
         </tr>
 
         <tr>
-            <td> Sex: <form:radiobutton path="sex" value="male"/> male
+            <td> Sex: <form:radiobutton path="sex" value="male"/>male
                 <form:radiobutton path="sex" value="female"/>female
             </td>
             <td><form:errors path="sex"/></td>

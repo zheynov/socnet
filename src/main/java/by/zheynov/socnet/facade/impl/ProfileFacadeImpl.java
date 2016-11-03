@@ -1,5 +1,8 @@
 package by.zheynov.socnet.facade.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.facade.ProfileFacade;
@@ -62,5 +65,21 @@ public class ProfileFacadeImpl implements ProfileFacade
 	public void deleteProfile(final ProfileDTO profileDTO)
 	{
 		profileService.deleteProfile(conversionService.convert(profileDTO, ProfileEntity.class));
+	}
+
+	/**
+	 * Gets a list of profiles.
+	 *
+	 * @return List<ProfileDTO>
+	 */
+	public List<ProfileDTO> getAllTheProfiles()
+	{
+		List<ProfileDTO> allTheDTOProfiles = new ArrayList<ProfileDTO>();
+		for (ProfileEntity profileEntity : profileService.getAllTheProfiles())
+		{
+			final ProfileDTO profileDTO = conversionService.convert(profileEntity, ProfileDTO.class);
+			allTheDTOProfiles.add(profileDTO);
+		}
+		return allTheDTOProfiles;
 	}
 }

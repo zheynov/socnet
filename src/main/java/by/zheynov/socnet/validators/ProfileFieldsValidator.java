@@ -1,5 +1,8 @@
 package by.zheynov.socnet.validators;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -46,7 +49,7 @@ public class ProfileFieldsValidator implements Validator
 		final String city = profileDTO.getCity();
 		final String sex = profileDTO.getSex();
 		final String phoneNumber = profileDTO.getPhoneNumber();
-		final String birthDate;
+		final Date birthDate;
 
 		if (!StringUtils.isEmpty(firstname) && !FieldsValidator.isValidNameFormat(firstname))
 		{
@@ -68,11 +71,6 @@ public class ProfileFieldsValidator implements Validator
 			errors.rejectValue("phoneNumber", "profile.page.field.text.phonenumber", "phoneNumber isn't valid");
 		}
 
-		if (!StringUtils.isEmpty(sex) && (!sex.equalsIgnoreCase("female") || !sex.equalsIgnoreCase("male")))
-		{
-			errors.rejectValue("sex", "profile.page.field.text.sex", "sex format isn't valid");
-		}
-
 		if (profileDTO.getAge() != null)
 		{
 			if ((profileDTO.getAge() < 0 || profileDTO.getAge() > 160))
@@ -87,12 +85,13 @@ public class ProfileFieldsValidator implements Validator
 			errors.rejectValue("city", "profile.page.field.text.city", "City name is too long");
 		}
 
-		if (!StringUtils.isEmpty(String.valueOf(profileDTO.getBirthDate())))
-
+		if (profileDTO.getBirthDate() != null)
 		{
-			birthDate = String.valueOf(profileDTO.getBirthDate());
+			birthDate = profileDTO.getBirthDate();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String dateString = dateFormat.format(birthDate);
 
-			if (!FieldsValidator.isValidDateFormat(birthDate))
+			if (!FieldsValidator.isValidDateFormat(dateString) && !dateString.equals(""))
 			{
 				errors.rejectValue("birthDate", "profile.page.field.text.birthDate", "Incorrect birthdate");
 			}

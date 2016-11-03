@@ -1,5 +1,7 @@
 package by.zheynov.socnet.service;
 
+import java.util.List;
+
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
@@ -30,14 +32,21 @@ public interface ProfileService
 	/**
 	 * Updates.
 	 *
-	 * @param profile the entity
+	 * @param profileEntity the entity
 	 */
-	void updateProfile(ProfileEntity profile);
+	void updateProfile(ProfileEntity profileEntity);
 
 	/**
 	 * Deletes.
 	 *
-	 * @param profile the entity
+	 * @param profileEntity the entity
 	 */
-	void deleteProfile(ProfileEntity profile);
+	void deleteProfile(ProfileEntity profileEntity);
+
+	/**
+	 * Retrieves a list of ProfileEntity objects.
+	 *
+	 * @return the List<ProfileEntity>
+	 */
+	List<ProfileEntity> getAllTheProfiles();
 }
