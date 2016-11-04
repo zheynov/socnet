@@ -19,6 +19,12 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+
+    <mvc:annotation-driven />
+
+    <mvc:resources mapping="/webjars/**" location="/webjars/"/>
+
+
     <!--____________________________________Hibernate section_____________________________________________-->
     <import resource="classpath:dataBase.xml"/>
 

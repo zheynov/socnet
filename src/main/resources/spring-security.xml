@@ -4,14 +4,15 @@
        xmlns:security="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-
     <security:http auto-config="true" use-expressions="true">
 
-        <security:intercept-url pattern="/loginpage*" access="isAnonymous()"/>
-        <security:intercept-url pattern="/registration*" access="isAnonymous()"/>
+        <security:intercept-url pattern="/loginpage*" access="permitAll()"/>
+        <security:intercept-url pattern="/registration*" access="permitAll()"/>
+        <security:intercept-url pattern="/webjars/**" access="permitAll()"/>
+        <security:intercept-url pattern="/WEB-INF/resources/**" access="permitAll()"/>
 
-        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
-        <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 
         <security:form-login
                 login-processing-url="/j_spring_security_check"
