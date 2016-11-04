@@ -59,7 +59,7 @@ INSERT INTO user VALUES (2, 'vadim@gmail.com', 'Vadim',
 
 INSERT INTO profile VALUES (3, 'Redlaw', 'Redstar', NULL, 'Redlaw@redlaw.by', NULL, NULL, NULL, NULL);
 INSERT INTO user VALUES (3, 'Redlaw@redlaw.by', 'Redlaw',
-                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 3);
 
 
 INSERT INTO socnetDB.user_role VALUES (NULL, 'admin', 'ROLE_ADMIN');

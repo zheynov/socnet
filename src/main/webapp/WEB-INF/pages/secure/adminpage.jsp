@@ -47,7 +47,7 @@
     <tr>
         <th>#</th>
         <th>Firstname</th>
-        <th>lastname</th>
+        <th>Lastname</th>
         <th>Email</th>
         <th>Age</th>
         <th>City</th>
@@ -74,9 +74,6 @@
 
     </tbody>
 </table>
-
-
-
 
 <script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>

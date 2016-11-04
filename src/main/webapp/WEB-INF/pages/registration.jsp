@@ -32,17 +32,26 @@
 </head>
 <body>
 
-<h2>
+<div class="alert" align="center">
+
+
     <c:choose>
         <c:when test="${pageNotification eq 'email'}">
-            <spring:message code="registration.page.text.validation.email.exists"/>
+            <div class="alert alert-danger" role="alert">
+                <spring:message code="registration.page.text.validation.email.exists"/>
+            </div>
         </c:when>
         <c:when test="${pageNotification eq 'username'}">
-            <spring:message code="registration.page.text.validation.login.exists"/>
+            <div class="alert alert-danger" role="alert">
+                <spring:message code="registration.page.text.validation.login.exists"/>
+            </div>
         </c:when>
         <c:otherwise> </c:otherwise>
     </c:choose>
-</h2>
+
+
+</div>
+
 
 <div class="container" style="width: 500px">
     <div class="row main table-bordered">
@@ -64,7 +73,7 @@
                             <form:input type="text" class="form-control" path="email" name="email" id="email"
                                         placeholder="${email}"/>
                         </div>
-                        <form:errors path="email"/>
+                        <font color="#a52a2a"> <form:errors path="email"/> </font>
                     </div>
                 </div>
 
@@ -77,7 +86,7 @@
                             <form:input path="username" type="text" class="form-control" name="username" id="username"
                                         placeholder="${username}"/>
                         </div>
-                        <form:errors path="username"/>
+                        <font color="#a52a2a"> <form:errors path="username"/> </font>
                     </div>
                 </div>
 
@@ -91,7 +100,7 @@
                                         placeholder="${password}"/>
                         </div>
                     </div>
-                    <form:errors path="password"/>
+                    <font color="#a52a2a"> <form:errors path="password"/> </font>
                 </div>
 
                 <spring:message code="registration.page.filed.confirmpassword" var="confirmPassword"/>
@@ -104,7 +113,7 @@
                                         placeholder="${confirmPassword}"/>
                         </div>
                     </div>
-                    <form:errors path="confirmPassword"/>
+                    <font color="#a52a2a"> <form:errors path="confirmPassword"/> </font>
                 </div>
 
                 <spring:message code="registration.page.button.complete" var="complete"/>
