@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title><spring:message code="login.page.text.title"/></title>
+    <title><spring:message code="login.page.text.welcome"/></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>.main-center {
         margin-top: 30px;
@@ -43,11 +43,17 @@ action="processLogin"   commandName="userDTO"--%>
 
     <c:if test="${not empty error}">
         <spring:message code="login.page.text.invalid.credentials" var="invalidCredentials"/>
-        <div class="error">${invalidCredentials}</div>
+        <div class="alert alert-danger" role="alert">
+            <div class="error">${invalidCredentials}</div>
+        </div>
+
     </c:if>
     <c:if test="${not empty msg}">
         <spring:message code="page.text.logout.message" var="logoutMessage"/>
-        <div class="msg">${logoutMessage}</div>
+
+        <div class="alert alert-success" role="alert">
+            <div class="msg">${logoutMessage}</div>
+        </div>
     </c:if>
 
 </div>
@@ -57,7 +63,7 @@ action="processLogin"   commandName="userDTO"--%>
     <div class="row main table-bordered">
         <div class="panel-heading">
             <div class="panel-title text-center">
-                <h1 class="title"><spring:message code="login.page.text.title"/></h1>
+                <h1 class="title"><spring:message code="login.page.text.welcome"/></h1>
                 <hr/>
             </div>
         </div>
@@ -103,7 +109,8 @@ action="processLogin"   commandName="userDTO"--%>
                     <button type="submit" class="btn btn-primary btn-lg btn-block login-button">${enter}</button>
                 </div>
 
-                <div class="login-register" align="center"><a href="/registration"><spring:message code="registration.page.text.registration"/></a>
+                <div class="login-register" align="center"><a href="/registration"><spring:message
+                        code="registration.page.text.registration"/></a>
                 </div>
 
             </form>

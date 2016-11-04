@@ -10,42 +10,75 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Admin dashboard</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
 </head>
 <body>
 
-<spring:message code="login.page.filed.username" var="username"/>
-<spring:message code="page.text.logout.button" var="logoutButton"/>
+<nav class="navbar navbar-default top">
 
-<c:if test="${pageContext.request.userPrincipal.name != null}">
-    <h2>${username}: ${pageContext.request.userPrincipal.name}
-        | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></h2>
-</c:if>
+    <div style="margin: 10px">
+        <a href="/welcomePage">Main page</a>
+        <spring:message code="login.page.filed.username" var="username"/>
+        <spring:message code="page.text.logout.button" var="logoutButton"/>
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <object align="right">${username}: <b> ${pageContext.request.userPrincipal.name} </b>
+                | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></object>
+        </c:if>
 
-<p>
-    <b> User agent:</b> ${pageContext.request.getHeader("user-agent")} <br/>
-    <b> Current host:</b> ${pageContext.request.getHeader("host")} <br/>
-    <b> Current language:</b> ${pageContext.request.getHeader("accept-language")} <br/>
+    </div>
 
+</nav>
 
-<h2> All the profiles from DB:</h2>
-
-<c:forEach items="${allTheProfiles}" var="profile"><p>
-
-    <b> Full name: </b>${profile.firstname} ${profile.lastname} <br/>
-    <b> Email: </b>${profile.email}<br/>
-    <b> Age: </b>${profile.age}<br/>
-    <b> City: </b>${profile.city}<br/>
-    <b> Phone number: </b>${profile.phoneNumber}<br/>
-    <b> Gender: </b>${profile.sex}<br/>
- <a href="/admin/manageuserinfo/${profile.profileID}"><b> Get user info: </b></a>    <br/>
+<div class="alert-info" style="margin: 8px">
+    <p>
+        <b> User agent:</b> ${pageContext.request.getHeader("user-agent")} <br/>
+        <b> Current host:</b> ${pageContext.request.getHeader("host")} <br/>
+        <b> Current language:</b> ${pageContext.request.getHeader("accept-language")} <br/>
+</div>
 
 
+<h2 class="h2" align="center"> All the profiles from DB:</h2>
+
+
+<table class="table table-bordered">
+    <thead class="navbar-inverse" style="color: white">
+    <tr>
+        <th>#</th>
+        <th>Firstname</th>
+        <th>lastname</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>City</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>Credentials</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <c:forEach items="${allTheProfiles}" var="profile">
+        <tr>
+            <th scope="row">${profile.profileID}</th>
+            <td>${profile.firstname}</td>
+            <td>${profile.lastname}</td>
+            <td>${profile.email}</td>
+            <td>${profile.age}</td>
+            <td>${profile.city}</td>
+            <td>${profile.phoneNumber}</td>
+            <td>${profile.sex}</td>
+            <td><a href="/admin/manageuserinfo/${profile.profileID}"> Manage user info </a></td>
+        </tr>
     </c:forEach>
 
-<p><a href="/beforeprofilepage">profile</a>
-<p><a href="/welcomePage">Main page</a>
+    </tbody>
+</table>
 
 
+
+
+<script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
