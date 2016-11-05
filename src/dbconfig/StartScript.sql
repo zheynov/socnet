@@ -48,20 +48,24 @@ CREATE TABLE persistent_logins (
 );
 
 -- Insert data
-INSERT INTO profile VALUES (1, 'admin', 'admin', NULL, 'admin@admin.com', NULL, NULL, NULL, NULL
-);
+INSERT INTO profile VALUES (1, 'admin', 'nimda', '1911-11-11', 'admin@admin.com', 6 ,  NULL , 'Atlantis', NULL);
 INSERT INTO user VALUES (1, 'admin@admin.com', 'admin',
                           '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1);
 
-INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', NULL, 'vadim@gmail.com', NULL, NULL, NULL, NULL);
+INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', '1983-11-25', 'vadim@gmail.com', 33, 'male', 'Minsk', 0293453445);
 INSERT INTO user VALUES (2, 'vadim@gmail.com', 'Vadim',
                           '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2);
 
-INSERT INTO profile VALUES (3, 'Redlaw', 'Redstar', NULL, 'Redlaw@redlaw.by', NULL, NULL, NULL, NULL);
+INSERT INTO profile VALUES (3, 'Redlaw', 'Redstar', '1988-02-28', 'Redlaw@redlaw.by', 28, 'female', 'New-York', 1116666666);
 INSERT INTO user VALUES (3, 'Redlaw@redlaw.by', 'Redlaw',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 3);
+
+INSERT INTO profile VALUES (4, 'Костя', 'Тцзю', '1970-05-15', 'kostyan@mail.ru', 46, 'male', 'Sidney', 1022030941001);
+INSERT INTO user VALUES (4, 'kostyan@mail.ru', 'kostyan',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 4);
 
 
 INSERT INTO socnetDB.user_role VALUES (NULL, 'admin', 'ROLE_ADMIN');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'Vadim', 'ROLE_USER');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'Redlaw', 'ROLE_USER');
+INSERT INTO socnetDB.user_role VALUES (NULL, 'kostyan', 'ROLE_USER');

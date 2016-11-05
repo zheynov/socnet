@@ -32,25 +32,28 @@
 </nav>
 
 
-<h2>Profile page</h2>
-
-<p>
-    <b> Firstname: </b> ${profileDTO.firstname} <br/>
-    <b> Lastname:</b> ${profileDTO.lastname} <br/>
-    <b> Email:</b> ${profileDTO.email} <br/>
-    <b> Sex:</b> ${profileDTO.sex} <br/>
-    <b> Date of birth:</b> ${profileDTO.birthDate} <br/>
-    <b> Age: </b> ${profileDTO.age} <br/>
-    <b> City: </b> ${profileDTO.city} <br/>
-    <b> Phone number:</b> ${profileDTO.phoneNumber} <br/>
 
 
-<p><a href="/profileedit">Edit profile</a>
-<p><a href="/welcomePage">Main page</a>
+<div style="margin: 10px">
+    <h2>Profile </h2>
+
+    <p>
+        <b> Firstname: </b> ${profileDTO.firstname} <br/>
+        <b> Lastname:</b> ${profileDTO.lastname} <br/>
+        <b> Email:</b> ${profileDTO.email} <br/>
+        <b> Sex:</b> ${profileDTO.sex} <br/>
+        <b> Date of birth:</b> ${profileDTO.birthDate} <br/>
+        <b> Age: </b> ${profileDTO.age} <br/>
+        <b> City: </b> ${profileDTO.city} <br/>
+        <b> Phone number:</b> ${profileDTO.phoneNumber} <br/>
 
 
+    <p><a href="/profileedit">Edit profile</a>
+    <p><a href="/welcomePage">Main page</a>
 
-    <script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</div>
+
+<script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>

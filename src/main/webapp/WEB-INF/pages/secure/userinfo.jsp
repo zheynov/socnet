@@ -19,7 +19,7 @@
 <nav class="navbar navbar-default top">
 
     <div style="margin: 10px">
-
+        <a href="/welcomePage">Main page</a> |     <a href="/admin/">Admin dashboard</a>
         <spring:message code="login.page.filed.username" var="username"/>
         <spring:message code="page.text.logout.button" var="logoutButton"/>
         <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -31,26 +31,26 @@
 
 </nav>
 
-<p>
+
+<div style="margin: 10px">
+
+   <h3 class="h3"> User credentials: </h3>
 
     <b>Email: </b> ${userDTO.email} <br/>
     <b>Login: </b> ${userDTO.username} <br/>
-    <b>Password: </b> ${userDTO.password} <br/>
-    <b>Active user: </b>
+    <b>Password: </b> encrypted <br/>
+    <b>Account status: </b>
+
     <c:choose>
-    <c:when test="${userDTO.enabled==true}">
-    yes </c:when>
-
-    <c:otherwise>
-    no </c:otherwise>
+    <c:when test="${userDTO.enabled==true}"> active </c:when>
+    <c:otherwise> disabled </c:otherwise>
     </c:choose>
-<p>
-<p><a href="/admin/">admin dashboard</a>
-<p><a href="/beforeprofilepage">profile</a>
-<p><a href="/welcomePage">Main page</a>
+
+</div>
 
 
-    <script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
