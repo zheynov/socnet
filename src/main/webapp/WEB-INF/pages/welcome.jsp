@@ -58,7 +58,7 @@
         .tabs-left > .nav-tabs .active > a:hover,
         .tabs-left > .nav-tabs .active > a:focus {
             border-color: #ddd transparent #ddd #ddd;
-            *border-right-color: #ffffff;
+            *border-right-color: lightblue;;
         }
     </style>
     <link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
@@ -87,9 +87,9 @@
             <!-- tabs -->
             <div class="tabbable tabs-left">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                    <li class="active"><a href="#wall" data-toggle="tab">Wall</a></li>
                     <li><a href="#about" data-toggle="tab">About</a></li>
-                    <li><a href="#services" data-toggle="tab">Services</a></li>
+                    <li><a href="#messages" data-toggle="tab">Messages</a></li>
                     <li><a href="#contact" data-toggle="tab">Contact</a></li>
                     <li><a href="#profile" data-toggle="tab">Profile</a></li>
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
@@ -98,45 +98,37 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="home">
+                    <div class="tab-pane active" id="wall">
                         <div class="">
-                            <h1>Home Tab</h1>
-                            <p>These lists are meant to identify articles which deserve editor attention because they are the most
-                                important for an encyclopedia to have, as determined by the community of participating editors.
-                                They may also be of interest to readers as an alternative to lists of overview articles.</p>
+                            <h1>Wall</h1>
+                            <p>Скоро тут будут отображаться посты</p>
                         </div>
                     </div>
                     <div class="tab-pane" id="about">
                         <div class="">
-                            <h1>About Tab</h1>
-                            <p>because they are the most important for an encyclopedia to have, as determined by the community of
-                                participating editors. They may also be of interest to readers as an alternative to lists of
-                                overview articles.</p>
+                            <h1>About</h1>
+                            <p>Социальная сеть </p>
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="services">
+                    <div class="tab-pane" id="messages">
                         <div class="">
-                            <h1>Services Tab</h1>
-                            <p>meant to identify articles which deserve editor attention because they are the most important for
-                                an encyclopedia to have, as determined by the community of participating editors. They may also be
-                                of interest to readers as an alternative to lists of overview articles.</p>
+                            <h1>Messages </h1>
+                            <p>Здесь будут отображаться сообщения</p>
                         </div>
                     </div>
 
                     <div class="tab-pane" id="contact">
                         <div class="">
-                            <h1>Contact Tab</h1>
-                            <p>deserve editor attention because they are the most important for an encyclopedia to have, as
-                                determined by the community of participating editors. They may also be of interest to readers as
-                                an alternative to lists of overview articles.</p>
+                            <h1>Contact</h1>
+                            <p>Тут можно будет отправить письмо администрации</p>
                         </div>
                     </div>
 
                     <div class="tab-pane" id="profile">
                         <div class="">
                             <h1>Profile </h1>
-                            <a href="/beforeprofilepage">Profile</a></div>
+                            <a href="/beforeprofilepage">Страница профиля</a></div>
                     </div>
 
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
