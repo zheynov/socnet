@@ -16,20 +16,9 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default top">
 
-    <div style="margin: 10px">
-        <a href="/welcomePage">Main page</a>
-        <spring:message code="login.page.filed.username" var="username"/>
-        <spring:message code="page.text.logout.button" var="logoutButton"/>
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <object align="right">${username}: <b> ${pageContext.request.userPrincipal.name} </b>
-                | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></object>
-        </c:if>
 
-    </div>
 
-</nav>
 
 <div class="alert-info" style="margin: 8px">
     <p>
@@ -39,7 +28,8 @@
 </div>
 
 
-<h2 class="h2" align="center"> All the profiles from DB:</h2>
+
+<h5 align="center"> All the profiles from DB:</h5>
 
 
 <table class="table table-bordered">

@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: vazh
@@ -11,6 +13,8 @@
 <html>
 <head>
     <title>Main page</title>
+    <link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
+
     <style>
         .tabs-left > .nav-tabs {
             border-bottom: 0;
@@ -61,24 +65,12 @@
             *border-right-color: lightblue;;
         }
     </style>
-    <link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
+
+
 </head>
 <body>
 
-<nav class="navbar navbar-default top">
-
-    <div style="margin: 10px">
-
-        <spring:message code="login.page.filed.username" var="username"/>
-        <spring:message code="page.text.logout.button" var="logoutButton"/>
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <object align="right">${username}: <b> ${pageContext.request.userPrincipal.name} </b>
-                | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></object>
-        </c:if>
-
-    </div>
-
-</nav>
+<jsp:include page="secure/navbar.jsp"/>
 
 <div class="container">
     <div class="row">
@@ -88,10 +80,10 @@
             <div class="tabbable tabs-left">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#wall" data-toggle="tab">Wall</a></li>
-                    <li><a href="#about" data-toggle="tab">About</a></li>
                     <li><a href="#messages" data-toggle="tab">Messages</a></li>
-                    <li><a href="#contact" data-toggle="tab">Contact</a></li>
                     <li><a href="#profile" data-toggle="tab">Profile</a></li>
+                    <li><a href="#contact" data-toggle="tab">Contact</a></li>
+                    <li><a href="#about" data-toggle="tab">About</a></li>
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
                         <li><a href="#admin" data-toggle="tab">Admin dashboard</a></li>
                     </c:if>
@@ -108,6 +100,9 @@
                         <div class="">
                             <h1>About</h1>
                             <p>Социальная сеть </p>
+                            <p> Мы - это социальная сеть! </p>
+                            <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/51/441350c22211e4bd49df699111f70c/Wanting-to-be-happy.JPG" width="300">
+
                         </div>
                     </div>
 
@@ -133,9 +128,9 @@
 
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
                     <div class="tab-pane" id="admin">
-                        <div class="">
-                            <h1>Admin dashboard </h1>
-                            <a href="/admin/">Admin dashboard</a>
+                        <div style="margin-left: 200px">
+
+                            <jsp:include page="/admin/"/>
                         </div>
                         </c:if>
                     </div>
@@ -147,8 +142,8 @@
     </div>
 </div>
 
-
 <script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </body>
 </html>

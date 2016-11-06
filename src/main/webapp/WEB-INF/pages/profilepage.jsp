@@ -16,23 +16,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default top">
-
-    <div style="margin: 10px">
-
-        <spring:message code="login.page.filed.username" var="username"/>
-        <spring:message code="page.text.logout.button" var="logoutButton"/>
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <object align="right">${username}: <b> ${pageContext.request.userPrincipal.name} </b>
-                | <a href="<c:url value="/j_spring_security_logout" />"> ${logoutButton}</a></object>
-        </c:if>
-
-    </div>
-
-</nav>
-
-
-
+<jsp:include page="secure/navbar.jsp"/>
 
 <div style="margin: 10px">
     <h2>Profile </h2>
