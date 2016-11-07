@@ -74,7 +74,6 @@ public class UserFacadeImpl implements UserFacade
 	 */
 	public List<UserDTO> getAllTheUsers()
 	{
-
 		List<UserDTO> allTheDTOUsers = new ArrayList<UserDTO>();
 		for (UserEntity userEntity : userService.getAllTheUsers())
 		{
@@ -85,26 +84,36 @@ public class UserFacadeImpl implements UserFacade
 	}
 
 	/**
-	 * Ckecks if user with such username already exists in database.
+	 * Checks if user with such username or email is exists
 	 *
 	 * @param username the username
+	 * @param email    the email
 	 *
-	 * @return true if username is exits, otherwise false
+	 * @return registration status
 	 */
-	public boolean isUsernameExists(final String username)
+	public RegistrationStatus registrationStatus(final String username, final String email)
 	{
-		return userService.isUsernameExists(username);
-	}
+		List<UserDTO> allTheDTOUsers = new ArrayList<UserDTO>(); // list of users
 
-	/**
-	 * Ckecks if user with such email already exists in database.
-	 *
-	 * @param email the email
-	 *
-	 * @return true if email is exits, otherwise false
-	 */
-	public boolean isEmailExists(final String email)
-	{
-		return userService.isEmailExists(email);
+		for (UserEntity userEntity : userService.getUserByUsernameOrEmail(username, email))
+		{
+			final UserDTO userDTO = conversionService.convert(userEntity, UserDTO.class);
+			allTheDTOUsers.add(userDTO);
+		}
+
+		if (allTheDTOUsers.size() > 0)
+		{
+			UserDTO userDTO = allTheDTOUsers.get(0);
+
+			if (userDTO.getEmail().equalsIgnoreCase(email))
+			{
+				return RegistrationStatus.EMAIL_EXISTS;
+			}
+			else if (userDTO.getUsername().equalsIgnoreCase(username))
+			{
+				return RegistrationStatus.USERNAME_EXISTS;
+			}
+		}
+		return RegistrationStatus.FREE; // user is absent in database
 	}
 }

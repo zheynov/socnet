@@ -1,7 +1,13 @@
 package by.zheynov.socnet.converters;
 
 import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
+import by.zheynov.socnet.entity.UserEntity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +21,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProfileDTOConverter implements Converter<ProfileEntity, ProfileDTO>
 {
+
 	/**
 	 * Converts ProfileEntity object to ProfileDTO object.
 	 *
@@ -41,6 +48,18 @@ public class ProfileDTOConverter implements Converter<ProfileEntity, ProfileDTO>
 		profileDTO.setSex(profileEntity.getSex());
 		profileDTO.setCity(profileEntity.getCity());
 		profileDTO.setPhoneNumber(profileEntity.getPhoneNumber());
+
+		UserDTO userDTO = new UserDTO();
+		UserEntity userEntity = profileEntity.getUserEntity();
+
+		userDTO.setProfileDTO(profileDTO);
+		userDTO.setId(userEntity.getId());
+		userDTO.setUsername(userEntity.getUsername());
+		userDTO.setPassword(userEntity.getPassword());
+		userDTO.setEmail(userEntity.getEmail());
+		userDTO.setEnabled(userEntity.isEnabled());
+
+		profileDTO.setUserDTO(userDTO);
 
 		return profileDTO;
 	}

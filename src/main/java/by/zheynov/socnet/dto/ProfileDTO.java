@@ -22,6 +22,9 @@ public class ProfileDTO implements Serializable
 	private String  sex;
 	private String  city;
 	private String  phoneNumber;
+	private UserDTO userDTO;
+
+
 
 	/**
 	 * Gets birthDate.
@@ -228,11 +231,11 @@ public class ProfileDTO implements Serializable
 		{
 			return false;
 		}
-		if (!getFirstname().equals(that.getFirstname()))
+		if (getFirstname() != null ? !getFirstname().equals(that.getFirstname()) : that.getFirstname() != null)
 		{
 			return false;
 		}
-		if (!getLastname().equals(that.getLastname()))
+		if (getLastname() != null ? !getLastname().equals(that.getLastname()) : that.getLastname() != null)
 		{
 			return false;
 		}
@@ -256,7 +259,11 @@ public class ProfileDTO implements Serializable
 		{
 			return false;
 		}
-		return getPhoneNumber() != null ? getPhoneNumber().equals(that.getPhoneNumber()) : that.getPhoneNumber() == null;
+		if (getPhoneNumber() != null ? !getPhoneNumber().equals(that.getPhoneNumber()) : that.getPhoneNumber() != null)
+		{
+			return false;
+		}
+		return getUserDTO().equals(that.getUserDTO());
 
 	}
 
@@ -269,14 +276,35 @@ public class ProfileDTO implements Serializable
 	public int hashCode()
 	{
 		int result = getProfileID().hashCode();
-		result = HASH_NUMBER * result + getFirstname().hashCode();
-		result = HASH_NUMBER * result + getLastname().hashCode();
+		result = HASH_NUMBER * result + (getFirstname() != null ? getFirstname().hashCode() : 0);
+		result = HASH_NUMBER * result + (getLastname() != null ? getLastname().hashCode() : 0);
 		result = HASH_NUMBER * result + getEmail().hashCode();
 		result = HASH_NUMBER * result + (getBirthDate() != null ? getBirthDate().hashCode() : 0);
 		result = HASH_NUMBER * result + (getAge() != null ? getAge().hashCode() : 0);
 		result = HASH_NUMBER * result + (getSex() != null ? getSex().hashCode() : 0);
 		result = HASH_NUMBER * result + (getCity() != null ? getCity().hashCode() : 0);
 		result = HASH_NUMBER * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
+		result = HASH_NUMBER * result + getUserDTO().hashCode();
 		return result;
+	}
+
+	/**
+	 * Gets userDTO.
+	 *
+	 * @return Value of userDTO.
+	 */
+	public UserDTO getUserDTO()
+	{
+		return userDTO;
+	}
+
+	/**
+	 * Sets new userDTO.
+	 *
+	 * @param userDTO New value of userDTO.
+	 */
+	public void setUserDTO(UserDTO userDTO)
+	{
+		this.userDTO = userDTO;
 	}
 }

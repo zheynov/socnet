@@ -52,22 +52,22 @@ public class ProfileFieldsValidator implements Validator
 		final String phoneNumber = profileDTO.getPhoneNumber();
 		final Date birthDate;
 
-		if (!StringUtils.isEmpty(firstname) && !FieldsValidator.isValidNameFormat(firstname))
+		if (StringUtils.isNotEmpty(firstname) && !FieldsValidatorUtils.isValidNameFormat(firstname))
 		{
 			errors.rejectValue("firstname", "profile.page.field.text.name", "Incorrect name format.");
 		}
 
-		if (!StringUtils.isEmpty(lastname) && !FieldsValidator.isValidNameFormat(lastname))
+		if (StringUtils.isNotEmpty(lastname) && !FieldsValidatorUtils.isValidNameFormat(lastname))
 		{
 			errors.rejectValue("lastname", "profile.page.field.text.name", "Incorrect name format.");
 		}
 
-		if (!StringUtils.isEmpty(email) && !FieldsValidator.isValidEmailAddress(email))
+		if (StringUtils.isNotEmpty(email) && !FieldsValidatorUtils.isValidEmailAddress(email))
 		{
 			errors.rejectValue("email", "registration.page.text.validation.emailisnotcorrect", "Email isn't valid");
 		}
 
-		if (!StringUtils.isEmpty(phoneNumber) && !FieldsValidator.isValidPhone(phoneNumber))
+		if (StringUtils.isNotEmpty(phoneNumber) && !FieldsValidatorUtils.isValidPhone(phoneNumber))
 		{
 			errors.rejectValue("phoneNumber", "profile.page.field.text.phonenumber", "phoneNumber isn't valid");
 		}
@@ -80,7 +80,7 @@ public class ProfileFieldsValidator implements Validator
 			}
 		}
 
-		else if (!StringUtils.isEmpty(city) && (city.length() > CITY_MAX_LENGTH))
+		else if (StringUtils.isNotEmpty(city) && (city.length() > CITY_MAX_LENGTH))
 
 		{
 			errors.rejectValue("city", "profile.page.field.text.city", "City name is too long");
@@ -92,7 +92,7 @@ public class ProfileFieldsValidator implements Validator
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String dateString = dateFormat.format(birthDate);
 
-			if (!FieldsValidator.isValidDateFormat(dateString) && !dateString.equals(""))
+			if (!FieldsValidatorUtils.isValidDateFormat(dateString) && !dateString.equals(""))
 			{
 				errors.rejectValue("birthDate", "profile.page.field.text.birthDate", "Incorrect birthdate");
 			}

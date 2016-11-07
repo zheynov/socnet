@@ -52,22 +52,13 @@ public interface UserService
 	List<UserEntity> getAllTheUsers();
 
 	/**
-	 * Cheks if user with exact login is exists.
+	 * Returns a list of users with such email or username
 	 *
-	 * @param login the login
+	 * @param username the username
+	 * @param email    the email
 	 *
-	 * @return true if exists
+	 * @return list of users
 	 */
-
-	boolean isUsernameExists(String login);
-
-	/**
-	 * Cheks if user with exact email is exists.
-	 *
-	 * @param email the email
-	 *
-	 * @return true if exists
-	 */
-	boolean isEmailExists(String email);
+	public List<UserEntity> getUserByUsernameOrEmail(String username,  String email);
 
 }

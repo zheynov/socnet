@@ -2,7 +2,13 @@ package by.zheynov.socnet.converters;
 
 
 import by.zheynov.socnet.dto.UserDTO;
+import by.zheynov.socnet.entity.PostEntity;
+import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +22,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDTOReverseConverter implements Converter<UserDTO, UserEntity>
 {
-
 	/**
 	 * Converts to UserDTO object to UserEntity.
 	 *
@@ -33,7 +38,10 @@ public class UserDTOReverseConverter implements Converter<UserDTO, UserEntity>
 		userEntity.setEmail(userDTO.getEmail());
 		userEntity.setUsername(userDTO.getUsername());
 		userEntity.setPassword(userDTO.getPassword());
+		userEntity.setEnabled(userDTO.isEnabled());
 
 		return userEntity;
 	}
+
+
 }

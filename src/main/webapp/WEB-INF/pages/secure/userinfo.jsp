@@ -29,7 +29,7 @@
     <b>Account status: </b>
 
     <c:choose>
-    <c:when test="${userDTO.enabled==true}"> active </c:when>
+    <c:when test="${userDTO.enabled == true}"> active </c:when>
     <c:otherwise> disabled </c:otherwise>
     </c:choose>
 

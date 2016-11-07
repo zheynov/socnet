@@ -4,7 +4,6 @@ import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.entity.UserEntity;
 
 import org.hibernate.Criteria;
-import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -19,8 +18,9 @@ import java.util.List;
 @Transactional
 public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 {
-	private static final String GET_USER_BY_USERNAME_QUERY      = "FROM UserEntity WHERE username = :username";
-	private static final String GET_EMAILADDRESS_BY_EMAIL_QUERY = "FROM UserEntity WHERE email = :email";
+	private static final String GET_USER_BY_USERNAME_QUERY          = "FROM UserEntity WHERE username = :username";
+	private static final String GET_USER_BY_USERNAME_OR_EMAIL_QUERY = "FROM UserEntity WHERE username = :username OR email = " +
+					":email";
 
 	/**
 	 * Creates user in database.
@@ -83,38 +83,24 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	public List<UserEntity> getAllTheUsers()
 	{
 		final Criteria criteria = getCurrentSession().createCriteria(UserEntity.class);
-		final List allTheUsers = criteria.list();
-		return allTheUsers;
+		return criteria.list();
 	}
 
 	/**
-	 * Ckecks if user with such username already exists in database.
+	 * Returns a list of users with such email or username
 	 *
 	 * @param username the username
+	 * @param email    the email
 	 *
-	 * @return true if login is exits, otherwise false
+	 * @return list of users
 	 */
-	public boolean isUsernameExists(final String username)
+	public List<UserEntity> getUserByUsernameOrEmail(final String username, final String email)
 	{
-		org.hibernate.query.Query query = getCurrentSession().createQuery(GET_USER_BY_USERNAME_QUERY);
+		org.hibernate.query.Query query = getCurrentSession().createQuery(GET_USER_BY_USERNAME_OR_EMAIL_QUERY);
 		query.setParameter("username", username);
-		return query.list().size() > 0;
-	}
-
-	/**
-	 * Ckecks if user with such email already exists in database.
-	 *
-	 * @param email the email
-	 *
-	 * @return true if email is exits, otherwise false
-	 */
-	public boolean isEmailExists(final String email)
-	{
-		Query query = getCurrentSession().createQuery(GET_EMAILADDRESS_BY_EMAIL_QUERY);
 		query.setParameter("email", email);
 
-		List userEntities = query.list();
-
-		return userEntities.size() > 0;
+		return query.list();
 	}
+
 }

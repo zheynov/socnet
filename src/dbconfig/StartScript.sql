@@ -38,6 +38,15 @@ CREATE TABLE user_role (
   username VARCHAR(45)        NOT NULL,
   role     VARCHAR(45)        NOT NULL
 );
+-- Table for user's posts
+CREATE TABLE  post (
+  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  userID BIGINT NOT NULL,
+  text VARCHAR(1024),
+  date DATETIME NOT NULL,
+  photo VARCHAR(512),
+  FOREIGN KEY (userID) REFERENCES user (id) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 -- Table to store the tokens for PersistentTokenRepository ("Remember me" feature)
 CREATE TABLE persistent_logins (

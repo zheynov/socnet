@@ -1,6 +1,7 @@
 package by.zheynov.socnet.facade;
 
 import by.zheynov.socnet.dto.UserDTO;
+import by.zheynov.socnet.facade.impl.RegistrationStatus;
 
 import java.util.List;
 
@@ -50,20 +51,13 @@ public interface UserFacade
 	List<UserDTO> getAllTheUsers();
 
 	/**
-	 * Cheks if user with exact login is exists.
+	 * Checks if user with such username or email is exists
 	 *
 	 * @param username the username
+	 * @param email    the email
 	 *
-	 * @return true if exists
+	 * @return registration status
 	 */
-	boolean isUsernameExists(String username);
+	public RegistrationStatus registrationStatus(String username, String email);
 
-	/**
-	 * Cheks if user with exact email is exists.
-	 *
-	 * @param email the email
-	 *
-	 * @return true if exists
-	 */
-	boolean isEmailExists(String email);
 }

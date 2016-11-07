@@ -106,9 +106,7 @@ public class ProfileController
 		//Retrieves current username
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDTO userDTO = userFacade.getUserByUsername(user.getUsername());
-
-		ProfileDTO profileDTO = profileFacade.getProfileById(userDTO.getProfileID());
-		model.addAttribute("profileDTO", profileDTO);
+		model.addAttribute("profileDTO", userDTO.getProfileDTO());
 	}
 
 	/**

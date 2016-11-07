@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService
 	public void createUser(final UserEntity userEntity)
 	{
 		ProfileEntity profileEntity = new ProfileEntity();
-		profileEntity.setUser(userEntity);
+		profileEntity.setUserEntity(userEntity);
 		profileEntity.setEmail(userEntity.getEmail());
 
 		userEntity.setProfileEntity(profileEntity);
@@ -108,27 +108,17 @@ public class UserServiceImpl implements UserService
 	}
 
 	/**
-	 * Ckecks if user with such username already exists in database.
+	 * Returns a list of users with such email or username
 	 *
 	 * @param username the username
+	 * @param email    the email
 	 *
-	 * @return true if username is exits, otherwise false
+	 * @return list of users
 	 */
-	public boolean isUsernameExists(final String username)
+	@Transactional
+	public List<UserEntity> getUserByUsernameOrEmail(final String username, final String email)
 	{
-		return userDao.isUsernameExists(username);
-	}
-
-	/**
-	 * Ckecks if user with such email already exists in database.
-	 *
-	 * @param email the email
-	 *
-	 * @return true if email is exits, otherwise false
-	 */
-	public boolean isEmailExists(final String email)
-	{
-		return userDao.isEmailExists(email);
+	return 	userDao.getUserByUsernameOrEmail(username, email);
 	}
 
 	/**

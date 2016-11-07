@@ -55,13 +55,7 @@ public class AdminController
 	public String manageuserInfo(final Model model, @PathVariable(value = "userID") final String userID)
 	{
 		ProfileDTO profileDTO = profileFacade.getProfileById(Long.valueOf(userID));
-		for (UserDTO userDTO : userFacade.getAllTheUsers())
-		{
-			if (userDTO.getId().equals(profileDTO.getProfileID()))
-			{
-				model.addAttribute("userDTO", userDTO);
-			}
-		}
+		model.addAttribute("userDTO", profileDTO.getUserDTO());
 		return "/secure/userinfo";
 	}
 

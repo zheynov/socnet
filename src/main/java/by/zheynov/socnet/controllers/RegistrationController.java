@@ -2,6 +2,7 @@ package by.zheynov.socnet.controllers;
 
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.UserFacade;
+import by.zheynov.socnet.facade.impl.RegistrationStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -55,10 +56,9 @@ public class RegistrationController
 	 */
 
 	@RequestMapping(value = "/registrationComplete", method = RequestMethod.POST)
-	public String displayRegistration(final Model model,
-	                                  @ModelAttribute("userDTO") final UserDTO userDTO, final BindingResult result)
+	public String displayRegistration(final Model model, @ModelAttribute("userDTO") final UserDTO userDTO,
+	                                  final BindingResult result)
 	{
-
 		registrationValidator.validate(userDTO, result);
 
 		if (result.hasErrors())
@@ -66,14 +66,15 @@ public class RegistrationController
 			return "/registration";
 		}
 
-		if (!userFacade.isUsernameExists(userDTO.getUsername()))
+		final RegistrationStatus registrationStatus = userFacade.registrationStatus(userDTO.getUsername(), userDTO.getEmail());
+
+		if (registrationStatus != RegistrationStatus.USERNAME_EXISTS)
 		{
-			if (!userFacade.isEmailExists(userDTO.getEmail()))
+			if (registrationStatus != (RegistrationStatus.EMAIL_EXISTS))
 			{
 
 				userFacade.createUser(userDTO);
 				return "loginpage";
-
 			}
 			else
 			{

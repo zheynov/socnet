@@ -18,7 +18,7 @@ public class UserDTO implements Serializable
 	private String  password;
 	private boolean enabled;
 	private String  confirmPassword;
-	private Long  profileID;
+	private ProfileDTO  profileDTO;
 
 	/**
 	 * Compares this UserDTO object to the specified Object o.
@@ -41,23 +41,31 @@ public class UserDTO implements Serializable
 
 		UserDTO userDTO = (UserDTO) o;
 
-		if (enabled != userDTO.enabled)
+		if (isEnabled() != userDTO.isEnabled())
 		{
 			return false;
 		}
-		if (!id.equals(userDTO.id))
+		if (!getId().equals(userDTO.getId()))
 		{
 			return false;
 		}
-		if (!email.equals(userDTO.email))
+		if (!getEmail().equals(userDTO.getEmail()))
 		{
 			return false;
 		}
-		if (!username.equals(userDTO.username))
+		if (!getUsername().equals(userDTO.getUsername()))
 		{
 			return false;
 		}
-		return password.equals(userDTO.password);
+		if (!getPassword().equals(userDTO.getPassword()))
+		{
+			return false;
+		}
+		if (!getConfirmPassword().equals(userDTO.getConfirmPassword()))
+		{
+			return false;
+		}
+		return getProfileDTO().equals(userDTO.getProfileDTO());
 
 	}
 
@@ -69,11 +77,13 @@ public class UserDTO implements Serializable
 	@Override
 	public int hashCode()
 	{
-		int result = id.hashCode();
-		result = HASH_NUMBER * result + email.hashCode();
-		result = HASH_NUMBER * result + username.hashCode();
-		result = HASH_NUMBER * result + password.hashCode();
-		result = HASH_NUMBER * result + (enabled ? 1 : 0);
+		int result = getId().hashCode();
+		result = HASH_NUMBER * result + getEmail().hashCode();
+		result = HASH_NUMBER * result + getUsername().hashCode();
+		result = HASH_NUMBER * result + getPassword().hashCode();
+		result = HASH_NUMBER * result + (isEnabled() ? 1 : 0);
+		result = HASH_NUMBER * result + getConfirmPassword().hashCode();
+		result = HASH_NUMBER * result + getProfileDTO().hashCode();
 		return result;
 	}
 
@@ -198,22 +208,22 @@ public class UserDTO implements Serializable
 	}
 
 	/**
-	 * Gets profileID.
+	 * Sets new profileDTO.
 	 *
-	 * @return Value of profileID.
+	 * @param profileDTO New value of profileDTO.
 	 */
-	public Long getProfileID()
+	public void setProfileDTO(ProfileDTO profileDTO)
 	{
-		return profileID;
+		this.profileDTO = profileDTO;
 	}
 
 	/**
-	 * Sets new profileID.
+	 * Gets profileDTO.
 	 *
-	 * @param profileID New value of profileID.
+	 * @return Value of profileDTO.
 	 */
-	public void setProfileID(final Long profileID)
+	public ProfileDTO getProfileDTO()
 	{
-		this.profileID = profileID;
+		return profileDTO;
 	}
 }

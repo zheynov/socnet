@@ -17,9 +17,6 @@
 <body>
 
 
-
-
-
 <div class="alert-info" style="margin: 8px">
     <p>
         <b> User agent:</b> ${pageContext.request.getHeader("user-agent")} <br/>
@@ -31,19 +28,19 @@
 
 <h5 align="center"> All the profiles from DB:</h5>
 
-
+<p></p>
 <table class="table table-bordered">
     <thead class="navbar-inverse" style="color: white">
     <tr>
         <th>#</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th>Age</th>
-        <th>City</th>
-        <th>Phone</th>
-        <th>Gender</th>
-        <th>Credentials</th>
+        <th><spring:message code="profile.page.text.firstname"/></th>
+        <th><spring:message code="profile.page.text.lastname"/></th>
+        <th><spring:message code="profile.page.text.email"/></th>
+        <th><spring:message code="profile.page.text.age"/></th>
+        <th><spring:message code="profile.page.text.city"/></th>
+        <th><spring:message code="profile.page.text.phone"/></th>
+        <th><spring:message code="profile.page.text.gender"/></th>
+        <th><spring:message code="profile.page.text.credentials"/></th>
     </tr>
     </thead>
     <tbody>

@@ -38,13 +38,13 @@ public interface UserDao
 	void deleteUser(UserEntity user);
 
 	/**
-	 * Finds UserEntity By login.
+	 * Finds UserEntity By username.
 	 *
-	 * @param login the login
+	 * @param username the username
 	 *
 	 * @return the UserEntity
 	 */
-	UserEntity getUserByUsername(String login);
+	UserEntity getUserByUsername(String username);
 
 	/**
 	 * Retrieves a list of userEntity objects.
@@ -54,19 +54,15 @@ public interface UserDao
 	List<UserEntity> getAllTheUsers();
 
 	/**
-	 * Cheks if user with exact login is exists.
+	 * Returns a list of users with such email or username
 	 *
-	 * @param login the login
-	 * @return true if exists
+	 * @param username the username
+	 * @param email    the email
+	 *
+	 * @return list of users
 	 */
-	boolean isUsernameExists(String login);
+	List<UserEntity> getUserByUsernameOrEmail(String username, String email);
 
-	/**
-	 * Cheks if user with exact email is exists.
-	 *
-	 * @param email the email
-	 * @return true if exists
-	 */
-	boolean isEmailExists(String email);
+
 
 }

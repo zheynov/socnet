@@ -2,10 +2,12 @@ package by.zheynov.socnet.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import java.io.Serializable;
@@ -24,8 +26,8 @@ public class ProfileEntity implements Serializable
 {
 	private static final int TABLE_COLUMN_MAX_LENGTH = 64;
 
-	@OneToOne(mappedBy = "profileEntity") // OneToOne with UserEntity
-	private UserEntity user;
+	@OneToOne(mappedBy = "profileEntity", fetch = FetchType.EAGER) // OneToOne with UserEntity
+	private UserEntity userEntity;
 
 	@Id
 	@Column(name = "id")
@@ -56,21 +58,13 @@ public class ProfileEntity implements Serializable
 	@Column(name = "phoneNumber", length = TABLE_COLUMN_MAX_LENGTH)
 	private String phoneNumber;
 
+
+
 	/**
 	 * Constructor for ProfileEntity.
 	 */
 	public ProfileEntity()
 	{
-	}
-
-	/**
-	 * Gets user.
-	 *
-	 * @return Value of user.
-	 */
-	public UserEntity getUser()
-	{
-		return user;
 	}
 
 	/**
@@ -223,15 +217,6 @@ public class ProfileEntity implements Serializable
 		this.lastname = lastname;
 	}
 
-	/**
-	 * Sets new user.
-	 *
-	 * @param user New value of user.
-	 */
-	public void setUser(final UserEntity user)
-	{
-		this.user = user;
-	}
 
 	/**
 	 * Sets new city.
@@ -261,6 +246,26 @@ public class ProfileEntity implements Serializable
 	public Long getId()
 	{
 		return id;
+	}
+
+	/**
+	 * Sets new userEntity.
+	 *
+	 * @param userEntity New value of userEntity.
+	 */
+	public void setUserEntity(UserEntity userEntity)
+	{
+		this.userEntity = userEntity;
+	}
+
+	/**
+	 * Gets userEntity.
+	 *
+	 * @return Value of userEntity.
+	 */
+	public UserEntity getUserEntity()
+	{
+		return userEntity;
 	}
 }
 

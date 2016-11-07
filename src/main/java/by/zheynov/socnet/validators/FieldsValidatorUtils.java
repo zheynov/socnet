@@ -7,8 +7,12 @@ package by.zheynov.socnet.validators;
  * @package by.zheynov.socnet.validators
  */
 
-class FieldsValidator
+final class FieldsValidatorUtils
 {
+	private FieldsValidatorUtils()
+	{
+	}
+
 	/**
 	 * Cheks user's email.
 	 *
