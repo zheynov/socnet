@@ -42,7 +42,6 @@
     <!--MessageSource -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
-
             <list>
                 <value>classpath:logmesagges</value>
                 <value>classpath:label</value>

@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService
 	}
 
 	/**
-	 * Returns a list of users with such email or username
+	 * Returns a list of users with such email or username.
 	 *
 	 * @param username the username
 	 * @param email    the email
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService
 	@Transactional
 	public List<UserEntity> getUserByUsernameOrEmail(final String username, final String email)
 	{
-	return 	userDao.getUserByUsernameOrEmail(username, email);
+		return userDao.getUserByUsernameOrEmail(username, email);
 	}
 
 	/**

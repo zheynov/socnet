@@ -9,6 +9,9 @@ package by.zheynov.socnet.validators;
 
 final class FieldsValidatorUtils
 {
+	/**
+	 * Constrictor for FieldsValidatorUtils objects.
+	 */
 	private FieldsValidatorUtils()
 	{
 	}

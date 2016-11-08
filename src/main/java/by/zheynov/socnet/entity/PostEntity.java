@@ -25,6 +25,8 @@ import javax.persistence.Table;
 @Table(name = "post")
 public class PostEntity implements Serializable
 {
+	private static final int MAX_TEXT_LENGTH = 256;
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +39,7 @@ public class PostEntity implements Serializable
 	@JoinColumn(name = "userID")
 	private UserEntity userID;
 
-	@Column(name = "text", length = 256)
+	@Column(name = "text", length = MAX_TEXT_LENGTH)
 	private String text;
 
 	@Column(name = "photo")
@@ -68,7 +70,7 @@ public class PostEntity implements Serializable
 	 *
 	 * @param text New value of text.
 	 */
-	public void setText(String text)
+	public void setText(final String text)
 	{
 		this.text = text;
 	}
@@ -78,7 +80,7 @@ public class PostEntity implements Serializable
 	 *
 	 * @param photo New value of photo.
 	 */
-	public void setPhoto(String photo)
+	public void setPhoto(final String photo)
 	{
 		this.photo = photo;
 	}
@@ -88,7 +90,7 @@ public class PostEntity implements Serializable
 	 *
 	 * @param postID New value of postID.
 	 */
-	public void setPostID(Long postID)
+	public void setPostID(final Long postID)
 	{
 		this.postID = postID;
 	}
@@ -108,7 +110,7 @@ public class PostEntity implements Serializable
 	 *
 	 * @param userID New value of userID.
 	 */
-	public void setUserID(UserEntity userID)
+	public void setUserID(final UserEntity userID)
 	{
 		this.userID = userID;
 	}
@@ -138,7 +140,7 @@ public class PostEntity implements Serializable
 	 *
 	 * @param postDate New value of postDate.
 	 */
-	public void setPostDate(Date postDate)
+	public void setPostDate(final Date postDate)
 	{
 		this.postDate = postDate;
 	}

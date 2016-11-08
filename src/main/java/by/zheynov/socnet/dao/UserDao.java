@@ -54,7 +54,7 @@ public interface UserDao
 	List<UserEntity> getAllTheUsers();
 
 	/**
-	 * Returns a list of users with such email or username
+	 * Returns a list of users with such email or username.
 	 *
 	 * @param username the username
 	 * @param email    the email
@@ -62,7 +62,5 @@ public interface UserDao
 	 * @return list of users
 	 */
 	List<UserEntity> getUserByUsernameOrEmail(String username, String email);
-
-
 
 }

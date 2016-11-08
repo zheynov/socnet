@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--<%@ taglib prefix="mainCss" uri="/WEB-INF/pages/tld/main.tag" %>--%>
 
 <%--
   Created by IntelliJ IDEA.
@@ -14,64 +15,64 @@
 <html>
 <head>
     <title>Main page</title>
-    <link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <%--<mainCss: />--%>
+    <jsp:include page="secure/navbar.jsp"/>
 
-    <style>
-        .tabs-left > .nav-tabs {
-            border-bottom: 0;
-        }
+    <%--<style>--%>
+        <%--.tabs-left > .nav-tabs {--%>
+            <%--border-bottom: 0;--%>
+        <%--}--%>
 
-        .tab-content > .tab-pane,
-        .pill-content > .pill-pane {
-            display: none;
-        }
+        <%--.tab-content > .tab-pane,--%>
+        <%--.pill-content > .pill-pane {--%>
+            <%--display: none;--%>
+        <%--}--%>
 
-        .tab-content > .active,
-        .pill-content > .active {
-            display: block;
-        }
+        <%--.tab-content > .active,--%>
+        <%--.pill-content > .active {--%>
+            <%--display: block;--%>
+        <%--}--%>
 
-        .tabs-left > .nav-tabs > li {
-            float: none;
-        }
+        <%--.tabs-left > .nav-tabs > li {--%>
+            <%--float: none;--%>
+        <%--}--%>
 
-        .tabs-left > .nav-tabs > li > a {
-            min-width: 74px;
-            margin-right: 0;
-            margin-bottom: 3px;
-        }
+        <%--.tabs-left > .nav-tabs > li > a {--%>
+            <%--min-width: 74px;--%>
+            <%--margin-right: 0;--%>
+            <%--margin-bottom: 3px;--%>
+        <%--}--%>
 
-        .tabs-left > .nav-tabs {
-            float: left;
-            margin-right: 19px;
-            border-right: 1px solid #ddd;
-        }
+        <%--.tabs-left > .nav-tabs {--%>
+            <%--float: left;--%>
+            <%--margin-right: 19px;--%>
+            <%--border-right: 1px solid #ddd;--%>
+        <%--}--%>
 
-        .tabs-left > .nav-tabs > li > a {
-            margin-right: -1px;
-            -webkit-border-radius: 4px 0 0 4px;
-            -moz-border-radius: 4px 0 0 4px;
-            border-radius: 4px 0 0 4px;
-        }
+        <%--.tabs-left > .nav-tabs > li > a {--%>
+            <%--margin-right: -1px;--%>
+            <%---webkit-border-radius: 4px 0 0 4px;--%>
+            <%---moz-border-radius: 4px 0 0 4px;--%>
+            <%--border-radius: 4px 0 0 4px;--%>
+        <%--}--%>
 
-        .tabs-left > .nav-tabs > li > a:hover,
-        .tabs-left > .nav-tabs > li > a:focus {
-            border-color: #eeeeee #dddddd #eeeeee #eeeeee;
-        }
+        <%--.tabs-left > .nav-tabs > li > a:hover,--%>
+        <%--.tabs-left > .nav-tabs > li > a:focus {--%>
+            <%--border-color: #eeeeee #dddddd #eeeeee #eeeeee;--%>
+        <%--}--%>
 
-        .tabs-left > .nav-tabs .active > a,
-        .tabs-left > .nav-tabs .active > a:hover,
-        .tabs-left > .nav-tabs .active > a:focus {
-            border-color: #ddd transparent #ddd #ddd;
-            *border-right-color: lightblue;;
-        }
-    </style>
+        <%--.tabs-left > .nav-tabs .active > a,--%>
+        <%--.tabs-left > .nav-tabs .active > a:hover,--%>
+        <%--.tabs-left > .nav-tabs .active > a:focus {--%>
+            <%--border-color: #ddd transparent #ddd #ddd;--%>
+            <%--*border-right-color: lightblue;;--%>
+        <%--}--%>
+    <%--</style>--%>
 
 
 </head>
 <body>
 
-<jsp:include page="secure/navbar.jsp"/>
 
 <div class="container">
     <div class="row">

@@ -24,8 +24,6 @@ public class ProfileDTO implements Serializable
 	private String  phoneNumber;
 	private UserDTO userDTO;
 
-
-
 	/**
 	 * Gets birthDate.
 	 *
@@ -303,7 +301,7 @@ public class ProfileDTO implements Serializable
 	 *
 	 * @param userDTO New value of userDTO.
 	 */
-	public void setUserDTO(UserDTO userDTO)
+	public void setUserDTO(final UserDTO userDTO)
 	{
 		this.userDTO = userDTO;
 	}

@@ -87,7 +87,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	}
 
 	/**
-	 * Returns a list of users with such email or username
+	 * Returns a list of users with such email or username.
 	 *
 	 * @param username the username
 	 * @param email    the email

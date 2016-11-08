@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import java.io.Serializable;
@@ -57,8 +56,6 @@ public class ProfileEntity implements Serializable
 
 	@Column(name = "phoneNumber", length = TABLE_COLUMN_MAX_LENGTH)
 	private String phoneNumber;
-
-
 
 	/**
 	 * Constructor for ProfileEntity.
@@ -217,7 +214,6 @@ public class ProfileEntity implements Serializable
 		this.lastname = lastname;
 	}
 
-
 	/**
 	 * Sets new city.
 	 *
@@ -253,7 +249,7 @@ public class ProfileEntity implements Serializable
 	 *
 	 * @param userEntity New value of userEntity.
 	 */
-	public void setUserEntity(UserEntity userEntity)
+	public void setUserEntity(final UserEntity userEntity)
 	{
 		this.userEntity = userEntity;
 	}

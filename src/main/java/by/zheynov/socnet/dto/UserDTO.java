@@ -12,13 +12,13 @@ import java.io.Serializable;
 public class UserDTO implements Serializable
 {
 	private static final int HASH_NUMBER = 31;
-	private Long    id;
-	private String  email;
-	private String  username;
-	private String  password;
-	private boolean enabled;
-	private String  confirmPassword;
-	private ProfileDTO  profileDTO;
+	private Long       id;
+	private String     email;
+	private String     username;
+	private String     password;
+	private boolean    enabled;
+	private String     confirmPassword;
+	private ProfileDTO profileDTO;
 
 	/**
 	 * Compares this UserDTO object to the specified Object o.
@@ -212,7 +212,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param profileDTO New value of profileDTO.
 	 */
-	public void setProfileDTO(ProfileDTO profileDTO)
+	public void setProfileDTO(final ProfileDTO profileDTO)
 	{
 		this.profileDTO = profileDTO;
 	}

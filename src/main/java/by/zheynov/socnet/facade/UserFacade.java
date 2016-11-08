@@ -51,13 +51,13 @@ public interface UserFacade
 	List<UserDTO> getAllTheUsers();
 
 	/**
-	 * Checks if user with such username or email is exists
+	 * Checks if user with such username or email is exists.
 	 *
 	 * @param username the username
 	 * @param email    the email
 	 *
 	 * @return registration status
 	 */
-	public RegistrationStatus registrationStatus(String username, String email);
+	RegistrationStatus registrationStatus(String username, String email);
 
 }

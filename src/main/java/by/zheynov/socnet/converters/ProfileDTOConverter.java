@@ -5,9 +5,6 @@ import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

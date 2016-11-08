@@ -52,13 +52,13 @@ public interface UserService
 	List<UserEntity> getAllTheUsers();
 
 	/**
-	 * Returns a list of users with such email or username
+	 * Returns a list of users with such email or username.
 	 *
 	 * @param username the username
 	 * @param email    the email
 	 *
 	 * @return list of users
 	 */
-	public List<UserEntity> getUserByUsernameOrEmail(String username,  String email);
+	List<UserEntity> getUserByUsernameOrEmail(String username, String email);
 
 }
