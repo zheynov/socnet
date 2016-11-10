@@ -1,16 +1,22 @@
 package by.zheynov.socnet.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Profile Entity class.
@@ -27,6 +33,12 @@ public class ProfileEntity implements Serializable
 
 	@OneToOne(mappedBy = "profileEntity", fetch = FetchType.EAGER) // OneToOne with UserEntity
 	private UserEntity userEntity;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "profile_profile", joinColumns = {@JoinColumn(name = "main_profile_id")}, inverseJoinColumns = {
+					@JoinColumn(name = "friends_profile_id")
+	})
+	private Set<ProfileEntity> userFriends = new HashSet<ProfileEntity>();
 
 	@Id
 	@Column(name = "id")
@@ -262,6 +274,26 @@ public class ProfileEntity implements Serializable
 	public UserEntity getUserEntity()
 	{
 		return userEntity;
+	}
+
+	/**
+	 * Gets userFriends.
+	 *
+	 * @return Value of userFriends.
+	 */
+	public Set<ProfileEntity> getUserFriends()
+	{
+		return userFriends;
+	}
+
+	/**
+	 * Sets new userFriends.
+	 *
+	 * @param userFriends New value of userFriends.
+	 */
+	public void setUserFriends(Set<ProfileEntity> userFriends)
+	{
+		this.userFriends = userFriends;
 	}
 }
 

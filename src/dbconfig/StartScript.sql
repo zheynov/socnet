@@ -39,13 +39,15 @@ CREATE TABLE user_role (
   role     VARCHAR(45)        NOT NULL
 );
 -- Table for user's posts
-CREATE TABLE  post (
-  id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  userID BIGINT NOT NULL,
-  text VARCHAR(1024),
-  date DATETIME NOT NULL,
-  photo VARCHAR(512),
-  FOREIGN KEY (userID) REFERENCES user (id) ON UPDATE CASCADE ON DELETE CASCADE
+CREATE TABLE post (
+  id     BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  userID BIGINT             NOT NULL,
+  text   VARCHAR(1024),
+  date   DATETIME           NOT NULL,
+  photo  VARCHAR(512),
+  FOREIGN KEY (userID) REFERENCES user (id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 -- Table to store the tokens for PersistentTokenRepository ("Remember me" feature)
@@ -56,14 +58,22 @@ CREATE TABLE persistent_logins (
   last_used TIMESTAMP   NOT NULL
 );
 
+-- Table to store friends (ManyToMany)
+CREATE TABLE profile_profile (
+  main_profile_id BIGINT NOT NULL,
+  friends_profile_id    BIGINT NOT NULL,
+  FOREIGN KEY (main_profile_id) REFERENCES profile (id),
+  FOREIGN KEY (friends_profile_id) REFERENCES profile (id)
+);
+
 -- Insert data
-INSERT INTO profile VALUES (1, 'admin', 'nimda', '1911-11-11', 'admin@admin.com', 6 ,  NULL , 'Atlantis', NULL);
+INSERT INTO profile VALUES (1, 'admin', 'nimda', '1911-11-11', 'admin@admin.com', 6, NULL, 'Atlantis', NULL);
 INSERT INTO user VALUES (1, 'admin@admin.com', 'admin',
-                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1);
 
 INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', '1983-11-25', 'vadim@gmail.com', 33, 'male', 'Minsk', 0293453445);
 INSERT INTO user VALUES (2, 'vadim@gmail.com', 'Vadim',
-                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2);
 
 INSERT INTO profile VALUES (3, 'Redlaw', 'Redstar', '1988-02-28', 'Redlaw@redlaw.by', 28, 'female', 'New-York', 1116666666);
 INSERT INTO user VALUES (3, 'Redlaw@redlaw.by', 'Redlaw',

@@ -1,6 +1,8 @@
 package by.zheynov.socnet.dao.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.entity.ProfileEntity;
@@ -73,4 +75,23 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 		return allTheUsers;
 	}
 
+	/**
+	 * Adds new friend to user's friends set using their profiles.
+	 *
+	 * @param currentProfile  the entity
+	 * @param friendProfileId the Id
+	 */
+
+	public void addFriend(final ProfileEntity currentProfile, final Long friendProfileId)
+	{
+		ProfileEntity newFriendProfile = new ProfileEntity();
+		newFriendProfile.setId(friendProfileId);
+
+		Set<ProfileEntity> friends = currentProfile.getUserFriends();
+		friends.add(newFriendProfile);
+
+		currentProfile.setUserFriends(friends);
+
+		save(friendProfileId);
+	}
 }

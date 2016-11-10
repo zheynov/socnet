@@ -49,4 +49,14 @@ public interface ProfileService
 	 * @return the List<ProfileEntity>
 	 */
 	List<ProfileEntity> getAllTheProfiles();
+
+	/**
+	 * Adds new friend to user's friends set using their profiles.
+	 *
+	 * @param currentProfile  the entity
+	 * @param friendProfileId the Id
+	 */
+
+	void addFriend(final ProfileEntity currentProfile, final Long friendProfileId);
+
 }

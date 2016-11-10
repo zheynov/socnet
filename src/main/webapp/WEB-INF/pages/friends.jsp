@@ -1,15 +1,15 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="action" tagdir="/WEB-INF/tags/" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Profile page</title>
+    <title>Friends</title>
     <action:actions/>
+
 </head>
 <body>
-
 
 <div class="container">
     <div class="row">
@@ -19,9 +19,10 @@
             <div class="tabbable tabs-left">
                 <ul class="nav nav-tabs">
                     <li><a href="/welcomePage"><spring:message code="welcome.page.text.wall"/></a></li>
-                    <li><a href="/friends"><spring:message code="welcome.page.text.friends"/></a></li>
+                    <li class="active"><a href="#friends" data-toggle="tab"><spring:message code="welcome.page.text.friends"/></a>
+                    </li>
                     <li><a href="#messages" data-toggle="tab"><spring:message code="welcome.page.text.mesagges"/></a></li>
-                    <li class="active"><a href="#profile" data-toggle="tab"><spring:message code="welcome.page.text.profile"/></a></li>
+                    <li><a href="/beforeprofilepage"><spring:message code="welcome.page.text.profile"/></a></li>
                     <li><a href="#contact" data-toggle="tab"><spring:message code="welcome.page.text.contacts"/></a></li>
                     <li><a href="#about" data-toggle="tab"><spring:message code="welcome.page.text.about"/></a></li>
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
@@ -30,14 +31,48 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div  id="wall">
-
+                    <div class="tab-pane" id="wall">
                     </div>
-                    <div class="tab-pane" id="friends">
-                        <div class="">
-                            <h1><spring:message code="welcome.page.text.friends"/></h1>
-                            <p> Тут будет отображаться раздел о друзьях Юзера </p>
+                    <div class="tab-pane active" id="friends">
+
+                        <p></p>
+
+                        <div style="margin-left: 100px">
+
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1">
+
+                                    <table id="friendsTable" class="table">
+                                        <tr>
+                                            <th>#</th>
+                                            <th><spring:message code="profile.page.text.fullname"/></th>
+                                            <th><spring:message code="profile.page.text.age"/></th>
+                                            <th><spring:message code="profile.page.text.city"/></th>
+                                            <th><spring:message code="profile.page.text.gender"/></th>
+                                        </tr>
+                                        <c:forEach items="${allTheProfiles}" var="profile">
+                                            <tr>
+                                                <th scope="row"><a href="/addfriend/${pageContext.request.userPrincipal.name},${profile.profileID}"> Добавить </a>
+                                                </th>
+                                                <td>${profile.lastname} ${profile.firstname}</td>
+                                                <td>${profile.age}</td>
+                                                <td>${profile.city}</td>
+                                                <td>${profile.sex}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </table>
+                                    <br/>
+                                    <select for="friendsTable">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="20" selected>20</option>
+                                        <option value="30">30</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
 
                     <div class="tab-pane" id="about">
@@ -73,33 +108,20 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane active" id="profile">
+                    <div class="tab-pane" id="profile">
 
-                        <div style="margin-left: 200px">
-                            <h2><spring:message code="welcome.page.text.profile"/> </h2>
-
-                            <p>
-                                <b> Firstname: </b> ${profileDTO.firstname} <br/>
-                                <b> Lastname:</b> ${profileDTO.lastname} <br/>
-                                <b> Email:</b> ${profileDTO.email} <br/>
-                                <b> Sex:</b> ${profileDTO.sex} <br/>
-                                <b> Date of birth:</b> ${profileDTO.birthDate} <br/>
-                                <b> Age: </b> ${profileDTO.age} <br/>
-                                <b> City: </b> ${profileDTO.city} <br/>
-                                <b> Phone number:</b> ${profileDTO.phoneNumber} <br/>
-
-                            <p><a href="/profileedit">Edit profile</a>
-
+                        <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
+                        <div class="tab-pane" id="admin">
+                            </c:if>
                         </div>
+
                     </div>
 
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

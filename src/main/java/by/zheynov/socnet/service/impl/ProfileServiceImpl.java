@@ -85,6 +85,18 @@ public class ProfileServiceImpl implements ProfileService
 	}
 
 	/**
+	 * Adds new friend to user's friends set using their profiles.
+	 *
+	 * @param currentProfile  the entity
+	 * @param friendProfileId the Id
+	 */
+
+	public void addFriend(final ProfileEntity currentProfile, final Long friendProfileId)
+	{
+		profileDao.addFriend(currentProfile, friendProfileId);
+	}
+
+	/**
 	 * Sets new messageSource.
 	 *
 	 * @param messageSource New value of messageSource.
@@ -99,8 +111,10 @@ public class ProfileServiceImpl implements ProfileService
 	 *
 	 * @param profileDao New value of profileDao.
 	 */
+
 	public void setProfileDao(final ProfileDao profileDao)
 	{
 		this.profileDao = profileDao;
 	}
+
 }

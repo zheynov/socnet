@@ -45,12 +45,19 @@ public interface ProfileDao
 	 */
 	void deleteProfile(ProfileEntity profileEntity);
 
-
 	/**
 	 * Retrieves a list of profileEntity objects.
 	 *
 	 * @return the List<profileEntity>
 	 */
 	List<ProfileEntity> getAllTheProfiles();
+
+	/**
+	 * Adds new friend to user's friends set using their profiles.
+	 *
+	 * @param currentProfile  the entity
+	 * @param friendProfileId the Id
+	 */
+	void addFriend(final ProfileEntity currentProfile, final Long friendProfileId);
 
 }

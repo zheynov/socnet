@@ -8,12 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * UserEntity class.
@@ -51,6 +55,7 @@ public class UserEntity implements Serializable
 
 	@Column(name = "enabled")
 	private boolean enabled;
+
 
 	/**
 	 * Constructor for UserEntity.
@@ -178,5 +183,28 @@ public class UserEntity implements Serializable
 	{
 		return email;
 	}
+
+	/**
+	 * Gets sentPosts.
+	 *
+	 * @return Value of sentPosts.
+	 */
+	public List<PostEntity> getSentPosts()
+	{
+		return sentPosts;
+	}
+
+
+	/**
+	 * Sets new sentPosts.
+	 *
+	 * @param sentPosts New value of sentPosts.
+	 */
+	public void setSentPosts(List<PostEntity> sentPosts)
+	{
+		this.sentPosts = sentPosts;
+	}
+
+
 }
 

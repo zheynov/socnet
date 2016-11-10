@@ -22,6 +22,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	private static final String GET_USER_BY_USERNAME_OR_EMAIL_QUERY = "FROM UserEntity WHERE username = :username OR email = " +
 					":email";
 
+
 	/**
 	 * Creates user in database.
 	 *

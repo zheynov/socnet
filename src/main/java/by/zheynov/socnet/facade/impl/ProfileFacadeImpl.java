@@ -81,4 +81,17 @@ public class ProfileFacadeImpl implements ProfileFacade
 		}
 		return allTheDTOProfiles;
 	}
+
+	/**
+	 * Adds new friend to user's friends set using their profiles.
+	 *
+	 * @param currentProfileDTO the dto
+	 * @param friendProfileId   the Id
+	 */
+
+	public void addFriend(final ProfileDTO currentProfileDTO, final Long friendProfileId)
+	{
+		ProfileEntity currentProfileEntity = conversionService.convert(currentProfileDTO, ProfileEntity.class);
+		profileService.addFriend(currentProfileEntity, friendProfileId);
+	}
 }
