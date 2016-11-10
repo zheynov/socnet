@@ -44,22 +44,25 @@ public class FriendController
 	/**
 	 * Adds user to frinds list.
 	 *
-	 * @param model         the model
-	 * @param friendRequest the String value
+	 * @param model               the model
+	 * @param friendRequestString the String value
 	 *
 	 * @return friends URL
 	 */
 	@RequestMapping(value = "/addfriend/{friendRequest}", method = RequestMethod.GET)
-	public String manageuserInfo(final Model model, @PathVariable(value = "friendRequest") final String friendRequest)
+	public String manageuserInfo(final Model model, @PathVariable(value = "friendRequest") final String friendRequestString)
 	{
-		String[] twoWords = friendRequest.split(",");
-		UserDTO userDTO = userFacade.getUserByUsername(twoWords[0]);
+		String[] twoWordsFromfriendRequestString = friendRequestString.split(",");
+		String currentUsername = twoWordsFromfriendRequestString[0];
+		String newFriendID = twoWordsFromfriendRequestString[1];
 
-		ProfileDTO profileDTO = profileFacade.getProfileById(Long.valueOf(twoWords[1]));
+		UserDTO currentUserDTO = userFacade.getUserByUsername(currentUsername);
 
-		profileFacade.addFriend(userDTO.getProfileDTO(), profileDTO.getProfileID());
+		ProfileDTO newFriendProfileDTO = profileFacade.getProfileById(Long.valueOf(newFriendID));
 
-		return "/friends";
+		profileFacade.addFriend(currentUserDTO.getProfileDTO(), newFriendProfileDTO);
+
+		return "redirect:/friends";
 	}
 
 }

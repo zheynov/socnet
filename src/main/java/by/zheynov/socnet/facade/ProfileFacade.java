@@ -56,8 +56,8 @@ public interface ProfileFacade
 	 * Adds new friend to user's friends set using their profiles.
 	 *
 	 * @param currentProfileDTO  the dto
-	 * @param friendProfileId the Id
+	 * @param newFriend the dto
 	 */
-	void addFriend(final ProfileDTO currentProfileDTO, final Long friendProfileId);
+	void addFriend(ProfileDTO currentProfileDTO, ProfileDTO newFriend);
 
 }

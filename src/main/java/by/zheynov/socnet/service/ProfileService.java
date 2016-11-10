@@ -54,9 +54,9 @@ public interface ProfileService
 	 * Adds new friend to user's friends set using their profiles.
 	 *
 	 * @param currentProfile  the entity
-	 * @param friendProfileId the Id
+	 * @param newFriend the entity
 	 */
 
-	void addFriend(final ProfileEntity currentProfile, final Long friendProfileId);
+	void addFriend( ProfileEntity currentProfile, ProfileEntity newFriend);
 
 }

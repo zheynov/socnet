@@ -86,12 +86,13 @@ public class ProfileFacadeImpl implements ProfileFacade
 	 * Adds new friend to user's friends set using their profiles.
 	 *
 	 * @param currentProfileDTO the dto
-	 * @param friendProfileId   the Id
+	 * @param newFriend         the dto
 	 */
 
-	public void addFriend(final ProfileDTO currentProfileDTO, final Long friendProfileId)
+	public void addFriend(final ProfileDTO currentProfileDTO, final ProfileDTO newFriend)
 	{
 		ProfileEntity currentProfileEntity = conversionService.convert(currentProfileDTO, ProfileEntity.class);
-		profileService.addFriend(currentProfileEntity, friendProfileId);
+		ProfileEntity newFriendProfileEntity = conversionService.convert(newFriend, ProfileEntity.class);
+		profileService.addFriend(currentProfileEntity, newFriendProfileEntity);
 	}
 }

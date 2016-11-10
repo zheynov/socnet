@@ -1,6 +1,5 @@
 package by.zheynov.socnet.dao.impl;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -8,6 +7,7 @@ import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 import org.hibernate.Criteria;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * ProfileEntity DAO Implementation.
@@ -15,7 +15,7 @@ import org.hibernate.Criteria;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.dao.impl
  */
-
+@Transactional
 public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 {
 	/**
@@ -79,19 +79,16 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 * Adds new friend to user's friends set using their profiles.
 	 *
 	 * @param currentProfile  the entity
-	 * @param friendProfileId the Id
+	 * @param newFriend the entity
 	 */
 
-	public void addFriend(final ProfileEntity currentProfile, final Long friendProfileId)
+	public void addFriend(final ProfileEntity currentProfile, final ProfileEntity newFriend)
 	{
-		ProfileEntity newFriendProfile = new ProfileEntity();
-		newFriendProfile.setId(friendProfileId);
-
 		Set<ProfileEntity> friends = currentProfile.getUserFriends();
-		friends.add(newFriendProfile);
+		friends.add(newFriend);
 
 		currentProfile.setUserFriends(friends);
 
-		save(friendProfileId);
+		updateProfile(currentProfile);
 	}
 }

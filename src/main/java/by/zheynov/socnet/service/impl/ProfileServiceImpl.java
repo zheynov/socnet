@@ -79,6 +79,7 @@ public class ProfileServiceImpl implements ProfileService
 	 *
 	 * @return the List<ProfileEntity>
 	 */
+	@Transactional
 	public List<ProfileEntity> getAllTheProfiles()
 	{
 		return profileDao.getAllTheProfiles();
@@ -87,13 +88,13 @@ public class ProfileServiceImpl implements ProfileService
 	/**
 	 * Adds new friend to user's friends set using their profiles.
 	 *
-	 * @param currentProfile  the entity
-	 * @param friendProfileId the Id
+	 * @param currentProfile the entity
+	 * @param newFriend      the entity
 	 */
-
-	public void addFriend(final ProfileEntity currentProfile, final Long friendProfileId)
+	@Transactional
+	public void addFriend(final ProfileEntity currentProfile, final ProfileEntity newFriend)
 	{
-		profileDao.addFriend(currentProfile, friendProfileId);
+		profileDao.addFriend(currentProfile, newFriend);
 	}
 
 	/**
