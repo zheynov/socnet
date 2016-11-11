@@ -1,7 +1,7 @@
 package by.zheynov.socnet.facade;
 
 import by.zheynov.socnet.dto.UserDTO;
-import by.zheynov.socnet.facade.impl.RegistrationStatus;
+import by.zheynov.socnet.entity.RegistrationStatus;
 
 import java.util.List;
 

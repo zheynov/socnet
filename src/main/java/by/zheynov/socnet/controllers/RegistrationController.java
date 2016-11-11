@@ -2,7 +2,7 @@ package by.zheynov.socnet.controllers;
 
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.UserFacade;
-import by.zheynov.socnet.facade.impl.RegistrationStatus;
+import by.zheynov.socnet.entity.RegistrationStatus;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -60,11 +60,12 @@ CREATE TABLE persistent_logins (
 
 -- Table to store friends (ManyToMany)
 CREATE TABLE friend (
-  id                 BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  main_profile_id    BIGINT             NOT NULL,
-  friends_profile_id BIGINT             NOT NULL,
-  status             TINYINT            NOT NULL DEFAULT 0,
-  FOREIGN KEY (main_profile_id) REFERENCES profile (id)
+  id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  main_profile_id       BIGINT             NOT NULL,
+  friends_profile_id    BIGINT             NOT NULL,
+  friend_request_status ENUM ('PENDING_REQUEST', 'APPROVED_REQUEST', 'REJECTED_REQUEST'),
+  FOREIGN KEY (main_profile_id) REFERENCES profile (id),
+  UNIQUE KEY main_profile_id (main_profile_id, friends_profile_id)
 );
 
 -- Insert data
@@ -84,8 +85,18 @@ INSERT INTO profile VALUES (4, 'Костя', 'Тцзю', '1970-05-15', 'kostyan@
 INSERT INTO user VALUES (4, 'kostyan@mail.ru', 'kostyan',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 4);
 
+INSERT INTO profile VALUES (5, 'Борис', 'Ельцин', '1920-11-05', 'borya@mail.ru', 86, 'male', 'Москва', 564656466);
+INSERT INTO user VALUES (5, 'borya@mail.ru', 'boris',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 5);
+
+INSERT INTO profile VALUES (6, 'Bruce', 'Wayne', '1990-03-18', 'batman@batman.ru', 36, 'male', 'Gotham', 666666);
+INSERT INTO user VALUES (6, 'gmail@mail.ru', 'batman',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 6);
+
 
 INSERT INTO socnetDB.user_role VALUES (NULL, 'admin', 'ROLE_ADMIN');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'Vadim', 'ROLE_USER');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'Redlaw', 'ROLE_USER');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'kostyan', 'ROLE_USER');
+INSERT INTO socnetDB.user_role VALUES (NULL, 'boris', 'ROLE_USER');
+INSERT INTO socnetDB.user_role VALUES (NULL, 'batman', 'ROLE_USER');

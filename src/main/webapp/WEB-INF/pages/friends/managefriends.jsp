@@ -40,37 +40,9 @@
 
                         <div style="margin-left: 100px">
 
-                            <div class="row">
-                                <div class="col-sm-10 col-sm-offset-1">
+                            <a href="/allthepeople">Показать всех людей на сайте</a> |
+                            <a href="/allthefriends">Показать всех друзей</a>
 
-                                    <table id="friendsTable" class="table">
-                                        <tr>
-                                            <th>#</th>
-                                            <th><spring:message code="profile.page.text.fullname"/></th>
-                                            <th><spring:message code="profile.page.text.age"/></th>
-                                            <th><spring:message code="profile.page.text.city"/></th>
-                                            <th><spring:message code="profile.page.text.gender"/></th>
-                                        </tr>
-                                        <c:forEach items="${allTheProfiles}" var="profile">
-                                            <tr>
-                                                <th scope="row"><a href="/addfriend/${pageContext.request.userPrincipal.name}&${profile.profileID}"> Добавить </a>
-                                                </th>
-                                                <td>${profile.lastname} ${profile.firstname}</td>
-                                                <td>${profile.age}</td>
-                                                <td>${profile.city}</td>
-                                                <td>${profile.sex}</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </table>
-                                    <br/>
-                                    <select for="friendsTable">
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="20" selected>20</option>
-                                        <option value="30">30</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
 
 

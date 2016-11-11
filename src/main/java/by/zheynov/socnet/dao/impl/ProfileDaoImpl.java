@@ -5,9 +5,11 @@ import java.util.Set;
 
 import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.entity.FriendEntity;
+import by.zheynov.socnet.entity.FriendRequestApprovalStatus;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 import org.hibernate.Criteria;
+import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -88,12 +90,26 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 		FriendEntity friendEntity = new FriendEntity();
 		friendEntity.setCurrentProfileEntity(currentProfile);
 		friendEntity.setFriendProfileEntity(newFriend.getId());
+		friendEntity.setStatus(FriendRequestApprovalStatus.PENDING_REQUEST);
 
 		Set<FriendEntity> friends = currentProfile.getFriends();
 		friends.add(friendEntity);
 
 		currentProfile.setFriends(friends);
- 		updateProfile(currentProfile);
+		updateProfile(currentProfile);
 		save(friendEntity);
+	}
+
+	/**
+	 * Retrieves a list of FriendEntity objects.
+	 *
+	 * @return the List<friendEntity>
+	 */
+	public List<ProfileEntity> getAllTheFriendProfiles(Long profileId)
+	{
+		Query query = getCurrentSession().createQuery("FROM FriendEntity WHERE main_profile_id = :profileId");
+		query.setParameter("profileId", profileId);
+		List list = query.list();
+		return list;
 	}
 }

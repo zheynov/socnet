@@ -2,6 +2,7 @@ package by.zheynov.socnet.service;
 
 import java.util.List;
 
+import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
@@ -53,10 +54,19 @@ public interface ProfileService
 	/**
 	 * Adds new friend to user's friends set using their profiles.
 	 *
-	 * @param currentProfile  the entity
-	 * @param newFriend the entity
+	 * @param currentProfile the entity
+	 * @param newFriend      the entity
 	 */
 
-	void addFriend( ProfileEntity currentProfile, ProfileEntity newFriend);
+	void addFriend(ProfileEntity currentProfile, ProfileEntity newFriend);
+
+	/**
+	 * Retrieves a list of ProfileEntity objects.
+	 *
+	 * @param profileId the Id
+	 *
+	 * @return list of entities
+	 */
+	List<ProfileEntity> getAllTheFriendProfiles(Long profileId);
 
 }

@@ -34,11 +34,37 @@ public class FriendController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/friends", method = RequestMethod.GET)
-	public String loginAsAdmin(final Model model)
+	@RequestMapping(value = "/allthepeople", method = RequestMethod.GET)
+	public String showAllThePeople(final Model model)
 	{
 		model.addAttribute("allTheProfiles", profileFacade.getAllTheProfiles());
-		return "/friends";
+		return "friends/allthepeople";
+	}
+
+	/**
+	 * Redirects user to managefriends URL.
+	 *
+	 * @return the URL
+	 */
+	@RequestMapping(value = "/friends", method = RequestMethod.GET)
+	public String redirectToManageFriends()
+	{
+		return "friends/managefriends";
+	}
+
+	/**
+	 * Shows user all the added friends.
+	 *
+	 * @param model the model
+	 *
+	 * @return the URL
+	 */
+	@RequestMapping(value = "/allthefriends", method = RequestMethod.GET)
+	public String showAllTheFriends(final Model model)
+	{
+		model.addAttribute("allTheFriends", profileFacade.getAllTheFriendProfiles(1L));
+
+		return "friends/allthefriends";
 	}
 
 	/**

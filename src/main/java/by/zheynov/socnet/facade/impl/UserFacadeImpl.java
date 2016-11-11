@@ -1,6 +1,7 @@
 package by.zheynov.socnet.facade.impl;
 
 import by.zheynov.socnet.dto.UserDTO;
+import by.zheynov.socnet.entity.RegistrationStatus;
 import by.zheynov.socnet.entity.UserEntity;
 import by.zheynov.socnet.facade.UserFacade;
 import by.zheynov.socnet.service.UserService;

@@ -3,6 +3,8 @@ package by.zheynov.socnet.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,25 +35,16 @@ public class FriendEntity
 	@Column(name = "friends_profile_id")
 	private Long friendProfileEntity;
 
-	@Column(name = "status")
-	private boolean status;
-
-	/**
-	 * Sets new status.
-	 *
-	 * @param status New value of status.
-	 */
-	public void setStatus(boolean status)
-	{
-		this.status = status;
-	}
+	@Column(name = "friend_request_status")
+	@Enumerated(EnumType.STRING)
+	private FriendRequestApprovalStatus status;
 
 	/**
 	 * Sets new id.
 	 *
 	 * @param id New value of id.
 	 */
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -77,21 +70,11 @@ public class FriendEntity
 	}
 
 	/**
-	 * Gets status.
-	 *
-	 * @return Value of status.
-	 */
-	public boolean isStatus()
-	{
-		return status;
-	}
-
-	/**
 	 * Sets new currentProfileEntity.
 	 *
 	 * @param currentProfileEntity New value of currentProfileEntity.
 	 */
-	public void setCurrentProfileEntity(ProfileEntity currentProfileEntity)
+	public void setCurrentProfileEntity(final ProfileEntity currentProfileEntity)
 	{
 		this.currentProfileEntity = currentProfileEntity;
 	}
@@ -101,7 +84,7 @@ public class FriendEntity
 	 *
 	 * @param friendProfileEntity New value of friendProfileEntity.
 	 */
-	public void setFriendProfileEntity(Long friendProfileEntity)
+	public void setFriendProfileEntity(final Long friendProfileEntity)
 	{
 		this.friendProfileEntity = friendProfileEntity;
 	}
@@ -114,5 +97,25 @@ public class FriendEntity
 	public Long getId()
 	{
 		return id;
+	}
+
+	/**
+	 * Gets status.
+	 *
+	 * @return Value of status.
+	 */
+	public FriendRequestApprovalStatus getStatus()
+	{
+		return status;
+	}
+
+	/**
+	 * Sets new status.
+	 *
+	 * @param status New value of status.
+	 */
+	public void setStatus(final FriendRequestApprovalStatus status)
+	{
+		this.status = status;
 	}
 }

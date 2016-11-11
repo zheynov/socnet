@@ -1,7 +1,7 @@
-package by.zheynov.socnet.facade.impl;
+package by.zheynov.socnet.entity;
 
 /**
- * RegistrationStatus class.
+ * RegistrationStatus enum.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade.impl

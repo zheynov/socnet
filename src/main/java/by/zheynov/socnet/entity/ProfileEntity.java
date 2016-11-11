@@ -287,7 +287,7 @@ public class ProfileEntity implements Serializable
 	 *
 	 * @param friends New value of friends.
 	 */
-	public void setFriends(Set<FriendEntity> friends)
+	public void setFriends(final Set<FriendEntity> friends)
 	{
 		this.friends = friends;
 	}

@@ -3,7 +3,9 @@ package by.zheynov.socnet.facade.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.zheynov.socnet.dto.FriendDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.service.ProfileService;
@@ -94,5 +96,24 @@ public class ProfileFacadeImpl implements ProfileFacade
 		ProfileEntity currentProfileEntity = conversionService.convert(currentProfileDTO, ProfileEntity.class);
 		ProfileEntity newFriendProfileEntity = conversionService.convert(newFriend, ProfileEntity.class);
 		profileService.addFriend(currentProfileEntity, newFriendProfileEntity);
+	}
+
+	/**
+	 * Retrieves a list of ProfileDTO objects.
+	 *
+	 * @param profileId the Id
+	 *
+	 * @return list of dto's
+	 */
+	public List<ProfileDTO> getAllTheFriendProfiles(Long profileId)
+	{
+		List<ProfileDTO> allTheFriendsDTO = new ArrayList<ProfileDTO>();
+
+		for (ProfileEntity profileEntity : profileService.getAllTheFriendProfiles(profileId))
+		{
+			final ProfileDTO profileDTO = conversionService.convert(profileEntity, ProfileDTO.class);
+			allTheFriendsDTO.add(profileDTO);
+		}
+		return allTheFriendsDTO;
 	}
 }
