@@ -7,9 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,11 +33,8 @@ public class ProfileEntity implements Serializable
 	@OneToOne(mappedBy = "profileEntity", fetch = FetchType.EAGER) // OneToOne with UserEntity
 	private UserEntity userEntity;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "profile_profile", joinColumns = {@JoinColumn(name = "main_profile_id")}, inverseJoinColumns = {
-					@JoinColumn(name = "friends_profile_id")
-	})
-	private Set<ProfileEntity> userFriends = new HashSet<ProfileEntity>();
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "currentProfileEntity")  // OneToOne with FriendEntity
+	private Set<FriendEntity> friends = new HashSet<FriendEntity>();
 
 	@Id
 	@Column(name = "id")
@@ -277,23 +273,23 @@ public class ProfileEntity implements Serializable
 	}
 
 	/**
-	 * Gets userFriends.
+	 * Gets friends.
 	 *
-	 * @return Value of userFriends.
+	 * @return Value of friends.
 	 */
-	public Set<ProfileEntity> getUserFriends()
+	public Set<FriendEntity> getFriends()
 	{
-		return userFriends;
+		return friends;
 	}
 
 	/**
-	 * Sets new userFriends.
+	 * Sets new friends.
 	 *
-	 * @param userFriends New value of userFriends.
+	 * @param friends New value of friends.
 	 */
-	public void setUserFriends(Set<ProfileEntity> userFriends)
+	public void setFriends(Set<FriendEntity> friends)
 	{
-		this.userFriends = userFriends;
+		this.friends = friends;
 	}
 }
 

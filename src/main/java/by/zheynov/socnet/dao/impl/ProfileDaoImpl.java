@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import by.zheynov.socnet.dao.ProfileDao;
+import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 import org.hibernate.Criteria;
@@ -78,17 +79,21 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	/**
 	 * Adds new friend to user's friends set using their profiles.
 	 *
-	 * @param currentProfile  the entity
-	 * @param newFriend the entity
+	 * @param currentProfile the entity
+	 * @param newFriend      the entity
 	 */
 
 	public void addFriend(final ProfileEntity currentProfile, final ProfileEntity newFriend)
 	{
-		Set<ProfileEntity> friends = currentProfile.getUserFriends();
-		friends.add(newFriend);
+		FriendEntity friendEntity = new FriendEntity();
+		friendEntity.setCurrentProfileEntity(currentProfile);
+		friendEntity.setFriendProfileEntity(newFriend);
 
-		currentProfile.setUserFriends(friends);
+		Set<FriendEntity> friends = currentProfile.getFriends();
+		friends.add(friendEntity);
 
-		updateProfile(currentProfile);
+		currentProfile.setFriends(friends);
+ 		updateProfile(currentProfile);
+		save(friendEntity);
 	}
 }

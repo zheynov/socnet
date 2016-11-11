@@ -59,11 +59,12 @@ CREATE TABLE persistent_logins (
 );
 
 -- Table to store friends (ManyToMany)
-CREATE TABLE profile_profile (
-  main_profile_id BIGINT NOT NULL,
-  friends_profile_id    BIGINT NOT NULL,
-  FOREIGN KEY (main_profile_id) REFERENCES profile (id),
-  FOREIGN KEY (friends_profile_id) REFERENCES profile (id)
+CREATE TABLE friend (
+  id                 BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  main_profile_id    BIGINT             NOT NULL,
+  friends_profile_id BIGINT             NOT NULL,
+  status             TINYINT            NOT NULL DEFAULT 0,
+  FOREIGN KEY (main_profile_id) REFERENCES profile (id)
 );
 
 -- Insert data
