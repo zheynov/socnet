@@ -2,8 +2,6 @@ package by.zheynov.socnet.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Profile data transfer object.
@@ -307,6 +305,5 @@ public class ProfileDTO implements Serializable
 	{
 		this.userDTO = userDTO;
 	}
-
 
 }

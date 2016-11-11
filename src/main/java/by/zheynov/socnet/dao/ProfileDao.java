@@ -2,7 +2,6 @@ package by.zheynov.socnet.dao;
 
 import java.util.List;
 
-import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
@@ -63,6 +62,8 @@ public interface ProfileDao
 
 	/**
 	 * Retrieves a list of ProfileEntity objects.
+	 *
+	 * @param profileId the Id
 	 *
 	 * @return the List<profileEntity>
 	 */

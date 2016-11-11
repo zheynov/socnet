@@ -23,7 +23,7 @@ public class FriendDTO implements Serializable
 	 *
 	 * @param status New value of status.
 	 */
-	public void setStatus(FriendRequestApprovalStatus status)
+	public void setStatus(final FriendRequestApprovalStatus status)
 	{
 		this.status = status;
 	}

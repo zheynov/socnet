@@ -1,7 +1,6 @@
 package by.zheynov.socnet.service.impl;
 
 import by.zheynov.socnet.dao.ProfileDao;
-import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.service.ProfileService;
 
@@ -9,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -127,7 +125,7 @@ public class ProfileServiceImpl implements ProfileService
 	 *
 	 * @return list of entities
 	 */
-	public List<ProfileEntity> getAllTheFriendProfiles(Long profileId)
+	public List<ProfileEntity> getAllTheFriendProfiles(final Long profileId)
 	{
 		return profileDao.getAllTheFriendProfiles(profileId);
 	}

@@ -2,7 +2,6 @@ package by.zheynov.socnet.service;
 
 import java.util.List;
 
-import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**

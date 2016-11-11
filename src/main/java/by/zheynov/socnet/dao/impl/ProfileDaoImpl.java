@@ -103,9 +103,11 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	/**
 	 * Retrieves a list of FriendEntity objects.
 	 *
+	 * @param profileId the Id
+	 *
 	 * @return the List<friendEntity>
 	 */
-	public List<ProfileEntity> getAllTheFriendProfiles(Long profileId)
+	public List<ProfileEntity> getAllTheFriendProfiles(final Long profileId)
 	{
 		Query query = getCurrentSession().createQuery("FROM FriendEntity WHERE main_profile_id = :profileId");
 		query.setParameter("profileId", profileId);

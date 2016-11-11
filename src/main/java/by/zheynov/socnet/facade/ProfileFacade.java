@@ -2,9 +2,7 @@ package by.zheynov.socnet.facade;
 
 import java.util.List;
 
-import by.zheynov.socnet.dto.FriendDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
-import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
  * Profile facade interface.
