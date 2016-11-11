@@ -53,7 +53,7 @@
                                         </tr>
                                         <c:forEach items="${allTheProfiles}" var="profile">
                                             <tr>
-                                                <th scope="row"><a href="/addfriend/${pageContext.request.userPrincipal.name},${profile.profileID}"> Добавить </a>
+                                                <th scope="row"><a href="/addfriend/${pageContext.request.userPrincipal.name}&${profile.profileID}"> Добавить </a>
                                                 </th>
                                                 <td>${profile.lastname} ${profile.firstname}</td>
                                                 <td>${profile.age}</td>

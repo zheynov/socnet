@@ -31,30 +31,10 @@ public class FriendEntity
 	private ProfileEntity currentProfileEntity;
 
 	@Column(name = "friends_profile_id")
-	private ProfileEntity friendProfileEntity;
+	private Long friendProfileEntity;
 
 	@Column(name = "status")
 	private boolean status;
-
-	/**
-	 * Sets new friendProfileEntity.
-	 *
-	 * @param friendProfileEntity New value of friendProfileEntity.
-	 */
-	public void setFriendProfileEntity(ProfileEntity friendProfileEntity)
-	{
-		this.friendProfileEntity = friendProfileEntity;
-	}
-
-	/**
-	 * Gets friendProfileEntity.
-	 *
-	 * @return Value of friendProfileEntity.
-	 */
-	public ProfileEntity getFriendProfileEntity()
-	{
-		return friendProfileEntity;
-	}
 
 	/**
 	 * Sets new status.
@@ -64,6 +44,36 @@ public class FriendEntity
 	public void setStatus(boolean status)
 	{
 		this.status = status;
+	}
+
+	/**
+	 * Sets new id.
+	 *
+	 * @param id New value of id.
+	 */
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
+
+	/**
+	 * Gets friendProfileEntity.
+	 *
+	 * @return Value of friendProfileEntity.
+	 */
+	public Long getFriendProfileEntity()
+	{
+		return friendProfileEntity;
+	}
+
+	/**
+	 * Gets currentProfileEntity.
+	 *
+	 * @return Value of currentProfileEntity.
+	 */
+	public ProfileEntity getCurrentProfileEntity()
+	{
+		return currentProfileEntity;
 	}
 
 	/**
@@ -87,23 +97,13 @@ public class FriendEntity
 	}
 
 	/**
-	 * Gets currentProfileEntity.
+	 * Sets new friendProfileEntity.
 	 *
-	 * @return Value of currentProfileEntity.
+	 * @param friendProfileEntity New value of friendProfileEntity.
 	 */
-	public ProfileEntity getCurrentProfileEntity()
+	public void setFriendProfileEntity(Long friendProfileEntity)
 	{
-		return currentProfileEntity;
-	}
-
-	/**
-	 * Sets new id.
-	 *
-	 * @param id New value of id.
-	 */
-	public void setId(Long id)
-	{
-		this.id = id;
+		this.friendProfileEntity = friendProfileEntity;
 	}
 
 	/**

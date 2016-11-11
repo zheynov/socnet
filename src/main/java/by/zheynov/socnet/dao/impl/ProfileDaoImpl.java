@@ -87,7 +87,7 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	{
 		FriendEntity friendEntity = new FriendEntity();
 		friendEntity.setCurrentProfileEntity(currentProfile);
-		friendEntity.setFriendProfileEntity(newFriend);
+		friendEntity.setFriendProfileEntity(newFriend.getId());
 
 		Set<FriendEntity> friends = currentProfile.getFriends();
 		friends.add(friendEntity);

@@ -52,7 +52,7 @@ public class FriendController
 	@RequestMapping(value = "/addfriend/{friendRequest}", method = RequestMethod.GET)
 	public String manageuserInfo(final Model model, @PathVariable(value = "friendRequest") final String friendRequestString)
 	{
-		String[] twoWordsFromfriendRequestString = friendRequestString.split(",");
+		String[] twoWordsFromfriendRequestString = friendRequestString.split("&");
 		String currentUsername = twoWordsFromfriendRequestString[0];
 		String newFriendID = twoWordsFromfriendRequestString[1];
 
