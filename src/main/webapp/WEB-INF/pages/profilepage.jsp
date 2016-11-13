@@ -22,7 +22,8 @@
                     <li><a href="/friends"><spring:message code="welcome.page.text.friends"/></a></li>
                     <li><a href="#messages" data-toggle="tab"><spring:message code="welcome.page.text.mesagges"/></a></li>
                     <li><a href="/photoes"><spring:message code="welcome.page.text.photoes"/></a></li>
-                    <li class="active"><a href="#profile" data-toggle="tab"><spring:message code="welcome.page.text.profile"/></a></li>
+                    <li class="active"><a href="#profile" data-toggle="tab"><spring:message code="welcome.page.text.profile"/></a>
+                    </li>
                     <li><a href="#contact" data-toggle="tab"><spring:message code="welcome.page.text.contacts"/></a></li>
                     <li><a href="#about" data-toggle="tab"><spring:message code="welcome.page.text.about"/></a></li>
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
@@ -31,7 +32,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div  id="wall">
+                    <div id="wall" style="margin-left: 200px">
 
                     </div>
 
@@ -40,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="about">
+                    <div class="tab-pane" id="about" style="margin-left: 200px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
@@ -62,28 +63,28 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="contact">
-                        <div class="" style="margin-left: 200px">
-                            <h1><spring:message code="welcome.page.text.contacts"/></h1>
-                            <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
-                            <p>
-                                SaM Solutions Belarus <br/>
-                                ул.Филимонова, 15,<br/>
-                                Минск, 220037, Республика Беларусь <br/>
-                            </p>
-                            <p>
-                                +375-17-3091709<br/>
-                                +375-17-3091717
-                            </p>
-                            <br/>
-                            <p><a href="mailto:admin@admin.com">Задавайте вопросы по электронной почте</a></p>
-                        </div>
+                    <div class="tab-pane" id="contact" style="margin-left: 200px">
+
+                        <h1><spring:message code="welcome.page.text.contacts"/></h1>
+                        <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
+                        <p>
+                            SaM Solutions Belarus <br/>
+                            ул.Филимонова, 15,<br/>
+                            Минск, 220037, Республика Беларусь <br/>
+                        </p>
+                        <p>
+                            +375-17-3091709<br/>
+                            +375-17-3091717
+                        </p>
+                        <br/>
+                        <p><a href="mailto:admin@admin.com">Задавайте вопросы по электронной почте</a></p>
                     </div>
+
 
                     <div class="tab-pane active" id="profile">
 
-                        <div style="margin-left: 250px">
-                            <h2><spring:message code="welcome.page.text.profile"/> </h2>
+                        <div style="margin-left: 200px">
+                            <h2><spring:message code="welcome.page.text.profile"/></h2>
 
                             <p>
                                 <b> Firstname: </b> ${profileDTO.firstname} <br/>

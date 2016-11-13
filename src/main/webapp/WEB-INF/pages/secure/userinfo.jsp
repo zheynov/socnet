@@ -31,8 +31,9 @@
                     </c:if>
 
                 </ul>
+
                 <div class="tab-content">
-                    <div  id="wall">
+                    <div  id="wall" style="margin-left: 200px">
 
                     </div>
 
@@ -90,8 +91,6 @@
 
                     <div class="tab-pane active" id="admin"  style="margin-left: 250px" >
 
-
-
                             <h3 class="h3"> User credentials: </h3>
 
                             <b>Email: </b> ${userDTO.email} <br/>
@@ -106,9 +105,6 @@
 
                             <p> <a href="/admin/"><spring:message code="admin.page.text.backtomain"/></a>
                         </div>
-
-
-
 
                 </div>
 

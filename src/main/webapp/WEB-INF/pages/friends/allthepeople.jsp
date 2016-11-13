@@ -31,9 +31,9 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall">
+                    <div class="tab-pane" id="wall" style="margin-left: 200px">
                     </div>
-                    <div class="tab-pane active" id="friends" style="margin-left: 250px">
+                    <div class="tab-pane active" id="friends" style="margin-left: 200px">
 
                         <p><a href="/friends">
                             <button type="button" class="btn btn-default btn-lg btn-block">
@@ -41,7 +41,7 @@
                         </a></p>
                         <br/> <br/>
 
-                        <table id="friendsTable" class="table">
+                        <table class="table">
                             <tr>
                                 <th>#</th>
                                 <th><spring:message code="profile.page.text.fullname"/></th>
@@ -70,7 +70,7 @@
 
                     </div>
 
-                    <div class="tab-pane" id="about">
+                    <div class="tab-pane" id="about" style="margin-left: 200px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
@@ -78,14 +78,14 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="messages">
+                    <div class="tab-pane" id="messages" style="margin-left: 200px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.mesagges"/></h1>
                             <p>Здесь будут отображаться сообщения</p>
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="photoes">
+                    <div class="tab-pane" id="photoes" style="margin-left: 200px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.photoes"/></h1>
                             <p>Здесь будут отображаться фотографии</p>
@@ -110,14 +110,14 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="profile">
-
-                        <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
-                        <div class="tab-pane" id="admin">
-                            </c:if>
-                        </div>
-
+                    <div class="tab-pane" id="profile" style="margin-left: 200px">
                     </div>
+
+                    <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
+                        <div class="tab-pane" id="admin">
+                        </div>
+                    </c:if>
+
 
                 </div>
             </div>

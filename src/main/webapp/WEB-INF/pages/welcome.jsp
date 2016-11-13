@@ -31,7 +31,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="wall">
+                    <div class="tab-pane active" id="wall" style="margin-left: 200px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.wall"/></h1>
                             <p>Скоро тут будут отображаться постыыы!!</p>
@@ -72,15 +72,15 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="photoes">
+                    <div class="tab-pane" id="photoes" style="margin-left: 200px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.photoes"/></h1>
                             <p>Здесь будут отображаться фотографии</p>
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="contact">
-                        <div class="" style="margin-left: 200px">
+                    <div class="tab-pane" id="contact" style="margin-left: 200px">
+                        <div class="">
                             <h1><spring:message code="welcome.page.text.contacts"/></h1>
                             <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
                             <p>
@@ -107,7 +107,6 @@
                     <div class="tab-pane" id="admin">
                         <p>
                         <div style="margin-left: 200px">
-
 
                         </div>
                         </c:if>

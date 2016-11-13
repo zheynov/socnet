@@ -31,7 +31,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div id="wall">
+                    <div id="wall" style="margin-left: 200px">
 
                     </div>
 

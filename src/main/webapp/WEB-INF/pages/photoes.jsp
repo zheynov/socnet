@@ -30,7 +30,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall">
+                    <div class="tab-pane" id="wall" style="margin-left: 200px">
 
                     </div>
                     <div class="tab-pane" id="friends">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane active" id="photoes">
+                    <div class="tab-pane active" id="photoes" style="margin-left: 200px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.photoes"/></h1>
                             <p>Здесь будут отображаться фотографии</p>

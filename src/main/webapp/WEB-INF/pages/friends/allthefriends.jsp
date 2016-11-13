@@ -31,9 +31,9 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall">
+                    <div class="tab-pane" id="wall" style="margin-left: 200px">
                     </div>
-                    <div class="tab-pane active" id="friends" style="margin-left: 250px">
+                    <div class="tab-pane active" id="friends" style="margin-left: 200px">
 
                         <p>
                             <a href="/friends">
@@ -102,32 +102,31 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="contact">
-                        <div class="" style="margin-left: 200px">
-                            <h1><spring:message code="welcome.page.text.contacts"/></h1>
-                            <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
-                            <p>
-                                SaM Solutions Belarus <br/>
-                                ул.Филимонова, 15,<br/>
-                                Минск, 220037, Республика Беларусь <br/>
-                            </p>
-                            <p>
-                                +375-17-3091709<br/>
-                                +375-17-3091717
-                            </p>
-                            <br/>
-                            <p><a href="mailto:admin@admin.com">Задавайте вопросы по электронной почте</a></p>
-                        </div>
+                    <div class="tab-pane" id="contact" style="margin-left: 200px">
+
+                        <h1><spring:message code="welcome.page.text.contacts"/></h1>
+                        <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
+                        <p>
+                            SaM Solutions Belarus <br/>
+                            ул.Филимонова, 15,<br/>
+                            Минск, 220037, Республика Беларусь <br/>
+                        </p>
+                        <p>
+                            +375-17-3091709<br/>
+                            +375-17-3091717
+                        </p>
+                        <br/>
+                        <p><a href="mailto:admin@admin.com">Задавайте вопросы по электронной почте</a></p>
+
                     </div>
 
                     <div class="tab-pane" id="profile">
-
-                        <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
-                        <div class="tab-pane" id="admin">
-                            </c:if>
-                        </div>
-
                     </div>
+
+                    <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
+                        <div class="tab-pane" id="admin">
+                        </div>
+                    </c:if>
 
                 </div>
             </div>

@@ -32,7 +32,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall">
+                    <div class="tab-pane" id="wall" style="margin-left: 200px">
 
                     </div>
                     <div class="tab-pane" id="friends">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="about">
+                    <div class="tab-pane" id="about" style="margin-left: 200px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
@@ -64,27 +64,27 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="contact">
-                        <div class="" style="margin-left: 200px">
-                            <h1><spring:message code="welcome.page.text.contacts"/></h1>
-                            <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
-                            <p>
-                                SaM Solutions Belarus <br/>
-                                ул.Филимонова, 15,<br/>
-                                Минск, 220037, Республика Беларусь <br/>
-                            </p>
-                            <p>
-                                +375-17-3091709<br/>
-                                +375-17-3091717
-                            </p>
-                            <br/>
-                            <p><a href="mailto:admin@admin.com">Задавайте вопросы по электронной почте</a></p>
-                        </div>
+                    <div class="tab-pane" id="contact" style="margin-left: 200px">
+
+                        <h1><spring:message code="welcome.page.text.contacts"/></h1>
+                        <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
+                        <p>
+                            SaM Solutions Belarus <br/>
+                            ул.Филимонова, 15,<br/>
+                            Минск, 220037, Республика Беларусь <br/>
+                        </p>
+                        <p>
+                            +375-17-3091709<br/>
+                            +375-17-3091717
+                        </p>
+                        <br/>
+                        <p><a href="mailto:admin@admin.com">Задавайте вопросы по электронной почте</a></p>
                     </div>
 
-                    <div class="tab-pane active" id="profile">
 
-                        <div class="main-login main-center" style="margin-left: 250px; width: 300px">
+                    <div class="tab-pane active" id="profile" style="margin-left: 200px;">
+
+                        <div class="main-login main-center"  style="width: 300px">
                             <form:form method="POST" action="/editprofile" commandName="profileDTO" class="form-horizontal">
 
                                 <form:hidden path="profileID"/>
@@ -118,8 +118,8 @@
 
                                 <br/>
 
-                                Sex:  <form:radiobutton path="sex" value="male"/> male
-                                <form:radiobutton path="sex" value="female"/>  female
+                                Sex: <form:radiobutton path="sex" value="male"/> male
+                                <form:radiobutton path="sex" value="female"/> female
                                 <br/> <br/>
 
                                 <form:errors path="phoneNumber"/>
