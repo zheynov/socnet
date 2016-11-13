@@ -1,15 +1,12 @@
 package by.zheynov.socnet.dao.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import by.zheynov.socnet.dao.ProfileDao;
-import by.zheynov.socnet.entity.FriendEntity;
-import by.zheynov.socnet.entity.FriendRequestApprovalStatus;
+
 import by.zheynov.socnet.entity.ProfileEntity;
 
 import org.hibernate.Criteria;
-import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -78,40 +75,4 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 		return allTheUsers;
 	}
 
-	/**
-	 * Adds new friend to user's friends set using their profiles.
-	 *
-	 * @param currentProfile the entity
-	 * @param newFriend      the entity
-	 */
-
-	public void addFriend(final ProfileEntity currentProfile, final ProfileEntity newFriend)
-	{
-		FriendEntity friendEntity = new FriendEntity();
-		friendEntity.setCurrentProfileEntity(currentProfile);
-		friendEntity.setFriendProfileEntity(newFriend.getId());
-		friendEntity.setStatus(FriendRequestApprovalStatus.PENDING_REQUEST);
-
-		Set<FriendEntity> friends = currentProfile.getFriends();
-		friends.add(friendEntity);
-
-		currentProfile.setFriends(friends);
-		updateProfile(currentProfile);
-		save(friendEntity);
-	}
-
-	/**
-	 * Retrieves a list of FriendEntity objects.
-	 *
-	 * @param profileId the Id
-	 *
-	 * @return the List<friendEntity>
-	 */
-	public List<ProfileEntity> getAllTheFriendProfiles(final Long profileId)
-	{
-		Query query = getCurrentSession().createQuery("FROM FriendEntity WHERE main_profile_id = :profileId");
-		query.setParameter("profileId", profileId);
-		List list = query.list();
-		return list;
-	}
 }

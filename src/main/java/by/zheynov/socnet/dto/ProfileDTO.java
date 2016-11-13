@@ -282,7 +282,7 @@ public class ProfileDTO implements Serializable
 		result = HASH_NUMBER * result + (getSex() != null ? getSex().hashCode() : 0);
 		result = HASH_NUMBER * result + (getCity() != null ? getCity().hashCode() : 0);
 		result = HASH_NUMBER * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
-		result = HASH_NUMBER * result + getUserDTO().hashCode();
+	//	result = HASH_NUMBER * result + getUserDTO().hashCode();
 		return result;
 	}
 

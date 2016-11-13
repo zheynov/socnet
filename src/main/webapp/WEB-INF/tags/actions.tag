@@ -1,8 +1,14 @@
 <html>
 <head>
-
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel='stylesheet' href='/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
+
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 
     <jsp:include page="/WEB-INF/pages/secure/navbar.jsp"/>
 

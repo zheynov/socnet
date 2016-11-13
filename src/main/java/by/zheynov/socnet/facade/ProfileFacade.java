@@ -1,6 +1,7 @@
 package by.zheynov.socnet.facade;
 
 import java.util.List;
+import java.util.Set;
 
 import by.zheynov.socnet.dto.ProfileDTO;
 
@@ -52,20 +53,14 @@ public interface ProfileFacade
 	List<ProfileDTO> getAllTheProfiles();
 
 	/**
-	 * Adds new friend to user's friends set using their profiles.
+	 * Retrieves a set of ProfileDTO objects.
 	 *
-	 * @param currentProfileDTO the dto
-	 * @param newFriend         the dto
-	 */
-	void addFriend(ProfileDTO currentProfileDTO, ProfileDTO newFriend);
-
-	/**
-	 * Retrieves a list of ProfileDTO objects.
-	 *
-	 * @param profileId the Id
+	 * @param currentLoggedUserProfileId the Id
 	 *
 	 * @return list of dto's
 	 */
-	List<ProfileDTO> getAllTheFriendProfiles(Long profileId);
+	Set<ProfileDTO> getAllTheProfilesOfFriends(Long currentLoggedUserProfileId);
+
+
 
 }

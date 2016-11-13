@@ -5,7 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Friends</title>
+    <title><spring:message code="welcome.page.text.friends"/></title>
     <action:actions/>
 </head>
 <body>
@@ -34,44 +34,58 @@
                     <div class="tab-pane" id="wall">
                     </div>
                     <div class="tab-pane active" id="friends" style="margin-left: 200px">
-
-                        <p><a href="/friends">
-                            <button type="button" class="btn btn-default btn-lg btn-block">
-                                <spring:message code="friend.page.text.friend.managefriends"/></button>
-                        </a></p>
+                        <p>
+                            <a href="/friends">
+                                <button type="button" class="btn btn-default btn-lg btn-block">
+                                    <spring:message code="friend.page.text.friend.managefriends"/></button>
+                            </a>
+                        </p>
                         <br/> <br/>
+                        <c:choose>
+                            <c:when test="${allThePendingRequests.size()==0}">
+                                <div class="warning">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <spring:message code="friend.page.text.friend.nopendingrequests"/>
+                                </div>
 
-                        <table id="friendsTable" class="table">
-                            <tr>
-                                <th>#</th>
-                                <th><spring:message code="profile.page.text.fullname"/></th>
-                                <th><spring:message code="profile.page.text.age"/></th>
-                                <th><spring:message code="profile.page.text.city"/></th>
-                                <th><spring:message code="profile.page.text.gender"/></th>
-                            </tr>
-                            <c:forEach items="${allTheProfiles}" var="profile">
-                                <c:if test="${pageContext.request.userPrincipal.name != profile.userDTO.username}">
+
+                            </c:when>
+                            <c:otherwise>
+                                <table id="friendsTable" class="table">
                                     <tr>
-                                        <th scope="row"><a
-                                                href="/addfriend/${pageContext.request.userPrincipal.name}&${profile.profileID}">
-                                            <spring:message code="friend.page.text.friend.addfriend"/> </a>
-                                        </th>
-
-
-                                        <td>${profile.firstname} ${profile.lastname}</td>
-                                        <td>${profile.age}</td>
-                                        <td>${profile.city}</td>
-                                        <td>${profile.sex}</td>
+                                        <th><spring:message code="friend.page.text.friend.good"/></th>
+                                        <th><spring:message code="friend.page.text.friend.bad"/></th>
+                                        <th><spring:message code="profile.page.text.fullname"/></th>
+                                        <th><spring:message code="profile.page.text.age"/></th>
+                                        <th><spring:message code="profile.page.text.city"/></th>
+                                        <th><spring:message code="profile.page.text.gender"/></th>
                                     </tr>
-                                </c:if>
-                            </c:forEach>
-                        </table>
+                                    <c:forEach items="${allThePendingRequests}" var="friend">
+                                        <tr>
+                                            <th scope="row"><a
+                                                    href="/approve/${pageContext.request.userPrincipal.name}&${friend.profileDTO.profileID}">
+                                                <spring:message code="friend.page.text.friend.approverequest"/> </a>
+                                            </th>
+                                            <th scope="row"><a
+                                                    href="/reject/${pageContext.request.userPrincipal.name}&${friend.profileDTO.profileID}">
+                                                <spring:message code="friend.page.text.friend.rejectrequest"/> </a>
+                                            </th>
+                                            <td>${friend.profileDTO.firstname} ${friend.profileDTO.lastname}</td>
+                                            <td>${friend.profileDTO.age}</td>
+                                            <td>${friend.profileDTO.city}</td>
+                                            <td>${friend.profileDTO.sex}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                            </c:otherwise>
+                        </c:choose>
                         <br/>
+
 
                     </div>
 
                     <div class="tab-pane" id="about">
-                        <div class="">
+                        <div class="" style="margin-left: 200px">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
                             <p> Мы - это социальная сеть! </p>
@@ -79,7 +93,7 @@
                     </div>
 
                     <div class="tab-pane" id="messages">
-                        <div class="">
+                        <div class="" style="margin-left: 200px">
                             <h1><spring:message code="welcome.page.text.mesagges"/></h1>
                             <p>Здесь будут отображаться сообщения</p>
                         </div>

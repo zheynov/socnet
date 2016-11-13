@@ -1,7 +1,9 @@
 package by.zheynov.socnet.facade.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import by.zheynov.socnet.dto.ProfileDTO;
 
@@ -84,35 +86,22 @@ public class ProfileFacadeImpl implements ProfileFacade
 	}
 
 	/**
-	 * Adds new friend to user's friends set using their profiles.
+	 * Retrieves a set of ProfileDTO objects.
 	 *
-	 * @param currentProfileDTO the dto
-	 * @param newFriend         the dto
-	 */
-
-	public void addFriend(final ProfileDTO currentProfileDTO, final ProfileDTO newFriend)
-	{
-		ProfileEntity currentProfileEntity = conversionService.convert(currentProfileDTO, ProfileEntity.class);
-		ProfileEntity newFriendProfileEntity = conversionService.convert(newFriend, ProfileEntity.class);
-		profileService.addFriend(currentProfileEntity, newFriendProfileEntity);
-	}
-
-	/**
-	 * Retrieves a list of ProfileDTO objects.
-	 *
-	 * @param profileId the Id
+	 * @param currentLoggedUserProfileId the Id
 	 *
 	 * @return list of dto's
 	 */
-	public List<ProfileDTO> getAllTheFriendProfiles(final Long profileId)
+	public Set<ProfileDTO> getAllTheProfilesOfFriends(final Long currentLoggedUserProfileId)
 	{
-		List<ProfileDTO> allTheFriendsDTO = new ArrayList<ProfileDTO>();
+		Set<ProfileDTO> allTheProfilesDTO = new HashSet<ProfileDTO>();
 
-		for (ProfileEntity profileEntity : profileService.getAllTheFriendProfiles(profileId))
+		for (ProfileEntity profileEntity : profileService.getAllTheProfilesOfFriends(currentLoggedUserProfileId))
 		{
-			final ProfileDTO profileDTO = conversionService.convert(profileEntity, ProfileDTO.class);
-			allTheFriendsDTO.add(profileDTO);
+			final ProfileDTO friendProfileDTO = conversionService.convert(profileEntity, ProfileDTO.class);
+			allTheProfilesDTO.add(friendProfileDTO);
 		}
-		return allTheFriendsDTO;
+		return allTheProfilesDTO;
 	}
+
 }

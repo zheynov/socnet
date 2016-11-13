@@ -1,6 +1,9 @@
 package by.zheynov.socnet.service.impl;
 
+import by.zheynov.socnet.dao.FriendDao;
 import by.zheynov.socnet.dao.ProfileDao;
+import by.zheynov.socnet.entity.FriendEntity;
+import by.zheynov.socnet.entity.FriendRequestApprovalStatus;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.service.ProfileService;
 
@@ -8,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.context.MessageSource;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -22,6 +26,7 @@ public class ProfileServiceImpl implements ProfileService
 {
 	private final static Logger LOGGER = Logger.getLogger(ProfileServiceImpl.class);
 	private ProfileDao    profileDao;
+	private FriendDao     friendDao;
 	private MessageSource messageSource;
 
 	/**
@@ -86,15 +91,26 @@ public class ProfileServiceImpl implements ProfileService
 	}
 
 	/**
-	 * Adds new friend to user's friends set using their profiles.
+	 * Retrieves a list of ProfileEntity objects.
 	 *
-	 * @param currentProfile the entity
-	 * @param newFriend      the entity
+	 * @param currentLoggedUserProfileId the Id
+	 *
+	 * @return list of entities
 	 */
 	@Transactional
-	public void addFriend(final ProfileEntity currentProfile, final ProfileEntity newFriend)
+	public List<ProfileEntity> getAllTheProfilesOfFriends(final Long currentLoggedUserProfileId)
 	{
-		profileDao.addFriend(currentProfile, newFriend);
+		List<ProfileEntity> allTheFriendProfiles = new ArrayList<ProfileEntity>();
+
+		for (FriendEntity friendEntity : friendDao.getAllTheFriends(currentLoggedUserProfileId))
+		{
+			if (friendEntity.getStatus() == FriendRequestApprovalStatus.APPROVED_REQUEST)
+			{
+				final ProfileEntity profileEntity = profileDao.getProfileById(friendEntity.getFriendProfileEntity());
+				allTheFriendProfiles.add(profileEntity);
+			}
+		}
+		return allTheFriendProfiles;
 	}
 
 	/**
@@ -119,14 +135,12 @@ public class ProfileServiceImpl implements ProfileService
 	}
 
 	/**
-	 * Retrieves a list of ProfileEntity objects.
+	 * Sets new friendDao.
 	 *
-	 * @param profileId the Id
-	 *
-	 * @return list of entities
+	 * @param friendDao New value of friendDao.
 	 */
-	public List<ProfileEntity> getAllTheFriendProfiles(final Long profileId)
+	public void setFriendDao(final FriendDao friendDao)
 	{
-		return profileDao.getAllTheFriendProfiles(profileId);
+		this.friendDao = friendDao;
 	}
 }

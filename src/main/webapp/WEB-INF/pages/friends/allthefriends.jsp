@@ -7,7 +7,6 @@
 <head>
     <title><spring:message code="welcome.page.text.friends"/></title>
     <action:actions/>
-
 </head>
 <body>
 
@@ -31,58 +30,58 @@
                     </c:if>
 
                 </ul>
-                <div class="tab-content">
+                <div class="tab-content" style="margin-left: 100px">
                     <div class="tab-pane" id="wall">
                     </div>
-                    <div class="tab-pane active" id="friends">
+                    <div class="tab-pane active" id="friends" style="margin-left: 100px">
 
-                        <p></p>
+                        <p>
+                            <a href="/friends">
+                                <button type="button" class="btn btn-default btn-lg btn-block">
+                                    <spring:message code="friend.page.text.friend.managefriends"/></button>
+                            </a>
+                        </p>
+                        <br/> <br/>
 
-                        <div style="margin-left: 100px">
-
-                            <div class="row">
-                                <div class="col-sm-10 col-sm-offset-1">
-
-
-                                    <c:choose>
-                                        <c:when test="${allTheFriends.size()==0}">
-                                            У вас нима друзей </c:when>
-                                        <c:otherwise>
-                                            <table id="friendsTable" class="table">
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th><spring:message code="profile.page.text.fullname"/></th>
-                                                    <th><spring:message code="profile.page.text.age"/></th>
-                                                    <th><spring:message code="profile.page.text.city"/></th>
-                                                    <th><spring:message code="profile.page.text.gender"/></th>
-                                                </tr>
-                                                <c:forEach items="${allTheFriends}" var="friend">
-                                                    <tr>
-                                                        <th scope="row"><a
-                                                                href="/delete/friend/${pageContext.request.userPrincipal.name}&${friend.profileID}">
-                                                            Удалить </a>
-                                                        </th>
-                                                        <td>${friend.firstname} ${friend.lastname}</td>
-                                                        <td>${friend.age}</td>
-                                                        <td>${friend.city}</td>
-                                                        <td>${friend.sex}</td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </table>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <br/>
-                                    <p><a href="/friends"> Управление разделом "Друзья" </a>
-                                    </p>
+                        <c:choose>
+                            <c:when test="${allTheFriends.size()==0}">
+                                <div class="warning">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <spring:message code="friend.page.text.friend.nofriends"/>
                                 </div>
-                            </div>
-                        </div>
+                                <p></p>
 
+                            </c:when>
+                            <c:otherwise>
+                                <table id="friendsTable" class="table">
+                                    <tr>
+                                        <th>#</th>
+                                        <th><spring:message code="profile.page.text.fullname"/></th>
+                                        <th><spring:message code="profile.page.text.age"/></th>
+                                        <th><spring:message code="profile.page.text.city"/></th>
+                                        <th><spring:message code="profile.page.text.gender"/></th>
+                                    </tr>
+                                    <c:forEach items="${allTheFriends}" var="friend">
+                                        <tr>
+                                            <th scope="row"><a
+                                                    href="/delete/friend/${pageContext.request.userPrincipal.name}&${friend.profileID}">
+                                                <spring:message code="friend.page.text.friend.deleteafriend"/> </a>
+                                            </th>
+                                            <td>${friend.firstname} ${friend.lastname}</td>
+                                            <td>${friend.age}</td>
+                                            <td>${friend.city}</td>
+                                            <td>${friend.sex}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                            </c:otherwise>
+                        </c:choose>
+                        <br/>
 
                     </div>
 
                     <div class="tab-pane" id="about">
-                        <div class="">
+                        <div class="" style="margin-left: 200px">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
                             <p> Мы - это социальная сеть! </p>
@@ -90,7 +89,7 @@
                     </div>
 
                     <div class="tab-pane" id="messages">
-                        <div class="">
+                        <div class="" style="margin-left: 200px">
                             <h1><spring:message code="welcome.page.text.mesagges"/></h1>
                             <p>Здесь будут отображаться сообщения</p>
                         </div>

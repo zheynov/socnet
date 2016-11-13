@@ -5,11 +5,10 @@
 
 <html>
 <head>
-    <title>Admin dashboard</title>
+    <title><spring:message code="welcome.page.text.admin.dashboard"/></title>
     <action:actions/>
 </head>
 <body>
-
 
 <div class="container">
     <div class="row">
@@ -32,17 +31,12 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall">
-                        <div class="">
-                            <h1><spring:message code="welcome.page.text.wall"/></h1>
-                            <p>Скоро тут будут отображаться посты</p>
+                    <div id="wall">
 
-                        </div>
                     </div>
+
                     <div class="tab-pane" id="friends">
                         <div class="">
-                            <h1><spring:message code="welcome.page.text.friends"/></h1>
-                            <p> Тут будет отображаться раздел о друзьях Юзера </p>
                         </div>
                     </div>
 
@@ -134,7 +128,8 @@
                                         <td>${profile.city}</td>
                                         <td>${profile.phoneNumber}</td>
                                         <td>${profile.sex}</td>
-                                        <td><a href="/admin/manageuserinfo/${profile.profileID}"> Manage user info </a></td>
+                                        <td><a href="/admin/manageuserinfo/${profile.profileID}"> <spring:message
+                                                code="admin.page.text.manageuserinfo"/> </a></td>
                                     </tr>
                                 </c:forEach>
 

@@ -6,7 +6,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Profile edition</title>
+    <title><spring:message code="profile.page.text.edition"/></title>
     <action:actions/>
 </head>
 <body>
@@ -22,7 +22,8 @@
                     <li><a href="/friends"><spring:message code="welcome.page.text.friends"/></a></li>
                     <li><a href="#messages" data-toggle="tab"><spring:message code="welcome.page.text.mesagges"/></a></li>
                     <li><a href="/photoes"><spring:message code="welcome.page.text.photoes"/></a></li>
-                    <li class="active"><a href="#profile" data-toggle="tab"><spring:message code="welcome.page.text.profile"/></a></li>
+                    <li class="active"><a href="#profile" data-toggle="tab"><spring:message code="welcome.page.text.profile"/></a>
+                    </li>
                     <li><a href="#contact" data-toggle="tab"><spring:message code="welcome.page.text.contacts"/></a></li>
                     <li><a href="#about" data-toggle="tab"><spring:message code="welcome.page.text.about"/></a></li>
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
@@ -33,7 +34,7 @@
                 <div class="tab-content">
                     <div class="tab-pane" id="wall">
 
-                     </div>
+                    </div>
                     <div class="tab-pane" id="friends">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.friends"/></h1>
@@ -82,70 +83,100 @@
                     </div>
 
                     <div class="tab-pane active" id="profile">
-                        <div style="margin-left: 200px">
-                            <form:form method="POST" action="/editprofile" commandName="profileDTO">
 
-                                <table>
-                                    <form:hidden path="profileID"/>
-                                    <tr>
-                                        <td><form:input path="firstname" placeholder="firstname" size="30"/></td>
-                                        <td><form:errors path="firstname"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><form:input path="lastname" placeholder="lastname" size="30"/></td>
-                                        <td><form:errors path="lastname"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><form:input path="email" placeholder="email" size="30"/></td>
-                                        <td><form:errors path="email"/></td>
-                                    </tr>
+                        <div class="main-login main-center" style="margin-left: 200px; width: 300px">
+                            <form:form method="POST" action="/editprofile" commandName="profileDTO" class="form-horizontal">
 
-                                    <tr>
-                                        <td> Sex: <form:radiobutton path="sex" value="male"/>male
-                                            <form:radiobutton path="sex" value="female"/>female
-                                        </td>
-                                        <td><form:errors path="sex"/></td>
+                                <form:hidden path="profileID"/>
 
-                                    </tr>
-                                    <tr>
-                                        <td><form:input type="date" path="birthDate"/></td>
-                                        <td><form:errors path="birthDate"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><form:input path="age" placeholder="age" size="30"/></td>
-                                        <td><form:errors path="age"/></td>
+                                <form:errors path="firstname"/>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <form:input class="form-control" type="text" path="firstname" name="name"
+                                                id="name" placeholder="firstname"/>
+                                </div>
 
-                                    </tr>
-                                    <tr>
-                                        <td><form:input path="city" placeholder="city" size="30"/></td>
-                                        <td><form:errors path="city"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><form:input path="phoneNumber" placeholder="phoneNumber" size="30"/></td>
-                                        <td><form:errors path="phoneNumber"/></td>
-                                    </tr>
 
-                                    <tr>
-                                        <td colspan="2">
-                                            <input type="submit" value="complete"/>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <br/>
+                                <form:errors path="lastname"/>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <form:input class="form-control" type="text" path="lastname" name="name" id="name"
+                                                placeholder="lastname"/>
+                                </div>
+
+                                <br/>
+                                <form:errors path="email"/>
+                                <div class="cols-sm-10">
+                                    <div class="input-group"> <span class="input-group-addon">
+                                    <i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <form:input path="email" placeholder="email" type="text" class="form-control"
+                                                    name="email" id="email"/>
+                                    </div>
+                                </div>
+
+
+                                <br/>
+
+                                Sex: <form:radiobutton path="sex" value="male"/>male
+                                <form:radiobutton path="sex" value="female"/>female
+                                <br/>
+
+                                <form:errors path="phoneNumber"/>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                        <form:input path="phoneNumber" type="text" class="form-control" name="mobile" id="mobile"
+                                                    placeholder="phoneNumber"/>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <form:errors path="city"/>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker fa-lg" aria-hidden="true">
+                                         </i></span> <form:input path="city" placeholder="city" type="text" class="form-control"
+                                                                 name="country" id="country"/>
+                                    </div>
+                                </div>
+
+                                <br/>
+
+                                <form:errors path="birthDate"/>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <form:input path="birthDate" placeholder="city" type="date" class="form-control"
+                                                    name="name" id="name"/> <br/>
+
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <form:errors path="age"/>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <form:input path="age" placeholder="age" type="text" class="form-control"
+                                                    name="name" id="name"/>
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <button type="submit" class="btn btn-default btn-lg btn-block">Complete
+                                </button>
                             </form:form>
-
                         </div>
 
                     </div>
 
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>

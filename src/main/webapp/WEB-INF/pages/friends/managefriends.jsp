@@ -7,7 +7,6 @@
 <head>
     <title>Friends</title>
     <action:actions/>
-
 </head>
 <body>
 
@@ -34,17 +33,30 @@
                 <div class="tab-content">
                     <div class="tab-pane" id="wall">
                     </div>
-                    <div class="tab-pane active" id="friends">
 
-                        <p></p>
+                    <div class="tab-pane active" id="friends" style="margin-left: 200px">
 
-                        <div style="margin-left: 100px">
+                        <div class="container">
 
-                            <a href="/allthepeople">Показать всех людей на сайте</a> |
-                            <a href="/allthefriends">Показать всех друзей</a>
+                            <a class="button" href="/allthepeople">
 
+                                <button type="button" class="btn btn-default">
+                                    <spring:message code="friend.page.text.showallprofiles"/>
+                                </button>
+                            </a>
+
+                            <a class="button" href="/allthefriends/${pageContext.request.userPrincipal.name}">
+                                <button type="button" class="btn btn-default">
+                                    <spring:message code="friend.page.text.showallfriends"/>
+                                </button>
+                            </a>
+
+                            <a class="button" href="/pendingrequests/${pageContext.request.userPrincipal.name}">
+                                <button type="button" class="btn btn-default">
+                                    <spring:message code="friend.page.text.friend.requests"/>
+                                </button>
+                            </a>
                         </div>
-
 
                     </div>
 

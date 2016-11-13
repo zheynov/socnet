@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Profile page</title>
+    <title><spring:message code="profile.page.text.page"/></title>
     <action:actions/>
 </head>
 <body>
@@ -34,10 +34,9 @@
                     <div  id="wall">
 
                     </div>
+
                     <div class="tab-pane" id="friends">
                         <div class="">
-                            <h1><spring:message code="welcome.page.text.friends"/></h1>
-                            <p> Тут будет отображаться раздел о друзьях Юзера </p>
                         </div>
                     </div>
 

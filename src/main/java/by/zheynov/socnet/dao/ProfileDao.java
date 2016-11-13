@@ -58,15 +58,6 @@ public interface ProfileDao
 	 * @param currentProfile the entity
 	 * @param newFriend      the entity
 	 */
-	void addFriend(ProfileEntity currentProfile, ProfileEntity newFriend);
 
-	/**
-	 * Retrieves a list of ProfileEntity objects.
-	 *
-	 * @param profileId the Id
-	 *
-	 * @return the List<profileEntity>
-	 */
-	List<ProfileEntity> getAllTheFriendProfiles(Long profileId);
 
 }

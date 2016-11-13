@@ -21,7 +21,7 @@
     </bean>
 
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <mvc:resources mapping="/webjars/**" location="/webjars/"/>
 
@@ -82,6 +82,8 @@
     <bean id="profileFacade" class="by.zheynov.socnet.facade.impl.ProfileFacadeImpl"/>
 
     <bean id="userRoleFacade" class="by.zheynov.socnet.facade.impl.UserRoleFacadeImpl"/>
+
+    <bean id="friendFacade" class="by.zheynov.socnet.facade.impl.FriendFacadeImpl"/>
 
 
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">

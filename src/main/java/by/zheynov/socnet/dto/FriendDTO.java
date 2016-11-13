@@ -132,7 +132,7 @@ public class FriendDTO implements Serializable
 	public int hashCode()
 	{
 		int result = getId().hashCode();
-		result = HASH_NUMBER * result + getProfileDTO().hashCode();
+//		result = HASH_NUMBER * result + getProfileDTO().hashCode();
 		result = HASH_NUMBER * result + getFriendProfileId().hashCode();
 		result = HASH_NUMBER * result + getStatus().hashCode();
 		return result;
