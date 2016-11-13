@@ -30,10 +30,10 @@
                     </c:if>
 
                 </ul>
-                <div class="tab-content" style="margin-left: 100px">
+                <div class="tab-content">
                     <div class="tab-pane" id="wall">
                     </div>
-                    <div class="tab-pane active" id="friends" style="margin-left: 100px">
+                    <div class="tab-pane active" id="friends" style="margin-left: 250px">
 
                         <p>
                             <a href="/friends">

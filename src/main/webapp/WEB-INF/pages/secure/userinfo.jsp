@@ -88,9 +88,9 @@
                     </div>
 
 
-                    <div class="tab-pane active" id="admin">
+                    <div class="tab-pane active" id="admin"  style="margin-left: 250px" >
 
-                        <div style="margin-left: 200px">
+
 
                             <h3 class="h3"> User credentials: </h3>
 
@@ -108,7 +108,7 @@
                         </div>
 
 
-                    </div>
+
 
                 </div>
 

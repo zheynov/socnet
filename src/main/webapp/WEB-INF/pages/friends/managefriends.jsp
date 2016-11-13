@@ -34,9 +34,9 @@
                     <div class="tab-pane" id="wall">
                     </div>
 
-                    <div class="tab-pane active" id="friends" style="margin-left: 200px">
+                    <div class="tab-pane active" id="friends" style="margin-left: 250px" >
 
-                        <div class="container">
+
 
                             <a class="button" href="/allthepeople">
 
@@ -56,7 +56,7 @@
                                     <spring:message code="friend.page.text.friend.requests"/>
                                 </button>
                             </a>
-                        </div>
+
 
                     </div>
 
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="tab-pane" id="contact">
-                        <div class="" style="margin-left: 200px">
+                        <div class="" >
                             <h1><spring:message code="welcome.page.text.contacts"/></h1>
                             <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
                             <p>

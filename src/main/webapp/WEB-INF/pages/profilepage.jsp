@@ -82,7 +82,7 @@
 
                     <div class="tab-pane active" id="profile">
 
-                        <div style="margin-left: 200px">
+                        <div style="margin-left: 250px">
                             <h2><spring:message code="welcome.page.text.profile"/> </h2>
 
                             <p>

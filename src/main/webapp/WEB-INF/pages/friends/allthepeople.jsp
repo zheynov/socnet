@@ -33,7 +33,7 @@
                 <div class="tab-content">
                     <div class="tab-pane" id="wall">
                     </div>
-                    <div class="tab-pane active" id="friends" style="margin-left: 200px">
+                    <div class="tab-pane active" id="friends" style="margin-left: 250px">
 
                         <p><a href="/friends">
                             <button type="button" class="btn btn-default btn-lg btn-block">

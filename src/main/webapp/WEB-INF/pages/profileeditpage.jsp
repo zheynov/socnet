@@ -84,7 +84,7 @@
 
                     <div class="tab-pane active" id="profile">
 
-                        <div class="main-login main-center" style="margin-left: 200px; width: 300px">
+                        <div class="main-login main-center" style="margin-left: 250px; width: 300px">
                             <form:form method="POST" action="/editprofile" commandName="profileDTO" class="form-horizontal">
 
                                 <form:hidden path="profileID"/>
@@ -118,9 +118,9 @@
 
                                 <br/>
 
-                                Sex: <form:radiobutton path="sex" value="male"/>male
-                                <form:radiobutton path="sex" value="female"/>female
-                                <br/>
+                                Sex:  <form:radiobutton path="sex" value="male"/> male
+                                <form:radiobutton path="sex" value="female"/>  female
+                                <br/> <br/>
 
                                 <form:errors path="phoneNumber"/>
                                 <div class="cols-sm-10">
