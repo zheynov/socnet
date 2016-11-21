@@ -2,7 +2,10 @@ package by.zheynov.socnet.dao;
 
 import java.util.List;
 
+import org.hibernate.query.Query;
+
 import by.zheynov.socnet.entity.FriendEntity;
+import by.zheynov.socnet.entity.FriendRequestApprovalStatus;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
@@ -18,7 +21,7 @@ public interface FriendDao
 	 * Adds a friend.
 	 *
 	 * @param currentProfile the entity
-	 * @param newFriend the entity
+	 * @param newFriend      the entity
 	 */
 	void addFriend(ProfileEntity currentProfile, ProfileEntity newFriend);
 
@@ -38,7 +41,14 @@ public interface FriendDao
 	 *
 	 * @return the List<friendEntity>
 	 */
-	List<FriendEntity> getAllThePendingRequests(Long profileId);
+	List<FriendEntity> getAllThePendingRequestsForCurrentUser(Long profileId);
+
+	/**
+	 * Retrieves a list of FriendEntity objects with status PENDING_REQUEST.
+	 *
+	 * @return the List<friendEntity>
+	 */
+	List<FriendEntity> getAllThePendingRequests();
 
 	/**
 	 * Deletes a frend with friend's frendProfileId.

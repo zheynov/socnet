@@ -204,13 +204,28 @@ public class ProfileDTO implements Serializable
 		return age;
 	}
 
+
+
 	/**
-	 * Compares this ProfileDTO object to the specified one - Object o.
+	 * Gets userDTO.
 	 *
-	 * @param o
-	 *
-	 * @return true if objects are the same, otherwise false
+	 * @return Value of userDTO.
 	 */
+	public UserDTO getUserDTO()
+	{
+		return userDTO;
+	}
+
+	/**
+	 * Sets new userDTO.
+	 *
+	 * @param userDTO New value of userDTO.
+	 */
+	public void setUserDTO(final UserDTO userDTO)
+	{
+		this.userDTO = userDTO;
+	}
+
 	@Override
 	public boolean equals(final Object o)
 	{
@@ -225,7 +240,7 @@ public class ProfileDTO implements Serializable
 
 		ProfileDTO that = (ProfileDTO) o;
 
-		if (!getProfileID().equals(that.getProfileID()))
+		if (getProfileID() != null ? !getProfileID().equals(that.getProfileID()) : that.getProfileID() != null)
 		{
 			return false;
 		}
@@ -237,7 +252,7 @@ public class ProfileDTO implements Serializable
 		{
 			return false;
 		}
-		if (!getEmail().equals(that.getEmail()))
+		if (getEmail() != null ? !getEmail().equals(that.getEmail()) : that.getEmail() != null)
 		{
 			return false;
 		}
@@ -261,49 +276,22 @@ public class ProfileDTO implements Serializable
 		{
 			return false;
 		}
-		return getUserDTO().equals(that.getUserDTO());
+		return getUserDTO() != null ? getUserDTO().equals(that.getUserDTO()) : that.getUserDTO() == null;
 
 	}
 
-	/**
-	 * Calculates a hashcode for this object.
-	 *
-	 * @return the hash
-	 */
 	@Override
 	public int hashCode()
 	{
-		int result = getProfileID().hashCode();
+		int result = getProfileID() != null ? getProfileID().hashCode() : 0;
 		result = HASH_NUMBER * result + (getFirstname() != null ? getFirstname().hashCode() : 0);
 		result = HASH_NUMBER * result + (getLastname() != null ? getLastname().hashCode() : 0);
-		result = HASH_NUMBER * result + getEmail().hashCode();
+		result = HASH_NUMBER * result + (getEmail() != null ? getEmail().hashCode() : 0);
 		result = HASH_NUMBER * result + (getBirthDate() != null ? getBirthDate().hashCode() : 0);
 		result = HASH_NUMBER * result + (getAge() != null ? getAge().hashCode() : 0);
 		result = HASH_NUMBER * result + (getSex() != null ? getSex().hashCode() : 0);
 		result = HASH_NUMBER * result + (getCity() != null ? getCity().hashCode() : 0);
 		result = HASH_NUMBER * result + (getPhoneNumber() != null ? getPhoneNumber().hashCode() : 0);
-	//	result = HASH_NUMBER * result + getUserDTO().hashCode();
 		return result;
 	}
-
-	/**
-	 * Gets userDTO.
-	 *
-	 * @return Value of userDTO.
-	 */
-	public UserDTO getUserDTO()
-	{
-		return userDTO;
-	}
-
-	/**
-	 * Sets new userDTO.
-	 *
-	 * @param userDTO New value of userDTO.
-	 */
-	public void setUserDTO(final UserDTO userDTO)
-	{
-		this.userDTO = userDTO;
-	}
-
 }

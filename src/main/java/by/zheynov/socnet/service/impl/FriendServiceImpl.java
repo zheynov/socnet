@@ -57,7 +57,7 @@ public class FriendServiceImpl implements FriendService
 	{
 		List<FriendEntity> result = new ArrayList<FriendEntity>();
 
-		for (FriendEntity friendEntity : friendDao.getAllThePendingRequests(currentLoggedUserProfileId))
+		for (FriendEntity friendEntity : friendDao.getAllThePendingRequestsForCurrentUser(currentLoggedUserProfileId))
 		{
 			if (friendEntity.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST)
 			{
@@ -68,13 +68,13 @@ public class FriendServiceImpl implements FriendService
 	}
 
 	/**
-	 * Sets new friendDao.
+	 * Retrieves a list of FriendEntity objects with status PENDING_REQUEST.
 	 *
-	 * @param friendDao New value of friendDao.
+	 * @return the List<friendEntity>
 	 */
-	public void setFriendDao(final FriendDao friendDao)
+	public List<FriendEntity> getAllThePendingRequests()
 	{
-		this.friendDao = friendDao;
+		return friendDao.getAllThePendingRequests();
 	}
 
 	/**
@@ -97,5 +97,15 @@ public class FriendServiceImpl implements FriendService
 	public void rejectFriendRequest(final Long loggedUserProfileId, final Long frendProfileId)
 	{
 		friendDao.rejectFriendRequest(loggedUserProfileId, frendProfileId);
+	}
+
+	/**
+	 * Sets new friendDao.
+	 *
+	 * @param friendDao New value of friendDao.
+	 */
+	public void setFriendDao(final FriendDao friendDao)
+	{
+		this.friendDao = friendDao;
 	}
 }

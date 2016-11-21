@@ -37,20 +37,20 @@
                     <div class="tab-pane active" id="friends" style="margin-left: 200px">
 
 
-                        <a class="button" href="/allthepeople">
+                        <a class="button" href="/friends/allthepeople/${pageContext.request.userPrincipal.name}">
 
                             <button type="button" class="btn btn-default">
                                 <spring:message code="friend.page.text.showallprofiles"/>
                             </button>
                         </a>
 
-                        <a class="button" href="/allthefriends/${pageContext.request.userPrincipal.name}">
+                        <a class="button" href="/friends/allthefriends/${pageContext.request.userPrincipal.name}">
                             <button type="button" class="btn btn-default">
                                 <spring:message code="friend.page.text.showallfriends"/>
                             </button>
                         </a>
 
-                        <a class="button" href="/pendingrequests/${pageContext.request.userPrincipal.name}">
+                        <a class="button" href="/friends/pendingrequests/${pageContext.request.userPrincipal.name}">
                             <button type="button" class="btn btn-default">
                                 <spring:message code="friend.page.text.friend.requests"/>
                             </button>

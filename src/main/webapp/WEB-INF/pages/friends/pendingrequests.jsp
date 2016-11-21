@@ -63,11 +63,11 @@
                                     <c:forEach items="${allThePendingRequests}" var="friend">
                                         <tr>
                                             <th scope="row"><a
-                                                    href="/approve/${pageContext.request.userPrincipal.name}&${friend.profileDTO.profileID}">
+                                                    href="/friends/approve/${pageContext.request.userPrincipal.name}&${friend.profileDTO.profileID}">
                                                 <spring:message code="friend.page.text.friend.approverequest"/> </a>
                                             </th>
                                             <th scope="row"><a
-                                                    href="/reject/${pageContext.request.userPrincipal.name}&${friend.profileDTO.profileID}">
+                                                    href="/friends/reject/${pageContext.request.userPrincipal.name}&${friend.profileDTO.profileID}">
                                                 <spring:message code="friend.page.text.friend.rejectrequest"/> </a>
                                             </th>
                                             <td>${friend.profileDTO.firstname} ${friend.profileDTO.lastname}</td>

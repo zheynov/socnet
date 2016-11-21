@@ -31,9 +31,7 @@ public abstract class AbstractBaseDAO
 	 *
 	 * @param id the id
 	 */
-	public void getById(final Long id)
-	{
-	}
+	public abstract Object getById(final Long id);
 
 	/**
 	 * Updates the object in data base.

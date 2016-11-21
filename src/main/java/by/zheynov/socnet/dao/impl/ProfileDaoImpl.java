@@ -27,7 +27,7 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 */
 	public ProfileEntity createProfile(final ProfileEntity profile)
 	{
-		save(profile);
+		super.save(profile);
 		return profile;
 	}
 
@@ -38,9 +38,9 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 *
 	 * @return profile entity
 	 */
-	public ProfileEntity getProfileById(final Long profileId)
+	public Object getById(final Long profileId)
 	{
-		return getCurrentSession().get(ProfileEntity.class, profileId);
+		return super.getCurrentSession().get(ProfileEntity.class, profileId);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 */
 	public void updateProfile(final ProfileEntity profile)
 	{
-		udate(profile);
+		super.udate(profile);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 */
 	public void deleteProfile(final ProfileEntity profile)
 	{
-		delete(profile);
+		super.delete(profile);
 	}
 
 	/**
@@ -70,9 +70,8 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 */
 	public List<ProfileEntity> getAllTheProfiles()
 	{
-		final Criteria criteria = getCurrentSession().createCriteria(ProfileEntity.class);
-		final List allTheUsers = criteria.list();
-		return allTheUsers;
+		final Criteria criteria = super.getCurrentSession().createCriteria(ProfileEntity.class);
+		return criteria.list();
 	}
 
 }

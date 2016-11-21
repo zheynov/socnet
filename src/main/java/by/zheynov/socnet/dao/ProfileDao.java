@@ -29,7 +29,7 @@ public interface ProfileDao
 	 *
 	 * @return the entity
 	 */
-	ProfileEntity getProfileById(Long profileId);
+	Object getById(Long profileId);
 
 	/**
 	 * Updates.
@@ -58,6 +58,5 @@ public interface ProfileDao
 	 * @param currentProfile the entity
 	 * @param newFriend      the entity
 	 */
-
 
 }

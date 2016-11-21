@@ -10,6 +10,7 @@
         <security:intercept-url pattern="/registration*" access="permitAll()"/>
         <security:intercept-url pattern="/webjars/**" access="permitAll()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
+        <security:intercept-url pattern="/friends/**" access="isAuthenticated()"/>
 
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 

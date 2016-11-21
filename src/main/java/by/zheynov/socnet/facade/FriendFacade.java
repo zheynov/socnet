@@ -1,5 +1,6 @@
 package by.zheynov.socnet.facade;
 
+import java.util.List;
 import java.util.Set;
 
 import by.zheynov.socnet.dto.FriendDTO;
@@ -29,6 +30,13 @@ public interface FriendFacade
 	 * @return list of dto's
 	 */
 	Set<FriendDTO> getAllThePendingFriendRequest(Long currentLoggedUserProfileId);
+
+	/**
+	 * Retrieves a list of FriendDTO objects with status PENDING_REQUEST.
+	 *
+	 * @return the List<FriendDTO>
+	 */
+	List<FriendDTO> getAllThePendingRequests();
 
 	/**
 	 * Deletes a frend with friend's frendProfileId.

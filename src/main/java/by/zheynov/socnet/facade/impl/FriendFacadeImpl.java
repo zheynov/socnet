@@ -1,6 +1,8 @@
 package by.zheynov.socnet.facade.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,22 @@ public class FriendFacadeImpl implements FriendFacade
 			allTheProfilesDTO.add(friendProfileDTO);
 		}
 		return allTheProfilesDTO;
+	}
+
+	/**
+	 * Retrieves a list of FriendDTO objects with status PENDING_REQUEST.
+	 *
+	 * @return the List<FriendDTO>
+	 */
+	public List<FriendDTO> getAllThePendingRequests()
+	{
+		List<FriendDTO> allPendingFriends = new ArrayList<>();
+
+		for (FriendEntity friendEntity : friendService.getAllThePendingRequests())
+		{
+			allPendingFriends.add(conversionService.convert(friendEntity, FriendDTO.class));
+		}
+		return allPendingFriends;
 	}
 
 	/**

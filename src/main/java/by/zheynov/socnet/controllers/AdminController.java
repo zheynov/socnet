@@ -51,7 +51,7 @@ public class AdminController
 	 * @return userinfo URL
 	 */
 	@RequestMapping(value = "/manageuserinfo/{userID}", method = RequestMethod.GET)
-	public String manageuserInfo(final Model model, @PathVariable(value = "userID") final String userID)
+	public String manageUserInfo(final Model model, @PathVariable(value = "userID") final String userID)
 	{
 		ProfileDTO profileDTO = profileFacade.getProfileById(Long.valueOf(userID));
 		model.addAttribute("userDTO", profileDTO.getUserDTO());

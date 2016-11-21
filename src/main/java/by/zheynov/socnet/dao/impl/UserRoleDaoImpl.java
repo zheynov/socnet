@@ -24,7 +24,7 @@ public class UserRoleDaoImpl extends AbstractBaseDAO implements UserRoleDao
 	 */
 	public RoleEntity createUserRole(final RoleEntity userRole)
 	{
-		save(userRole);
+		super.save(userRole);
 		return userRole;
 	}
 
@@ -35,7 +35,7 @@ public class UserRoleDaoImpl extends AbstractBaseDAO implements UserRoleDao
 	 */
 	public void updateUserRole(final RoleEntity userRole)
 	{
-		udate(userRole);
+		super.udate(userRole);
 	}
 
 	/**
@@ -45,7 +45,18 @@ public class UserRoleDaoImpl extends AbstractBaseDAO implements UserRoleDao
 	 */
 	public void deleteUserRole(final RoleEntity userRole)
 	{
-		delete(userRole);
+		super.delete(userRole);
 	}
 
+	/**
+	 * Gets RoleEntity from database.
+	 *
+	 * @param userRoleId the id
+	 *
+	 * @return userRole entity
+	 */
+	public Object getById(final Long userRoleId)
+	{
+		return super.getCurrentSession().get(RoleEntity.class, userRoleId);
+	}
 }

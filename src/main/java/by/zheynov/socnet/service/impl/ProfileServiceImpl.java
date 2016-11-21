@@ -52,7 +52,7 @@ public class ProfileServiceImpl implements ProfileService
 	public ProfileEntity getProfileById(final Long profileId)
 	{
 		LOGGER.info(messageSource.getMessage("service.profile.getById", new Object[] {profileId}, Locale.ENGLISH));
-		return profileDao.getProfileById(profileId);
+		return (ProfileEntity) profileDao.getById(profileId);
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class ProfileServiceImpl implements ProfileService
 		{
 			if (friendEntity.getStatus() == FriendRequestApprovalStatus.APPROVED_REQUEST)
 			{
-				final ProfileEntity profileEntity = profileDao.getProfileById(friendEntity.getFriendProfileEntity());
+				final ProfileEntity profileEntity = (ProfileEntity) profileDao.getById(friendEntity.getFriendProfileEntity());
 				allTheFriendProfiles.add(profileEntity);
 			}
 		}

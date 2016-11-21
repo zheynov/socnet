@@ -53,7 +53,7 @@
                                 <c:if test="${pageContext.request.userPrincipal.name != profile.userDTO.username}">
                                     <tr>
                                         <th scope="row"><a
-                                                href="/addfriend/${pageContext.request.userPrincipal.name}&${profile.profileID}">
+                                                href="/friends/addfriend/${pageContext.request.userPrincipal.name}&${profile.profileID}">
                                             <spring:message code="friend.page.text.friend.addfriend"/> </a>
                                         </th>
 

@@ -1,6 +1,7 @@
 package by.zheynov.socnet.controllers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -42,10 +43,36 @@ public class FriendController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/allthepeople", method = RequestMethod.GET)
-	public String showAllThePeople(final Model model)
+	@RequestMapping(value = "/friends/allthepeople/{currentLoggedUsername}", method = RequestMethod.GET)
+	public String showAllThePeople(final Model model,
+	                               @PathVariable(value = "currentLoggedUsername") final String currentLoggedUsername)
 	{
-		model.addAttribute("allTheProfiles", profileFacade.getAllTheProfiles());
+		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
+
+		Set<ProfileDTO> profilesNotFriends = new HashSet<>(); // result
+
+		Set<ProfileDTO> currentFriends = profileFacade.getAllTheProfilesOfFriends(currentLoggedUserDTO.getProfileDTO()
+		                                                                                              .getProfileID());
+		List<ProfileDTO> allTheProfiles = profileFacade.getAllTheProfiles();
+
+		List<FriendDTO> allTheFriends = friendFacade.getAllThePendingRequests();
+
+		for (FriendDTO friendDTO : allTheFriends)
+		{
+			for (ProfileDTO profileDTO : allTheProfiles)
+			{
+				if (currentFriends.size() > 0)
+				{
+					if (profileDTO.getProfileID().longValue() != friendDTO.getFriendProfileId().longValue())
+					{
+						profilesNotFriends.add(profileDTO);
+					}
+				}
+			}
+		}
+
+		model.addAttribute("allTheProfiles", profilesNotFriends);
+
 		return "/friends/allthepeople";
 	}
 
@@ -68,7 +95,7 @@ public class FriendController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/allthefriends/{currentLoggedUsername}", method = RequestMethod.GET)
+	@RequestMapping(value = "/friends/allthefriends/{currentLoggedUsername}", method = RequestMethod.GET)
 	public String showAllTheFriends(final Model model,
 	                                @PathVariable(value = "currentLoggedUsername") final String currentLoggedUsername)
 	{
@@ -87,7 +114,7 @@ public class FriendController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/delete/friend/{deleterequest}", method = RequestMethod.GET)
+	@RequestMapping(value = "/friends/delete/friend/{deleterequest}", method = RequestMethod.GET)
 	public String deleteFriend(final Model model, @PathVariable(value = "deleterequest") final String deleterequest)
 	{
 		UserDTO currentLoggedUserDTO = (UserDTO) getUserDTOAndProfileDTO(deleterequest).get(0);
@@ -107,7 +134,7 @@ public class FriendController
 	 *
 	 * @return friends URL
 	 */
-	@RequestMapping(value = "/addfriend/{friendRequest}", method = RequestMethod.GET)
+	@RequestMapping(value = "/friends/addfriend/{friendRequest}", method = RequestMethod.GET)
 	public String manageFriendInfo(@PathVariable(value = "friendRequest") final String friendRequestString)
 	{
 		UserDTO currentLoggedUserDTO = (UserDTO) getUserDTOAndProfileDTO(friendRequestString).get(0);
@@ -126,14 +153,12 @@ public class FriendController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/pendingrequests/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "/friends/pendingrequests/{username}", method = RequestMethod.GET)
 	public String showPendingRequests(final Model model, @PathVariable(value = "username") final String currentLoggedUsername)
 	{
 		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
-
 		Set<FriendDTO> pendingFriends = friendFacade.getAllThePendingFriendRequest(currentLoggedUserDTO.getProfileDTO()
 		                                                                                               .getProfileID());
-
 		model.addAttribute("allThePendingRequests", pendingFriends);
 		return "/friends/pendingrequests";
 	}
@@ -141,13 +166,12 @@ public class FriendController
 	/**
 	 * Approves friend request.
 	 *
-	 * @param model                the model
 	 * @param approveRequestString the approveRequestString
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/approve/{username}", method = RequestMethod.GET)
-	public String approvePendingRequests(final Model model, @PathVariable(value = "username") final String approveRequestString)
+	@RequestMapping(value = "/friends/approve/{username}", method = RequestMethod.GET)
+	public String approvePendingRequests(@PathVariable(value = "username") final String approveRequestString)
 	{
 		UserDTO currentLoggedUserDTO = (UserDTO) getUserDTOAndProfileDTO(approveRequestString).get(0);
 		ProfileDTO newFriendProfileDTO = (ProfileDTO) getUserDTOAndProfileDTO(approveRequestString).get(1);
@@ -164,7 +188,7 @@ public class FriendController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/reject/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "/friends/reject/{username}", method = RequestMethod.GET)
 	public String rejectPendingRequests(@PathVariable(value = "username") final String rejectRequest)
 	{
 		UserDTO currentLoggedUserDTO = (UserDTO) getUserDTOAndProfileDTO(rejectRequest).get(0);

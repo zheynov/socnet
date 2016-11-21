@@ -40,6 +40,13 @@ public interface FriendService
 	List<FriendEntity> getAllThePendingFriendRequest(Long currentLoggedUserProfileId);
 
 	/**
+	 * Retrieves a list of FriendEntity objects with status PENDING_REQUEST.
+	 *
+	 * @return the List<friendEntity>
+	 */
+	List<FriendEntity> getAllThePendingRequests();
+
+	/**
 	 * loggedUserProfileId approves frend request from frendProfileId .
 	 *
 	 * @param loggedUserProfileId the Id

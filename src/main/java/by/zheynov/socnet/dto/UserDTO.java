@@ -61,10 +61,6 @@ public class UserDTO implements Serializable
 		{
 			return false;
 		}
-		if (!getConfirmPassword().equals(userDTO.getConfirmPassword()))
-		{
-			return false;
-		}
 		return getProfileDTO().equals(userDTO.getProfileDTO());
 
 	}
@@ -82,7 +78,6 @@ public class UserDTO implements Serializable
 		result = HASH_NUMBER * result + getUsername().hashCode();
 		result = HASH_NUMBER * result + getPassword().hashCode();
 		result = HASH_NUMBER * result + (isEnabled() ? 1 : 0);
-		result = HASH_NUMBER * result + getConfirmPassword().hashCode();
 		result = HASH_NUMBER * result + getProfileDTO().hashCode();
 		return result;
 	}

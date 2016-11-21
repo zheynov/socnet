@@ -4,6 +4,7 @@ import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.entity.UserEntity;
 
 import org.hibernate.Criteria;
+import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -22,7 +23,6 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	private static final String GET_USER_BY_USERNAME_OR_EMAIL_QUERY = "FROM UserEntity WHERE username = :username OR email = " +
 					":email";
 
-
 	/**
 	 * Creates user in database.
 	 *
@@ -32,7 +32,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public UserEntity createUser(final UserEntity user)
 	{
-		save(user);
+		super.save(user);
 		return user;
 	}
 
@@ -43,7 +43,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public void updateUser(final UserEntity user)
 	{
-		udate(user);
+		super.udate(user);
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public void deleteUser(final UserEntity user)
 	{
-		delete(user);
+		super.delete(user);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public UserEntity getUserByUsername(final String username)
 	{
-		org.hibernate.query.Query query = getCurrentSession().createQuery(GET_USER_BY_USERNAME_QUERY);
+		Query query = super.getCurrentSession().createQuery(GET_USER_BY_USERNAME_QUERY);
 		query.setParameter("username", username);
 
 		List objects = query.list();
@@ -83,7 +83,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public List<UserEntity> getAllTheUsers()
 	{
-		final Criteria criteria = getCurrentSession().createCriteria(UserEntity.class);
+		final Criteria criteria = super.getCurrentSession().createCriteria(UserEntity.class);
 		return criteria.list();
 	}
 
@@ -97,11 +97,22 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public List<UserEntity> getUserByUsernameOrEmail(final String username, final String email)
 	{
-		org.hibernate.query.Query query = getCurrentSession().createQuery(GET_USER_BY_USERNAME_OR_EMAIL_QUERY);
+		Query query = super.getCurrentSession().createQuery(GET_USER_BY_USERNAME_OR_EMAIL_QUERY);
 		query.setParameter("username", username);
 		query.setParameter("email", email);
 
 		return query.list();
 	}
 
+	/**
+	 * Gets UserEntity from database.
+	 *
+	 * @param userId the id
+	 *
+	 * @return user entity
+	 */
+	public Object getById(final Long userId)
+	{
+		return super.getCurrentSession().get(UserEntity.class, userId);
+	}
 }

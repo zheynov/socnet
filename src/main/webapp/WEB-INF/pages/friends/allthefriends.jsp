@@ -64,7 +64,7 @@
                                     <c:forEach items="${allTheFriends}" var="friend">
                                         <tr>
                                             <th scope="row"><a
-                                                    href="/delete/friend/${pageContext.request.userPrincipal.name}&${friend.profileID}">
+                                                    href="/friends/delete/friend/${pageContext.request.userPrincipal.name}&${friend.profileID}">
                                                 <spring:message code="friend.page.text.friend.deleteafriend"/> </a>
                                             </th>
                                             <td>${friend.firstname} ${friend.lastname}</td>
