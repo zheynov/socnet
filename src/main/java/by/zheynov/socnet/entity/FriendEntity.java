@@ -32,8 +32,9 @@ public class FriendEntity
 	@JoinColumn(name = "main_profile_id")
 	private ProfileEntity currentProfileEntity;
 
-	@Column(name = "friends_profile_id")
-	private Long friendProfileEntity;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "friends_profile_id")
+	private ProfileEntity friendProfileEntity;
 
 	@Column(name = "friend_request_status")
 	@Enumerated(EnumType.STRING)
@@ -54,7 +55,7 @@ public class FriendEntity
 	 *
 	 * @return Value of friendProfileEntity.
 	 */
-	public Long getFriendProfileEntity()
+	public ProfileEntity getFriendProfileEntity()
 	{
 		return friendProfileEntity;
 	}
@@ -84,7 +85,7 @@ public class FriendEntity
 	 *
 	 * @param friendProfileEntity New value of friendProfileEntity.
 	 */
-	public void setFriendProfileEntity(final Long friendProfileEntity)
+	public void setFriendProfileEntity(final ProfileEntity friendProfileEntity)
 	{
 		this.friendProfileEntity = friendProfileEntity;
 	}

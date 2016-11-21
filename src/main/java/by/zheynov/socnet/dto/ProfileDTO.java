@@ -226,6 +226,14 @@ public class ProfileDTO implements Serializable
 		this.userDTO = userDTO;
 	}
 
+
+	/**
+	 * Compares this ProfileDTO object to the specified Object o.
+	 *
+	 * @param o
+	 *
+	 * @return true if objects are the same, otherwise false
+	 */
 	@Override
 	public boolean equals(final Object o)
 	{
@@ -280,6 +288,11 @@ public class ProfileDTO implements Serializable
 
 	}
 
+	/**
+	 * Calculates a hashcode for this object.
+	 *
+	 * @return the hash
+	 */
 	@Override
 	public int hashCode()
 	{

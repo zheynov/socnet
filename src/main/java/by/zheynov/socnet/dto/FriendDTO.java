@@ -15,47 +15,37 @@ public class FriendDTO implements Serializable
 	private static final int HASH_NUMBER = 31;
 	private Long                        id;
 	private ProfileDTO                  profileDTO;
-	private Long                        friendProfileId;
+	private ProfileDTO                  friendProfileDTO;
 	private FriendRequestApprovalStatus status;
 
 	/**
-	 * Sets new status.
+	 * Sets new friendProfileDTO.
 	 *
-	 * @param status New value of status.
+	 * @param friendProfileDTO New value of friendProfileDTO.
 	 */
-	public void setStatus(final FriendRequestApprovalStatus status)
+	public void setFriendProfileDTO(ProfileDTO friendProfileDTO)
 	{
-		this.status = status;
+		this.friendProfileDTO = friendProfileDTO;
 	}
 
 	/**
-	 * Gets profileDTO.
+	 * Sets new profileDTO.
 	 *
-	 * @return Value of profileDTO.
+	 * @param profileDTO New value of profileDTO.
 	 */
-	public ProfileDTO getProfileDTO()
+	public void setProfileDTO(ProfileDTO profileDTO)
 	{
-		return profileDTO;
+		this.profileDTO = profileDTO;
 	}
 
 	/**
-	 * Sets new friendProfileId.
+	 * Gets friendProfileDTO.
 	 *
-	 * @param friendProfileId New value of friendProfileId.
+	 * @return Value of friendProfileDTO.
 	 */
-	public void setFriendProfileId(final Long friendProfileId)
+	public ProfileDTO getFriendProfileDTO()
 	{
-		this.friendProfileId = friendProfileId;
-	}
-
-	/**
-	 * Gets status.
-	 *
-	 * @return Value of status.
-	 */
-	public FriendRequestApprovalStatus getStatus()
-	{
-		return status;
+		return friendProfileDTO;
 	}
 
 	/**
@@ -69,35 +59,53 @@ public class FriendDTO implements Serializable
 	}
 
 	/**
-	 * Gets friendProfileId.
-	 *
-	 * @return Value of friendProfileId.
-	 */
-	public Long getFriendProfileId()
-	{
-		return friendProfileId;
-	}
-
-	/**
-	 * Sets new profileDTO.
-	 *
-	 * @param profileDTO New value of profileDTO.
-	 */
-	public void setProfileDTO(final ProfileDTO profileDTO)
-	{
-		this.profileDTO = profileDTO;
-	}
-
-	/**
 	 * Sets new id.
 	 *
 	 * @param id New value of id.
 	 */
-	public void setId(final Long id)
+	public void setId(Long id)
 	{
 		this.id = id;
 	}
 
+	/**
+	 * Gets profileDTO.
+	 *
+	 * @return Value of profileDTO.
+	 */
+	public ProfileDTO getProfileDTO()
+	{
+		return profileDTO;
+	}
+
+	/**
+	 * Gets status.
+	 *
+	 * @return Value of status.
+	 */
+	public FriendRequestApprovalStatus getStatus()
+	{
+		return status;
+	}
+
+	/**
+	 * Sets new status.
+	 *
+	 * @param status New value of status.
+	 */
+	public void setStatus(FriendRequestApprovalStatus status)
+	{
+		this.status = status;
+	}
+
+
+	/**
+	 * Compares this FriendDTO object to the specified Object o.
+	 *
+	 * @param o
+	 *
+	 * @return true if objects are the same, otherwise false
+	 */
 	@Override
 	public boolean equals(final Object o)
 	{
@@ -120,7 +128,7 @@ public class FriendDTO implements Serializable
 		{
 			return false;
 		}
-		if (!getFriendProfileId().equals(friendDTO.getFriendProfileId()))
+		if (!getFriendProfileDTO().equals(friendDTO.getFriendProfileDTO()))
 		{
 			return false;
 		}
@@ -128,12 +136,17 @@ public class FriendDTO implements Serializable
 
 	}
 
+	/**
+	 * Calculates a hashcode for this object.
+	 *
+	 * @return the hash
+	 */
 	@Override
 	public int hashCode()
 	{
 		int result = getId().hashCode();
-//		result = HASH_NUMBER * result + getProfileDTO().hashCode();
-		result = HASH_NUMBER * result + getFriendProfileId().hashCode();
+		result = HASH_NUMBER * result + getProfileDTO().hashCode();
+		result = HASH_NUMBER * result + getFriendProfileDTO().hashCode();
 		result = HASH_NUMBER * result + getStatus().hashCode();
 		return result;
 	}

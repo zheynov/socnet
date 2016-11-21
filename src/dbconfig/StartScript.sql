@@ -65,6 +65,7 @@ CREATE TABLE friend (
   friends_profile_id    BIGINT             NOT NULL,
   friend_request_status ENUM ('PENDING_REQUEST', 'APPROVED_REQUEST', 'REJECTED_REQUEST'),
   FOREIGN KEY (main_profile_id) REFERENCES profile (id),
+  FOREIGN KEY (friends_profile_id) REFERENCES profile (id),
   UNIQUE KEY main_profile_id (main_profile_id, friends_profile_id)
 );
 

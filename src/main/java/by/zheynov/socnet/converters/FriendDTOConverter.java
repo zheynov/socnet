@@ -33,7 +33,6 @@ public class FriendDTOConverter implements Converter<FriendEntity, FriendDTO>
 
 		ProfileEntity profileEntity = friendEntity.getCurrentProfileEntity();
 		ProfileDTO profileDTO = new ProfileDTO();
-
 		profileDTO.setProfileID(profileEntity.getId());
 		profileDTO.setFirstname(profileEntity.getFirstname());
 		profileDTO.setLastname(profileEntity.getLastname());
@@ -44,9 +43,22 @@ public class FriendDTOConverter implements Converter<FriendEntity, FriendDTO>
 		profileDTO.setCity(profileEntity.getCity());
 		profileDTO.setPhoneNumber(profileEntity.getPhoneNumber());
 
-		friendDTO.setId(friendEntity.getId());
+		ProfileEntity profileEntityForFriend = friendEntity.getFriendProfileEntity();
+		ProfileDTO profileDTOForFriend = new ProfileDTO();
+		profileDTOForFriend.setProfileID(profileEntityForFriend.getId());
+		profileDTOForFriend.setFirstname(profileEntityForFriend.getFirstname());
+		profileDTOForFriend.setLastname(profileEntityForFriend.getLastname());
+		profileDTOForFriend.setEmail(profileEntityForFriend.getEmail());
+		profileDTOForFriend.setBirthDate(profileEntityForFriend.getBirthDate());
+		profileDTOForFriend.setAge(profileEntityForFriend.getAge());
+		profileDTOForFriend.setSex(profileEntityForFriend.getSex());
+		profileDTOForFriend.setCity(profileEntityForFriend.getCity());
+		profileDTOForFriend.setPhoneNumber(profileEntityForFriend.getPhoneNumber());
+
 		friendDTO.setProfileDTO(profileDTO);
-		friendDTO.setFriendProfileId(friendEntity.getFriendProfileEntity());
+		friendDTO.setFriendProfileDTO(profileDTOForFriend);
+
+		friendDTO.setId(friendEntity.getId());
 		friendDTO.setStatus(friendEntity.getStatus());
 
 		return friendDTO;

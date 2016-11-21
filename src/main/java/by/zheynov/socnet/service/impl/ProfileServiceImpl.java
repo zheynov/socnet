@@ -106,7 +106,7 @@ public class ProfileServiceImpl implements ProfileService
 		{
 			if (friendEntity.getStatus() == FriendRequestApprovalStatus.APPROVED_REQUEST)
 			{
-				final ProfileEntity profileEntity = (ProfileEntity) profileDao.getById(friendEntity.getFriendProfileEntity());
+				final ProfileEntity profileEntity = (ProfileEntity) profileDao.getById(friendEntity.getFriendProfileEntity().getId());
 				allTheFriendProfiles.add(profileEntity);
 			}
 		}
@@ -151,7 +151,7 @@ public class ProfileServiceImpl implements ProfileService
 		{
 			if (friendEntity.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST)
 			{
-				final ProfileEntity profileEntity = (ProfileEntity) profileDao.getById(friendEntity.getFriendProfileEntity());
+				final ProfileEntity profileEntity = (ProfileEntity) profileDao.getById(friendEntity.getFriendProfileEntity().getId());
 
 				if (allTheFriendProfiles.contains(profileEntity))
 				{

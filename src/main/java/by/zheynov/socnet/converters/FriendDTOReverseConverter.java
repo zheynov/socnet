@@ -32,20 +32,33 @@ public class FriendDTOReverseConverter implements Converter<FriendDTO, FriendEnt
 
 		final FriendEntity friendEntity = new FriendEntity();
 
-		ProfileEntity profileEntity = new ProfileEntity();
-		profileEntity.setId(friendDTO.getProfileDTO().getProfileID());
-		profileEntity.setFirstname(friendDTO.getProfileDTO().getFirstname());
-		profileEntity.setLastname(friendDTO.getProfileDTO().getLastname());
-		profileEntity.setEmail(friendDTO.getProfileDTO().getEmail());
-		profileEntity.setAge(friendDTO.getProfileDTO().getAge());
-		profileEntity.setBirthDate(friendDTO.getProfileDTO().getBirthDate());
-		profileEntity.setSex(friendDTO.getProfileDTO().getSex());
-		profileEntity.setCity(friendDTO.getProfileDTO().getCity());
-		profileEntity.setPhoneNumber(friendDTO.getProfileDTO().getPhoneNumber());
+		ProfileEntity profileEntityMainProfile = new ProfileEntity();
+
+		profileEntityMainProfile.setId(friendDTO.getProfileDTO().getProfileID());
+		profileEntityMainProfile.setFirstname(friendDTO.getProfileDTO().getFirstname());
+		profileEntityMainProfile.setLastname(friendDTO.getProfileDTO().getLastname());
+		profileEntityMainProfile.setEmail(friendDTO.getProfileDTO().getEmail());
+		profileEntityMainProfile.setAge(friendDTO.getProfileDTO().getAge());
+		profileEntityMainProfile.setBirthDate(friendDTO.getProfileDTO().getBirthDate());
+		profileEntityMainProfile.setSex(friendDTO.getProfileDTO().getSex());
+		profileEntityMainProfile.setCity(friendDTO.getProfileDTO().getCity());
+		profileEntityMainProfile.setPhoneNumber(friendDTO.getProfileDTO().getPhoneNumber());
+		friendEntity.setCurrentProfileEntity(profileEntityMainProfile);
+
+		ProfileEntity profileEntityFriendProfile = new ProfileEntity();
+
+		profileEntityFriendProfile.setId(friendDTO.getFriendProfileDTO().getProfileID());
+		profileEntityFriendProfile.setFirstname(friendDTO.getFriendProfileDTO().getFirstname());
+		profileEntityFriendProfile.setLastname(friendDTO.getFriendProfileDTO().getLastname());
+		profileEntityFriendProfile.setEmail(friendDTO.getFriendProfileDTO().getEmail());
+		profileEntityFriendProfile.setAge(friendDTO.getFriendProfileDTO().getAge());
+		profileEntityFriendProfile.setBirthDate(friendDTO.getFriendProfileDTO().getBirthDate());
+		profileEntityFriendProfile.setSex(friendDTO.getFriendProfileDTO().getSex());
+		profileEntityFriendProfile.setCity(friendDTO.getFriendProfileDTO().getCity());
+		profileEntityFriendProfile.setPhoneNumber(friendDTO.getFriendProfileDTO().getPhoneNumber());
+		friendEntity.setFriendProfileEntity(profileEntityFriendProfile);
 
 		friendEntity.setId(friendDTO.getId());
-		friendEntity.setCurrentProfileEntity(profileEntity);
-		friendEntity.setFriendProfileEntity(friendDTO.getFriendProfileId());
 		friendEntity.setStatus(friendDTO.getStatus());
 
 		return friendEntity;
