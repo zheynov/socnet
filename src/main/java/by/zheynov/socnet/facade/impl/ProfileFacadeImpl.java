@@ -23,7 +23,7 @@ import org.springframework.core.convert.ConversionService;
 public class ProfileFacadeImpl implements ProfileFacade
 {
 	@Autowired
-	private ProfileService    profileService;
+	private ProfileService profileService;
 	@Autowired
 	private ConversionService conversionService;
 
@@ -104,4 +104,27 @@ public class ProfileFacadeImpl implements ProfileFacade
 		return allTheProfilesDTO;
 	}
 
+	/**
+	 * Retrieves a list of ProfileDTO objects for non-pending friends.
+	 *
+	 * @param currentLoggedUserProfileId the Id
+	 * @param currentLoggedUsername      the username
+	 *
+	 * @return list of dto's
+	 */
+	public Set<ProfileDTO> getAllTheProfilesOfNonPendingAndNotFriends(final Long currentLoggedUserProfileId,
+	                                                                  final String currentLoggedUsername)
+	{
+		Set<ProfileDTO> allTheProfilesDTO = new HashSet<ProfileDTO>();
+
+		for (ProfileEntity profileEntity : profileService.getAllTheProfilesOfNonPendingAndNotFriends(
+						currentLoggedUserProfileId,
+						currentLoggedUsername
+		))
+		{
+			final ProfileDTO friendProfileDTO = conversionService.convert(profileEntity, ProfileDTO.class);
+			allTheProfilesDTO.add(friendProfileDTO);
+		}
+		return allTheProfilesDTO;
+	}
 }

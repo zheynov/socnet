@@ -61,6 +61,14 @@ public interface ProfileFacade
 	 */
 	Set<ProfileDTO> getAllTheProfilesOfFriends(Long currentLoggedUserProfileId);
 
-
+	/**
+	 * Retrieves a set of ProfileDTO objects for non-pending friends.
+	 *
+	 * @param currentLoggedUserProfileId the Id
+	 * @param currentLoggedUsername      the username
+	 *
+	 * @return list of dto's
+	 */
+	Set<ProfileDTO> getAllTheProfilesOfNonPendingAndNotFriends(Long currentLoggedUserProfileId, String currentLoggedUsername);
 
 }

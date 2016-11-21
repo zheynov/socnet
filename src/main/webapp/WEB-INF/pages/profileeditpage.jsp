@@ -32,7 +32,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall" style="margin-left: 200px">
+                    <div class="tab-pane" id="wall" style="margin-left: 250px">
 
                     </div>
                     <div class="tab-pane" id="friends">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="about" style="margin-left: 200px">
+                    <div class="tab-pane" id="about" style="margin-left: 250px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="contact" style="margin-left: 200px">
+                    <div class="tab-pane" id="contact" style="margin-left: 250px">
 
                         <h1><spring:message code="welcome.page.text.contacts"/></h1>
                         <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
@@ -82,7 +82,7 @@
                     </div>
 
 
-                    <div class="tab-pane active" id="profile" style="margin-left: 200px;">
+                    <div class="tab-pane active" id="profile" style="margin-left: 250px;">
 
                         <div class="main-login main-center"  style="width: 300px">
                             <form:form method="POST" action="/editprofile" commandName="profileDTO" class="form-horizontal">

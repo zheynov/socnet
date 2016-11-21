@@ -31,7 +31,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div id="wall" style="margin-left: 200px">
+                    <div id="wall" style="margin-left: 250px">
 
                     </div>
 
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="tab-pane" id="contact">
-                        <div class="" style="margin-left: 200px">
+                        <div class="" style="margin-left: 250px">
                             <h1><spring:message code="welcome.page.text.contacts"/></h1>
                             <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
                             <p>

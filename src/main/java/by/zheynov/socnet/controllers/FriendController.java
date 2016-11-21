@@ -49,27 +49,10 @@ public class FriendController
 	{
 		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
 
-		Set<ProfileDTO> profilesNotFriends = new HashSet<>(); // result
-
-		Set<ProfileDTO> currentFriends = profileFacade.getAllTheProfilesOfFriends(currentLoggedUserDTO.getProfileDTO()
-		                                                                                              .getProfileID());
-		List<ProfileDTO> allTheProfiles = profileFacade.getAllTheProfiles();
-
-		List<FriendDTO> allTheFriends = friendFacade.getAllThePendingRequests();
-
-		for (FriendDTO friendDTO : allTheFriends)
-		{
-			for (ProfileDTO profileDTO : allTheProfiles)
-			{
-				if (currentFriends.size() > 0)
-				{
-					if (profileDTO.getProfileID().longValue() != friendDTO.getFriendProfileId().longValue())
-					{
-						profilesNotFriends.add(profileDTO);
-					}
-				}
-			}
-		}
+		Set<ProfileDTO> profilesNotFriends = profileFacade.getAllTheProfilesOfNonPendingAndNotFriends(
+						currentLoggedUserDTO.getProfileDTO().getProfileID(),
+						currentLoggedUsername
+		);
 
 		model.addAttribute("allTheProfiles", profilesNotFriends);
 

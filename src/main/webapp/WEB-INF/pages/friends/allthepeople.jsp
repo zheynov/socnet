@@ -31,9 +31,9 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall" style="margin-left: 200px">
+                    <div class="tab-pane" id="wall" style="margin-left: 250px">
                     </div>
-                    <div class="tab-pane active" id="friends" style="margin-left: 200px">
+                    <div class="tab-pane active" id="friends" style="margin-left: 250px">
 
                         <p><a href="/friends">
                             <button type="button" class="btn btn-default btn-lg btn-block">
@@ -50,27 +50,27 @@
                                 <th><spring:message code="profile.page.text.gender"/></th>
                             </tr>
                             <c:forEach items="${allTheProfiles}" var="profile">
-                                <c:if test="${pageContext.request.userPrincipal.name != profile.userDTO.username}">
-                                    <tr>
-                                        <th scope="row"><a
-                                                href="/friends/addfriend/${pageContext.request.userPrincipal.name}&${profile.profileID}">
-                                            <spring:message code="friend.page.text.friend.addfriend"/> </a>
-                                        </th>
+
+                                <tr>
+                                    <th scope="row"><a
+                                            href="/friends/addfriend/${pageContext.request.userPrincipal.name}&${profile.profileID}">
+                                        <spring:message code="friend.page.text.friend.addfriend"/> </a>
+                                    </th>
 
 
-                                        <td>${profile.firstname} ${profile.lastname}</td>
-                                        <td>${profile.age}</td>
-                                        <td>${profile.city}</td>
-                                        <td>${profile.sex}</td>
-                                    </tr>
-                                </c:if>
+                                    <td>${profile.firstname} ${profile.lastname}</td>
+                                    <td>${profile.age}</td>
+                                    <td>${profile.city}</td>
+                                    <td>${profile.sex}</td>
+                                </tr>
+
                             </c:forEach>
                         </table>
                         <br/>
 
                     </div>
 
-                    <div class="tab-pane" id="about" style="margin-left: 200px">
+                    <div class="tab-pane" id="about" style="margin-left: 250px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
@@ -78,14 +78,14 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="messages" style="margin-left: 200px">
+                    <div class="tab-pane" id="messages" style="margin-left: 250px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.mesagges"/></h1>
                             <p>Здесь будут отображаться сообщения</p>
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="photoes" style="margin-left: 200px">
+                    <div class="tab-pane" id="photoes" style="margin-left: 250px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.photoes"/></h1>
                             <p>Здесь будут отображаться фотографии</p>
@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="tab-pane" id="contact">
-                        <div class="" style="margin-left: 200px">
+                        <div class="" style="margin-left: 250px">
                             <h1><spring:message code="welcome.page.text.contacts"/></h1>
                             <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
                             <p>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="profile" style="margin-left: 200px">
+                    <div class="tab-pane" id="profile" style="margin-left: 250px">
                     </div>
 
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">

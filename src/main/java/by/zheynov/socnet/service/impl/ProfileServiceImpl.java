@@ -114,6 +114,55 @@ public class ProfileServiceImpl implements ProfileService
 	}
 
 	/**
+	 * Retrieves a list of ProfileEntity objects for non-pending users.
+	 * These users are not a friends as well.
+	 *
+	 * @param currentLoggedUserProfileId the Id
+	 * @param currentLoggedUsername      the username
+	 *
+	 * @return list of entities
+	 */
+	@Transactional
+	public List<ProfileEntity> getAllTheProfilesOfNonPendingAndNotFriends(final Long currentLoggedUserProfileId,
+	                                                                      final String currentLoggedUsername)
+	{
+		List<ProfileEntity> allTheFriendProfiles = new ArrayList<ProfileEntity>();
+
+		List<ProfileEntity> allTheProfiles = getAllTheProfiles();
+
+		List<ProfileEntity> allTheProfilesOfFriends = getAllTheProfilesOfFriends(currentLoggedUserProfileId);
+
+		for (ProfileEntity profileEntity : allTheProfiles)
+		{
+			if (!allTheProfilesOfFriends.contains(profileEntity))
+			{
+				allTheFriendProfiles.add(profileEntity);
+			}
+
+			if (profileEntity.getUserEntity().getUsername().equalsIgnoreCase(currentLoggedUsername) ||
+							profileEntity.getUserEntity().getUsername().equalsIgnoreCase("admin"))
+			{
+				allTheFriendProfiles.remove(profileEntity);
+			}
+		}
+
+		// for removing pending users wich are still not a friends of user
+		for (FriendEntity friendEntity : friendDao.getAllTheFriends(currentLoggedUserProfileId))
+		{
+			if (friendEntity.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST)
+			{
+				final ProfileEntity profileEntity = (ProfileEntity) profileDao.getById(friendEntity.getFriendProfileEntity());
+
+				if (allTheFriendProfiles.contains(profileEntity))
+				{
+					allTheFriendProfiles.remove(profileEntity);
+				}
+							}
+		}
+		return allTheFriendProfiles;
+	}
+
+	/**
 	 * Sets new messageSource.
 	 *
 	 * @param messageSource New value of messageSource.

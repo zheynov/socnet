@@ -68,7 +68,7 @@ public class FriendFacadeImpl implements FriendFacade
 	 */
 	public List<FriendDTO> getAllThePendingRequests()
 	{
-		List<FriendDTO> allPendingFriends = new ArrayList<>();
+		List<FriendDTO> allPendingFriends = new ArrayList<FriendDTO>();
 
 		for (FriendEntity friendEntity : friendService.getAllThePendingRequests())
 		{

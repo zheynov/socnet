@@ -31,10 +31,10 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall" style="margin-left: 200px">
+                    <div class="tab-pane" id="wall" style="margin-left: 250px">
                     </div>
 
-                    <div class="tab-pane active" id="friends" style="margin-left: 200px">
+                    <div class="tab-pane active" id="friends" style="margin-left: 250px">
 
 
                         <a class="button" href="/friends/allthepeople/${pageContext.request.userPrincipal.name}">
@@ -59,7 +59,7 @@
 
                     </div>
 
-                    <div class="tab-pane" id="about" style="margin-left: 200px">
+                    <div class="tab-pane" id="about" style="margin-left: 250px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
@@ -67,21 +67,21 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="messages" style="margin-left: 200px">
+                    <div class="tab-pane" id="messages" style="margin-left: 250px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.mesagges"/></h1>
                             <p>Здесь будут отображаться сообщения</p>
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="photoes" style="margin-left: 200px">
+                    <div class="tab-pane" id="photoes" style="margin-left: 250px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.photoes"/></h1>
                             <p>Здесь будут отображаться фотографии</p>
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="contact" style="margin-left: 200px">
+                    <div class="tab-pane" id="contact" style="margin-left: 250px">
                         <div class="">
                             <h1><spring:message code="welcome.page.text.contacts"/></h1>
                             <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="profile" style="margin-left: 200px">
+                    <div class="tab-pane" id="profile" style="margin-left: 250px">
                     </div>
 
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">

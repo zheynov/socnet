@@ -31,9 +31,9 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="wall" style="margin-left: 200px">
+                    <div class="tab-pane" id="wall" style="margin-left: 250px">
                     </div>
-                    <div class="tab-pane active" id="friends" style="margin-left: 200px">
+                    <div class="tab-pane active" id="friends" style="margin-left: 250px">
 
                         <p>
                             <a href="/friends">
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="tab-pane" id="about">
-                        <div class="" style="margin-left: 200px">
+                        <div class="" style="margin-left: 250px">
                             <h1><spring:message code="welcome.page.text.about"/></h1>
                             <p>Социальная сеть </p>
                             <p> Мы - это социальная сеть! </p>
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="tab-pane" id="messages">
-                        <div class="" style="margin-left: 200px">
+                        <div class="" style="margin-left: 250px">
                             <h1><spring:message code="welcome.page.text.mesagges"/></h1>
                             <p>Здесь будут отображаться сообщения</p>
                         </div>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="contact" style="margin-left: 200px">
+                    <div class="tab-pane" id="contact" style="margin-left: 250px">
 
                         <h1><spring:message code="welcome.page.text.contacts"/></h1>
                         <p> ЦЕНТР РАЗРАБОТКИ В БЕЛАРУСИ </p> <br/>

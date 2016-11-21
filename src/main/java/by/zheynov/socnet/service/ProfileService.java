@@ -59,4 +59,16 @@ public interface ProfileService
 	 */
 	List<ProfileEntity> getAllTheProfilesOfFriends(Long currentLoggedUserProfileId);
 
+	/**
+	 * Retrieves a list of ProfileEntity objects for non-pending users.
+	 * These users are not a friends as well.
+	 *
+	 * @param currentLoggedUserProfileId the Id
+	 * @param currentLoggedUsername      the username
+	 *
+	 * @return list of entities
+	 */
+	List<ProfileEntity> getAllTheProfilesOfNonPendingAndNotFriends(final Long currentLoggedUserProfileId,
+	                                                               final String currentLoggedUsername);
+
 }
