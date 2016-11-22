@@ -1,12 +1,17 @@
 package by.zheynov.socnet.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "message")
-public class MessageEntity
+public class MessageEntity implements Serializable
 {
 	private static final int TABLE_COLUMN_MAX_TEXT_LENGTH = 1024;
 
@@ -26,67 +31,19 @@ public class MessageEntity
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "senderID")
-	private Long senderID;
-
-	@Column(name = "destinationID")
-	private Long destinationID;
-
 	@Column(name = "messagedate")
 	private Date messageDate;
 
 	@Column(name = "text", length = TABLE_COLUMN_MAX_TEXT_LENGTH)
 	private String text;
 
-	/**
-	 * Sets new id.
-	 *
-	 * @param id New value of id.
-	 */
-	public void setId(final Long id)
-	{
-		this.id = id;
-	}
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "senderID")
+	private ProfileEntity profileEntity;
 
-	/**
-	 * Sets new senderID.
-	 *
-	 * @param senderID New value of senderID.
-	 */
-	public void setSenderID(final Long senderID)
-	{
-		this.senderID = senderID;
-	}
-
-	/**
-	 * Gets destinationID.
-	 *
-	 * @return Value of destinationID.
-	 */
-	public Long getDestinationID()
-	{
-		return destinationID;
-	}
-
-	/**
-	 * Sets new destinationID.
-	 *
-	 * @param destinationID New value of destinationID.
-	 */
-	public void setDestinationID(final Long destinationID)
-	{
-		this.destinationID = destinationID;
-	}
-
-	/**
-	 * Gets text.
-	 *
-	 * @return Value of text.
-	 */
-	public String getText()
-	{
-		return text;
-	}
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "dialogID")
+	private DialogEntity dialogEntity;
 
 	/**
 	 * Gets messageDate.
@@ -96,16 +53,6 @@ public class MessageEntity
 	public Date getMessageDate()
 	{
 		return messageDate;
-	}
-
-	/**
-	 * Sets new messageDate.
-	 *
-	 * @param messageDate New value of messageDate.
-	 */
-	public void setMessageDate(final Date messageDate)
-	{
-		this.messageDate = messageDate;
 	}
 
 	/**
@@ -129,12 +76,72 @@ public class MessageEntity
 	}
 
 	/**
-	 * Gets senderID.
+	 * Sets new id.
 	 *
-	 * @return Value of senderID.
+	 * @param id New value of id.
 	 */
-	public Long getSenderID()
+	public void setId(final Long id)
 	{
-		return senderID;
+		this.id = id;
+	}
+
+	/**
+	 * Sets new messageDate.
+	 *
+	 * @param messageDate New value of messageDate.
+	 */
+	public void setMessageDate(final Date messageDate)
+	{
+		this.messageDate = messageDate;
+	}
+
+	/**
+	 * Sets new profileEntity.
+	 *
+	 * @param profileEntity New value of profileEntity.
+	 */
+	public void setProfileEntity(final ProfileEntity profileEntity)
+	{
+		this.profileEntity = profileEntity;
+	}
+
+	/**
+	 * Gets dialogEntity.
+	 *
+	 * @return Value of dialogEntity.
+	 */
+	public DialogEntity getDialogEntity()
+	{
+		return dialogEntity;
+	}
+
+	/**
+	 * Sets new dialogEntity.
+	 *
+	 * @param dialogEntity New value of dialogEntity.
+	 */
+	public void setDialogEntity(final DialogEntity dialogEntity)
+	{
+		this.dialogEntity = dialogEntity;
+	}
+
+	/**
+	 * Gets text.
+	 *
+	 * @return Value of text.
+	 */
+	public String getText()
+	{
+		return text;
+	}
+
+	/**
+	 * Gets profileEntity.
+	 *
+	 * @return Value of profileEntity.
+	 */
+	public ProfileEntity getProfileEntity()
+	{
+		return profileEntity;
 	}
 }

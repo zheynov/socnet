@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -29,11 +32,23 @@ public class ProfileEntity implements Serializable
 {
 	private static final int TABLE_COLUMN_MAX_LENGTH = 64;
 
-	@OneToOne(mappedBy = "profileEntity", fetch = FetchType.EAGER) // OneToOne with UserEntity
+	// OneToOne with UserEntity
+	@OneToOne(mappedBy = "profileEntity", fetch = FetchType.EAGER)
 	private UserEntity userEntity;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "currentProfileEntity")  // OneToOne with FriendEntity
+	// OneToMany with FriendEntity
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "currentProfileEntity")
 	private Set<FriendEntity> friends = new HashSet<FriendEntity>();
+
+	// OneToMany with MessageEntity
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileEntity")
+	private Set<MessageEntity> messages = new HashSet<MessageEntity>();
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "profile_dialog", joinColumns = {
+					@JoinColumn(name = "profileID")
+	}, inverseJoinColumns = {@JoinColumn(name = "dialogID")})
+	private Set<DialogEntity> dialogs = new HashSet<DialogEntity>();
 
 	@Id
 	@Column(name = "id")
@@ -289,6 +304,46 @@ public class ProfileEntity implements Serializable
 	public void setFriends(final Set<FriendEntity> friends)
 	{
 		this.friends = friends;
+	}
+
+	/**
+	 * Sets new messages.
+	 *
+	 * @param messages New value of messages.
+	 */
+	public void setMessages(final Set<MessageEntity> messages)
+	{
+		this.messages = messages;
+	}
+
+	/**
+	 * Gets messages.
+	 *
+	 * @return Value of messages.
+	 */
+	public Set<MessageEntity> getMessages()
+	{
+		return messages;
+	}
+
+	/**
+	 * Gets dialogs.
+	 *
+	 * @return Value of dialogs.
+	 */
+	public Set<DialogEntity> getDialogs()
+	{
+		return dialogs;
+	}
+
+	/**
+	 * Sets new dialogs.
+	 *
+	 * @param dialogs New value of dialogs.
+	 */
+	public void setDialogs(final Set<DialogEntity> dialogs)
+	{
+		this.dialogs = dialogs;
 	}
 }
 

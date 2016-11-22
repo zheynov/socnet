@@ -1,5 +1,7 @@
 package by.zheynov.socnet.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "friend")
-public class FriendEntity
+public class FriendEntity implements Serializable
 {
 	@Id
 	@Column(name = "id")
