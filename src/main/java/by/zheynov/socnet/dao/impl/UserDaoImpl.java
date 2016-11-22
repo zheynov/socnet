@@ -21,7 +21,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	private static final String GET_USER_BY_USERNAME_QUERY          = "FROM UserEntity WHERE username = :username";
 	private static final String GET_USER_BY_USERNAME_OR_EMAIL_QUERY = "FROM UserEntity WHERE username = :username OR email = " +
 					":email";
-	private static final String GET_ALL_USERS_QUERY = "SELECT * FROM user";
+	private static final String GET_ALL_USERS_QUERY                 = "SELECT * FROM user";
 
 	/**
 	 * Creates user in database.
@@ -83,7 +83,7 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 */
 	public List<UserEntity> getAllTheUsers()
 	{
-		Query query = super.getCurrentSession().createNativeQuery(GET_ALL_USERS_QUERY);
+		Query query = super.getCurrentSession().createNativeQuery(GET_ALL_USERS_QUERY, UserEntity.class);
 		return query.list();
 	}
 

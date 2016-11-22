@@ -41,6 +41,19 @@ CREATE TABLE user
 );
 
 -- Table for user's posts
+CREATE TABLE message (
+  id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  senderID      BIGINT             NOT NULL,
+  destinationID BIGINT             NOT NULL,
+  messagedate   DATE               NOT NULL,
+  text          VARCHAR(1024),
+  FOREIGN KEY (senderID) REFERENCES user (id),
+  FOREIGN KEY (destinationID) REFERENCES user (id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+-- Table for user's posts
 CREATE TABLE post (
   id     BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   userID BIGINT             NOT NULL,

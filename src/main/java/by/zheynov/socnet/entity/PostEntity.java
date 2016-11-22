@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name = "post")
 public class PostEntity implements Serializable
 {
-	private static final int MAX_TEXT_LENGTH = 256;
+	private static final int MAX_TEXT_LENGTH = 1024;
 
 	@Id
 	@Column(name = "id")

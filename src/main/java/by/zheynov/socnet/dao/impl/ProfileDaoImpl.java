@@ -72,7 +72,7 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 */
 	public List<ProfileEntity> getAllTheProfiles()
 	{
-		Query query = super.getCurrentSession().createNativeQuery(GET_ALL_USER_PROFILES_QUERY);
+		Query query = super.getCurrentSession().createNativeQuery(GET_ALL_USER_PROFILES_QUERY, ProfileEntity.class);
 		return query.list();
 	}
 
