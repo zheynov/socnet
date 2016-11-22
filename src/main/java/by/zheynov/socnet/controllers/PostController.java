@@ -3,7 +3,7 @@ package by.zheynov.socnet.controllers;
 import org.springframework.stereotype.Controller;
 
 /**
- * PostController.
+ * PostController class.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.controllers
