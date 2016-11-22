@@ -19,6 +19,167 @@ public class UserDTO implements Serializable
 	private boolean    enabled;
 	private String     confirmPassword;
 	private ProfileDTO profileDTO;
+	private RoleDTO    roleDTO;
+
+	/**
+	 * Sets new confirmPassword.
+	 *
+	 * @param confirmPassword New value of confirmPassword.
+	 */
+	public void setConfirmPassword(String confirmPassword)
+	{
+		this.confirmPassword = confirmPassword;
+	}
+
+	/**
+	 * Sets new id.
+	 *
+	 * @param id New value of id.
+	 */
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
+
+	/**
+	 * Sets new email.
+	 *
+	 * @param email New value of email.
+	 */
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
+
+	/**
+	 * Gets enabled.
+	 *
+	 * @return Value of enabled.
+	 */
+	public boolean isEnabled()
+	{
+		return enabled;
+	}
+
+	/**
+	 * Gets id.
+	 *
+	 * @return Value of id.
+	 */
+	public Long getId()
+	{
+		return id;
+	}
+
+	/**
+	 * Gets profileDTO.
+	 *
+	 * @return Value of profileDTO.
+	 */
+	public ProfileDTO getProfileDTO()
+	{
+		return profileDTO;
+	}
+
+	/**
+	 * Sets new roleDTO.
+	 *
+	 * @param roleDTO New value of roleDTO.
+	 */
+	public void setRoleDTO(RoleDTO roleDTO)
+	{
+		this.roleDTO = roleDTO;
+	}
+
+	/**
+	 * Gets confirmPassword.
+	 *
+	 * @return Value of confirmPassword.
+	 */
+	public String getConfirmPassword()
+	{
+		return confirmPassword;
+	}
+
+	/**
+	 * Gets password.
+	 *
+	 * @return Value of password.
+	 */
+	public String getPassword()
+	{
+		return password;
+	}
+
+	/**
+	 * Gets username.
+	 *
+	 * @return Value of username.
+	 */
+	public String getUsername()
+	{
+		return username;
+	}
+
+	/**
+	 * Gets email.
+	 *
+	 * @return Value of email.
+	 */
+	public String getEmail()
+	{
+		return email;
+	}
+
+	/**
+	 * Gets roleDTO.
+	 *
+	 * @return Value of roleDTO.
+	 */
+	public RoleDTO getRoleDTO()
+	{
+		return roleDTO;
+	}
+
+	/**
+	 * Sets new username.
+	 *
+	 * @param username New value of username.
+	 */
+	public void setUsername(String username)
+	{
+		this.username = username;
+	}
+
+	/**
+	 * Sets new profileDTO.
+	 *
+	 * @param profileDTO New value of profileDTO.
+	 */
+	public void setProfileDTO(ProfileDTO profileDTO)
+	{
+		this.profileDTO = profileDTO;
+	}
+
+	/**
+	 * Sets new password.
+	 *
+	 * @param password New value of password.
+	 */
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+
+	/**
+	 * Sets new enabled.
+	 *
+	 * @param enabled New value of enabled.
+	 */
+	public void setEnabled(boolean enabled)
+	{
+		this.enabled = enabled;
+	}
 
 	/**
 	 * Compares this UserDTO object to the specified Object o.
@@ -41,27 +202,35 @@ public class UserDTO implements Serializable
 
 		UserDTO userDTO = (UserDTO) o;
 
-		if (isEnabled() != userDTO.isEnabled())
+		if (enabled != userDTO.enabled)
 		{
 			return false;
 		}
-		if (!getId().equals(userDTO.getId()))
+		if (!id.equals(userDTO.id))
 		{
 			return false;
 		}
-		if (!getEmail().equals(userDTO.getEmail()))
+		if (!email.equals(userDTO.email))
 		{
 			return false;
 		}
-		if (!getUsername().equals(userDTO.getUsername()))
+		if (!username.equals(userDTO.username))
 		{
 			return false;
 		}
-		if (!getPassword().equals(userDTO.getPassword()))
+		if (!password.equals(userDTO.password))
 		{
 			return false;
 		}
-		return getProfileDTO().equals(userDTO.getProfileDTO());
+		if (confirmPassword != null ? !confirmPassword.equals(userDTO.confirmPassword) : userDTO.confirmPassword != null)
+		{
+			return false;
+		}
+		if (!profileDTO.equals(userDTO.profileDTO))
+		{
+			return false;
+		}
+		return roleDTO.equals(userDTO.roleDTO);
 
 	}
 
@@ -73,152 +242,14 @@ public class UserDTO implements Serializable
 	@Override
 	public int hashCode()
 	{
-		int result = getId().hashCode();
-		result = HASH_NUMBER * result + getEmail().hashCode();
-		result = HASH_NUMBER * result + getUsername().hashCode();
-		result = HASH_NUMBER * result + getPassword().hashCode();
-		result = HASH_NUMBER * result + (isEnabled() ? 1 : 0);
-		result = HASH_NUMBER * result + getProfileDTO().hashCode();
+		int result = id.hashCode();
+		result = HASH_NUMBER * result + email.hashCode();
+		result = HASH_NUMBER * result + username.hashCode();
+		result = HASH_NUMBER * result + password.hashCode();
+		result = HASH_NUMBER * result + (enabled ? 1 : 0);
+		result = HASH_NUMBER * result + (confirmPassword != null ? confirmPassword.hashCode() : 0);
+		result = HASH_NUMBER * result + profileDTO.hashCode();
+		result = HASH_NUMBER * result + roleDTO.hashCode();
 		return result;
-	}
-
-	/**
-	 * Sets new enabled.
-	 *
-	 * @param enabled New value of enabled.
-	 */
-	public void setEnabled(final boolean enabled)
-	{
-		this.enabled = enabled;
-	}
-
-	/**
-	 * Gets id.
-	 *
-	 * @return Value of id.
-	 */
-	public Long getId()
-	{
-		return id;
-	}
-
-	/**
-	 * Sets new password.
-	 *
-	 * @param password New value of password.
-	 */
-	public void setPassword(final String password)
-	{
-		this.password = password;
-	}
-
-	/**
-	 * Gets email.
-	 *
-	 * @return Value of email.
-	 */
-	public String getEmail()
-	{
-		return email;
-	}
-
-	/**
-	 * Sets new email.
-	 *
-	 * @param email New value of email.
-	 */
-	public void setEmail(final String email)
-	{
-		this.email = email;
-	}
-
-	/**
-	 * Gets enabled.
-	 *
-	 * @return Value of enabled.
-	 */
-	public boolean isEnabled()
-	{
-		return enabled;
-	}
-
-	/**
-	 * Gets password.
-	 *
-	 * @return Value of password.
-	 */
-	public String getPassword()
-	{
-		return password;
-	}
-
-	/**
-	 * Sets new confirmPassword.
-	 *
-	 * @param confirmPassword New value of confirmPassword.
-	 */
-	public void setConfirmPassword(final String confirmPassword)
-	{
-		this.confirmPassword = confirmPassword;
-	}
-
-	/**
-	 * Sets new username.
-	 *
-	 * @param username New value of username.
-	 */
-	public void setUsername(final String username)
-	{
-		this.username = username;
-	}
-
-	/**
-	 * Gets username.
-	 *
-	 * @return Value of username.
-	 */
-	public String getUsername()
-	{
-		return username;
-	}
-
-	/**
-	 * Gets confirmPassword.
-	 *
-	 * @return Value of confirmPassword.
-	 */
-	public String getConfirmPassword()
-	{
-		return confirmPassword;
-	}
-
-	/**
-	 * Sets new id.
-	 *
-	 * @param id New value of id.
-	 */
-	public void setId(final Long id)
-	{
-		this.id = id;
-	}
-
-	/**
-	 * Sets new profileDTO.
-	 *
-	 * @param profileDTO New value of profileDTO.
-	 */
-	public void setProfileDTO(final ProfileDTO profileDTO)
-	{
-		this.profileDTO = profileDTO;
-	}
-
-	/**
-	 * Gets profileDTO.
-	 *
-	 * @return Value of profileDTO.
-	 */
-	public ProfileDTO getProfileDTO()
-	{
-		return profileDTO;
 	}
 }

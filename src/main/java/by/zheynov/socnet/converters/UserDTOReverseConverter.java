@@ -2,6 +2,7 @@ package by.zheynov.socnet.converters;
 
 import by.zheynov.socnet.dto.UserDTO;
 
+import by.zheynov.socnet.entity.RoleEntity;
 import by.zheynov.socnet.entity.UserEntity;
 
 import org.springframework.core.convert.converter.Converter;
@@ -35,7 +36,12 @@ public class UserDTOReverseConverter implements Converter<UserDTO, UserEntity>
 		userEntity.setPassword(userDTO.getPassword());
 		userEntity.setEnabled(userDTO.isEnabled());
 
+		RoleEntity roleEntity = new RoleEntity();
+		roleEntity.setRole(userDTO.getRoleDTO().getRole());
+		roleEntity.setId(userDTO.getRoleDTO().getId());
+
+		userEntity.setRoleEntity(roleEntity);
+
 		return userEntity;
 	}
-
 }

@@ -1,6 +1,7 @@
 package by.zheynov.socnet.converters;
 
 import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.dto.RoleDTO;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.UserEntity;
@@ -39,9 +40,14 @@ public class UserDTOConverter implements Converter<UserEntity, UserDTO>
 			userDTO.setPassword(userEntity.getPassword());
 			userDTO.setEnabled(userEntity.isEnabled());
 
+			RoleDTO roleDTO = new RoleDTO();
+			roleDTO.setId(userEntity.getRoleEntity().getId());
+			roleDTO.setRole(userEntity.getRoleEntity().getRole());
+
+			userDTO.setRoleDTO(roleDTO);
+
 			ProfileEntity profileEntity = userEntity.getProfileEntity();
 			ProfileDTO profileDTO = new ProfileDTO();
-
 			profileDTO.setUserDTO(userDTO);
 			profileDTO.setAge(profileEntity.getAge());
 			profileDTO.setBirthDate(profileEntity.getBirthDate());

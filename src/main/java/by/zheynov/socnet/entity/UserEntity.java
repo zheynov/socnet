@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -52,6 +53,10 @@ public class UserEntity implements Serializable
 
 	@Column(name = "enabled")
 	private boolean enabled;
+
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "roleID")
+	private RoleEntity roleEntity;
 
 	/**
 	 * Constructor for UserEntity.
@@ -200,5 +205,24 @@ public class UserEntity implements Serializable
 		this.sentPosts = sentPosts;
 	}
 
+	/**
+	 * Gets roleEntity.
+	 *
+	 * @return Value of roleEntity.
+	 */
+	public RoleEntity getRoleEntity()
+	{
+		return roleEntity;
+	}
+
+	/**
+	 * Sets new roleEntity.
+	 *
+	 * @param roleEntity New value of roleEntity.
+	 */
+	public void setRoleEntity(RoleEntity roleEntity)
+	{
+		this.roleEntity = roleEntity;
+	}
 }
 

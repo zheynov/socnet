@@ -48,12 +48,12 @@ public class UserServiceImpl implements UserService
 		userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
 
 		RoleEntity roleEntity = new RoleEntity();
-		roleEntity.setUsername(userEntity.getUsername());
+		roleEntity.setId(2L);
 		roleEntity.setRole("ROLE_USER");
+		userEntity.setRoleEntity(roleEntity);
 
 		profileDao.createProfile(profileEntity);
 		userDao.createUser(userEntity);
-		userRoleDao.createUserRole(roleEntity);
 		LOGGER.info(messageSource.getMessage("service.user.save", new Object[] {userEntity}, Locale.ENGLISH));
 	}
 

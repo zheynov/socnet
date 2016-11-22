@@ -4,6 +4,12 @@ CREATE DATABASE IF NOT EXISTS socnetDB;
 
 USE socnetDB;
 
+-- Table for mapping user and roles
+CREATE TABLE user_role (
+  id   BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  role VARCHAR(30)        NOT NULL
+);
+
 -- Table profile
 CREATE TABLE profile
 (
@@ -27,17 +33,13 @@ CREATE TABLE user
   password  VARCHAR(60)        NOT NULL,
   enabled   TINYINT            NOT NULL DEFAULT 1,
   profileID BIGINT             NOT NULL,
-  FOREIGN KEY (profileID) REFERENCES profile (id)
+  roleID    BIGINT             NOT NULL,
+  FOREIGN KEY (profileID) REFERENCES profile (id),
+  FOREIGN KEY (roleID) REFERENCES user_role (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
--- Table for mapping user and roles
-CREATE TABLE user_role (
-  id       BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  username VARCHAR(45)        NOT NULL,
-  role     VARCHAR(45)        NOT NULL
-);
 -- Table for user's posts
 CREATE TABLE post (
   id     BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -70,34 +72,33 @@ CREATE TABLE friend (
 );
 
 -- Insert data
+
+INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_ADMIN');
+INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_USER');
+
+
 INSERT INTO profile VALUES (1, 'admin', 'nimda', '1911-11-11', 'admin@admin.com', 6, NULL, 'Atlantis', NULL);
 INSERT INTO user VALUES (1, 'admin@admin.com', 'admin',
-                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1, 1);
 
 INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', '1983-11-25', 'vadim@gmail.com', 33, 'male', 'Minsk', 0293453445);
 INSERT INTO user VALUES (2, 'vadim@gmail.com', 'Vadim',
-                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2, 2);
 
 INSERT INTO profile VALUES (3, 'Redlaw', 'Redstar', '1988-02-28', 'Redlaw@redlaw.by', 28, 'female', 'New-York', 1116666666);
 INSERT INTO user VALUES (3, 'Redlaw@redlaw.by', 'Redlaw',
-                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 3);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 3, 2);
 
 INSERT INTO profile VALUES (4, 'Костя', 'Тцзю', '1970-05-15', 'kostyan@mail.ru', 46, 'male', 'Sidney', 1022030941001);
 INSERT INTO user VALUES (4, 'kostyan@mail.ru', 'kostyan',
-                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 4);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 4, 2);
 
 INSERT INTO profile VALUES (5, 'Борис', 'Ельцин', '1920-11-05', 'borya@mail.ru', 86, 'male', 'Москва', 564656466);
 INSERT INTO user VALUES (5, 'borya@mail.ru', 'boris',
-                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 5);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 5, 2);
 
 INSERT INTO profile VALUES (6, 'Bruce', 'Wayne', '1990-03-18', 'batman@batman.ru', 36, 'male', 'Gotham', 666666);
 INSERT INTO user VALUES (6, 'gmail@mail.ru', 'batman',
-                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 6);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 6, 2);
 
 
-INSERT INTO socnetDB.user_role VALUES (NULL, 'admin', 'ROLE_ADMIN');
-INSERT INTO socnetDB.user_role VALUES (NULL, 'Vadim', 'ROLE_USER');
-INSERT INTO socnetDB.user_role VALUES (NULL, 'Redlaw', 'ROLE_USER');
-INSERT INTO socnetDB.user_role VALUES (NULL, 'kostyan', 'ROLE_USER');
-INSERT INTO socnetDB.user_role VALUES (NULL, 'boris', 'ROLE_USER');
-INSERT INTO socnetDB.user_role VALUES (NULL, 'batman', 'ROLE_USER');
