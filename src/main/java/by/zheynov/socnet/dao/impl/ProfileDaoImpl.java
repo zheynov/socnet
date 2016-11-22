@@ -6,7 +6,7 @@ import by.zheynov.socnet.dao.ProfileDao;
 
 import by.zheynov.socnet.entity.ProfileEntity;
 
-import org.hibernate.Criteria;
+import org.hibernate.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 {
+	private static final String GET_ALL_USER_PROFILES_QUERY = "SELECT * FROM profile";
+
 	/**
 	 * Saves profile entity to database.
 	 *
@@ -70,8 +72,8 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 */
 	public List<ProfileEntity> getAllTheProfiles()
 	{
-		final Criteria criteria = super.getCurrentSession().createCriteria(ProfileEntity.class);
-		return criteria.list();
+		Query query = super.getCurrentSession().createNativeQuery(GET_ALL_USER_PROFILES_QUERY);
+		return query.list();
 	}
 
 }

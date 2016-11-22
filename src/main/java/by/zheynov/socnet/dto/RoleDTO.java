@@ -29,7 +29,7 @@ public class RoleDTO implements Serializable
 	 *
 	 * @param id New value of id.
 	 */
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -49,7 +49,7 @@ public class RoleDTO implements Serializable
 	 *
 	 * @param role New value of role.
 	 */
-	public void setRole(String role)
+	public void setRole(final String role)
 	{
 		this.role = role;
 	}

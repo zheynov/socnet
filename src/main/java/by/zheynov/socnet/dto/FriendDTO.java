@@ -23,7 +23,7 @@ public class FriendDTO implements Serializable
 	 *
 	 * @param friendProfileDTO New value of friendProfileDTO.
 	 */
-	public void setFriendProfileDTO(ProfileDTO friendProfileDTO)
+	public void setFriendProfileDTO(final ProfileDTO friendProfileDTO)
 	{
 		this.friendProfileDTO = friendProfileDTO;
 	}
@@ -33,7 +33,7 @@ public class FriendDTO implements Serializable
 	 *
 	 * @param profileDTO New value of profileDTO.
 	 */
-	public void setProfileDTO(ProfileDTO profileDTO)
+	public void setProfileDTO(final ProfileDTO profileDTO)
 	{
 		this.profileDTO = profileDTO;
 	}
@@ -63,7 +63,7 @@ public class FriendDTO implements Serializable
 	 *
 	 * @param id New value of id.
 	 */
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -93,7 +93,7 @@ public class FriendDTO implements Serializable
 	 *
 	 * @param status New value of status.
 	 */
-	public void setStatus(FriendRequestApprovalStatus status)
+	public void setStatus(final FriendRequestApprovalStatus status)
 	{
 		this.status = status;
 	}

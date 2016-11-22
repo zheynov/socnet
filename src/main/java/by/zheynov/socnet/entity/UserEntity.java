@@ -220,7 +220,7 @@ public class UserEntity implements Serializable
 	 *
 	 * @param roleEntity New value of roleEntity.
 	 */
-	public void setRoleEntity(RoleEntity roleEntity)
+	public void setRoleEntity(final RoleEntity roleEntity)
 	{
 		this.roleEntity = roleEntity;
 	}

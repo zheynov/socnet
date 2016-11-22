@@ -48,11 +48,11 @@
                                         users-by-username-query=
                                                 "SELECT username, password, enabled FROM user WHERE username=?"
                                         authorities-by-username-query=
-                                                "SELECT username, roleID FROM user WHERE username =?"/>
+                                                "SELECT username, role FROM user, user_role WHERE user_role.id = user.roleID AND username =?"/>
         </security:authentication-provider>
     </security:authentication-manager>
 
     <bean id="bcryptEncoder"
-                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+          class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
-  </beans>
+</beans>

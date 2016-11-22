@@ -30,6 +30,8 @@ public abstract class AbstractBaseDAO
 	 * Gets the object from data base by its id.
 	 *
 	 * @param id the id
+	 *
+	 * @return the object.
 	 */
 	public abstract Object getById(final Long id);
 

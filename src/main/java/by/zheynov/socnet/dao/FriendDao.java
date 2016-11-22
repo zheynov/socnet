@@ -2,10 +2,7 @@ package by.zheynov.socnet.dao;
 
 import java.util.List;
 
-import org.hibernate.query.Query;
-
 import by.zheynov.socnet.entity.FriendEntity;
-import by.zheynov.socnet.entity.FriendRequestApprovalStatus;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**

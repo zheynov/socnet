@@ -1,7 +1,6 @@
 package by.zheynov.socnet.controllers;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +38,8 @@ public class FriendController
 	/**
 	 * Redirects a list of current users's profiles.
 	 *
-	 * @param model the model
+	 * @param model                 the model
+	 * @param currentLoggedUsername the username
 	 *
 	 * @return the URL
 	 */
@@ -49,9 +49,9 @@ public class FriendController
 	{
 		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
 
-		Set<ProfileDTO> profilesNotFriends = profileFacade.getAllTheProfilesOfNonPendingAndNotFriends(
-						currentLoggedUserDTO.getProfileDTO().getProfileID(),
-						currentLoggedUsername
+		Set<ProfileDTO> profilesNotFriends
+						= profileFacade.getAllTheProfilesOfNonPendingAndNotFriends(currentLoggedUserDTO.getProfileDTO().getProfileID(),
+						                                                           currentLoggedUsername
 		);
 
 		model.addAttribute("allTheProfiles", profilesNotFriends);

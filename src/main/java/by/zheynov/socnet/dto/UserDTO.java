@@ -26,7 +26,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param confirmPassword New value of confirmPassword.
 	 */
-	public void setConfirmPassword(String confirmPassword)
+	public void setConfirmPassword(final String confirmPassword)
 	{
 		this.confirmPassword = confirmPassword;
 	}
@@ -36,7 +36,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param id New value of id.
 	 */
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -46,7 +46,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param email New value of email.
 	 */
-	public void setEmail(String email)
+	public void setEmail(final String email)
 	{
 		this.email = email;
 	}
@@ -86,7 +86,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param roleDTO New value of roleDTO.
 	 */
-	public void setRoleDTO(RoleDTO roleDTO)
+	public void setRoleDTO(final RoleDTO roleDTO)
 	{
 		this.roleDTO = roleDTO;
 	}
@@ -146,7 +146,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param username New value of username.
 	 */
-	public void setUsername(String username)
+	public void setUsername(final String username)
 	{
 		this.username = username;
 	}
@@ -156,7 +156,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param profileDTO New value of profileDTO.
 	 */
-	public void setProfileDTO(ProfileDTO profileDTO)
+	public void setProfileDTO(final ProfileDTO profileDTO)
 	{
 		this.profileDTO = profileDTO;
 	}
@@ -166,7 +166,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param password New value of password.
 	 */
-	public void setPassword(String password)
+	public void setPassword(final String password)
 	{
 		this.password = password;
 	}
@@ -176,7 +176,7 @@ public class UserDTO implements Serializable
 	 *
 	 * @param enabled New value of enabled.
 	 */
-	public void setEnabled(boolean enabled)
+	public void setEnabled(final boolean enabled)
 	{
 		this.enabled = enabled;
 	}
