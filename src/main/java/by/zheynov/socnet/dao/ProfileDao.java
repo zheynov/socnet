@@ -52,11 +52,4 @@ public interface ProfileDao
 	 */
 	List<ProfileEntity> getAllTheProfiles();
 
-	/**
-	 * Adds new friend to user's friends set using their profiles.
-	 *
-	 * @param currentProfile the entity
-	 * @param newFriend      the entity
-	 */
-
 }

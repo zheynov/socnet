@@ -17,6 +17,7 @@ import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.FriendFacade;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
+import by.zheynov.socnet.service.RequestSplitter;
 
 /**
  * FriendController class.
@@ -100,8 +101,8 @@ public class FriendController
 	@RequestMapping(value = "/friends/delete/friend/{deleterequest}", method = RequestMethod.GET)
 	public String deleteFriend(final Model model, @PathVariable(value = "deleterequest") final String deleterequest)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) getUserDTOAndProfileDTO(deleterequest).get(0);
-		ProfileDTO friendProfileDTO = (ProfileDTO) getUserDTOAndProfileDTO(deleterequest).get(1);
+		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(deleterequest).get(0);
+		ProfileDTO friendProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(deleterequest).get(1);
 
 		friendFacade.deleteFriend(currentLoggedUserDTO.getProfileDTO().getProfileID(), friendProfileDTO.getProfileID());
 
@@ -120,8 +121,8 @@ public class FriendController
 	@RequestMapping(value = "/friends/addfriend/{friendRequest}", method = RequestMethod.GET)
 	public String manageFriendInfo(@PathVariable(value = "friendRequest") final String friendRequestString)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) getUserDTOAndProfileDTO(friendRequestString).get(0);
-		ProfileDTO newFriendProfileDTO = (ProfileDTO) getUserDTOAndProfileDTO(friendRequestString).get(1);
+		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(friendRequestString).get(0);
+		ProfileDTO newFriendProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(friendRequestString).get(1);
 
 		friendFacade.addFriend(currentLoggedUserDTO.getProfileDTO(), newFriendProfileDTO);
 
@@ -156,8 +157,8 @@ public class FriendController
 	@RequestMapping(value = "/friends/approve/{username}", method = RequestMethod.GET)
 	public String approvePendingRequests(@PathVariable(value = "username") final String approveRequestString)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) getUserDTOAndProfileDTO(approveRequestString).get(0);
-		ProfileDTO newFriendProfileDTO = (ProfileDTO) getUserDTOAndProfileDTO(approveRequestString).get(1);
+		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(approveRequestString).get(0);
+		ProfileDTO newFriendProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(approveRequestString).get(1);
 
 		friendFacade.approveFriendRequest(currentLoggedUserDTO.getId(), newFriendProfileDTO.getProfileID());
 
@@ -174,35 +175,13 @@ public class FriendController
 	@RequestMapping(value = "/friends/reject/{username}", method = RequestMethod.GET)
 	public String rejectPendingRequests(@PathVariable(value = "username") final String rejectRequest)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) getUserDTOAndProfileDTO(rejectRequest).get(0);
-		ProfileDTO newFriendProfileDTO = (ProfileDTO) getUserDTOAndProfileDTO(rejectRequest).get(1);
+		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(rejectRequest).get(0);
+		ProfileDTO newFriendProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(rejectRequest).get(1);
 
 		friendFacade.rejectFriendRequest(currentLoggedUserDTO.getId(), newFriendProfileDTO.getProfileID());
 
 		return "redirect:/friends/";
 	}
 
-	/**
-	 * Recieves a String request and make alist of 2 objects.
-	 *
-	 * @param request the String request
-	 *
-	 * @return a map of two objects
-	 */
-	private List<Object> getUserDTOAndProfileDTO(final String request)
-	{
-		List<Object> result = new ArrayList<Object>();
 
-		String[] twoValuesFromDeleteRequest = request.split("&");
-		String currentLoggedUsername = twoValuesFromDeleteRequest[0];
-		String friendProfileId = twoValuesFromDeleteRequest[1];
-
-		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
-		ProfileDTO friendProfileDTO = profileFacade.getProfileById(Long.valueOf(friendProfileId));
-
-		result.add(currentLoggedUserDTO);
-		result.add(friendProfileDTO);
-
-		return result;
-	}
 }

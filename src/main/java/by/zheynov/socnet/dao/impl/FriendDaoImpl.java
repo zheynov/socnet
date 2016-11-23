@@ -154,7 +154,7 @@ public class FriendDaoImpl extends AbstractBaseDAO implements FriendDao
 	 *
 	 * @return friend entity
 	 */
-	public Object getById(final Long friendId)
+	public FriendEntity getById(final Long friendId)
 	{
 		return super.getCurrentSession().get(FriendEntity.class, friendId);
 	}

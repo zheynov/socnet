@@ -38,7 +38,6 @@
 
                     <div class="tab-pane active" id="messages" style="margin-left: 250px">
 
-
                         <table class="table">
                             <tr>
                                 <th>#</th>
@@ -51,7 +50,7 @@
 
                                 <tr>
                                     <th scope="row"><a
-                                            href="/sendmessage/${pageContext.request.userPrincipal.name}&${profile.profileID}">
+                                            href="/messages/sendmessage/${pageContext.request.userPrincipal.name}&${profile.profileID}">
                                         <spring:message code="messages.page.text.send.message"/> </a>
                                     </th>
 
@@ -69,7 +68,7 @@
 
                     <div class="tab-pane" id="photoes"></div>
 
-                    <jsp:include page="contactabout.jsp"/>
+                    <jsp:include page="../contactabout.jsp"/>
 
                     <div class="tab-pane" id="profile"></div>
 
