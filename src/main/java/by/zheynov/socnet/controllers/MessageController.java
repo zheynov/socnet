@@ -1,21 +1,23 @@
 package by.zheynov.socnet.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.dto.MessageDTO;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
-import by.zheynov.socnet.service.RequestSplitter;
 
 /**
  * Message controller class.
@@ -24,6 +26,7 @@ import by.zheynov.socnet.service.RequestSplitter;
  * @package by.zheynov.socnet.controllers
  */
 @Controller
+@RequestMapping(value = "/messages")
 public class MessageController
 {
 	@Autowired
@@ -39,33 +42,61 @@ public class MessageController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/messages", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showAllTheFriends(final Model model)
 	{
 		model.addAttribute("allThePeople", profileFacade.getAllTheProfiles());
 
-		return "messages/messages";
+		return "/messages/messages";
 	}
 
-	/**
-	 * Redirects a list of current users's profiles.
+	/*
+	 * Prepares data for sending a message.
 	 *
 	 * @param model   the model
 	 * @param request the username
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/messages/sendmessage/{request}", method = RequestMethod.GET)
-	public String showAllThePeople(final Model model, @PathVariable(value = "request") final String request)
+	@RequestMapping(value = "/sendmessage/{currentLoggedUsername}", method = RequestMethod.GET)
+	public String beforeSendingMessage(final Model model,
+	                                   @PathVariable(value = "currentLoggedUsername") final String currentLoggedUsername)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(request).get(0);
-		ProfileDTO destinationProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(request).get(1);
+		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
 
+		MessageDTO messageDTO = new MessageDTO();
+		model.addAttribute("MessageDTO", messageDTO);
 
+		return "/messages/sendmessage";
+	}
 
-//		model.addAttribute("allTheProfiles", profilesNotFriends);
+	/**
+	 * Sends a message.
+	 *
+	 * @param model      the model
+	 * @param messageDTO the dto
+	 *
+	 * @return the URL
+	 */
+	@RequestMapping(value = "/sendmessage", method = RequestMethod.POST)
+	public String sendMessage(final Model model, @ModelAttribute("MessageDTO") MessageDTO messageDTO)
+	{
 
-		return "/messages/showmessages";
+		//		model.addAttribute("allTheProfiles", profilesNotFriends);
+
+		return "redirect:/messages/messages";
+	}
+
+	/**
+	 * @param binder the binder
+	 */
+
+	@InitBinder
+	protected void initBinder(final WebDataBinder binder)
+	{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(true);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
 }

@@ -1,16 +1,16 @@
-package by.zheynov.socnet.dao;
+package by.zheynov.socnet.service;
 
 import java.util.List;
 
 import by.zheynov.socnet.entity.MessageEntity;
 
 /**
- * MessageDAO interface.
+ * MessageService interface.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
- * @package by.zheynov.socnet.dao
+ * @package by.zheynov.socnet.service
  */
-public interface MessageDAO
+public interface MessageService
 {
 	/**
 	 * Saves.

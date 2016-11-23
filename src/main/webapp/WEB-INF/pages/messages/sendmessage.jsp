@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="action" tagdir="/WEB-INF/tags/" %>
-<%@ taglib prefix="contactabout" tagdir="/WEB-INF/tags/" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -32,37 +32,34 @@
 
                 </ul>
                 <div class="tab-content">
+
                     <div class="tab-pane" id="wall"></div>
 
                     <div class="tab-pane" id="friends"></div>
 
                     <div class="tab-pane active" id="messages" style="margin-left: 250px">
 
-                        <table class="table">
-                            <tr>
-                                <th>#</th>
-                                <th><spring:message code="profile.page.text.fullname"/></th>
-                                <th><spring:message code="profile.page.text.age"/></th>
-                                <th><spring:message code="profile.page.text.city"/></th>
-                                <th><spring:message code="profile.page.text.gender"/></th>
-                            </tr>
-                            <c:forEach items="${allThePeople}" var="profile">
+                        <form:form method="POST" action="/messages/sendmessage" commandName="MessageDTO">
 
-                                <tr>
-                                    <th scope="row">
-                                        <a href="/messages/sendmessage/${pageContext.request.userPrincipal.name}">
-                                            <spring:message code="messages.page.text.send.message"/> </a>
-                                    </th>
+<%--                            <form:hidden path="id"/>
+                            <form:hidden path="messageDate"/>
+                            <form:hidden path="profileDTO"/>
+                            <form:hidden path="dialogDTO"/>--%>
 
-                                    <td>${profile.firstname} ${profile.lastname}</td>
-                                    <td>${profile.age}</td>
-                                    <td>${profile.city}</td>
-                                    <td>${profile.sex}</td>
-                                </tr>
+                            <p><form:textarea path="text" rows="5" cols="80" maxlength="1023"
+                                              placeholder="enter a text"/></p>
 
-                            </c:forEach>
-                        </table>
-                        <br/>
+                            <a href="/messages">
+                                <button type="button" class="btn btn-default ">
+                                    <spring:message code="messages.page.text.send.manage.messages"/></button>
+                            </a>
+
+                            <spring:message code="messages.page.text.send.sendmessage" var="send"/>
+                            <button type="submit" class="btn btn-primary login-button">${send}</button>
+
+
+                        </form:form>
+
 
                     </div>
 

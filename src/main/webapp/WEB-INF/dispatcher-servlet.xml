@@ -95,6 +95,8 @@
                 <bean class="by.zheynov.socnet.converters.ProfileDTOConverter"/>
                 <bean class="by.zheynov.socnet.converters.FriendDTOConverter"/>
                 <bean class="by.zheynov.socnet.converters.FriendDTOReverseConverter"/>
+                <bean class="by.zheynov.socnet.converters.MessageDTOConverter"/>
+                <bean class="by.zheynov.socnet.converters.MessageDTOReverseConverter"/>
             </list>
         </property>
     </bean>
