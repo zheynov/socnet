@@ -14,7 +14,7 @@ public class DialogDTO implements Serializable
 {
 	private Long id;
 
-	//private Set<ProfileDTO> profiles = new HashSet<ProfileDTO>();
+	private Set<ProfileDTO> profiles = new HashSet<ProfileDTO>();
 
 	private Set<MessageDTO> messages = new HashSet<MessageDTO>();
 
@@ -33,10 +33,10 @@ public class DialogDTO implements Serializable
 	 *
 	 * @return Value of profiles.
 	 */
-/*	public Set<ProfileDTO> getProfiles()
+	public Set<ProfileDTO> getProfiles()
 	{
 		return profiles;
-	}*/
+	}
 
 	/**
 	 * Gets id.
@@ -53,10 +53,10 @@ public class DialogDTO implements Serializable
 	 *
 	 * @param profiles New value of profiles.
 	 */
-/*	public void setProfiles(Set<ProfileDTO> profiles)
+	public void setProfiles(Set<ProfileDTO> profiles)
 	{
 		this.profiles = profiles;
-	}*/
+	}
 
 	/**
 	 * Gets messages.

@@ -20,7 +20,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#wall" data-toggle="tab"><spring:message code="welcome.page.text.wall"/></a></li>
                     <li><a href="/friends"><spring:message code="welcome.page.text.friends"/></a></li>
-                    <li><a href="/messages"><spring:message code="welcome.page.text.mesagges"/></a></li>
+                    <li><a href="/messages/"><spring:message code="welcome.page.text.mesagges"/></a></li>
                     <li><a href="/photoes"><spring:message code="welcome.page.text.photoes"/></a></li>
                     <li><a href="/beforeprofilepage"><spring:message code="welcome.page.text.profile"/></a></li>
                     <li><a href="#contact" data-toggle="tab"><spring:message code="welcome.page.text.contacts"/></a></li>

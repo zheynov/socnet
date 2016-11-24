@@ -3,17 +3,19 @@ package by.zheynov.socnet.dao.impl;
 import java.util.List;
 
 import org.hibernate.query.Query;
+import org.springframework.transaction.annotation.Transactional;
 
-import by.zheynov.socnet.dao.MessageDAO;
+import by.zheynov.socnet.dao.MessageDao;
 import by.zheynov.socnet.entity.MessageEntity;
 
 /**
- * MessageDAOImpl class.
+ * MessageDaoImpl class.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.dao.impl
  */
-public class MessageDAOImpl extends AbstractBaseDAO implements MessageDAO
+@Transactional
+public class MessageDaoImpl extends AbstractBaseDAO implements MessageDao
 {
 	private static final String GET_ALL_THE_MESSAGES_QUERY = "FROM MessageEntity " + "WHERE senderID = :senderID";
 

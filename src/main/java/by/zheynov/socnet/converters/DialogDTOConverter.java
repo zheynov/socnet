@@ -8,8 +8,11 @@ import org.springframework.core.convert.converter.Converter;
 import by.zheynov.socnet.dto.DialogDTO;
 import by.zheynov.socnet.dto.MessageDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.DialogEntity;
 import by.zheynov.socnet.entity.MessageEntity;
+import by.zheynov.socnet.entity.ProfileEntity;
+import by.zheynov.socnet.entity.UserEntity;
 
 /**
  * DialogDTOConverter class.
@@ -32,6 +35,8 @@ public class DialogDTOConverter implements Converter<DialogEntity, DialogDTO>
 		Set<MessageEntity> messages = dialogEntity.getMessages();
 		Set<MessageDTO> messagesDTO = new HashSet<MessageDTO>();
 
+		//setting MessageDTOs to DialogDTO object
+
 		for (MessageEntity messageEntity : messages)
 		{
 			MessageDTO messageDTO = new MessageDTO();
@@ -50,6 +55,17 @@ public class DialogDTOConverter implements Converter<DialogEntity, DialogDTO>
 			profileDTO.setSex(messageEntity.getProfileEntity().getSex());
 			profileDTO.setCity(messageEntity.getProfileEntity().getCity());
 			profileDTO.setPhoneNumber(messageEntity.getProfileEntity().getPhoneNumber());
+
+			UserDTO userDTO = new UserDTO();
+			userDTO.setProfileDTO(profileDTO);
+			userDTO.setId(messageEntity.getProfileEntity().getUserEntity().getId());
+			userDTO.setUsername(messageEntity.getProfileEntity().getUserEntity().getUsername());
+			userDTO.setPassword(messageEntity.getProfileEntity().getUserEntity().getPassword());
+			userDTO.setEmail(messageEntity.getProfileEntity().getUserEntity().getEmail());
+			userDTO.setEnabled(messageEntity.getProfileEntity().getUserEntity().isEnabled());
+
+			profileDTO.setUserDTO(userDTO);
+
 			messageDTO.setProfileDTO(profileDTO);
 
 			DialogDTO dialogDTOOfMessage = new DialogDTO();
@@ -62,6 +78,42 @@ public class DialogDTOConverter implements Converter<DialogEntity, DialogDTO>
 
 		dialogDTO.setMessages(messagesDTO);
 
-		return null;
+
+		//setting ProfileDTOs to DialogDTO object
+		Set<ProfileEntity> profileEntities = dialogEntity.getProfiles();
+		Set<ProfileDTO> profileDTOs = new HashSet<ProfileDTO>();
+
+		for (ProfileEntity profileEntity : profileEntities)
+		{
+
+			ProfileDTO profileDTO = new ProfileDTO();
+
+			profileDTO.setProfileID(profileEntity.getId());
+			profileDTO.setFirstname(profileEntity.getFirstname());
+			profileDTO.setLastname(profileEntity.getLastname());
+			profileDTO.setEmail(profileEntity.getEmail());
+			profileDTO.setBirthDate(profileEntity.getBirthDate());
+			profileDTO.setAge(profileEntity.getAge());
+			profileDTO.setSex(profileEntity.getSex());
+			profileDTO.setCity(profileEntity.getCity());
+			profileDTO.setPhoneNumber(profileEntity.getPhoneNumber());
+
+			UserDTO userDTO = new UserDTO();
+			UserEntity userEntity = profileEntity.getUserEntity();
+
+			userDTO.setProfileDTO(profileDTO);
+			userDTO.setId(userEntity.getId());
+			userDTO.setUsername(userEntity.getUsername());
+			userDTO.setPassword(userEntity.getPassword());
+			userDTO.setEmail(userEntity.getEmail());
+			userDTO.setEnabled(userEntity.isEnabled());
+
+			profileDTO.setUserDTO(userDTO);
+			profileDTOs.add(profileDTO);
+
+		}
+		dialogDTO.setProfiles(profileDTOs);
+
+		return dialogDTO;
 	}
 }

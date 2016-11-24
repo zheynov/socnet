@@ -1,16 +1,16 @@
-package by.zheynov.socnet.dao;
+package by.zheynov.socnet.service;
 
 import java.util.List;
 
 import by.zheynov.socnet.entity.DialogEntity;
 
 /**
- * DialogDAO interface.
+ * DialogService interface.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
- * @package by.zheynov.socnet.dao
+ * @package by.zheynov.socnet.service
  */
-public interface DialogDAO
+public interface DialogService
 {
 	/**
 	 * Saves.
@@ -36,13 +36,4 @@ public interface DialogDAO
 	 * @return the List<DialogEntity>
 	 */
 	List<DialogEntity> getAllTheDialogs();
-
-
-	/**
-	 * Retrieves a list of DialogEntity objects.
-	 *
-	 * @return the List<DialogEntity>
-	 */
-	List<DialogEntity> getAllTheDialogs(Long senderProfileID, Long destinationProfileID);
-
 }

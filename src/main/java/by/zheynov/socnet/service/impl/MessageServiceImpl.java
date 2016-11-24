@@ -2,8 +2,9 @@ package by.zheynov.socnet.service.impl;
 
 import java.util.List;
 
-import by.zheynov.socnet.dao.DialogDAO;
-import by.zheynov.socnet.dao.MessageDAO;
+import org.springframework.transaction.annotation.Transactional;
+
+import by.zheynov.socnet.dao.MessageDao;
 import by.zheynov.socnet.entity.MessageEntity;
 import by.zheynov.socnet.service.MessageService;
 
@@ -15,7 +16,7 @@ import by.zheynov.socnet.service.MessageService;
  */
 public class MessageServiceImpl implements MessageService
 {
-	private MessageDAO messageDAO;
+	private MessageDao messageDao;
 
 	/**
 	 * Saves.
@@ -24,9 +25,10 @@ public class MessageServiceImpl implements MessageService
 	 *
 	 * @return the entity
 	 */
+	@Transactional
 	public MessageEntity createMessage(final MessageEntity messageEntity)
 	{
-		return messageDAO.createMessage(messageEntity);
+		return messageDao.createMessage(messageEntity);
 	}
 
 	/**
@@ -36,9 +38,10 @@ public class MessageServiceImpl implements MessageService
 	 *
 	 * @return the entity
 	 */
+	@Transactional
 	public MessageEntity getById(final Long messageId)
 	{
-		return messageDAO.getById(messageId);
+		return messageDao.getById(messageId);
 	}
 
 	/**
@@ -48,18 +51,19 @@ public class MessageServiceImpl implements MessageService
 	 *
 	 * @return the List<MessageEntity>
 	 */
+	@Transactional
 	public List<MessageEntity> getAllTheMessages(final Long senderID)
 	{
-		return messageDAO.getAllTheMessages(senderID);
+		return messageDao.getAllTheMessages(senderID);
 	}
 
 	/**
 	 * Sets new messageDAO.
 	 *
-	 * @param messageDAO New value of messageDAO.
+	 * @param messageDao New value of messageDAO.
 	 */
-	public void setMessageDAO(MessageDAO messageDAO)
+	public void setMessageDao(final MessageDao messageDao)
 	{
-		this.messageDAO = messageDAO;
+		this.messageDao = messageDao;
 	}
 }

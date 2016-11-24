@@ -49,7 +49,7 @@
                             <p><form:textarea path="text" rows="5" cols="80" maxlength="1023"
                                               placeholder="enter a text"/></p>
 
-                            <a href="/messages">
+                            <a href="/messages/">
                                 <button type="button" class="btn btn-default ">
                                     <spring:message code="messages.page.text.send.manage.messages"/></button>
                             </a>

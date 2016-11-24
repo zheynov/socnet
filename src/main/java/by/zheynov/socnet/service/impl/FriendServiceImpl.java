@@ -12,7 +12,7 @@ import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.service.FriendService;
 
 /**
- * .
+ * FriendServiceImpl class.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade.impl
@@ -72,6 +72,7 @@ public class FriendServiceImpl implements FriendService
 	 *
 	 * @return the List<friendEntity>
 	 */
+	@Transactional
 	public List<FriendEntity> getAllThePendingRequests()
 	{
 		return friendDao.getAllThePendingRequests();
@@ -83,6 +84,7 @@ public class FriendServiceImpl implements FriendService
 	 * @param loggedUserProfileId the Id
 	 * @param frendProfileId      the Id
 	 */
+	@Transactional
 	public void approveFriendRequest(final Long loggedUserProfileId, final Long frendProfileId)
 	{
 		friendDao.approveFriendRequest(loggedUserProfileId, frendProfileId);
@@ -94,6 +96,7 @@ public class FriendServiceImpl implements FriendService
 	 * @param loggedUserProfileId the Id
 	 * @param frendProfileId      the Id
 	 */
+	@Transactional
 	public void rejectFriendRequest(final Long loggedUserProfileId, final Long frendProfileId)
 	{
 		friendDao.rejectFriendRequest(loggedUserProfileId, frendProfileId);

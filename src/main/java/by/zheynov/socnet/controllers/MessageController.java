@@ -2,6 +2,9 @@ package by.zheynov.socnet.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -14,9 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import by.zheynov.socnet.dto.DialogDTO;
 import by.zheynov.socnet.dto.MessageDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.dto.UserDTO;
+import by.zheynov.socnet.facade.DialogFacade;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
 import by.zheynov.socnet.service.RequestSplitter;
@@ -35,6 +40,9 @@ public class MessageController
 	private ProfileFacade profileFacade;
 
 	@Autowired
+	private DialogFacade dialogFacade;
+
+	@Autowired
 	private UserFacade userFacade;
 
 	/**
@@ -48,7 +56,6 @@ public class MessageController
 	public String showAllTheFriends(final Model model)
 	{
 		model.addAttribute("allThePeople", profileFacade.getAllTheProfiles());
-
 		return "/messages/messages";
 	}
 
@@ -63,15 +70,41 @@ public class MessageController
 	@RequestMapping(value = "/sendmessage/{request}", method = RequestMethod.GET)
 	public String beforeSendingMessage(final Model model, @PathVariable(value = "request") final String request)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(request).get(0);
-		ProfileDTO derstinationProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(request).get(1);
+		String[] twoValuesFromDeleteRequest = request.split("&");
+		String currentLoggedUsername = twoValuesFromDeleteRequest[0];
+		String friendProfileId = twoValuesFromDeleteRequest[1];
 
-		Long senderProfileID = currentLoggedUserDTO.getProfileDTO().getProfileID();
-		Long derstinationProfileID = derstinationProfileDTO.getProfileID();
+		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
+		ProfileDTO destinationProfileDTO = profileFacade.getProfileById(Long.valueOf(friendProfileId));
 
 
+		ProfileDTO senderProfileDTO = currentLoggedUserDTO.getProfileDTO();
 
-		//		model.addAttribute("MessageDTO", messageDTO);
+		List<DialogDTO> allTheDialogs = dialogFacade.getAllTheDialogs();
+
+		boolean isDialogExists = false;
+
+		for (DialogDTO dialogDTO : allTheDialogs)
+		{
+			if (dialogDTO.getProfiles().contains(destinationProfileDTO) && dialogDTO.getProfiles().contains(senderProfileDTO))
+			{
+				model.addAttribute("allTheMessagesForDialog", dialogDTO.getMessages());
+				isDialogExists = true;
+			}
+		}
+
+		if (!isDialogExists)
+		{
+			DialogDTO newDialogDTO = new DialogDTO();
+			Set<ProfileDTO> profiles = new HashSet<ProfileDTO>();
+			profiles.add(destinationProfileDTO);
+			profiles.add(senderProfileDTO);
+			newDialogDTO.setProfiles(profiles);
+
+			dialogFacade.createDialog(newDialogDTO);
+		}
+
+		model.addAttribute("MessageDTO", new MessageDTO());
 
 		return "/messages/sendmessage";
 	}

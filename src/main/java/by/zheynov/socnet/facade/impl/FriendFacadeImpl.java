@@ -16,7 +16,7 @@ import by.zheynov.socnet.facade.FriendFacade;
 import by.zheynov.socnet.service.FriendService;
 
 /**
- * .
+ * FriendFacadeImpl class.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade.impl

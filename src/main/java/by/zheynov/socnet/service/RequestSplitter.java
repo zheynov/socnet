@@ -12,7 +12,7 @@ import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
 
 /**
- * .
+ * RequestSplitter class.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.service

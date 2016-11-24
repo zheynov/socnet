@@ -85,6 +85,10 @@
 
     <bean id="friendFacade" class="by.zheynov.socnet.facade.impl.FriendFacadeImpl"/>
 
+    <bean id="messageFacade" class="by.zheynov.socnet.facade.impl.MessageFacadeImpl"/>
+
+    <bean id="dialogFacade" class="by.zheynov.socnet.facade.impl.DialogFacadeImpl"/>
+
 
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
@@ -97,6 +101,8 @@
                 <bean class="by.zheynov.socnet.converters.FriendDTOReverseConverter"/>
                 <bean class="by.zheynov.socnet.converters.MessageDTOConverter"/>
                 <bean class="by.zheynov.socnet.converters.MessageDTOReverseConverter"/>
+                <bean class="by.zheynov.socnet.converters.DialogDTOConverter"/>
+                <bean class="by.zheynov.socnet.converters.DialogDTOReverseConverter"/>
             </list>
         </property>
     </bean>

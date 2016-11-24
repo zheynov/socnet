@@ -5,12 +5,12 @@ import java.util.List;
 import by.zheynov.socnet.entity.MessageEntity;
 
 /**
- * MessageDAO interface.
+ * MessageDao interface.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.dao
  */
-public interface MessageDAO
+public interface MessageDao
 {
 	/**
 	 * Saves.
