@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import by.zheynov.socnet.dto.MessageDTO;
+import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
+import by.zheynov.socnet.service.RequestSplitter;
 
 /**
  * Message controller class.
@@ -54,18 +56,22 @@ public class MessageController
 	 * Prepares data for sending a message.
 	 *
 	 * @param model   the model
-	 * @param request the username
+	 * @param request the currentLoggedUserDTO+derstinationProfileDTO
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/sendmessage/{currentLoggedUsername}", method = RequestMethod.GET)
-	public String beforeSendingMessage(final Model model,
-	                                   @PathVariable(value = "currentLoggedUsername") final String currentLoggedUsername)
+	@RequestMapping(value = "/sendmessage/{request}", method = RequestMethod.GET)
+	public String beforeSendingMessage(final Model model, @PathVariable(value = "request") final String request)
 	{
-		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
+		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(request).get(0);
+		ProfileDTO derstinationProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(request).get(1);
 
-		MessageDTO messageDTO = new MessageDTO();
-		model.addAttribute("MessageDTO", messageDTO);
+		Long senderProfileID = currentLoggedUserDTO.getProfileDTO().getProfileID();
+		Long derstinationProfileID = derstinationProfileDTO.getProfileID();
+
+
+
+		//		model.addAttribute("MessageDTO", messageDTO);
 
 		return "/messages/sendmessage";
 	}

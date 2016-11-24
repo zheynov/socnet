@@ -58,7 +58,6 @@ public class DialogDTOConverter implements Converter<DialogEntity, DialogDTO>
 			messageDTO.setDialogDTO(dialogDTOOfMessage);
 
 			messagesDTO.add(messageDTO);
-
 		}
 
 		dialogDTO.setMessages(messagesDTO);

@@ -37,4 +37,12 @@ public interface DialogDAO
 	 */
 	List<DialogEntity> getAllTheDialogs();
 
+
+	/**
+	 * Retrieves a list of DialogEntity objects.
+	 *
+	 * @return the List<DialogEntity>
+	 */
+	List<DialogEntity> getAllTheDialogs(Long senderProfileID, Long destinationProfileID);
+
 }
