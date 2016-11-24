@@ -118,6 +118,13 @@ public class MessageDTO implements Serializable
 		return text;
 	}
 
+	/**
+	 * Compares this FriendDTO object to the specified Object o.
+	 *
+	 * @param o
+	 *
+	 * @return true if objects are the same, otherwise false
+	 */
 	@Override
 	public boolean equals(final Object o)
 	{
@@ -132,15 +139,15 @@ public class MessageDTO implements Serializable
 
 		MessageDTO that = (MessageDTO) o;
 
-		if (!getId().equals(that.getId()))
+		if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null)
 		{
 			return false;
 		}
-		if (!getMessageDate().equals(that.getMessageDate()))
+		if (getMessageDate() != null ? !getMessageDate().equals(that.getMessageDate()) : that.getMessageDate() != null)
 		{
 			return false;
 		}
-		if (!getText().equals(that.getText()))
+		if (getText() != null ? !getText().equals(that.getText()) : that.getText() != null)
 		{
 			return false;
 		}
@@ -152,12 +159,17 @@ public class MessageDTO implements Serializable
 
 	}
 
+	/**
+	 * Calculates a hashcode for this object.
+	 *
+	 * @return the hash
+	 */
 	@Override
 	public int hashCode()
 	{
-		int result = getId().hashCode();
-		result = HASH_NUMBER * result + getMessageDate().hashCode();
-		result = HASH_NUMBER * result + getText().hashCode();
+		int result = getId() != null ? getId().hashCode() : 0;
+		result = HASH_NUMBER * result + (getMessageDate() != null ? getMessageDate().hashCode() : 0);
+		result = HASH_NUMBER * result + (getText() != null ? getText().hashCode() : 0);
 		result = HASH_NUMBER * result + (getProfileDTO() != null ? getProfileDTO().hashCode() : 0);
 		result = HASH_NUMBER * result + (getDialogDTO() != null ? getDialogDTO().hashCode() : 0);
 		return result;

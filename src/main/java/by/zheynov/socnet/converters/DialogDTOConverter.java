@@ -78,7 +78,6 @@ public class DialogDTOConverter implements Converter<DialogEntity, DialogDTO>
 
 		dialogDTO.setMessages(messagesDTO);
 
-
 		//setting ProfileDTOs to DialogDTO object
 		Set<ProfileEntity> profileEntities = dialogEntity.getProfiles();
 		Set<ProfileDTO> profileDTOs = new HashSet<ProfileDTO>();

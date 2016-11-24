@@ -55,7 +55,7 @@ CREATE TABLE message (
   id          BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   senderID    BIGINT             NOT NULL,
   dialogID    BIGINT             NOT NULL,
-  messagedate DATE               NOT NULL,
+  messagedate DATETIME               NOT NULL,
   text        VARCHAR(1024),
   FOREIGN KEY (senderID) REFERENCES profile (id),
   FOREIGN KEY (dialogID) REFERENCES dialog (id)

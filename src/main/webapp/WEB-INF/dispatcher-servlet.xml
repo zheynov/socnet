@@ -13,6 +13,7 @@
     <context:component-scan base-package="by.zheynov.socnet.validators"/>
     <context:component-scan base-package="by.zheynov.socnet.facade"/>
     <context:component-scan base-package="by.zheynov.socnet.converters"/>
+    <context:component-scan base-package="by.zheynov.socnet.utils"/>
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

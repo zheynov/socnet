@@ -23,7 +23,6 @@ public class MessageDTOReverseConverter implements Converter<MessageDTO, Message
 		}
 
 		MessageEntity messageEntity = new MessageEntity();
-
 		messageEntity.setId(messageDTO.getId());
 		messageEntity.setText(messageDTO.getText());
 		messageEntity.setMessageDate(messageDTO.getMessageDate());

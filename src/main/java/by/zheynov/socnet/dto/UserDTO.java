@@ -226,10 +226,7 @@ public class UserDTO implements Serializable
 		{
 			return false;
 		}
-		if (!profileDTO.equals(userDTO.profileDTO))
-		{
-			return false;
-		}
+
 		return roleDTO.equals(userDTO.roleDTO);
 
 	}

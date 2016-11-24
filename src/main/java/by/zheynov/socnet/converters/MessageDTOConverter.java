@@ -42,7 +42,6 @@ public class MessageDTOConverter implements Converter<MessageEntity, MessageDTO>
 
 		DialogDTO dialogDTO = new DialogDTO();
 		dialogDTO.setId(messageEntity.getDialogEntity().getId());
-
 		messageDTO.setDialogDTO(dialogDTO);
 
 		return messageDTO;

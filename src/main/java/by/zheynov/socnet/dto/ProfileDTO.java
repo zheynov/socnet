@@ -280,11 +280,7 @@ public class ProfileDTO implements Serializable
 		{
 			return false;
 		}
-		if (getPhoneNumber() != null ? !getPhoneNumber().equals(that.getPhoneNumber()) : that.getPhoneNumber() != null)
-		{
-			return false;
-		}
-		return getUserDTO() != null ? getUserDTO().equals(that.getUserDTO()) : that.getUserDTO() == null;
+		return getPhoneNumber() != null ? getPhoneNumber().equals(that.getPhoneNumber()): that.getPhoneNumber() == null;
 
 	}
 

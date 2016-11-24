@@ -1,4 +1,4 @@
-package by.zheynov.socnet.service;
+package by.zheynov.socnet.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,30 +18,30 @@ import by.zheynov.socnet.facade.UserFacade;
  * @package by.zheynov.socnet.service
  */
 @Component
-public class RequestSplitter
+public class RequestSplitterForUserAndProfile
 {
 	@Autowired
-	private static ProfileFacade profileFacade;
+	private ProfileFacade profileFacade;
 	@Autowired
-	private static UserFacade    userFacade;
+	private UserFacade    userFacade;
 
 	/**
-	 * Recieves a String request and make alist of 2 objects.
+	 * Recieves a String request and make a list of 2 objects.
 	 *
 	 * @param request the String request
 	 *
 	 * @return a map of two objects
 	 */
-	public static List<Object> getUserDTOAndProfileDTO(final String request)
+	public List<Object> getUserDTOAndProfileDTO(final String request)
 	{
 		List<Object> result = new ArrayList<Object>();
 
 		String[] twoValuesFromDeleteRequest = request.split("&");
 		String currentLoggedUsername = twoValuesFromDeleteRequest[0];
-		String friendProfileId = twoValuesFromDeleteRequest[1];
+		Long friendProfileId = Long.valueOf(twoValuesFromDeleteRequest[1]);
 
 		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
-		ProfileDTO friendProfileDTO = profileFacade.getProfileById(Long.valueOf(friendProfileId));
+		ProfileDTO friendProfileDTO = profileFacade.getProfileById(friendProfileId);
 
 		result.add(currentLoggedUserDTO);
 		result.add(friendProfileDTO);

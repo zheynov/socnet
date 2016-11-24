@@ -39,14 +39,15 @@
 
                     <div class="tab-pane active" id="messages" style="margin-left: 250px">
 
-                        <form:form method="POST" action="/messages/sendmessage" commandName="MessageDTO">
+                        <form:form method="POST" action="/messages/sendmessage/${pageContext.request.userPrincipal.name}"
+                                   commandName="MessageDTO">
 
-<%--                            <form:hidden path="id"/>
-                            <form:hidden path="messageDate"/>
-                            <form:hidden path="profileDTO"/>
-                            <form:hidden path="dialogDTO"/>--%>
+                            <%--                            <form:hidden path="id"/>
+                                                        <form:hidden path="messageDate"/>
+                                                        <form:hidden path="profileDTO"/>
+                                                        <form:hidden path="dialogDTO"/> --%>
 
-                            <p><form:textarea path="text" rows="5" cols="80" maxlength="1023"
+                            <p><form:textarea path="text" rows="5" cols="100" maxlength="1023"
                                               placeholder="enter a text"/></p>
 
                             <a href="/messages/">
@@ -59,6 +60,18 @@
 
 
                         </form:form>
+                        <br/>
+
+                        <c:forEach items="${allTheMessages}" var="message">
+                            <br/>
+                            <div class="alert-info">
+                                <font size="1"> <b>Author:</b> ${message.profileDTO.firstname} ${message.profileDTO.lastname}
+                                </font> <font size="1"> <b>time: </b> ${message.messageDate} </font><br/>
+                                <p><b> ${message.text} </b>
+
+                            </div>
+
+                        </c:forEach>
 
 
                     </div>

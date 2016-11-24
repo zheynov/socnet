@@ -49,7 +49,7 @@
 
                                 <tr>
                                     <th scope="row">
-                                        <a href="/messages/sendmessage/${pageContext.request.userPrincipal.name}&${profile.profileID}">
+                                        <a href="/messages/beforesendmessage/${pageContext.request.userPrincipal.name}&${profile.profileID}">
                                             <spring:message code="messages.page.text.send.message"/> </a>
                                     </th>
 

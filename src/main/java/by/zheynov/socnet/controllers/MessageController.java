@@ -22,9 +22,10 @@ import by.zheynov.socnet.dto.MessageDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.DialogFacade;
+import by.zheynov.socnet.facade.MessageFacade;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
-import by.zheynov.socnet.service.RequestSplitter;
+import by.zheynov.socnet.utils.RequestSplitterForUserAndProfile;
 
 /**
  * Message controller class.
@@ -38,12 +39,16 @@ public class MessageController
 {
 	@Autowired
 	private ProfileFacade profileFacade;
-
 	@Autowired
-	private DialogFacade dialogFacade;
-
+	private DialogFacade  dialogFacade;
 	@Autowired
-	private UserFacade userFacade;
+	private UserFacade    userFacade;
+	@Autowired
+	private MessageFacade messageFacade;
+	@Autowired
+	RequestSplitterForUserAndProfile requestSplitterForUserAndProfile;
+
+	private DialogDTO dialogDTO;
 
 	/**
 	 * Shows all the users.
@@ -67,44 +72,31 @@ public class MessageController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/sendmessage/{request}", method = RequestMethod.GET)
+	@RequestMapping(value = "/beforesendmessage/{request}", method = RequestMethod.GET)
 	public String beforeSendingMessage(final Model model, @PathVariable(value = "request") final String request)
 	{
-		String[] twoValuesFromDeleteRequest = request.split("&");
-		String currentLoggedUsername = twoValuesFromDeleteRequest[0];
-		String friendProfileId = twoValuesFromDeleteRequest[1];
+		UserDTO currentLoggedUserDTO = (UserDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(request).get(0);
 
-		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(currentLoggedUsername);
-		ProfileDTO destinationProfileDTO = profileFacade.getProfileById(Long.valueOf(friendProfileId));
-
-
+		ProfileDTO destinationProfileDTO = (ProfileDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(request).get(1);
 		ProfileDTO senderProfileDTO = currentLoggedUserDTO.getProfileDTO();
 
-		List<DialogDTO> allTheDialogs = dialogFacade.getAllTheDialogs();
+		// TODO need to implement method for dialog existing check
 
-		boolean isDialogExists = false;
 
-		for (DialogDTO dialogDTO : allTheDialogs)
-		{
-			if (dialogDTO.getProfiles().contains(destinationProfileDTO) && dialogDTO.getProfiles().contains(senderProfileDTO))
-			{
-				model.addAttribute("allTheMessagesForDialog", dialogDTO.getMessages());
-				isDialogExists = true;
-			}
-		}
+		DialogDTO newDialogDTO = new DialogDTO();
+		Set<ProfileDTO> profiles = new HashSet<ProfileDTO>();
+		profiles.add(destinationProfileDTO);
+		profiles.add(senderProfileDTO);
+		newDialogDTO.setProfiles(profiles);
 
-		if (!isDialogExists)
-		{
-			DialogDTO newDialogDTO = new DialogDTO();
-			Set<ProfileDTO> profiles = new HashSet<ProfileDTO>();
-			profiles.add(destinationProfileDTO);
-			profiles.add(senderProfileDTO);
-			newDialogDTO.setProfiles(profiles);
+		dialogFacade.createDialog(newDialogDTO);
 
-			dialogFacade.createDialog(newDialogDTO);
-		}
+		MessageDTO messageDTO = new MessageDTO();
+		messageDTO.setDialogDTO(newDialogDTO);
 
-		model.addAttribute("MessageDTO", new MessageDTO());
+		dialogDTO = newDialogDTO;
+
+		model.addAttribute("MessageDTO", messageDTO);
 
 		return "/messages/sendmessage";
 	}
@@ -114,16 +106,24 @@ public class MessageController
 	 *
 	 * @param model      the model
 	 * @param messageDTO the dto
+	 * @param username   the username
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/sendmessage", method = RequestMethod.POST)
-	public String sendMessage(final Model model, @ModelAttribute("MessageDTO") MessageDTO messageDTO)
+	@RequestMapping(value = "/sendmessage/{username}", method = RequestMethod.POST)
+	public String sendMessage(final Model model, @ModelAttribute("MessageDTO") MessageDTO messageDTO,
+	                          @PathVariable(value = "username") final String username)
 	{
+		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(username);
+		messageDTO.setMessageDate(new Date());
+		messageDTO.setProfileDTO(currentLoggedUserDTO.getProfileDTO());
+		messageDTO.setDialogDTO(dialogDTO);
 
-		//		model.addAttribute("allTheProfiles", profilesNotFriends);
+		messageFacade.createMessage(messageDTO);
 
-		return "redirect:/messages/messages";
+		model.addAttribute("allTheMessages", messageFacade.getAllTheMessages(currentLoggedUserDTO.getProfileDTO().getProfileID()));
+
+		return "/messages/sendmessage";
 	}
 
 	/**

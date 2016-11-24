@@ -1,7 +1,5 @@
 package by.zheynov.socnet.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.FriendFacade;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
-import by.zheynov.socnet.service.RequestSplitter;
+import by.zheynov.socnet.utils.RequestSplitterForUserAndProfile;
 
 /**
  * FriendController class.
@@ -35,6 +33,8 @@ public class FriendController
 	private UserFacade    userFacade;
 	@Autowired
 	private FriendFacade  friendFacade;
+	@Autowired
+	RequestSplitterForUserAndProfile requestSplitterForUserAndProfile;
 
 	/**
 	 * Redirects a list of current users's profiles.
@@ -101,8 +101,8 @@ public class FriendController
 	@RequestMapping(value = "/friends/delete/friend/{deleterequest}", method = RequestMethod.GET)
 	public String deleteFriend(final Model model, @PathVariable(value = "deleterequest") final String deleterequest)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(deleterequest).get(0);
-		ProfileDTO friendProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(deleterequest).get(1);
+		UserDTO currentLoggedUserDTO = (UserDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(deleterequest).get(0);
+		ProfileDTO friendProfileDTO = (ProfileDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(deleterequest).get(1);
 
 		friendFacade.deleteFriend(currentLoggedUserDTO.getProfileDTO().getProfileID(), friendProfileDTO.getProfileID());
 
@@ -121,8 +121,10 @@ public class FriendController
 	@RequestMapping(value = "/friends/addfriend/{friendRequest}", method = RequestMethod.GET)
 	public String manageFriendInfo(@PathVariable(value = "friendRequest") final String friendRequestString)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(friendRequestString).get(0);
-		ProfileDTO newFriendProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(friendRequestString).get(1);
+		UserDTO currentLoggedUserDTO = (UserDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(friendRequestString).get
+						(0);
+		ProfileDTO newFriendProfileDTO = (ProfileDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(friendRequestString)
+		                                                                              .get(1);
 
 		friendFacade.addFriend(currentLoggedUserDTO.getProfileDTO(), newFriendProfileDTO);
 
@@ -154,11 +156,13 @@ public class FriendController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/friends/approve/{username}", method = RequestMethod.GET)
-	public String approvePendingRequests(@PathVariable(value = "username") final String approveRequestString)
+	@RequestMapping(value = "/friends/approve/{approveRequestString}", method = RequestMethod.GET)
+	public String approvePendingRequests(@PathVariable(value = "approveRequestString") final String approveRequestString)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(approveRequestString).get(0);
-		ProfileDTO newFriendProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(approveRequestString).get(1);
+		UserDTO currentLoggedUserDTO = (UserDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(approveRequestString)
+		                                                                         .get(0);
+		ProfileDTO newFriendProfileDTO = (ProfileDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(approveRequestString)
+		                                                                              .get(1);
 
 		friendFacade.approveFriendRequest(currentLoggedUserDTO.getId(), newFriendProfileDTO.getProfileID());
 
@@ -175,13 +179,12 @@ public class FriendController
 	@RequestMapping(value = "/friends/reject/{username}", method = RequestMethod.GET)
 	public String rejectPendingRequests(@PathVariable(value = "username") final String rejectRequest)
 	{
-		UserDTO currentLoggedUserDTO = (UserDTO) RequestSplitter.getUserDTOAndProfileDTO(rejectRequest).get(0);
-		ProfileDTO newFriendProfileDTO = (ProfileDTO) RequestSplitter.getUserDTOAndProfileDTO(rejectRequest).get(1);
+		UserDTO currentLoggedUserDTO = (UserDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(rejectRequest).get(0);
+		ProfileDTO newFriendProfileDTO = (ProfileDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(rejectRequest).get(1);
 
 		friendFacade.rejectFriendRequest(currentLoggedUserDTO.getId(), newFriendProfileDTO.getProfileID());
 
 		return "redirect:/friends/";
 	}
-
 
 }

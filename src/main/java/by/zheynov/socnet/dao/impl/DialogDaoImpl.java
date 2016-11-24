@@ -18,6 +18,7 @@ import by.zheynov.socnet.entity.DialogEntity;
 public class DialogDaoImpl extends AbstractBaseDAO implements DialogDao
 {
 	private static final String GET_ALL_THE_DIALOGS_QUERY = "FROM DialogEntity";
+//	private static final String GET_ALL_THE_DIALOGS_QUERY_FOR_TWO_PROFILES = "FROM DialogEntity WHERE ";
 
 	/**
 	 * Saves.
@@ -54,5 +55,19 @@ public class DialogDaoImpl extends AbstractBaseDAO implements DialogDao
 	{
 		return super.getCurrentSession().get(DialogEntity.class, dialogID);
 	}
+
+
+/*	*//**
+	 * Retrieves a list of DialogEntity objects for 2 prodiles.
+	 *
+	 * @return the List<DialogEntity>
+	 *//*
+	public List<DialogEntity> getAllTheDialogs(final Long senderProfileID, final Long destinationProfileID)
+	{
+		Query query = super.getCurrentSession().createQuery(GET_ALL_THE_DIALOGS_QUERY_FOR_TWO_PROFILES);
+		query.setParameter("senderProfileID", senderProfileID);
+		query.setParameter("destinationProfileID", destinationProfileID);
+		return query.list();
+	}*/
 
 }
