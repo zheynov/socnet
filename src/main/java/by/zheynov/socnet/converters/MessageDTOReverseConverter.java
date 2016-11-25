@@ -3,7 +3,6 @@ package by.zheynov.socnet.converters;
 import org.springframework.core.convert.converter.Converter;
 
 import by.zheynov.socnet.dto.MessageDTO;
-import by.zheynov.socnet.entity.DialogEntity;
 import by.zheynov.socnet.entity.MessageEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 
@@ -27,21 +26,30 @@ public class MessageDTOReverseConverter implements Converter<MessageDTO, Message
 		messageEntity.setText(messageDTO.getText());
 		messageEntity.setMessageDate(messageDTO.getMessageDate());
 
-		ProfileEntity profileEntity = new ProfileEntity();
-		profileEntity.setId(messageDTO.getProfileDTO().getProfileID());
-		profileEntity.setFirstname(messageDTO.getProfileDTO().getFirstname());
-		profileEntity.setLastname(messageDTO.getProfileDTO().getLastname());
-		profileEntity.setEmail(messageDTO.getProfileDTO().getEmail());
-		profileEntity.setAge(messageDTO.getProfileDTO().getAge());
-		profileEntity.setBirthDate(messageDTO.getProfileDTO().getBirthDate());
-		profileEntity.setSex(messageDTO.getProfileDTO().getSex());
-		profileEntity.setCity(messageDTO.getProfileDTO().getCity());
-		profileEntity.setPhoneNumber(messageDTO.getProfileDTO().getPhoneNumber());
-		messageEntity.setProfileEntity(profileEntity);
+		ProfileEntity senderProfileEntity = new ProfileEntity();
+		senderProfileEntity.setId(messageDTO.getSenderProfileDTO().getProfileID());
+		senderProfileEntity.setFirstname(messageDTO.getSenderProfileDTO().getFirstname());
+		senderProfileEntity.setLastname(messageDTO.getSenderProfileDTO().getLastname());
+		senderProfileEntity.setEmail(messageDTO.getSenderProfileDTO().getEmail());
+		senderProfileEntity.setAge(messageDTO.getSenderProfileDTO().getAge());
+		senderProfileEntity.setBirthDate(messageDTO.getSenderProfileDTO().getBirthDate());
+		senderProfileEntity.setSex(messageDTO.getSenderProfileDTO().getSex());
+		senderProfileEntity.setCity(messageDTO.getSenderProfileDTO().getCity());
+		senderProfileEntity.setPhoneNumber(messageDTO.getSenderProfileDTO().getPhoneNumber());
+		messageEntity.setProfileSenderEntity(senderProfileEntity);
 
-		DialogEntity dialogEntity = new DialogEntity();
-		dialogEntity.setId(messageDTO.getDialogDTO().getId());
-		messageEntity.setDialogEntity(dialogEntity);
+		ProfileEntity destinationProfileEntity = new ProfileEntity();
+		destinationProfileEntity.setId(messageDTO.getDestinationProfileDTO().getProfileID());
+		destinationProfileEntity.setFirstname(messageDTO.getDestinationProfileDTO().getFirstname());
+		destinationProfileEntity.setLastname(messageDTO.getDestinationProfileDTO().getLastname());
+		destinationProfileEntity.setEmail(messageDTO.getDestinationProfileDTO().getEmail());
+		destinationProfileEntity.setAge(messageDTO.getDestinationProfileDTO().getAge());
+		destinationProfileEntity.setBirthDate(messageDTO.getDestinationProfileDTO().getBirthDate());
+		destinationProfileEntity.setSex(messageDTO.getDestinationProfileDTO().getSex());
+		destinationProfileEntity.setCity(messageDTO.getDestinationProfileDTO().getCity());
+		destinationProfileEntity.setPhoneNumber(messageDTO.getDestinationProfileDTO().getPhoneNumber());
+		messageEntity.setProfileDestinationEntity(destinationProfileEntity);
+
 
 		return messageEntity;
 	}

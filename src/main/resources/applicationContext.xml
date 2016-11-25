@@ -18,8 +18,6 @@
 
     <bean id="messageDao" class="by.zheynov.socnet.dao.impl.MessageDaoImpl" parent="abstractDao"/>
 
-    <bean id="dialogDao" class="by.zheynov.socnet.dao.impl.DialogDaoImpl" parent="abstractDao"/>
-
 
     <bean id="profileService" class="by.zheynov.socnet.service.impl.ProfileServiceImpl">
         <property name="profileDao" ref="profileDao"/>
@@ -46,10 +44,6 @@
 
     <bean id="messageService" class="by.zheynov.socnet.service.impl.MessageServiceImpl">
         <property name="messageDao" ref="messageDao"/>
-    </bean>
-
-    <bean id="dialogService" class="by.zheynov.socnet.service.impl.DialogServiceImpl">
-        <property name="dialogDao" ref="dialogDao"/>
     </bean>
 
 </beans>

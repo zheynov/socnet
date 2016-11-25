@@ -15,8 +15,8 @@ public class MessageDTO implements Serializable
 	private Long       id;
 	private Date       messageDate;
 	private String     text;
-	private ProfileDTO profileDTO;
-	private DialogDTO  dialogDTO;
+	private ProfileDTO senderProfileDTO;
+	private ProfileDTO destinationProfileDTO;
 
 	/**
 	 * Sets new messageDate.
@@ -49,16 +49,6 @@ public class MessageDTO implements Serializable
 	}
 
 	/**
-	 * Gets profileDTO.
-	 *
-	 * @return Value of profileDTO.
-	 */
-	public ProfileDTO getProfileDTO()
-	{
-		return profileDTO;
-	}
-
-	/**
 	 * Sets new id.
 	 *
 	 * @param id New value of id.
@@ -79,36 +69,6 @@ public class MessageDTO implements Serializable
 	}
 
 	/**
-	 * Sets new dialogDTO.
-	 *
-	 * @param dialogDTO New value of dialogDTO.
-	 */
-	public void setDialogDTO(DialogDTO dialogDTO)
-	{
-		this.dialogDTO = dialogDTO;
-	}
-
-	/**
-	 * Gets dialogDTO.
-	 *
-	 * @return Value of dialogDTO.
-	 */
-	public DialogDTO getDialogDTO()
-	{
-		return dialogDTO;
-	}
-
-	/**
-	 * Sets new profileDTO.
-	 *
-	 * @param profileDTO New value of profileDTO.
-	 */
-	public void setProfileDTO(ProfileDTO profileDTO)
-	{
-		this.profileDTO = profileDTO;
-	}
-
-	/**
 	 * Gets text.
 	 *
 	 * @return Value of text.
@@ -116,6 +76,46 @@ public class MessageDTO implements Serializable
 	public String getText()
 	{
 		return text;
+	}
+
+	/**
+	 * Gets destinationProfileDTO.
+	 *
+	 * @return Value of destinationProfileDTO.
+	 */
+	public ProfileDTO getDestinationProfileDTO()
+	{
+		return destinationProfileDTO;
+	}
+
+	/**
+	 * Gets senderProfileDTO.
+	 *
+	 * @return Value of senderProfileDTO.
+	 */
+	public ProfileDTO getSenderProfileDTO()
+	{
+		return senderProfileDTO;
+	}
+
+	/**
+	 * Sets new senderProfileDTO.
+	 *
+	 * @param senderProfileDTO New value of senderProfileDTO.
+	 */
+	public void setSenderProfileDTO(ProfileDTO senderProfileDTO)
+	{
+		this.senderProfileDTO = senderProfileDTO;
+	}
+
+	/**
+	 * Sets new destinationProfileDTO.
+	 *
+	 * @param destinationProfileDTO New value of destinationProfileDTO.
+	 */
+	public void setDestinationProfileDTO(ProfileDTO destinationProfileDTO)
+	{
+		this.destinationProfileDTO = destinationProfileDTO;
 	}
 
 	/**
@@ -151,11 +151,13 @@ public class MessageDTO implements Serializable
 		{
 			return false;
 		}
-		if (getProfileDTO() != null ? !getProfileDTO().equals(that.getProfileDTO()) : that.getProfileDTO() != null)
+		if (getSenderProfileDTO() != null ? !getSenderProfileDTO().equals(that.getSenderProfileDTO()) :
+						that.getSenderProfileDTO() != null)
 		{
 			return false;
 		}
-		return getDialogDTO() != null ? getDialogDTO().equals(that.getDialogDTO()) : that.getDialogDTO() == null;
+		return getDestinationProfileDTO() != null ? getDestinationProfileDTO().equals(that.getDestinationProfileDTO()) :
+						that.getDestinationProfileDTO() == null;
 
 	}
 
@@ -170,8 +172,8 @@ public class MessageDTO implements Serializable
 		int result = getId() != null ? getId().hashCode() : 0;
 		result = HASH_NUMBER * result + (getMessageDate() != null ? getMessageDate().hashCode() : 0);
 		result = HASH_NUMBER * result + (getText() != null ? getText().hashCode() : 0);
-		result = HASH_NUMBER * result + (getProfileDTO() != null ? getProfileDTO().hashCode() : 0);
-		result = HASH_NUMBER * result + (getDialogDTO() != null ? getDialogDTO().hashCode() : 0);
+		result = HASH_NUMBER * result + (getSenderProfileDTO() != null ? getSenderProfileDTO().hashCode() : 0);
+		result = HASH_NUMBER * result + (getDestinationProfileDTO() != null ? getDestinationProfileDTO().hashCode() : 0);
 		return result;
 	}
 }

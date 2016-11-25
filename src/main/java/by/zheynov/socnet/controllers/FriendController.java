@@ -30,11 +30,11 @@ public class FriendController
 	@Autowired
 	private ProfileFacade profileFacade;
 	@Autowired
-	private UserFacade    userFacade;
+	private UserFacade userFacade;
 	@Autowired
-	private FriendFacade  friendFacade;
+	private FriendFacade friendFacade;
 	@Autowired
-	RequestSplitterForUserAndProfile requestSplitterForUserAndProfile;
+	private RequestSplitterForUserAndProfile requestSplitterForUserAndProfile;
 
 	/**
 	 * Redirects a list of current users's profiles.

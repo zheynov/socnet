@@ -24,21 +24,43 @@ public class MessageFacadeImpl implements MessageFacade
 	@Autowired
 	private ConversionService conversionService;
 
+	/**
+	 * Saves.
+	 *
+	 * @param messageDTO the dto
+	 *
+	 * @return the dto
+	 */
 	public MessageEntity createMessage(final MessageDTO messageDTO)
 	{
 		MessageEntity messageEntity = conversionService.convert(messageDTO, MessageEntity.class);
 		return messageService.createMessage(messageEntity);
 	}
 
+	/**
+	 * Finds By messageId.
+	 *
+	 * @param messageId the id
+	 *
+	 * @return the dto
+	 */
 	public MessageDTO getById(final Long messageId)
 	{
 		return conversionService.convert(messageService.getById(messageId), MessageDTO.class);
 	}
 
-	public List<MessageDTO> getAllTheMessages(final Long senderID)
+	/**
+	 * Retrieves a list of MessageDTO objects.
+	 *
+	 * @param senderID      the id
+	 * @param destinationID the id
+	 *
+	 * @return the List<MessageDTO>
+	 */
+	public List<MessageDTO> getAllTheMessages(final Long senderID, final Long destinationID)
 	{
 		List<MessageDTO> allTheMessageDTO = new ArrayList<MessageDTO>();
-		for (MessageEntity userEntity : messageService.getAllTheMessages(senderID))
+		for (MessageEntity userEntity : messageService.getAllTheMessages(senderID, destinationID))
 		{
 			final MessageDTO convert = conversionService.convert(userEntity, MessageDTO.class);
 			allTheMessageDTO.add(convert);

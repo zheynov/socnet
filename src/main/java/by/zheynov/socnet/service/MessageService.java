@@ -33,8 +33,10 @@ public interface MessageService
 	/**
 	 * Retrieves a list of MessageEntity objects.
 	 *
-	 * @param senderID the id
+	 * @param senderID      the id
+	 * @param destinationID the id
+	 *
 	 * @return the List<MessageEntity>
 	 */
-	List<MessageEntity> getAllTheMessages(Long senderID);
+	List<MessageEntity> getAllTheMessages(Long senderID, Long destinationID);
 }

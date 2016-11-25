@@ -17,7 +17,8 @@ import by.zheynov.socnet.entity.MessageEntity;
 @Transactional
 public class MessageDaoImpl extends AbstractBaseDAO implements MessageDao
 {
-	private static final String GET_ALL_THE_MESSAGES_QUERY = "FROM MessageEntity " + "WHERE senderID = :senderID ORDER BY messagedate DESC";
+	private static final String GET_ALL_THE_MESSAGES_QUERY = "FROM MessageEntity " +
+					"WHERE senderID = :senderID AND destinationID = :destinationID OR senderID = :destinationID AND destinationID = :senderID ORDER BY messagedate DESC";
 
 	/**
 	 * Saves.
@@ -28,27 +29,23 @@ public class MessageDaoImpl extends AbstractBaseDAO implements MessageDao
 	 */
 	public MessageEntity createMessage(final MessageEntity messageEntity)
 	{
-		MessageEntity newMessageEntity = new MessageEntity();
-		newMessageEntity.setDialogEntity(messageEntity.getDialogEntity());
-		newMessageEntity.setProfileEntity(messageEntity.getProfileEntity());
-		newMessageEntity.setMessageDate(messageEntity.getMessageDate());
-		newMessageEntity.setText(messageEntity.getText());
-
-		super.save(newMessageEntity);
-		return newMessageEntity;
+		super.save(messageEntity);
+		return messageEntity;
 	}
 
 	/**
 	 * Retrieves a list of MessageEntity objects.
 	 *
-	 * @param senderID the id
+	 * @param senderID      the id
+	 * @param destinationID the id
 	 *
 	 * @return the List<MessageEntity>
 	 */
-	public List<MessageEntity> getAllTheMessages(final Long senderID)
+	public List<MessageEntity> getAllTheMessages(final Long senderID, final Long destinationID)
 	{
 		Query query = super.getCurrentSession().createQuery(GET_ALL_THE_MESSAGES_QUERY);
 		query.setParameter("senderID", senderID);
+		query.setParameter("destinationID", destinationID);
 		return query.list();
 	}
 

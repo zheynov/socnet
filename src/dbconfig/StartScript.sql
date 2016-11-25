@@ -4,13 +4,11 @@ CREATE DATABASE IF NOT EXISTS socnetDB;
 
 USE socnetDB;
 
-
 -- Table for mapping user and roles
 CREATE TABLE user_role (
   id   BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   role VARCHAR(30)        NOT NULL
 );
-
 
 -- Table profile
 CREATE TABLE profile
@@ -25,7 +23,6 @@ CREATE TABLE profile
   city        VARCHAR(30),
   phoneNumber VARCHAR(30)
 );
-
 
 -- Table user
 CREATE TABLE user
@@ -43,35 +40,18 @@ CREATE TABLE user
     ON DELETE CASCADE
 );
 
-
--- Table for user's dialogs
-CREATE TABLE dialog (
-  id       BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT
-);
-
-
 -- Table for user's messages
 CREATE TABLE message (
-  id          BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  senderID    BIGINT             NOT NULL,
-  dialogID    BIGINT             NOT NULL,
-  messagedate DATETIME               NOT NULL,
-  text        VARCHAR(1024),
+  id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  senderID      BIGINT             NOT NULL,
+  destinationID BIGINT             NOT NULL,
+  messagedate   DATETIME           NOT NULL,
+  text          VARCHAR(1024),
   FOREIGN KEY (senderID) REFERENCES profile (id),
-  FOREIGN KEY (dialogID) REFERENCES dialog (id)
+  FOREIGN KEY (destinationID) REFERENCES profile (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
-
-
--- Table for user's messages
-CREATE TABLE profile_dialog (
-  profileID BIGINT NOT NULL,
-  dialogID    BIGINT NOT NULL,
-  FOREIGN KEY (profileID) REFERENCES profile (id),
-  FOREIGN KEY (dialogID) REFERENCES dialog (id)
-);
-
 
 -- Table for user's posts
 CREATE TABLE post (
@@ -85,7 +65,6 @@ CREATE TABLE post (
     ON DELETE CASCADE
 );
 
-
 -- Table to store the tokens for PersistentTokenRepository ("Remember me" feature)
 CREATE TABLE persistent_logins (
   username  VARCHAR(64) NOT NULL,
@@ -93,7 +72,6 @@ CREATE TABLE persistent_logins (
   token     VARCHAR(64) NOT NULL,
   last_used TIMESTAMP   NOT NULL
 );
-
 
 -- Table to store friends (ManyToMany)
 CREATE TABLE friend (
@@ -105,7 +83,6 @@ CREATE TABLE friend (
   FOREIGN KEY (friends_profile_id) REFERENCES profile (id),
   UNIQUE KEY main_profile_id (main_profile_id, friends_profile_id)
 );
-
 
 -- Insert data
 

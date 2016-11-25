@@ -47,14 +47,15 @@ public class MessageServiceImpl implements MessageService
 	/**
 	 * Retrieves a list of MessageEntity objects.
 	 *
-	 * @param senderID the id
+	 * @param senderID      the id
+	 * @param destinationID the id
 	 *
 	 * @return the List<MessageEntity>
 	 */
 	@Transactional
-	public List<MessageEntity> getAllTheMessages(final Long senderID)
+	public List<MessageEntity> getAllTheMessages(final Long senderID, final Long destinationID)
 	{
-		return messageDao.getAllTheMessages(senderID);
+		return messageDao.getAllTheMessages(senderID, destinationID);
 	}
 
 	/**

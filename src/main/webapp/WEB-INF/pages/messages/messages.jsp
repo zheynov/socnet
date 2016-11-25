@@ -45,19 +45,25 @@
                                 <th><spring:message code="profile.page.text.city"/></th>
                                 <th><spring:message code="profile.page.text.gender"/></th>
                             </tr>
+
                             <c:forEach items="${allThePeople}" var="profile">
 
-                                <tr>
-                                    <th scope="row">
-                                        <a href="/messages/beforesendmessage/${pageContext.request.userPrincipal.name}&${profile.profileID}">
-                                            <spring:message code="messages.page.text.send.message"/> </a>
-                                    </th>
+                                <c:if test="${(pageContext.request.userPrincipal.name != profile.userDTO.username) &&
+                                (profile.userDTO.username != 'admin')}">
 
-                                    <td>${profile.firstname} ${profile.lastname}</td>
-                                    <td>${profile.age}</td>
-                                    <td>${profile.city}</td>
-                                    <td>${profile.sex}</td>
-                                </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <a href="/messages/beforesendmessage/${pageContext.request.userPrincipal.name}&${profile.profileID}">
+                                                <spring:message code="messages.page.text.send.message"/> </a>
+                                        </th>
+
+                                        <td>${profile.firstname} ${profile.lastname}</td>
+                                        <td>${profile.age}</td>
+                                        <td>${profile.city}</td>
+                                        <td>${profile.sex}</td>
+                                    </tr>
+
+                                </c:if>
 
                             </c:forEach>
                         </table>

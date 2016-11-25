@@ -35,9 +35,10 @@ public interface MessageFacade
 	/**
 	 * Retrieves a list of MessageDTO objects.
 	 *
-	 * @param senderID the id
+	 * @param senderID      the id
+	 * @param destinationID the id
 	 *
 	 * @return the List<MessageDTO>
 	 */
-	List<MessageDTO> getAllTheMessages(Long senderID);
+	List<MessageDTO> getAllTheMessages(Long senderID, Long destinationID);
 }

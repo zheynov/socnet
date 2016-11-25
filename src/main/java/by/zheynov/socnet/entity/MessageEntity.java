@@ -39,11 +39,11 @@ public class MessageEntity implements Serializable
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "senderID")
-	private ProfileEntity profileEntity;
+	private ProfileEntity profileSenderEntity;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "dialogID")
-	private DialogEntity dialogEntity;
+	@JoinColumn(name = "destinationID")
+	private ProfileEntity profileDestinationEntity;
 
 	/**
 	 * Gets messageDate.
@@ -95,35 +95,6 @@ public class MessageEntity implements Serializable
 		this.messageDate = messageDate;
 	}
 
-	/**
-	 * Sets new profileEntity.
-	 *
-	 * @param profileEntity New value of profileEntity.
-	 */
-	public void setProfileEntity(final ProfileEntity profileEntity)
-	{
-		this.profileEntity = profileEntity;
-	}
-
-	/**
-	 * Gets dialogEntity.
-	 *
-	 * @return Value of dialogEntity.
-	 */
-	public DialogEntity getDialogEntity()
-	{
-		return dialogEntity;
-	}
-
-	/**
-	 * Sets new dialogEntity.
-	 *
-	 * @param dialogEntity New value of dialogEntity.
-	 */
-	public void setDialogEntity(final DialogEntity dialogEntity)
-	{
-		this.dialogEntity = dialogEntity;
-	}
 
 	/**
 	 * Gets text.
@@ -136,12 +107,42 @@ public class MessageEntity implements Serializable
 	}
 
 	/**
-	 * Gets profileEntity.
+	 * Sets new profileDestinationEntity.
 	 *
-	 * @return Value of profileEntity.
+	 * @param profileDestinationEntity New value of profileDestinationEntity.
 	 */
-	public ProfileEntity getProfileEntity()
+	public void setProfileDestinationEntity(ProfileEntity profileDestinationEntity)
 	{
-		return profileEntity;
+		this.profileDestinationEntity = profileDestinationEntity;
+	}
+
+	/**
+	 * Sets new profileSenderEntity.
+	 *
+	 * @param profileSenderEntity New value of profileSenderEntity.
+	 */
+	public void setProfileSenderEntity(ProfileEntity profileSenderEntity)
+	{
+		this.profileSenderEntity = profileSenderEntity;
+	}
+
+	/**
+	 * Gets profileDestinationEntity.
+	 *
+	 * @return Value of profileDestinationEntity.
+	 */
+	public ProfileEntity getProfileDestinationEntity()
+	{
+		return profileDestinationEntity;
+	}
+
+	/**
+	 * Gets profileSenderEntity.
+	 *
+	 * @return Value of profileSenderEntity.
+	 */
+	public ProfileEntity getProfileSenderEntity()
+	{
+		return profileSenderEntity;
 	}
 }

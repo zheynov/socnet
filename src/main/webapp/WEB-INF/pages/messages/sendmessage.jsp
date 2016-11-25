@@ -39,19 +39,20 @@
 
                     <div class="tab-pane active" id="messages" style="margin-left: 250px">
 
-                        <form:form method="POST" action="/messages/sendmessage/${pageContext.request.userPrincipal.name}"
-                                   commandName="MessageDTO">
+                        <form:form method="POST" action="/messages/sendmessage" modelAttribute="MessageDTO">
 
-                            <%--                            <form:hidden path="id"/>
-                                                        <form:hidden path="messageDate"/>
-                                                        <form:hidden path="profileDTO"/>
-                                                        <form:hidden path="dialogDTO"/> --%>
 
-                            <p><form:textarea path="text" rows="5" cols="100" maxlength="1023"
-                                              placeholder="enter a text"/></p>
+                            <form:hidden path="messageDate"/>
+
+
+                            <spring:message code="messages.page.text.time" var="entertext"/>
+                            <p><form:textarea path="text" rows="4" cols="100" maxlength="1023" placeholder="${entertext}"/></p>
+
+                            <form:hidden path="senderProfileDTO"/>
+                            <form:hidden path="destinationProfileDTO"/>
 
                             <a href="/messages/">
-                                <button type="button" class="btn btn-default ">
+                                <button type="button" class="btn btn-default">
                                     <spring:message code="messages.page.text.send.manage.messages"/></button>
                             </a>
 
@@ -63,16 +64,38 @@
                         <br/>
 
                         <c:forEach items="${allTheMessages}" var="message">
-                            <br/>
-                            <div class="alert-info">
-                                <font size="1"> <b>Author:</b> ${message.profileDTO.firstname} ${message.profileDTO.lastname}
-                                </font> <font size="1"> <b>time: </b> ${message.messageDate} </font><br/>
-                                <p><b> ${message.text} </b>
 
-                            </div>
+
+                            <c:choose>
+                                <c:when test="${pageContext.request.userPrincipal.name eq message.senderProfileDTO.firstname}">
+                                    <br/>
+                                    <div class="alert-info">
+                                        <font size="1">
+                                            <b ><spring:message code="messages.page.text.sender"/>:</b>
+                                                ${message.senderProfileDTO.firstname} ${message.senderProfileDTO.lastname}
+                                        </font> <font size="1">
+                                        <b><spring:message code="messages.page.text.time"/>: </b> ${message.messageDate}
+                                    </font><br/>
+                                        <p><div style="margin-left: 5px"> <b> ${message.text} </b> </div>
+                                    </div>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <br/>
+                                    <div class="alert-success" style="margin-left: 20px">
+                                        <font size="1">
+                                            <b><spring:message code="messages.page.text.sender"/>:</b>
+                                                ${message.senderProfileDTO.firstname} ${message.senderProfileDTO.lastname}
+                                        </font> <font size="1">
+                                        <b><spring:message code="messages.page.text.time"/>: </b> ${message.messageDate}
+                                    </font><br/>
+                                        <p> <div style="margin-left: 5px"><b > ${message.text} </b> </div>
+                                    </div>
+
+                                </c:otherwise>
+                            </c:choose>
 
                         </c:forEach>
-
 
                     </div>
 

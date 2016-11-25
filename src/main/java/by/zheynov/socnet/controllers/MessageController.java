@@ -2,14 +2,12 @@ package by.zheynov.socnet.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,11 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import by.zheynov.socnet.dto.DialogDTO;
 import by.zheynov.socnet.dto.MessageDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.dto.UserDTO;
-import by.zheynov.socnet.facade.DialogFacade;
 import by.zheynov.socnet.facade.MessageFacade;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
@@ -38,17 +34,14 @@ import by.zheynov.socnet.utils.RequestSplitterForUserAndProfile;
 public class MessageController
 {
 	@Autowired
-	private ProfileFacade profileFacade;
+	private ProfileFacade                    profileFacade;
 	@Autowired
-	private DialogFacade  dialogFacade;
+	private MessageFacade                    messageFacade;
 	@Autowired
-	private UserFacade    userFacade;
-	@Autowired
-	private MessageFacade messageFacade;
-	@Autowired
-	RequestSplitterForUserAndProfile requestSplitterForUserAndProfile;
+	private RequestSplitterForUserAndProfile requestSplitterForUserAndProfile;
 
-	private DialogDTO dialogDTO;
+	private ProfileDTO tempDestinationProfileDTO;
+	private ProfileDTO tempSenderProfileDTO;
 
 	/**
 	 * Shows all the users.
@@ -80,23 +73,16 @@ public class MessageController
 		ProfileDTO destinationProfileDTO = (ProfileDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(request).get(1);
 		ProfileDTO senderProfileDTO = currentLoggedUserDTO.getProfileDTO();
 
-		// TODO need to implement method for dialog existing check
-
-
-		DialogDTO newDialogDTO = new DialogDTO();
-		Set<ProfileDTO> profiles = new HashSet<ProfileDTO>();
-		profiles.add(destinationProfileDTO);
-		profiles.add(senderProfileDTO);
-		newDialogDTO.setProfiles(profiles);
-
-		dialogFacade.createDialog(newDialogDTO);
-
 		MessageDTO messageDTO = new MessageDTO();
-		messageDTO.setDialogDTO(newDialogDTO);
-
-		dialogDTO = newDialogDTO;
+		tempDestinationProfileDTO = destinationProfileDTO;
+		tempSenderProfileDTO = senderProfileDTO;
+		messageDTO.setMessageDate(new Date());
 
 		model.addAttribute("MessageDTO", messageDTO);
+		model.addAttribute(
+						"allTheMessages",
+						messageFacade.getAllTheMessages(senderProfileDTO.getProfileID(), destinationProfileDTO.getProfileID())
+		);
 
 		return "/messages/sendmessage";
 	}
@@ -106,22 +92,20 @@ public class MessageController
 	 *
 	 * @param model      the model
 	 * @param messageDTO the dto
-	 * @param username   the username
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/sendmessage/{username}", method = RequestMethod.POST)
-	public String sendMessage(final Model model, @ModelAttribute("MessageDTO") MessageDTO messageDTO,
-	                          @PathVariable(value = "username") final String username)
+	@RequestMapping(value = "/sendmessage", method = RequestMethod.POST)
+	public String sendMessage(final Model model, @ModelAttribute("MessageDTO") MessageDTO messageDTO, BindingResult result)
 	{
-		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(username);
-		messageDTO.setMessageDate(new Date());
-		messageDTO.setProfileDTO(currentLoggedUserDTO.getProfileDTO());
-		messageDTO.setDialogDTO(dialogDTO);
-
+		messageDTO.setSenderProfileDTO(tempSenderProfileDTO);
+		messageDTO.setDestinationProfileDTO(tempDestinationProfileDTO);
 		messageFacade.createMessage(messageDTO);
 
-		model.addAttribute("allTheMessages", messageFacade.getAllTheMessages(currentLoggedUserDTO.getProfileDTO().getProfileID()));
+		model.addAttribute(
+						"allTheMessages",
+						messageFacade.getAllTheMessages(tempSenderProfileDTO.getProfileID(), tempDestinationProfileDTO.getProfileID())
+		);
 
 		return "/messages/sendmessage";
 	}
@@ -133,7 +117,7 @@ public class MessageController
 	@InitBinder
 	protected void initBinder(final WebDataBinder binder)
 	{
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 		dateFormat.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}

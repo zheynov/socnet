@@ -8,9 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,14 +38,13 @@ public class ProfileEntity implements Serializable
 	private Set<FriendEntity> friends = new HashSet<FriendEntity>();
 
 	// OneToMany with MessageEntity
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileEntity")
-	private Set<MessageEntity> messages = new HashSet<MessageEntity>();
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileSenderEntity")
+	private Set<MessageEntity> senderMessages = new HashSet<MessageEntity>();
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "profile_dialog", joinColumns = {
-					@JoinColumn(name = "profileID")
-	}, inverseJoinColumns = {@JoinColumn(name = "dialogID")})
-	private Set<DialogEntity> dialogs = new HashSet<DialogEntity>();
+	// OneToMany with MessageEntity
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileDestinationEntity")
+	private Set<MessageEntity> destinationMessages = new HashSet<MessageEntity>();
+
 
 	@Id
 	@Column(name = "id")
@@ -307,43 +303,43 @@ public class ProfileEntity implements Serializable
 	}
 
 	/**
-	 * Sets new messages.
+	 * Sets new senderMessages.
 	 *
-	 * @param messages New value of messages.
+	 * @param senderMessages New value of senderMessages.
 	 */
-	public void setMessages(final Set<MessageEntity> messages)
+	public void setSenderMessages(Set<MessageEntity> senderMessages)
 	{
-		this.messages = messages;
+		this.senderMessages = senderMessages;
 	}
 
 	/**
-	 * Gets messages.
+	 * Gets senderMessages.
 	 *
-	 * @return Value of messages.
+	 * @return Value of senderMessages.
 	 */
-	public Set<MessageEntity> getMessages()
+	public Set<MessageEntity> getSenderMessages()
 	{
-		return messages;
+		return senderMessages;
 	}
 
 	/**
-	 * Gets dialogs.
+	 * Gets destinationMessages.
 	 *
-	 * @return Value of dialogs.
+	 * @return Value of destinationMessages.
 	 */
-	public Set<DialogEntity> getDialogs()
+	public Set<MessageEntity> getDestinationMessages()
 	{
-		return dialogs;
+		return destinationMessages;
 	}
 
 	/**
-	 * Sets new dialogs.
+	 * Sets new destinationMessages.
 	 *
-	 * @param dialogs New value of dialogs.
+	 * @param destinationMessages New value of destinationMessages.
 	 */
-	public void setDialogs(final Set<DialogEntity> dialogs)
+	public void setDestinationMessages(Set<MessageEntity> destinationMessages)
 	{
-		this.dialogs = dialogs;
+		this.destinationMessages = destinationMessages;
 	}
 }
 
