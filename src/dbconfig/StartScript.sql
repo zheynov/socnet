@@ -90,7 +90,7 @@ INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_ADMIN');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_USER');
 
 
-INSERT INTO profile VALUES (1, 'admin', 'nimda', '1911-11-11', 'admin@admin.com', 6, NULL, 'Atlantis', NULL);
+/*INSERT INTO profile VALUES (1, 'admin', 'nimda', '1911-11-11', 'admin@admin.com', 6, NULL, 'Atlantis', NULL);
 INSERT INTO user VALUES (1, 'admin@admin.com', 'admin',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1, 1);
 
@@ -112,6 +112,6 @@ INSERT INTO user VALUES (5, 'borya@mail.ru', 'boris',
 
 INSERT INTO profile VALUES (6, 'Bruce', 'Wayne', '1990-03-18', 'batman@batman.ru', 36, 'male', 'Gotham', 666666);
 INSERT INTO user VALUES (6, 'gmail@mail.ru', 'batman',
-                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 6, 2);
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 6, 2);*/
 
 
