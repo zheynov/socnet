@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.zheynov.socnet.dao.ProfileDao;
@@ -24,6 +25,7 @@ import by.zheynov.socnet.entity.ProfileEntity;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
 @Transactional
 @Rollback()
+@WebAppConfiguration
 public class ProfileDaoTest
 {
 	@Autowired
