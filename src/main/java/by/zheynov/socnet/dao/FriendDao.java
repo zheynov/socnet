@@ -13,7 +13,6 @@ import by.zheynov.socnet.entity.ProfileEntity;
  */
 public interface FriendDao
 {
-
 	/**
 	 * Adds a friend.
 	 *

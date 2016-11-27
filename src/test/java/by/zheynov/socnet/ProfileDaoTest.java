@@ -16,7 +16,7 @@ import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
- * ProfileDaoTest.
+ * ProfileDaoTest class.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet
@@ -24,7 +24,6 @@ import by.zheynov.socnet.entity.ProfileEntity;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
 @Transactional
-@Rollback()
 @WebAppConfiguration
 public class ProfileDaoTest
 {
@@ -45,6 +44,52 @@ public class ProfileDaoTest
 
 		Assert.assertEquals(newProfileEntity.getEmail(), allTheProfiles.get(0).getEmail());
 		Assert.assertEquals(newProfileEntity.getAge(), allTheProfiles.get(0).getAge());
+	}
+
+	@Test
+	public void updateProfileDaoTest()
+	{
+		ProfileEntity newProfileEntity = profileCreation();
+
+		newProfileEntity.setEmail("changed@test.test");
+		profileDao.updateProfile(newProfileEntity);
+
+		List<ProfileEntity> allTheProfiles = profileDao.getAllTheProfiles();
+
+		Assert.assertEquals("changed@test.test", allTheProfiles.get(0).getEmail());
+	}
+
+	@Test
+	public void deleteProfileDaoTest()
+	{
+		ProfileEntity newProfileEntity = profileCreation();
+
+		profileDao.deleteProfile(newProfileEntity);
+
+		List<ProfileEntity> allTheProfiles = profileDao.getAllTheProfiles();
+
+		Assert.assertEquals(0, allTheProfiles.size());
+	}
+
+	@Test
+	public void getByIdProfileDaoTest()
+	{
+		ProfileEntity newProfileEntity = profileCreation();
+
+		List<ProfileEntity> allTheProfiles = profileDao.getAllTheProfiles();
+
+		ProfileEntity profileEntityForCompare = profileDao.getById(allTheProfiles.get(0).getId());
+
+		Assert.assertEquals(newProfileEntity, profileEntityForCompare);
+	}
+
+	private ProfileEntity profileCreation()
+	{
+		ProfileEntity newProfileEntity = new ProfileEntity();
+		newProfileEntity.setEmail("profile@test.test");
+		profileDao.createProfile(newProfileEntity);
+
+		return newProfileEntity;
 	}
 
 }
