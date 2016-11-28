@@ -70,4 +70,13 @@ public interface FriendDao
 	 * @param frendProfileId      the Id
 	 */
 	void rejectFriendRequest(Long loggedUserProfileId, Long frendProfileId);
+
+	/**
+	 * Gets FriendEntity from database.
+	 *
+	 * @param friendId the id
+	 *
+	 * @return friend entity
+	 */
+	FriendEntity getById(Long friendId);
 }
