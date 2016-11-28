@@ -81,7 +81,6 @@ public class MessageDaoTest
 		List<MessageEntity> messageEntities = messageDao.getAllTheMessages(senderProfileEntity.getId(),
 		                                                                   destinationProfileEntity.getId()
 		);
-
 		Assert.assertNotNull(messageEntities);
 		Assert.assertEquals(messageEntity, messageEntities.get(0));
 	}
