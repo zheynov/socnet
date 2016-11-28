@@ -30,9 +30,9 @@ import by.zheynov.socnet.entity.ProfileEntity;
 @WebAppConfiguration
 public class ProfileDaoTest
 {
+	private static final int LIST_SIZE = 1;
 	@Autowired
-	ProfileDao profileDao;
-
+	private ProfileDao profileDao;
 	private ProfileEntity profileEntity;
 
 	@Before
@@ -76,12 +76,13 @@ public class ProfileDaoTest
 	}
 
 	@Test
-	public void getAllTheMessagesDaoTest()
+	public void getAllTheProfilesDaoTest()
 	{
 		List<ProfileEntity> profileEntityList = profileDao.getAllTheProfiles();
 
 		Assert.assertNotNull(profileEntityList);
 		Assert.assertEquals(profileEntity, profileEntityList.get(0));
+		Assert.assertEquals(LIST_SIZE, profileEntityList.size());
 	}
 
 	@After

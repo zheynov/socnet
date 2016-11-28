@@ -3,6 +3,7 @@ DROP SCHEMA IF EXISTS socnetdb;
 CREATE SCHEMA IF NOT EXISTS socnetdb;
 
 USE socnetdb;
+
 -- Table for mapping user and roles
 CREATE TABLE user_role (
   id   BIGINT      NOT NULL AUTO_INCREMENT,

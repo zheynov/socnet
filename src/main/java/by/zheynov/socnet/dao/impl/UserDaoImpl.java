@@ -111,8 +111,8 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 *
 	 * @return user entity
 	 */
-	public Object getById(final Long userId)
+	public UserEntity getById(final Long userId)
 	{
-		return super.getCurrentSession().get(UserEntity.class, userId);
+		return (UserEntity) super.getById(UserEntity.class, userId);
 	}
 }

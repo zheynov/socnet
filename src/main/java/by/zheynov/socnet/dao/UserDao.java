@@ -62,4 +62,13 @@ public interface UserDao
 	 */
 	List<UserEntity> getUserByUsernameOrEmail(String username, String email);
 
+	/**
+	 * Gets UserEntity from database.
+	 *
+	 * @param userId the id
+	 *
+	 * @return user entity
+	 */
+	UserEntity getById(Long userId);
+
 }

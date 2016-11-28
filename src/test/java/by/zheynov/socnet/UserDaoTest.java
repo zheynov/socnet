@@ -2,11 +2,14 @@ package by.zheynov.socnet;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,73 +28,89 @@ import by.zheynov.socnet.entity.UserEntity;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
+@TestPropertySource("/dbh2.properties")
 @Transactional
 @WebAppConfiguration
 public class UserDaoTest
 {
+	private static final int LIST_SIZE = 1;
+
 	@Autowired
-	ProfileDao profileDao;
+	private ProfileDao profileDao;
 	@Autowired
-	UserDao    userDao;
+	private UserDao    userDao;
+
+	private UserEntity    userEntity;
+	private RoleEntity    roleEntity;
+	private ProfileEntity profileEntity;
+
+	@Before
+	public void userAndProfileCreation()
+	{
+		profileEntity = new ProfileEntity();
+		profileEntity.setEmail("test@test.test");
+
+		userEntity = new UserEntity();
+
+		userEntity.setProfileEntity(profileEntity);
+		userEntity.setEmail("test@test.test");
+		userEntity.setEnabled(true);
+
+		roleEntity = new RoleEntity();
+		roleEntity.setId(2L);
+		roleEntity.setRole("ROLE_USER");
+		userEntity.setRoleEntity(roleEntity);
+
+		userEntity.setUsername("testUserName");
+		userEntity.setPassword("testUserPassword");
+
+		profileDao.createProfile(profileEntity);
+		userDao.createUser(userEntity);
+	}
 
 	@Test
 	public void createUserDaoTest()
 	{
-		ProfileEntity profileEntity = new ProfileEntity();
-		UserEntity userEntity = userAndProfileCreation(profileEntity);
-
-		List<UserEntity> allTheUsers = userDao.getAllTheUsers();
-
-		Assert.assertEquals(profileEntity, allTheUsers.get(0).getProfileEntity());
-		Assert.assertEquals(userEntity.getRoleEntity(), allTheUsers.get(0).getRoleEntity());
-		Assert.assertEquals(userEntity.getUsername(), allTheUsers.get(0).getUsername());
+		Assert.assertEquals(profileEntity, userDao.getById(userEntity.getId()).getProfileEntity());
+		Assert.assertEquals(roleEntity, userDao.getById(userEntity.getId()).getRoleEntity());
+		Assert.assertEquals(userEntity.getEmail(), userDao.getById(userEntity.getId()).getEmail());
+		Assert.assertEquals(userEntity.getUsername(), userDao.getById(userEntity.getId()).getUsername());
+		Assert.assertEquals(userEntity.getPassword(), userDao.getById(userEntity.getId()).getPassword());
 	}
 
 	@Test
 	public void updateUserDaoTest()
 	{
-		ProfileEntity newProfileEntity = new ProfileEntity();
-		UserEntity userEntity = userAndProfileCreation(newProfileEntity);
-
 		userEntity.setEmail("changed@email.test");
-
-		List<UserEntity> allTheUsers = userDao.getAllTheUsers();
-
-		Assert.assertEquals("changed@email.test", allTheUsers.get(0).getEmail());
+		userDao.updateUser(userEntity);
+		Assert.assertEquals(userEntity.getEmail(), userDao.getById(userEntity.getId()).getEmail());
 	}
 
 	@Test
 	public void getUserByUsernameTest()
 	{
-		ProfileEntity newProfileEntity = new ProfileEntity();
-		UserEntity userEntity = userAndProfileCreation(newProfileEntity);
-
-		Assert.assertEquals("testUserName", userDao.getUserByUsername("testUserName").getUsername());
+		Assert.assertEquals(userEntity.getUsername(), userDao.getUserByUsername("testUserName").getUsername());
 	}
 
-
-	private UserEntity userAndProfileCreation(ProfileEntity profileEntity)
+	@Test
+	public void getUserByIdTest()
 	{
-		profileEntity.setEmail("test@test.test");
-
-		UserEntity newUserEntity = new UserEntity();
-
-		newUserEntity.setProfileEntity(profileEntity);
-		newUserEntity.setEmail("test@test.test");
-		newUserEntity.setEnabled(true);
-
-		RoleEntity roleEntity = new RoleEntity();
-		roleEntity.setId(2L);
-		roleEntity.setRole("ROLE_USER");
-		newUserEntity.setRoleEntity(roleEntity);
-
-		newUserEntity.setUsername("testUserName");
-		newUserEntity.setPassword("testUserPassword");
-
-		profileDao.createProfile(profileEntity);
-		userDao.createUser(newUserEntity);
-
-		return newUserEntity;
+		Assert.assertEquals(userEntity, userDao.getById(userEntity.getId()));
 	}
 
+	@Test
+	public void getAllTheUsersTest()
+	{
+		List<UserEntity> allTheDaoUsers = userDao.getAllTheUsers();
+		Assert.assertNotNull(allTheDaoUsers);
+		Assert.assertEquals(userEntity, allTheDaoUsers.get(0));
+		Assert.assertEquals(LIST_SIZE, allTheDaoUsers.size());
+	}
+
+	@After
+	public void deleteUSerAndProfile()
+	{
+		profileDao.deleteProfile(profileEntity);
+		userDao.deleteUser(userEntity);
+	}
 }
