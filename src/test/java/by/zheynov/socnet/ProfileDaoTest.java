@@ -2,12 +2,14 @@ package by.zheynov.socnet;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,7 @@ import by.zheynov.socnet.entity.ProfileEntity;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
+@TestPropertySource("/dbh2.properties")
 @Transactional
 @WebAppConfiguration
 public class ProfileDaoTest
@@ -30,41 +33,36 @@ public class ProfileDaoTest
 	@Autowired
 	ProfileDao profileDao;
 
+	private ProfileEntity profileEntity;
+
+	@Before
+	public void profileCreation()
+	{
+		profileEntity = new ProfileEntity();
+		profileEntity.setEmail("profile@test.test");
+		profileDao.createProfile(profileEntity);
+	}
+
 	@Test
 	public void createProfileDaoTest()
 	{
-		ProfileEntity newProfileEntity = new ProfileEntity();
-
-		newProfileEntity.setEmail("profile@test.test");
-		newProfileEntity.setAge(33);
-
-		profileDao.createProfile(newProfileEntity);
-
-		List<ProfileEntity> allTheProfiles = profileDao.getAllTheProfiles();
-
-		Assert.assertEquals(newProfileEntity.getEmail(), allTheProfiles.get(0).getEmail());
-		Assert.assertEquals(newProfileEntity.getAge(), allTheProfiles.get(0).getAge());
+		Assert.assertEquals(profileEntity.getEmail(), profileDao.getById(profileEntity.getId()).getEmail());
+		Assert.assertEquals(profileEntity.getAge(), profileDao.getById(profileEntity.getId()).getAge());
 	}
 
 	@Test
 	public void updateProfileDaoTest()
 	{
-		ProfileEntity newProfileEntity = profileCreation();
+		profileEntity.setEmail("changed@test.test");
+		profileDao.updateProfile(profileEntity);
 
-		newProfileEntity.setEmail("changed@test.test");
-		profileDao.updateProfile(newProfileEntity);
-
-		List<ProfileEntity> allTheProfiles = profileDao.getAllTheProfiles();
-
-		Assert.assertEquals("changed@test.test", allTheProfiles.get(0).getEmail());
+		Assert.assertEquals("changed@test.test", profileDao.getById(profileEntity.getId()).getEmail());
 	}
 
 	@Test
 	public void deleteProfileDaoTest()
 	{
-		ProfileEntity newProfileEntity = profileCreation();
-
-		profileDao.deleteProfile(newProfileEntity);
+		profileDao.deleteProfile(profileEntity);
 
 		List<ProfileEntity> allTheProfiles = profileDao.getAllTheProfiles();
 
@@ -74,22 +72,22 @@ public class ProfileDaoTest
 	@Test
 	public void getByIdProfileDaoTest()
 	{
-		ProfileEntity newProfileEntity = profileCreation();
-
-		List<ProfileEntity> allTheProfiles = profileDao.getAllTheProfiles();
-
-		ProfileEntity profileEntityForCompare = profileDao.getById(allTheProfiles.get(0).getId());
-
-		Assert.assertEquals(newProfileEntity, profileEntityForCompare);
+		Assert.assertEquals(profileEntity, profileDao.getById(profileEntity.getId()));
 	}
 
-	private ProfileEntity profileCreation()
+	@Test
+	public void getAllTheMessagesDaoTest()
 	{
-		ProfileEntity newProfileEntity = new ProfileEntity();
-		newProfileEntity.setEmail("profile@test.test");
-		profileDao.createProfile(newProfileEntity);
+		List<ProfileEntity> profileEntityList = profileDao.getAllTheProfiles();
 
-		return newProfileEntity;
+		Assert.assertNotNull(profileEntityList);
+		Assert.assertEquals(profileEntity, profileEntityList.get(0));
+	}
+
+	@After
+	public void deleteProfile()
+	{
+		profileDao.deleteProfile(profileEntity);
 	}
 
 }

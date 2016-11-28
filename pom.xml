@@ -126,6 +126,15 @@
             <version>1.9.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2
+         DB for jUnit tests-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.193</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>

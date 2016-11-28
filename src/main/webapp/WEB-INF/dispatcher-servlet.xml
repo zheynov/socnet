@@ -8,7 +8,6 @@
     <context:component-scan base-package="by.zheynov.socnet.controllers"/>
     <context:component-scan base-package="by.zheynov.socnet.service"/>
     <context:component-scan base-package="by.zheynov.socnet.dao"/>
-    <context:component-scan base-package="by.zheynov.socnet.dto"/>
     <context:component-scan base-package="by.zheynov.socnet.entity"/>
     <context:component-scan base-package="by.zheynov.socnet.validators"/>
     <context:component-scan base-package="by.zheynov.socnet.facade"/>

@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import by.zheynov.socnet.entity.FriendEntity;
+
 /**
  * AbstractBaseDAO.
  *
@@ -25,15 +27,6 @@ public abstract class AbstractBaseDAO
 	{
 		sessionFactory.getCurrentSession().save(object);
 	}
-
-	/**
-	 * Gets the object from data base by its id.
-	 *
-	 * @param id the id
-	 *
-	 * @return the object.
-	 */
-	public abstract Object getById(final Long id);
 
 	/**
 	 * Updates the object in data base.
@@ -73,5 +66,17 @@ public abstract class AbstractBaseDAO
 	public void setSessionFactory(final SessionFactory sessionFactory)
 	{
 		this.sessionFactory = sessionFactory;
+	}
+
+	/**
+	 * Gets the object from data base by its id.
+	 *
+	 * @param id the id
+	 *
+	 * @return the object.
+	 */
+	public Object getById(final Class<?> clazz, final Long id)
+	{
+		return getCurrentSession().get(clazz, id);
 	}
 }
