@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService
 	private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
 	private UserDao         userDao;
 	private ProfileDao      profileDao;
-	private UserRoleDao     userRoleDao;
 	private MessageSource   messageSource;
 	private PasswordEncoder passwordEncoder;
 
@@ -159,15 +158,5 @@ public class UserServiceImpl implements UserService
 	public void setMessageSource(final MessageSource messageSource)
 	{
 		this.messageSource = messageSource;
-	}
-
-	/**
-	 * Sets new userRoleDao.
-	 *
-	 * @param userRoleDao New value of userRoleDao.
-	 */
-	public void setUserRoleDao(final UserRoleDao userRoleDao)
-	{
-		this.userRoleDao = userRoleDao;
 	}
 }
