@@ -53,7 +53,7 @@ public class FriendFacadeImpl implements FriendFacade
 	{
 		Set<FriendDTO> allTheProfilesDTO = new HashSet<FriendDTO>();
 
-		for (FriendEntity friendEntity : friendService.getAllThePendingFriendRequest(currentLoggedUserProfileId))
+		for (FriendEntity friendEntity : friendService.getAllThePendingFriendRequestForUser(currentLoggedUserProfileId))
 		{
 			final FriendDTO friendProfileDTO = conversionService.convert(friendEntity, FriendDTO.class);
 			allTheProfilesDTO.add(friendProfileDTO);

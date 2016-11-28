@@ -37,7 +37,7 @@ public interface FriendService
 	 *
 	 * @return list of entities
 	 */
-	List<FriendEntity> getAllThePendingFriendRequest(Long currentLoggedUserProfileId);
+	List<FriendEntity> getAllThePendingFriendRequestForUser(Long currentLoggedUserProfileId);
 
 	/**
 	 * Retrieves a list of FriendEntity objects with status PENDING_REQUEST.

@@ -53,11 +53,11 @@ public class FriendServiceImpl implements FriendService
 	 * @return list of entities
 	 */
 	@Transactional
-	public List<FriendEntity> getAllThePendingFriendRequest(final Long currentLoggedUserProfileId)
+	public List<FriendEntity> getAllThePendingFriendRequestForUser(final Long currentLoggedUserProfileId)
 	{
 		List<FriendEntity> result = new ArrayList<FriendEntity>();
 
-		for (FriendEntity friendEntity : friendDao.getAllThePendingRequestsForCurrentUser(currentLoggedUserProfileId))
+		for (FriendEntity friendEntity : friendDao.getAllTheFriendsForCurrentUser(currentLoggedUserProfileId))
 		{
 			if (friendEntity.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST)
 			{
