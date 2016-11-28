@@ -18,7 +18,8 @@ import by.zheynov.socnet.entity.MessageEntity;
 public class MessageDaoImpl extends AbstractBaseDAO implements MessageDao
 {
 	private static final String GET_ALL_THE_MESSAGES_QUERY = "FROM MessageEntity " +
-					"WHERE senderID = :senderID AND destinationID = :destinationID OR senderID = :destinationID AND destinationID = :senderID ORDER BY messagedate DESC";
+					"WHERE senderID = :senderID AND destinationID = :destinationID OR senderID = :destinationID AND destinationID = " +
+					":senderID ORDER BY messagedate DESC";
 
 	/**
 	 * Saves.
@@ -58,6 +59,6 @@ public class MessageDaoImpl extends AbstractBaseDAO implements MessageDao
 	 */
 	public MessageEntity getById(final Long messageId)
 	{
-		return super.getCurrentSession().get(MessageEntity.class, messageId);
+		return (MessageEntity) super.getById(MessageEntity.class, messageId);
 	}
 }

@@ -33,7 +33,10 @@ public abstract class AbstractBaseDAO
 	 *
 	 * @return the object.
 	 */
-	public abstract Object getById(final Long id);
+	public Object getById(final Class<?> clazz, final Long id)
+	{
+		return getCurrentSession().get(clazz, id);
+	}
 
 	/**
 	 * Updates the object in data base.

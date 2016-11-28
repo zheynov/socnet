@@ -57,6 +57,6 @@ public class UserRoleDaoImpl extends AbstractBaseDAO implements UserRoleDao
 	 */
 	public Object getById(final Long userRoleId)
 	{
-		return super.getCurrentSession().get(RoleEntity.class, userRoleId);
+		return super.getById(RoleEntity.class, userRoleId);
 	}
 }
