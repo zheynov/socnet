@@ -38,7 +38,7 @@ public interface FriendDao
 	 *
 	 * @return the List<friendEntity>
 	 */
-	List<FriendEntity> getAllTheFriendsForCurrentUser(Long profileId);
+	List<FriendEntity> getAllTheFriendsForFriendUser(Long profileId);
 
 	/**
 	 * Retrieves a list of FriendEntity objects with status PENDING_REQUEST.

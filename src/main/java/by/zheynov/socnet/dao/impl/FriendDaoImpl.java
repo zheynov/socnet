@@ -25,13 +25,11 @@ public class FriendDaoImpl extends AbstractBaseDAO implements FriendDao
 
 	private static final String GET_ALL_THE_FRIENDS_QUERY = "FROM FriendEntity " + "WHERE main_profile_id = :profileId";
 
-	private static final String GET_ALL_THE_FRIENDS_OF_USER_QUERY
-					= "FROM FriendEntity WHERE friends_profile_id = :profileId";
+	private static final String GET_ALL_THE_FRIENDS_OF_FRIEND_QUERY
+					= "FROM FriendEntity WHERE friends_profile_id = :friendProfileId";
 
 	private static final String GET_ALL_THE_FRIENDS_WITH_PENDING_STATUS_QUERY
 					= "FROM FriendEntity WHERE friend_request_status =:status";
-
-
 
 	private static final String CHANGE_FRIEND_REQUEST_STATUS_QUERY = "UPDATE FriendEntity SET friend_request_status =:status " +
 					"WHERE main_profile_id = :loggedUserProfileId AND  friends_profile_id = :frendProfileId";
@@ -75,14 +73,14 @@ public class FriendDaoImpl extends AbstractBaseDAO implements FriendDao
 	/**
 	 * Retrieves a list of FriendEntity objects for user with profileId.
 	 *
-	 * @param profileId the Id
+	 * @param friendProfileId the Id
 	 *
 	 * @return the List<friendEntity>
 	 */
-	public List<FriendEntity> getAllTheFriendsForCurrentUser(final Long profileId)
+	public List<FriendEntity> getAllTheFriendsForFriendUser(final Long friendProfileId)
 	{
-		Query query = super.getCurrentSession().createQuery(GET_ALL_THE_FRIENDS_OF_USER_QUERY);
-		query.setParameter("profileId", profileId);
+		Query query = super.getCurrentSession().createQuery(GET_ALL_THE_FRIENDS_OF_FRIEND_QUERY);
+		query.setParameter("friendProfileId", friendProfileId);
 		return query.list();
 	}
 

@@ -5,7 +5,11 @@
 <nav class="navbar navbar-default top">
 
     <div style="margin: 10px">
-        <a href="#">НАДО ДОБАВИТЬ СМЕНУ ЯЗЫКОВ</a>
+
+        <a href="?lang=en"> eng  </a>
+        <a href="?lang=ru"> рус  </a>
+
+        <%--<spring:message code="navbar.page.text.language.en"/>--%>
         <spring:message code="login.page.filed.username" var="username"/>
         <spring:message code="page.text.logout.button" var="logoutButton"/>
         <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -14,6 +18,5 @@
         </c:if>
 
     </div>
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.6/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/mainmy.css">
+
 </nav>
