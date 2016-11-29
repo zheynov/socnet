@@ -27,8 +27,8 @@ import by.zheynov.socnet.entity.UserEntity;
  * @package by.zheynov.socnet
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
-@TestPropertySource("/dbh2.properties")
+@ContextConfiguration(locations = {"classpath:testDaoApplicationContext.xml"})
+@TestPropertySource("/DaoTestH2DB.properties")
 @Transactional
 @WebAppConfiguration
 public class UserDaoTest

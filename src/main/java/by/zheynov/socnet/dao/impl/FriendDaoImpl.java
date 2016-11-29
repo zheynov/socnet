@@ -25,7 +25,7 @@ public class FriendDaoImpl extends AbstractBaseDAO implements FriendDao
 
 	private static final String GET_ALL_THE_FRIENDS_QUERY = "FROM FriendEntity " + "WHERE main_profile_id = :profileId";
 
-	private static final String GET_ALL_THE_FRIENDS_OF_USER_WITH_PENDING_STATUS_QUERY
+	private static final String GET_ALL_THE_FRIENDS_OF_USER_QUERY
 					= "FROM FriendEntity WHERE friends_profile_id = :profileId";
 
 	private static final String GET_ALL_THE_FRIENDS_WITH_PENDING_STATUS_QUERY
@@ -73,15 +73,15 @@ public class FriendDaoImpl extends AbstractBaseDAO implements FriendDao
 	}
 
 	/**
-	 * Retrieves a list of FriendEntity objects with status PENDING_REQUEST for user with profileId.
+	 * Retrieves a list of FriendEntity objects for user with profileId.
 	 *
 	 * @param profileId the Id
 	 *
 	 * @return the List<friendEntity>
 	 */
-	public List<FriendEntity> getAllThePendingRequestsForCurrentUser(final Long profileId)
+	public List<FriendEntity> getAllTheFriendsForFriendUser(final Long profileId)
 	{
-		Query query = super.getCurrentSession().createQuery(GET_ALL_THE_FRIENDS_OF_USER_WITH_PENDING_STATUS_QUERY);
+		Query query = super.getCurrentSession().createQuery(GET_ALL_THE_FRIENDS_OF_USER_QUERY);
 		query.setParameter("profileId", profileId);
 		return query.list();
 	}
@@ -156,7 +156,6 @@ public class FriendDaoImpl extends AbstractBaseDAO implements FriendDao
 	 */
 	public FriendEntity getById(final Long friendId)
 	{
-		FriendEntity friendEntity = (FriendEntity) super.getById(FriendEntity.class, friendId);
-		return super.getCurrentSession().get(FriendEntity.class, friendId);
+		return (FriendEntity) super.getById(FriendEntity.class, friendId);
 	}
 }

@@ -26,12 +26,14 @@ import by.zheynov.socnet.entity.ProfileEntity;
  * @package by.zheynov.socnet
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/dispatcher-servlet.xml")
-@TestPropertySource("/dbh2.properties")
+@ContextConfiguration(locations = {"classpath:testDaoApplicationContext.xml"})
+@TestPropertySource("/DaoTestH2DB.properties")
 @Transactional
 @WebAppConfiguration
 public class MessageDaoTest
 {
+	private static final int LIST_SIZE = 1;
+
 	@Autowired
 	MessageDao messageDao;
 	@Autowired
@@ -81,6 +83,7 @@ public class MessageDaoTest
 		List<MessageEntity> messageEntities = messageDao.getAllTheMessages(senderProfileEntity.getId(),
 		                                                                   destinationProfileEntity.getId()
 		);
+		Assert.assertEquals(LIST_SIZE, messageEntities.size());
 		Assert.assertNotNull(messageEntities);
 		Assert.assertEquals(messageEntity, messageEntities.get(0));
 	}

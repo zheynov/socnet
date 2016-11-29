@@ -13,6 +13,7 @@ import by.zheynov.socnet.entity.ProfileEntity;
  */
 public interface FriendDao
 {
+
 	/**
 	 * Adds a friend.
 	 *
@@ -31,13 +32,13 @@ public interface FriendDao
 	List<FriendEntity> getAllTheFriends(Long profileId);
 
 	/**
-	 * Retrieves a list of FriendEntity objects with status PENDING_REQUEST for user with profileId.
+	 * Retrieves a list of FriendEntity objects for user with profileId.
 	 *
 	 * @param profileId the Id
 	 *
 	 * @return the List<friendEntity>
 	 */
-	List<FriendEntity> getAllThePendingRequestsForCurrentUser(Long profileId);
+	List<FriendEntity> getAllTheFriendsForFriendUser(Long profileId);
 
 	/**
 	 * Retrieves a list of FriendEntity objects with status PENDING_REQUEST.
@@ -69,4 +70,13 @@ public interface FriendDao
 	 * @param frendProfileId      the Id
 	 */
 	void rejectFriendRequest(Long loggedUserProfileId, Long frendProfileId);
+
+	/**
+	 * Gets FriendEntity from database.
+	 *
+	 * @param friendId the id
+	 *
+	 * @return friend entity
+	 */
+	FriendEntity getById(Long friendId);
 }

@@ -57,7 +57,7 @@ public class FriendServiceImpl implements FriendService
 	{
 		List<FriendEntity> result = new ArrayList<FriendEntity>();
 
-		for (FriendEntity friendEntity : friendDao.getAllThePendingRequestsForCurrentUser(currentLoggedUserProfileId))
+		for (FriendEntity friendEntity : friendDao.getAllTheFriendsForFriendUser(currentLoggedUserProfileId))
 		{
 			if (friendEntity.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST)
 			{
