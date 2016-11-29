@@ -1,6 +1,7 @@
 package by.zheynov.socnet;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -110,12 +111,35 @@ public class FriendDaoTest
 	{
 		friendDao.approveFriendRequest(currentProfileEntity.getId(), friendProfileEntity.getId());
 
-
 		List<FriendEntity> friendEntities = friendDao.getAllTheFriends(currentProfileEntity.getId());
 
 		Assert.assertEquals(FriendRequestApprovalStatus.APPROVED_REQUEST, friendEntities.get(0).getStatus());
 		Assert.assertNotNull(friendEntities);
 		Assert.assertEquals(LIST_SIZE, friendEntities.size());
+	}
+
+	@Test
+	public void rejectFriendRequestTest()
+	{
+		friendDao.rejectFriendRequest(currentProfileEntity.getId(), friendProfileEntity.getId());
+
+		List<FriendEntity> friendEntities = friendDao.getAllTheFriends(currentProfileEntity.getId());
+
+		Assert.assertNotNull(friendEntities);
+		Assert.assertEquals(EMPTY_LIST_SIZE, friendEntities.size());
+	}
+
+	@Test
+	public void getByIdTest()
+	{
+		ProfileEntity profileEntityFromDB = profileDao.getById(currentProfileEntity.getId());
+		Set<FriendEntity> friendsOfCurrentProfile = profileEntityFromDB.getFriends();
+
+		FriendEntity friendEntityFromDB = friendsOfCurrentProfile.iterator().next();
+
+		List<FriendEntity> friendEntities = friendDao.getAllTheFriends(currentProfileEntity.getId());
+
+		Assert.assertEquals(friendEntityFromDB, friendEntities.get(0));
 	}
 
 	@After
