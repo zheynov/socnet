@@ -48,10 +48,10 @@ public class FriendDaoImpl extends AbstractBaseDAO implements FriendDao
 		friendEntity.setFriendProfileEntity(newFriend);
 		friendEntity.setStatus(FriendRequestApprovalStatus.PENDING_REQUEST);
 
-		Set<FriendEntity> friends = currentProfile.getFriends();
+		Set<FriendEntity> friends = currentProfile.getCurrentProfileFriends();
 		friends.add(friendEntity);
 
-		currentProfile.setFriends(friends);
+		currentProfile.setCurrentProfileFriends(friends);
 		super.udate(currentProfile);
 		super.save(friendEntity);
 	}

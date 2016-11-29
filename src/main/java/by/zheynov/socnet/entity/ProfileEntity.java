@@ -35,7 +35,11 @@ public class ProfileEntity implements Serializable
 
 	// OneToMany with FriendEntity
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "currentProfileEntity")
-	private Set<FriendEntity> friends = new HashSet<FriendEntity>();
+	private Set<FriendEntity> currentProfileFriends = new HashSet<FriendEntity>();
+
+	// OneToMany with FriendEntity
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "friendProfileEntity")
+	private Set<FriendEntity> friendProfileFriends = new HashSet<FriendEntity>();
 
 	// OneToMany with MessageEntity
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileSenderEntity")
@@ -44,7 +48,6 @@ public class ProfileEntity implements Serializable
 	// OneToMany with MessageEntity
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileDestinationEntity")
 	private Set<MessageEntity> destinationMessages = new HashSet<MessageEntity>();
-
 
 	@Id
 	@Column(name = "id")
@@ -283,26 +286,6 @@ public class ProfileEntity implements Serializable
 	}
 
 	/**
-	 * Gets friends.
-	 *
-	 * @return Value of friends.
-	 */
-	public Set<FriendEntity> getFriends()
-	{
-		return friends;
-	}
-
-	/**
-	 * Sets new friends.
-	 *
-	 * @param friends New value of friends.
-	 */
-	public void setFriends(final Set<FriendEntity> friends)
-	{
-		this.friends = friends;
-	}
-
-	/**
 	 * Sets new senderMessages.
 	 *
 	 * @param senderMessages New value of senderMessages.
@@ -341,5 +324,44 @@ public class ProfileEntity implements Serializable
 	{
 		this.destinationMessages = destinationMessages;
 	}
-}
 
+	/**
+	 * Sets new friendProfileFriends.
+	 *
+	 * @param friendProfileFriends New value of friendProfileFriends.
+	 */
+	public void setFriendProfileFriends(final Set<FriendEntity> friendProfileFriends)
+	{
+		this.friendProfileFriends = friendProfileFriends;
+	}
+
+	/**
+	 * Gets currentProfileFriends.
+	 *
+	 * @return Value of currentProfileFriends.
+	 */
+	public Set<FriendEntity> getCurrentProfileFriends()
+	{
+		return currentProfileFriends;
+	}
+
+	/**
+	 * Sets new currentProfileFriends.
+	 *
+	 * @param currentProfileFriends New value of currentProfileFriends.
+	 */
+	public void setCurrentProfileFriends(final Set<FriendEntity> currentProfileFriends)
+	{
+		this.currentProfileFriends = currentProfileFriends;
+	}
+
+	/**
+	 * Gets friendProfileFriends.
+	 *
+	 * @return Value of friendProfileFriends.
+	 */
+	public Set<FriendEntity> getFriendProfileFriends()
+	{
+		return friendProfileFriends;
+	}
+}
