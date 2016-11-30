@@ -61,12 +61,11 @@ public class MessageFacadeImpl implements MessageFacade
 	 */
 	public List<MessageDTO> getAllTheMessages(final Long senderID, final Long destinationID)
 	{
-		List<MessageDTO> allTheMessageDTO = new ArrayList<MessageDTO>();
-		for (MessageEntity userEntity : messageService.getAllTheMessages(senderID, destinationID))
-		{
-			final MessageDTO convert = conversionService.convert(userEntity, MessageDTO.class);
-			allTheMessageDTO.add(convert);
-		}
+		List<MessageDTO> allTheMessageDTO = new ArrayList<>();
+
+		messageService.getAllTheMessages(senderID, destinationID).
+						forEach(elem -> allTheMessageDTO.add(conversionService.convert(elem, MessageDTO.class)));
+
 		return allTheMessageDTO;
 	}
 }

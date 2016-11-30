@@ -42,9 +42,9 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	 *
 	 * @return profile entity
 	 */
-	public Object getById(final Long profileId)
+	public ProfileEntity getById(final Long profileId)
 	{
-		return super.getById(ProfileEntity.class, profileId);
+		return (ProfileEntity) super.getById(ProfileEntity.class, profileId);
 	}
 
 	/**

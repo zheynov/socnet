@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import by.zheynov.socnet.dto.FriendDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
-import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.facade.FriendFacade;
 import by.zheynov.socnet.service.FriendService;
@@ -53,13 +52,11 @@ public class FriendFacadeImpl implements FriendFacade
 	 */
 	public Set<FriendDTO> getAllThePendingFriendRequest(final Long currentLoggedUserProfileId)
 	{
-		Set<FriendDTO> allTheProfilesDTO = new HashSet<FriendDTO>();
+		Set<FriendDTO> allTheProfilesDTO = new HashSet<>();
 
-		for (FriendEntity friendEntity : friendService.getAllThePendingFriendRequestForUser(currentLoggedUserProfileId))
-		{
-			final FriendDTO friendProfileDTO = conversionService.convert(friendEntity, FriendDTO.class);
-			allTheProfilesDTO.add(friendProfileDTO);
-		}
+		friendService.getAllThePendingFriendRequestForUser(currentLoggedUserProfileId).
+						forEach(elem -> allTheProfilesDTO.add(conversionService.convert(elem, FriendDTO.class)));
+
 		return allTheProfilesDTO;
 	}
 
@@ -70,12 +67,11 @@ public class FriendFacadeImpl implements FriendFacade
 	 */
 	public List<FriendDTO> getAllThePendingRequests()
 	{
-		List<FriendDTO> allPendingFriends = new ArrayList<FriendDTO>();
+		List<FriendDTO> allPendingFriends = new ArrayList<>();
 
-		for (FriendEntity friendEntity : friendService.getAllThePendingRequests())
-		{
-			allPendingFriends.add(conversionService.convert(friendEntity, FriendDTO.class));
-		}
+		friendService.getAllThePendingRequests().
+						forEach(elem -> allPendingFriends.add(conversionService.convert(elem, FriendDTO.class)));
+
 		return allPendingFriends;
 	}
 

@@ -78,12 +78,11 @@ public class ProfileFacadeImpl implements ProfileFacade
 	 */
 	public List<ProfileDTO> getAllTheProfiles()
 	{
-		List<ProfileDTO> allTheDTOProfiles = new ArrayList<ProfileDTO>();
-		for (ProfileEntity profileEntity : profileService.getAllTheProfiles())
-		{
-			final ProfileDTO profileDTO = conversionService.convert(profileEntity, ProfileDTO.class);
-			allTheDTOProfiles.add(profileDTO);
-		}
+		List<ProfileDTO> allTheDTOProfiles = new ArrayList<>();
+
+		profileService.getAllTheProfiles().
+						forEach(element -> allTheDTOProfiles.add(conversionService.convert(element, ProfileDTO.class)));
+
 		return allTheDTOProfiles;
 	}
 
@@ -96,13 +95,11 @@ public class ProfileFacadeImpl implements ProfileFacade
 	 */
 	public Set<ProfileDTO> getAllTheProfilesOfFriends(final Long currentLoggedUserProfileId)
 	{
-		Set<ProfileDTO> allTheProfilesDTO = new HashSet<ProfileDTO>();
+		Set<ProfileDTO> allTheProfilesDTO = new HashSet<>();
 
-		for (ProfileEntity profileEntity : profileService.getAllTheProfilesOfFriends(currentLoggedUserProfileId))
-		{
-			final ProfileDTO friendProfileDTO = conversionService.convert(profileEntity, ProfileDTO.class);
-			allTheProfilesDTO.add(friendProfileDTO);
-		}
+		profileService.getAllTheProfilesOfFriends(currentLoggedUserProfileId).
+						forEach(element -> allTheProfilesDTO.add(conversionService.convert(element, ProfileDTO.class)));
+
 		return allTheProfilesDTO;
 	}
 
@@ -117,16 +114,11 @@ public class ProfileFacadeImpl implements ProfileFacade
 	public Set<ProfileDTO> getAllTheProfilesOfNonPendingAndNotFriends(final Long currentLoggedUserProfileId,
 	                                                                  final String currentLoggedUsername)
 	{
-		Set<ProfileDTO> allTheProfilesDTO = new HashSet<ProfileDTO>();
+		Set<ProfileDTO> allTheProfilesDTO = new HashSet<>();
 
-		for (ProfileEntity profileEntity : profileService.getAllTheProfilesOfNonPendingAndNotFriends(
-						currentLoggedUserProfileId,
-						currentLoggedUsername
-		))
-		{
-			final ProfileDTO friendProfileDTO = conversionService.convert(profileEntity, ProfileDTO.class);
-			allTheProfilesDTO.add(friendProfileDTO);
-		}
+		profileService.getAllTheProfilesOfNonPendingAndNotFriends(currentLoggedUserProfileId,currentLoggedUsername).
+						forEach(element -> allTheProfilesDTO.add(conversionService.convert(element, ProfileDTO.class)));
+
 		return allTheProfilesDTO;
 	}
 }

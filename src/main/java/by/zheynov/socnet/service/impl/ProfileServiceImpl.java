@@ -106,16 +106,12 @@ public class ProfileServiceImpl implements ProfileService
 	@Transactional(readOnly = true)
 	public List<ProfileEntity> getAllTheProfilesOfFriends(final Long currentLoggedUserProfileId)
 	{
-		List<ProfileEntity> allTheFriendProfiles = new ArrayList<ProfileEntity>();
+		List<ProfileEntity> allTheFriendProfiles = new ArrayList<>();
 
-		for (FriendEntity friendEntity : friendDao.getAllTheFriends(currentLoggedUserProfileId))
-		{
-			if (friendEntity.getStatus() == FriendRequestApprovalStatus.APPROVED_REQUEST)
-			{
-				final ProfileEntity profileEntity = (ProfileEntity) profileDao.getById(friendEntity.getFriendProfileEntity().getId());
-				allTheFriendProfiles.add(profileEntity);
-			}
-		}
+		friendDao.getAllTheFriends(currentLoggedUserProfileId).stream().
+						filter(elem -> elem.getStatus() == FriendRequestApprovalStatus.APPROVED_REQUEST).
+						         forEach(elem -> allTheFriendProfiles.add(profileDao.getById(elem.getFriendProfileEntity().getId())));
+
 		return allTheFriendProfiles;
 	}
 
@@ -132,39 +128,26 @@ public class ProfileServiceImpl implements ProfileService
 	public List<ProfileEntity> getAllTheProfilesOfNonPendingAndNotFriends(final Long currentLoggedUserProfileId,
 	                                                                      final String currentLoggedUsername)
 	{
-		List<ProfileEntity> allTheFriendProfiles = new ArrayList<ProfileEntity>();
+		List<ProfileEntity> allTheFriendProfiles = new ArrayList<>(); // result of our method
+		List<ProfileEntity> allTheProfiles = getAllTheProfiles(); //all the profiles of our site
+		List<ProfileEntity> allTheProfilesOfFriends
+						= getAllTheProfilesOfFriends(currentLoggedUserProfileId); //all the profiles of currentLoggedUser
 
-		List<ProfileEntity> allTheProfiles = getAllTheProfiles();
+		// adds user to allTheFriendProfiles if a user is not a friend
+		allTheProfiles.stream().filter(elem -> !allTheProfilesOfFriends.contains(elem)).forEach(allTheFriendProfiles::add);
 
-		List<ProfileEntity> allTheProfilesOfFriends = getAllTheProfilesOfFriends(currentLoggedUserProfileId);
-
-		for (ProfileEntity profileEntity : allTheProfiles)
-		{
-			if (!allTheProfilesOfFriends.contains(profileEntity))
-			{
-				allTheFriendProfiles.add(profileEntity);
-			}
-
-			if (profileEntity.getUserEntity().getUsername().equalsIgnoreCase(currentLoggedUsername) ||
-							profileEntity.getUserEntity().getUsername().equalsIgnoreCase("admin"))
-			{
-				allTheFriendProfiles.remove(profileEntity);
-			}
-		}
+		// remoes user from allTheFriendProfiles if user is currentLoggedUser or admin
+		allTheProfiles.stream().
+						filter(elem -> elem.getUserEntity().getUsername().equalsIgnoreCase(currentLoggedUsername) ||
+										elem.getUserEntity().getUsername().equalsIgnoreCase("admin")).
+						              forEach(allTheFriendProfiles::remove);
 
 		// for removing pending users wich are still not a friends of user
-		for (FriendEntity friendEntity : friendDao.getAllTheFriends(currentLoggedUserProfileId))
-		{
-			if (friendEntity.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST)
-			{
-				final ProfileEntity profileEntity = (ProfileEntity) profileDao.getById(friendEntity.getFriendProfileEntity().getId());
+		friendDao.getAllTheFriends(currentLoggedUserProfileId).stream().
+						filter(elem -> elem.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST).
+						         filter(elem -> allTheFriendProfiles.contains(profileDao.getById(elem.getFriendProfileEntity().getId()))).
+						         forEach(elem -> allTheFriendProfiles.remove(profileDao.getById(elem.getFriendProfileEntity().getId())));
 
-				if (allTheFriendProfiles.contains(profileEntity))
-				{
-					allTheFriendProfiles.remove(profileEntity);
-				}
-			}
-		}
 		return allTheFriendProfiles;
 	}
 }

@@ -29,7 +29,7 @@ public interface ProfileDao
 	 *
 	 * @return the entity
 	 */
-	Object getById(Long profileId);
+	ProfileEntity getById(Long profileId);
 
 	/**
 	 * Updates.

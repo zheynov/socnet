@@ -76,12 +76,10 @@ public class UserFacadeImpl implements UserFacade
 	 */
 	public List<UserDTO> getAllTheUsers()
 	{
-		List<UserDTO> allTheDTOUsers = new ArrayList<UserDTO>();
-		for (UserEntity userEntity : userService.getAllTheUsers())
-		{
-			final UserDTO convert = conversionService.convert(userEntity, UserDTO.class);
-			allTheDTOUsers.add(convert);
-		}
+		List<UserDTO> allTheDTOUsers = new ArrayList<>();
+
+		userService.getAllTheUsers().forEach(elem -> allTheDTOUsers.add(conversionService.convert(elem, UserDTO.class)));
+
 		return allTheDTOUsers;
 	}
 
@@ -95,13 +93,10 @@ public class UserFacadeImpl implements UserFacade
 	 */
 	public RegistrationStatus registrationStatus(final String username, final String email)
 	{
-		List<UserDTO> allTheDTOUsers = new ArrayList<UserDTO>(); // list of users
+		List<UserDTO> allTheDTOUsers = new ArrayList<>(); // list of users
 
-		for (UserEntity userEntity : userService.getUserByUsernameOrEmail(username, email))
-		{
-			final UserDTO userDTO = conversionService.convert(userEntity, UserDTO.class);
-			allTheDTOUsers.add(userDTO);
-		}
+		userService.getUserByUsernameOrEmail(username, email).
+						forEach(elem -> allTheDTOUsers.add(conversionService.convert(elem, UserDTO.class)));
 
 		if (allTheDTOUsers.size() > 0)
 		{

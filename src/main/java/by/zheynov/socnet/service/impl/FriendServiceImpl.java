@@ -59,15 +59,12 @@ public class FriendServiceImpl implements FriendService
 	@Transactional(readOnly = true)
 	public List<FriendEntity> getAllThePendingFriendRequestForUser(final Long currentLoggedUserProfileId)
 	{
-		List<FriendEntity> result = new ArrayList<FriendEntity>();
+		List<FriendEntity> result = new ArrayList<>();
 
-		for (FriendEntity friendEntity : friendDao.getAllTheFriendsForFriendUser(currentLoggedUserProfileId))
-		{
-			if (friendEntity.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST)
-			{
-				result.add(friendEntity);
-			}
-		}
+		friendDao.getAllTheFriendsForFriendUser(currentLoggedUserProfileId).stream().
+						filter(elem -> elem.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST).
+						         forEach(result::add);
+
 		return result;
 	}
 
