@@ -8,6 +8,7 @@ import by.zheynov.socnet.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade
  */
-
+@Component("userFacade")
 public class UserFacadeImpl implements UserFacade
 {
 	@Autowired

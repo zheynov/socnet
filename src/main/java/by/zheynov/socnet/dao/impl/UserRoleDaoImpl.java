@@ -1,5 +1,6 @@
 package by.zheynov.socnet.dao.impl;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.zheynov.socnet.dao.UserRoleDao;
@@ -12,6 +13,7 @@ import by.zheynov.socnet.entity.RoleEntity;
  * @package by.zheynov.socnet.dao.impl
  */
 
+@Repository("userRoleDao")
 @Transactional
 public class UserRoleDaoImpl extends AbstractBaseDAO implements UserRoleDao
 {

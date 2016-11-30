@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.zheynov.socnet.dao.FriendDao;
@@ -17,6 +18,7 @@ import by.zheynov.socnet.entity.ProfileEntity;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.dao.impl
  */
+@Repository("friendDao")
 @Transactional
 public class FriendDaoImpl extends AbstractBaseDAO implements FriendDao
 {

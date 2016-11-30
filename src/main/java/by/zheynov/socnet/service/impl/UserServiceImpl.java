@@ -2,15 +2,16 @@ package by.zheynov.socnet.service.impl;
 
 import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.dao.UserDao;
-import by.zheynov.socnet.dao.UserRoleDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.RoleEntity;
 import by.zheynov.socnet.entity.UserEntity;
 import by.zheynov.socnet.service.UserService;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -22,12 +23,17 @@ import java.util.Locale;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.service.impl
  */
+@Service("userService")
 public class UserServiceImpl implements UserService
 {
 	private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
+	@Autowired
 	private UserDao         userDao;
+	@Autowired
 	private ProfileDao      profileDao;
+	@Autowired
 	private MessageSource   messageSource;
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	/**
@@ -76,7 +82,7 @@ public class UserServiceImpl implements UserService
 	 *
 	 * @return the entity
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public UserEntity getUserByUsername(final String username)
 	{
 		LOGGER.info(messageSource.getMessage("service.user.getByLogin", new Object[] {username}, Locale.ENGLISH));
@@ -100,7 +106,7 @@ public class UserServiceImpl implements UserService
 	 *
 	 * @return List<UserEntity>
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<UserEntity> getAllTheUsers()
 	{
 		return userDao.getAllTheUsers();
@@ -114,49 +120,9 @@ public class UserServiceImpl implements UserService
 	 *
 	 * @return list of users
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<UserEntity> getUserByUsernameOrEmail(final String username, final String email)
 	{
 		return userDao.getUserByUsernameOrEmail(username, email);
-	}
-
-	/**
-	 * Sets new userDao.
-	 *
-	 * @param userDao New value of userDao.
-	 */
-	public void setUserDao(final UserDao userDao)
-	{
-		this.userDao = userDao;
-	}
-
-	/**
-	 * Sets new profileDao.
-	 *
-	 * @param profileDao New value of profileDao.
-	 */
-	public void setProfileDao(final ProfileDao profileDao)
-	{
-		this.profileDao = profileDao;
-	}
-
-	/**
-	 * Sets new passwordEncoder.
-	 *
-	 * @param passwordEncoder New value of passwordEncoder.
-	 */
-	public void setPasswordEncoder(final PasswordEncoder passwordEncoder)
-	{
-		this.passwordEncoder = passwordEncoder;
-	}
-
-	/**
-	 * Sets new messageSource.
-	 *
-	 * @param messageSource New value of messageSource.
-	 */
-	public void setMessageSource(final MessageSource messageSource)
-	{
-		this.messageSource = messageSource;
 	}
 }

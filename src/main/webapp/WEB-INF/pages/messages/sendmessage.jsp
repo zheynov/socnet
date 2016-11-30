@@ -39,13 +39,16 @@
 
                     <div class="tab-pane active" id="messages" style="margin-left: 250px">
 
+
+                        <h3><spring:message
+                                code="messages.page.text.conversationwith"/> ${destinationProfileDTO.firstname} ${destinationProfileDTO.lastname}  </h3>
                         <form:form method="POST" action="/messages/sendmessage" modelAttribute="MessageDTO">
 
 
                             <form:hidden path="messageDate"/>
 
 
-                            <spring:message code="messages.page.text.time" var="entertext"/>
+                            <spring:message code="messages.page.text.entertext" var="entertext"/>
                             <p><form:textarea path="text" rows="4" cols="100" maxlength="1023" placeholder="${entertext}"/></p>
 
                             <form:hidden path="senderProfileDTO"/>
@@ -71,12 +74,13 @@
                                     <br/>
                                     <div class="alert-info">
                                         <font size="1">
-                                            <b ><spring:message code="messages.page.text.sender"/>:</b>
+                                            <b><spring:message code="messages.page.text.sender"/>:</b>
                                                 ${message.senderProfileDTO.firstname} ${message.senderProfileDTO.lastname}
                                         </font> <font size="1">
                                         <b><spring:message code="messages.page.text.time"/>: </b> ${message.messageDate}
                                     </font><br/>
-                                        <p><div style="margin-left: 5px"> <b> ${message.text} </b> </div>
+                                        <p>
+                                        <div style="margin-left: 5px"><b> ${message.text} </b></div>
                                     </div>
                                 </c:when>
 
@@ -89,7 +93,8 @@
                                         </font> <font size="1">
                                         <b><spring:message code="messages.page.text.time"/>: </b> ${message.messageDate}
                                     </font><br/>
-                                        <p> <div style="margin-left: 5px"><b > ${message.text} </b> </div>
+                                        <p>
+                                        <div style="margin-left: 5px"><b> ${message.text} </b></div>
                                     </div>
 
                                 </c:otherwise>

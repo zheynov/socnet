@@ -13,6 +13,7 @@ import by.zheynov.socnet.service.ProfileService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
 
 /**
  * Profile facade implementation.
@@ -20,6 +21,7 @@ import org.springframework.core.convert.ConversionService;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade
  */
+@Component("profileFacade")
 public class ProfileFacadeImpl implements ProfileFacade
 {
 	@Autowired

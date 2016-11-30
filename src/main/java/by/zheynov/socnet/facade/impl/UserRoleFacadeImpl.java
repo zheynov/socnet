@@ -1,6 +1,7 @@
 package by.zheynov.socnet.facade.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import by.zheynov.socnet.entity.RoleEntity;
 import by.zheynov.socnet.facade.UserRoleFacade;
@@ -12,6 +13,7 @@ import by.zheynov.socnet.service.UserRoleService;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade
  */
+@Component("userRoleFacade")
 public class UserRoleFacadeImpl implements UserRoleFacade
 {
 	@Autowired

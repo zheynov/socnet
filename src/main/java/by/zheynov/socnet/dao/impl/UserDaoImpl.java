@@ -4,6 +4,7 @@ import by.zheynov.socnet.dao.UserDao;
 import by.zheynov.socnet.entity.UserEntity;
 
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 
 @Transactional
+@Repository("userDao")
 public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 {
 	private static final String GET_USER_BY_USERNAME_QUERY          = "FROM UserEntity WHERE username = :username";

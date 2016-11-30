@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
 
 import by.zheynov.socnet.dto.FriendDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
@@ -21,6 +22,7 @@ import by.zheynov.socnet.service.FriendService;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade.impl
  */
+@Component("friendFacade")
 public class FriendFacadeImpl implements FriendFacade
 {
 	@Autowired

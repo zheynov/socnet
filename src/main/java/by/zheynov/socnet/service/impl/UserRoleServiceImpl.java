@@ -3,7 +3,9 @@ package by.zheynov.socnet.service.impl;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.zheynov.socnet.dao.UserRoleDao;
@@ -16,10 +18,13 @@ import by.zheynov.socnet.service.UserRoleService;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.service
  */
+@Service("userRoleService")
 public class UserRoleServiceImpl implements UserRoleService
 {
 	private final static Logger LOGGER = Logger.getLogger(UserRoleServiceImpl.class);
+	@Autowired
 	private UserRoleDao                           userRoleDao;
+	@Autowired
 	private ReloadableResourceBundleMessageSource messageSource;
 
 	/**
@@ -59,25 +64,5 @@ public class UserRoleServiceImpl implements UserRoleService
 	{
 		userRoleDao.deleteUserRole(userRole);
 		LOGGER.info(messageSource.getMessage("service.user.role.delete", new Object[] {userRole}, Locale.ENGLISH));
-	}
-
-	/**
-	 * Sets new messageSource.
-	 *
-	 * @param messageSource New value of messageSource.
-	 */
-	public void setMessageSource(final ReloadableResourceBundleMessageSource messageSource)
-	{
-		this.messageSource = messageSource;
-	}
-
-	/**
-	 * Sets new userRoleDao.
-	 *
-	 * @param userRoleDao New value of userRoleDao.
-	 */
-	public void setUserRoleDao(final UserRoleDao userRoleDao)
-	{
-		this.userRoleDao = userRoleDao;
 	}
 }

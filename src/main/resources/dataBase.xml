@@ -33,10 +33,8 @@
                 <prop key="hibernate.c3p0.max_size">20</prop>
                 <prop key="hibernate.c3p0.timeout">1800</prop>
                 <prop key="hibernate.c3p0.max_statements">50</prop>
-
             </props>
         </property>
-
     </bean>
 
     <!-- For ability to work with @Transactional tx:annotation-driven manages transations using annotations -->
@@ -45,6 +43,5 @@
     <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
 
 </beans>

@@ -2,6 +2,8 @@ package by.zheynov.socnet.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -12,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Transactional
+@Repository("abstractDao")
 public abstract class AbstractBaseDAO
 {
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	/**
@@ -66,15 +70,5 @@ public abstract class AbstractBaseDAO
 	Session getCurrentSession()
 	{
 		return sessionFactory.getCurrentSession();
-	}
-
-	/**
-	 * Sets new sessionFactory.
-	 *
-	 * @param sessionFactory New value of sessionFactory.
-	 */
-	public void setSessionFactory(final SessionFactory sessionFactory)
-	{
-		this.sessionFactory = sessionFactory;
 	}
 }

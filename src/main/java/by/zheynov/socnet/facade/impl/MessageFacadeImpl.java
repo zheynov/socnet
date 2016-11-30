@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
 
 import by.zheynov.socnet.dto.MessageDTO;
 import by.zheynov.socnet.entity.MessageEntity;
@@ -17,6 +18,7 @@ import by.zheynov.socnet.service.MessageService;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade.impl
  */
+@Component("messageFacade")
 public class MessageFacadeImpl implements MessageFacade
 {
 	@Autowired

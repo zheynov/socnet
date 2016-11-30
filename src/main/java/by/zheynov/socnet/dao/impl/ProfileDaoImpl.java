@@ -7,6 +7,7 @@ import by.zheynov.socnet.dao.ProfileDao;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.dao.impl
  */
+@Repository("profileDao")
 @Transactional
 public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 {

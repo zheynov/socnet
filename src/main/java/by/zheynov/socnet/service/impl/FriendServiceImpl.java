@@ -3,6 +3,8 @@ package by.zheynov.socnet.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.zheynov.socnet.dao.FriendDao;
@@ -17,8 +19,10 @@ import by.zheynov.socnet.service.FriendService;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.facade.impl
  */
+@Service("friendService")
 public class FriendServiceImpl implements FriendService
 {
+	@Autowired
 	private FriendDao friendDao;
 
 	/**
@@ -52,7 +56,7 @@ public class FriendServiceImpl implements FriendService
 	 *
 	 * @return list of entities
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<FriendEntity> getAllThePendingFriendRequestForUser(final Long currentLoggedUserProfileId)
 	{
 		List<FriendEntity> result = new ArrayList<FriendEntity>();
@@ -72,7 +76,7 @@ public class FriendServiceImpl implements FriendService
 	 *
 	 * @return the List<friendEntity>
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<FriendEntity> getAllThePendingRequests()
 	{
 		return friendDao.getAllThePendingRequests();
@@ -102,13 +106,4 @@ public class FriendServiceImpl implements FriendService
 		friendDao.rejectFriendRequest(loggedUserProfileId, frendProfileId);
 	}
 
-	/**
-	 * Sets new friendDao.
-	 *
-	 * @param friendDao New value of friendDao.
-	 */
-	public void setFriendDao(final FriendDao friendDao)
-	{
-		this.friendDao = friendDao;
-	}
 }

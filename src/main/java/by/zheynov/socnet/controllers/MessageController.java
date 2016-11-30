@@ -83,7 +83,7 @@ public class MessageController
 						"allTheMessages",
 						messageFacade.getAllTheMessages(senderProfileDTO.getProfileID(), destinationProfileDTO.getProfileID())
 		);
-
+		model.addAttribute("destinationProfileDTO", tempDestinationProfileDTO);
 		return "/messages/sendmessage";
 	}
 
@@ -106,7 +106,6 @@ public class MessageController
 						"allTheMessages",
 						messageFacade.getAllTheMessages(tempSenderProfileDTO.getProfileID(), tempDestinationProfileDTO.getProfileID())
 		);
-
 		return "/messages/sendmessage";
 	}
 

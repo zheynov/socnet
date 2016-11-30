@@ -8,7 +8,9 @@ import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.service.ProfileService;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -22,11 +24,15 @@ import java.util.Locale;
  * @package by.zheynov.socnet.service.impl
  */
 
+@Service("profileService")
 public class ProfileServiceImpl implements ProfileService
 {
 	private final static Logger LOGGER = Logger.getLogger(ProfileServiceImpl.class);
+	@Autowired
 	private ProfileDao    profileDao;
+	@Autowired
 	private FriendDao     friendDao;
+	@Autowired
 	private MessageSource messageSource;
 
 	/**
@@ -48,7 +54,7 @@ public class ProfileServiceImpl implements ProfileService
 	 *
 	 * @return the entity
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public ProfileEntity getProfileById(final Long profileId)
 	{
 		LOGGER.info(messageSource.getMessage("service.profile.getById", new Object[] {profileId}, Locale.ENGLISH));
@@ -84,7 +90,7 @@ public class ProfileServiceImpl implements ProfileService
 	 *
 	 * @return the List<ProfileEntity>
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<ProfileEntity> getAllTheProfiles()
 	{
 		return profileDao.getAllTheProfiles();
@@ -97,7 +103,7 @@ public class ProfileServiceImpl implements ProfileService
 	 *
 	 * @return list of entities
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<ProfileEntity> getAllTheProfilesOfFriends(final Long currentLoggedUserProfileId)
 	{
 		List<ProfileEntity> allTheFriendProfiles = new ArrayList<ProfileEntity>();
@@ -122,7 +128,7 @@ public class ProfileServiceImpl implements ProfileService
 	 *
 	 * @return list of entities
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<ProfileEntity> getAllTheProfilesOfNonPendingAndNotFriends(final Long currentLoggedUserProfileId,
 	                                                                      final String currentLoggedUsername)
 	{
@@ -157,39 +163,8 @@ public class ProfileServiceImpl implements ProfileService
 				{
 					allTheFriendProfiles.remove(profileEntity);
 				}
-							}
+			}
 		}
 		return allTheFriendProfiles;
-	}
-
-	/**
-	 * Sets new messageSource.
-	 *
-	 * @param messageSource New value of messageSource.
-	 */
-	public void setMessageSource(final MessageSource messageSource)
-	{
-		this.messageSource = messageSource;
-	}
-
-	/**
-	 * Sets new profileDao.
-	 *
-	 * @param profileDao New value of profileDao.
-	 */
-
-	public void setProfileDao(final ProfileDao profileDao)
-	{
-		this.profileDao = profileDao;
-	}
-
-	/**
-	 * Sets new friendDao.
-	 *
-	 * @param friendDao New value of friendDao.
-	 */
-	public void setFriendDao(final FriendDao friendDao)
-	{
-		this.friendDao = friendDao;
 	}
 }

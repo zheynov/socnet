@@ -2,6 +2,8 @@ package by.zheynov.socnet.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.zheynov.socnet.dao.MessageDao;
@@ -14,8 +16,10 @@ import by.zheynov.socnet.service.MessageService;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.service.impl
  */
+@Service("messageService")
 public class MessageServiceImpl implements MessageService
 {
+	@Autowired
 	private MessageDao messageDao;
 
 	/**
@@ -38,7 +42,7 @@ public class MessageServiceImpl implements MessageService
 	 *
 	 * @return the entity
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public MessageEntity getById(final Long messageId)
 	{
 		return messageDao.getById(messageId);
@@ -52,19 +56,11 @@ public class MessageServiceImpl implements MessageService
 	 *
 	 * @return the List<MessageEntity>
 	 */
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<MessageEntity> getAllTheMessages(final Long senderID, final Long destinationID)
 	{
 		return messageDao.getAllTheMessages(senderID, destinationID);
 	}
 
-	/**
-	 * Sets new messageDAO.
-	 *
-	 * @param messageDao New value of messageDAO.
-	 */
-	public void setMessageDao(final MessageDao messageDao)
-	{
-		this.messageDao = messageDao;
-	}
+
 }
