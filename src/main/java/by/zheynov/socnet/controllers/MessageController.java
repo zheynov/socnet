@@ -80,7 +80,7 @@ public class MessageController
 
 		model.addAttribute("destinationProfileDTO", tempDestinationProfileDTO);
 
-						model.addAttribute("MessageDTO", messageDTO);
+		model.addAttribute("MessageDTO", messageDTO);
 		model.addAttribute(
 						"allTheMessages",
 						messageFacade.getAllTheMessages(senderProfileDTO.getProfileID(), destinationProfileDTO.getProfileID())
