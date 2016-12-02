@@ -59,7 +59,7 @@ CREATE TABLE post (
   userID BIGINT             NOT NULL,
   text   VARCHAR(1024),
   date   DATE               NOT NULL,
-  photo  VARCHAR(512),
+  photoFileName  VARCHAR(512),
   FOREIGN KEY (userID) REFERENCES user (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE

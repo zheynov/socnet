@@ -42,8 +42,8 @@ public class PostEntity implements Serializable
 	@Column(name = "text", length = MAX_TEXT_LENGTH)
 	private String text;
 
-	@Column(name = "photo")
-	private String photo;
+	@Column(name = "photoFileName")
+	private String photoFileName;
 
 	/**
 	 * Gets postDate.
@@ -75,15 +75,6 @@ public class PostEntity implements Serializable
 		this.text = text;
 	}
 
-	/**
-	 * Sets new photo.
-	 *
-	 * @param photo New value of photo.
-	 */
-	public void setPhoto(final String photo)
-	{
-		this.photo = photo;
-	}
 
 	/**
 	 * Sets new postID.
@@ -125,15 +116,6 @@ public class PostEntity implements Serializable
 		return text;
 	}
 
-	/**
-	 * Gets photo.
-	 *
-	 * @return Value of photo.
-	 */
-	public String getPhoto()
-	{
-		return photo;
-	}
 
 	/**
 	 * Sets new postDate.
@@ -143,5 +125,25 @@ public class PostEntity implements Serializable
 	public void setPostDate(final Date postDate)
 	{
 		this.postDate = postDate;
+	}
+
+	/**
+	 * Gets photoFileName.
+	 *
+	 * @return Value of photoFileName.
+	 */
+	public String getPhotoFileName()
+	{
+		return photoFileName;
+	}
+
+	/**
+	 * Sets new photoFileName.
+	 *
+	 * @param photoFileName New value of photoFileName.
+	 */
+	public void setPhotoFileName(String photoFileName)
+	{
+		this.photoFileName = photoFileName;
 	}
 }

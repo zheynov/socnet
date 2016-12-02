@@ -38,6 +38,43 @@
     </filter-mapping>
 
 
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/WEB-INF/pages/error/400.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/pages/error/403.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/pages/error/404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>405</error-code>
+        <location>/WEB-INF/pages/error/405.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/pages/error/500.jsp</location>
+    </error-page>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.PNG</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.JPEG</url-pattern>
+    </servlet-mapping>
+
+
     <!--Resolves UTF-8 issues-->
     <filter>
         <filter-name>encodingFilter</filter-name>
