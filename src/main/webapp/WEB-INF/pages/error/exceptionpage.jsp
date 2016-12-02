@@ -9,7 +9,7 @@
 <body>
 
 <div class="container" align="center">
-    <font size="40"> ${ex} </font> <br/> <br/> <br/>
+    <font size="3"> ${ex} </font> <br/> <br/> <br/>
     <button type="button" name="back" onclick="history.back()" class="btn btn-default">BACK</button>
 </div>
 

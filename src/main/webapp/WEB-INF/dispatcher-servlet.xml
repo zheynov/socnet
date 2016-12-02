@@ -78,8 +78,12 @@
                 <bean class="by.zheynov.socnet.converters.FriendDTOReverseConverter"/>
                 <bean class="by.zheynov.socnet.converters.MessageDTOConverter"/>
                 <bean class="by.zheynov.socnet.converters.MessageDTOReverseConverter"/>
+                <bean class="by.zheynov.socnet.converters.PhotoDTOConverter"/>
+                <bean class="by.zheynov.socnet.converters.PhotoDTOReverseConverter"/>
             </list>
         </property>
     </bean>
+
+    <mvc:resources mapping="/images/**" location="file:${user.home}/"/>
 
 </beans>

@@ -55,11 +55,11 @@ CREATE TABLE message (
 
 -- Table for user's posts
 CREATE TABLE post (
-  id     BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  userID BIGINT             NOT NULL,
-  text   VARCHAR(1024),
-  date   DATE               NOT NULL,
-  photoFileName  VARCHAR(512),
+  id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  userID        BIGINT             NOT NULL,
+  text          VARCHAR(1024),
+  date          DATE               NOT NULL,
+  photoFileName VARCHAR(512),
   FOREIGN KEY (userID) REFERENCES user (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -84,8 +84,18 @@ CREATE TABLE friend (
   UNIQUE KEY main_profile_id (main_profile_id, friends_profile_id)
 );
 
--- Insert data
+-- Table to store friends (ManyToMany)
+CREATE TABLE photo (
+  id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  photo_file_name VARCHAR(64)        NOT NULL
+);
 
+
+
+
+
+
+-- Insert data
 INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_ADMIN');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_USER');
 

@@ -1,9 +1,16 @@
 package by.zheynov.socnet.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import by.zheynov.socnet.dto.PhotoDTO;
+import by.zheynov.socnet.facade.PhotoFacade;
 
 /**
  * PhotoController class.
@@ -14,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PhotoController
 {
+	@Autowired
+	PhotoFacade photoFacade;
 
 	/**
 	 * Redirects a list of current users's profiles.
@@ -23,8 +32,21 @@ public class PhotoController
 	 * @return the URL
 	 */
 	@RequestMapping(value = "/photoes", method = RequestMethod.GET)
-	public String loginAsAdmin(final Model model)
+	public String visitPhotoMenuItem(final Model model)
 	{
+		model.addAttribute("photoDTO", new PhotoDTO());
+		model.addAttribute("allThePhotos", photoFacade.getAllThePhotos());
+
 		return "/photoes";
 	}
+
+	//
+
+	@RequestMapping(value = "/photoupload", method = RequestMethod.POST)
+	public String uploadPhoto(@ModelAttribute("photoDTO") final PhotoDTO photoDTO, @RequestParam("photo") final MultipartFile photo)
+	{
+		photoFacade.createPhoto(photoDTO, photo);
+		return "redirect:/photoes";
+	}
+
 }

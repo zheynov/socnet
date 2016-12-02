@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="action" tagdir="/WEB-INF/tags/" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -39,7 +40,26 @@
 
                     <div class="tab-pane" id="messages"></div>
 
-                    <div class="tab-pane active" id="photoes"></div>
+                    <div class="tab-pane active" id="photoes">
+
+                        <form:form method="post" action="/photoupload" enctype="multipart/form-data" modelAttribute="photoDTO">
+
+                            <form:input path="photo" type="file" name="photo" accept="image/*"/>
+                            <br/>
+                            <input type="submit" value="Complete">
+
+                        </form:form>
+
+                        <br/> <br/> <br/>
+
+                        <c:forEach items="${allThePhotos}" var="photo">
+
+                            <img src="${photo.photoFileName}">
+
+
+                        </c:forEach>
+
+                    </div>
 
                     <jsp:include page="contactabout.jsp"/>
 

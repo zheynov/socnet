@@ -1,6 +1,7 @@
 package by.zheynov.socnet.converters;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import by.zheynov.socnet.dto.MessageDTO;
 import by.zheynov.socnet.entity.MessageEntity;
@@ -12,6 +13,7 @@ import by.zheynov.socnet.entity.ProfileEntity;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.converters
  */
+@Component
 public class MessageDTOReverseConverter implements Converter<MessageDTO, MessageEntity>
 {
 	public MessageEntity convert(final MessageDTO messageDTO)

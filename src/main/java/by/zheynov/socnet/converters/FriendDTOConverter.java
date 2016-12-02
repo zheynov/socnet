@@ -1,6 +1,7 @@
 package by.zheynov.socnet.converters;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import by.zheynov.socnet.dto.FriendDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
@@ -13,6 +14,7 @@ import by.zheynov.socnet.entity.ProfileEntity;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.converters
  */
+@Component
 public class FriendDTOConverter implements Converter<FriendEntity, FriendDTO>
 {
 	/**
