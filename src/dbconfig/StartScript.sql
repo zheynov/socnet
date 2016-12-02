@@ -84,16 +84,11 @@ CREATE TABLE friend (
   UNIQUE KEY main_profile_id (main_profile_id, friends_profile_id)
 );
 
--- Table to store friends (ManyToMany)
+-- Table to store photos
 CREATE TABLE photo (
   id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  photo_file_name VARCHAR(64)        NOT NULL
+  photo_file_name VARCHAR(64)        NOT NULL UNIQUE
 );
-
-
-
-
-
 
 -- Insert data
 INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_ADMIN');

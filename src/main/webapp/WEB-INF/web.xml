@@ -72,6 +72,11 @@
         <url-pattern>*.JPEG</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.jpg</url-pattern>
+    </servlet-mapping>
+
 
     <!--Resolves UTF-8 issues-->
     <filter>

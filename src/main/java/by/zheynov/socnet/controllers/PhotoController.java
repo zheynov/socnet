@@ -36,6 +36,10 @@ public class PhotoController
 	{
 		model.addAttribute("photoDTO", new PhotoDTO());
 		model.addAttribute("allThePhotos", photoFacade.getAllThePhotos());
+		model.addAttribute("homedir", System.getProperty("user.home"));
+
+
+
 
 		return "/photoes";
 	}
@@ -43,9 +47,9 @@ public class PhotoController
 	//
 
 	@RequestMapping(value = "/photoupload", method = RequestMethod.POST)
-	public String uploadPhoto(@ModelAttribute("photoDTO") final PhotoDTO photoDTO, @RequestParam("photo") final MultipartFile photo)
+	public String uploadPhoto(@ModelAttribute("photoDTO") final PhotoDTO photoDTO, @RequestParam("photo") final MultipartFile file)
 	{
-		photoFacade.createPhoto(photoDTO, photo);
+		photoFacade.createPhoto(photoDTO, file);
 		return "redirect:/photoes";
 	}
 
