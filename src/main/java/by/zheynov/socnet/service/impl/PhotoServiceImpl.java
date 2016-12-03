@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import by.zheynov.socnet.dao.PhotoDao;
@@ -36,7 +37,7 @@ public class PhotoServiceImpl implements PhotoService
 	 *
 	 * @return the entity
 	 */
-	@Override
+	@Transactional
 	public PhotoEntity createPhoto(final PhotoEntity photoEntity, final MultipartFile photo)
 	{
 		final String pathToFile = System.getProperty("user.home");
@@ -62,7 +63,7 @@ public class PhotoServiceImpl implements PhotoService
 	 *
 	 * @param photoEntity the entity
 	 */
-	@Override
+	@Transactional
 	public void updatePhoto(final PhotoEntity photoEntity)
 	{
 		photoDao.updatePhoto(photoEntity);
@@ -73,7 +74,7 @@ public class PhotoServiceImpl implements PhotoService
 	 *
 	 * @param photoEntity the entity
 	 */
-	@Override
+	@Transactional
 	public void deletePhoto(final PhotoEntity photoEntity)
 	{
 		photoDao.deletePhoto(photoEntity);
@@ -84,7 +85,7 @@ public class PhotoServiceImpl implements PhotoService
 	 *
 	 * @return the List<PhotoEntity>
 	 */
-	@Override
+	@Transactional(readOnly = true)
 	public List<PhotoEntity> getAllThePhotos()
 	{
 		return photoDao.getAllThePhotos();
@@ -97,7 +98,7 @@ public class PhotoServiceImpl implements PhotoService
 	 *
 	 * @return user entity
 	 */
-	@Override
+	@Transactional(readOnly = true)
 	public PhotoEntity getById(final Long photoId)
 	{
 		return photoDao.getById(photoId);

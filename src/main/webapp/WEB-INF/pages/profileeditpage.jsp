@@ -21,7 +21,7 @@
                     <li><a href="/welcomePage"><spring:message code="welcome.page.text.wall"/></a></li>
                     <li><a href="/friends"><spring:message code="welcome.page.text.friends"/></a></li>
                     <li><a href="/messages/"><spring:message code="welcome.page.text.mesagges"/></a></li>
-                    <li><a href="/photoes"><spring:message code="welcome.page.text.photoes"/></a></li>
+                    <li><a href="/photos"><spring:message code="welcome.page.text.photoes"/></a></li>
                     <li class="active"><a href="#profile" data-toggle="tab"><spring:message code="welcome.page.text.profile"/></a>
                     </li>
                     <li><a href="#contact" data-toggle="tab"><spring:message code="welcome.page.text.contacts"/></a></li>
@@ -41,7 +41,7 @@
 
                     <div class="tab-pane" id="messages"></div>
 
-                    <div class="tab-pane" id="photoes"></div>
+                    <div class="tab-pane" id="photos"></div>
 
 
                     <div class="tab-pane active" id="profile" style="margin-left: 250px;">

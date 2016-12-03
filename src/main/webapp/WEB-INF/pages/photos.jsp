@@ -40,7 +40,7 @@
 
                     <div class="tab-pane" id="messages"></div>
 
-                    <div class="tab-pane active" id="photoes">
+                    <div class="tab-pane active" id="photos">
 
                         <form:form method="post" action="/photoupload" enctype="multipart/form-data" commandName="photoDTO">
 
@@ -54,8 +54,9 @@
 
                         <c:forEach items="${allThePhotos}" var="photo">
 
-                            <img src="/${photo.photoFileName}" width="450" height="450">
-                            <img src="file://C:/Users/Redlaw/photo/0483e6e4-6261-4beb-a3a8-a470205bdb43.jpg" width="450" height="450">
+                            <img src="file:///${homedir}/${photo.photoFileName}" width="320" height="240">
+                            <img src="${photo.photoFileName}" width="320" height="240">
+
                         </c:forEach>
 
                     </div>

@@ -22,7 +22,7 @@
                     <li><a href="/friends"><spring:message code="welcome.page.text.friends"/></a></li>
                     <li class="active" data-toggle="tab"><a href="#messages" data-toggle="tab"><spring:message
                             code="welcome.page.text.mesagges"/></a></li>
-                    <li><a href="/photoes"><spring:message code="welcome.page.text.photoes"/></a></li>
+                    <li><a href="/photos"><spring:message code="welcome.page.text.photoes"/></a></li>
                     <li><a href="/beforeprofilepage"><spring:message code="welcome.page.text.profile"/></a></li>
                     <li><a href="#contact" data-toggle="tab"><spring:message code="welcome.page.text.contacts"/></a></li>
                     <li><a href="#about" data-toggle="tab"><spring:message code="welcome.page.text.about"/></a></li>
@@ -104,7 +104,7 @@
 
                     </div>
 
-                    <div class="tab-pane" id="photoes"></div>
+                    <div class="tab-pane" id="photos"></div>
 
                     <jsp:include page="../contactabout.jsp"/>
 

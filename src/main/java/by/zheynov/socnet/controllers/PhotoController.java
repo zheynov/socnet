@@ -31,17 +31,17 @@ public class PhotoController
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/photoes", method = RequestMethod.GET)
+	@RequestMapping(value = "/photos", method = RequestMethod.GET)
 	public String visitPhotoMenuItem(final Model model)
 	{
 		model.addAttribute("photoDTO", new PhotoDTO());
 		model.addAttribute("allThePhotos", photoFacade.getAllThePhotos());
-		model.addAttribute("homedir", System.getProperty("user.home"));
+		model.addAttribute("homedir", System.getProperty("user.home").replaceAll("\\\\","/"));
 
 
 
 
-		return "/photoes";
+		return "photos";
 	}
 
 	//
@@ -50,7 +50,7 @@ public class PhotoController
 	public String uploadPhoto(@ModelAttribute("photoDTO") final PhotoDTO photoDTO, @RequestParam("photo") final MultipartFile file)
 	{
 		photoFacade.createPhoto(photoDTO, file);
-		return "redirect:/photoes";
+		return "redirect:/photos";
 	}
 
 }
