@@ -2,11 +2,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="<c:url value="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">
+
+<%--    <link href="<c:url value="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">
     <link href="<c:url value="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css"/>" type="text/css" rel="stylesheet">
     <script src="<c:url value="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>"></script>
     <script src="<c:url value="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"/>"></script>
-    <script src="<c:url value="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"/>"></script>
+    <script src="<c:url value="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"/>"></script>--%>
+
+
+    <link href="<c:url value="/resources/css/bootstrap302.min.css"/>" type="text/css" rel="stylesheet">
+    <link href="<c:url value="/resources/css/blueimp-gallery.min.css"/>" type="text/css" rel="stylesheet">
+
+    <script src="<c:url value="/resources/js/1102jquery.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/302bootstrap.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/jquery.blueimp-gallery.min.js"/>"></script>
+
 </head>
 <body>
 

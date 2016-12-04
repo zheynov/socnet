@@ -7,10 +7,6 @@
 <html>
 <head>
     <title><spring:message code="welcome.page.text.photoes"/></title>
-    <script type="text/javascript">
-
-
-    </script>
     <action:actions/>
 </head>
 <body>

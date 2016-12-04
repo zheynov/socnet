@@ -3,14 +3,23 @@
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
-    <link href="<c:url value="/resources/css/mainmy.css"/>" type="text/css" rel="stylesheet">
+<%--    <link href="<c:url value="/resources/css/mainmy.css"/>" type="text/css" rel="stylesheet">
     <link href="<c:url value="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="<c:url value="https://fonts.googleapis.com/css?family=Passion+One"/>" type="text/css" rel="stylesheet">
     <link href="<c:url value="https://fonts.googleapis.com/css?family=Oxygen"/>" type="text/css" rel="stylesheet">
     <!-- Website Font style -->
     <link href="<c:url value="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>" type="text/css"
-          rel="stylesheet">
+          rel="stylesheet">--%>
+
+
+    <link href="<c:url value="/resources/css/mainmy.css"/>" type="text/css" rel="stylesheet">
+    <link href="<c:url value="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="<c:url value="/resources/css/fontFamilyPassionOne.css"/>" type="text/css" rel="stylesheet">
+    <link href="<c:url value="/resources/css/fontFamilyOxygen.css"/>" type="text/css" rel="stylesheet">
+    <!-- Website Font style -->
+    <link href="<c:url value="/resources/css/font-awesome.min.css"/>" type="text/css" rel="stylesheet">
 
     <jsp:include page="/resources/jsps/navbar.jsp"/>
 
