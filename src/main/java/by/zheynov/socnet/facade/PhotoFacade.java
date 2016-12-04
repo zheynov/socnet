@@ -39,9 +39,11 @@ public interface PhotoFacade
 	/**
 	 * Retrieves a list of PhotoDTO objects.
 	 *
+	 * @param profileID the id
+	 *
 	 * @return the List<PhotoDTO>
 	 */
-	List<PhotoDTO> getAllThePhotos();
+	List<PhotoDTO> getAllThePhotos(Long profileID);
 
 	/**
 	 * Gets PhotoDTO from database.

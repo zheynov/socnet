@@ -38,9 +38,11 @@ public interface PhotoDao
 	/**
 	 * Retrieves a list of PhotoEntity objects.
 	 *
+	 * @param profileID the id
+	 *
 	 * @return the List<PhotoEntity>
 	 */
-	List<PhotoEntity> getAllThePhotos();
+	List<PhotoEntity> getAllThePhotos(Long profileID);
 
 	/**
 	 * Gets PhotoEntity from database.

@@ -1,10 +1,15 @@
 package by.zheynov.socnet.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +31,10 @@ public class PhotoEntity
 
 	@Column(name = "photo_file_name", length = MAX_TEXT_LENGTH)
 	private String photoFileName;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "profileID")
+	private ProfileEntity profileEntity;
 
 	/**
 	 * Gets id.
@@ -52,7 +61,7 @@ public class PhotoEntity
 	 *
 	 * @param id New value of id.
 	 */
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -62,8 +71,28 @@ public class PhotoEntity
 	 *
 	 * @param photoFileName New value of photoFileName.
 	 */
-	public void setPhotoFileName(String photoFileName)
+	public void setPhotoFileName(final String photoFileName)
 	{
 		this.photoFileName = photoFileName;
+	}
+
+	/**
+	 * Gets profileEntity.
+	 *
+	 * @return Value of profileEntity.
+	 */
+	public ProfileEntity getProfileEntity()
+	{
+		return profileEntity;
+	}
+
+	/**
+	 * Sets new profileEntity.
+	 *
+	 * @param profileEntity New value of profileEntity.
+	 */
+	public void setProfileEntity(final ProfileEntity profileEntity)
+	{
+		this.profileEntity = profileEntity;
 	}
 }

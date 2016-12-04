@@ -12,7 +12,7 @@
     <link href="<c:url value="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>" type="text/css"
           rel="stylesheet">
 
-    <jsp:include page="/WEB-INF/pages/navbar.jsp"/>
+    <jsp:include page="/resources/jsps/navbar.jsp"/>
 
     <style>
         .tabs-left > .nav-tabs {

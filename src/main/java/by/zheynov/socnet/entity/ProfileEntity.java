@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,6 +34,10 @@ public class ProfileEntity implements Serializable
 	@OneToOne(mappedBy = "profileEntity", fetch = FetchType.EAGER)
 	private UserEntity userEntity;
 
+	// OneToOne with PhotoEntity
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileEntity")
+	private Set<PhotoEntity> photos;
+
 	// OneToMany with FriendEntity
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "currentProfileEntity")
 	private Set<FriendEntity> currentProfileFriends = new HashSet<FriendEntity>();
@@ -48,6 +53,9 @@ public class ProfileEntity implements Serializable
 	// OneToMany with MessageEntity
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileDestinationEntity")
 	private Set<MessageEntity> destinationMessages = new HashSet<MessageEntity>();
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileEntity")
+	private List<PostEntity> sentPosts;
 
 	@Id
 	@Column(name = "id")
@@ -290,7 +298,7 @@ public class ProfileEntity implements Serializable
 	 *
 	 * @param senderMessages New value of senderMessages.
 	 */
-	public void setSenderMessages(Set<MessageEntity> senderMessages)
+	public void setSenderMessages(final Set<MessageEntity> senderMessages)
 	{
 		this.senderMessages = senderMessages;
 	}
@@ -320,7 +328,7 @@ public class ProfileEntity implements Serializable
 	 *
 	 * @param destinationMessages New value of destinationMessages.
 	 */
-	public void setDestinationMessages(Set<MessageEntity> destinationMessages)
+	public void setDestinationMessages(final Set<MessageEntity> destinationMessages)
 	{
 		this.destinationMessages = destinationMessages;
 	}
@@ -363,5 +371,45 @@ public class ProfileEntity implements Serializable
 	public Set<FriendEntity> getFriendProfileFriends()
 	{
 		return friendProfileFriends;
+	}
+
+	/**
+	 * Sets new sentPosts.
+	 *
+	 * @param sentPosts New value of sentPosts.
+	 */
+	public void setSentPosts(final List<PostEntity> sentPosts)
+	{
+		this.sentPosts = sentPosts;
+	}
+
+	/**
+	 * Gets sentPosts.
+	 *
+	 * @return Value of sentPosts.
+	 */
+	public List<PostEntity> getSentPosts()
+	{
+		return sentPosts;
+	}
+
+	/**
+	 * Sets new photos.
+	 *
+	 * @param photos New value of photos.
+	 */
+	public void setPhotos(Set<PhotoEntity> photos)
+	{
+		this.photos = photos;
+	}
+
+	/**
+	 * Gets photos.
+	 *
+	 * @return Value of photos.
+	 */
+	public Set<PhotoEntity> getPhotos()
+	{
+		return photos;
 	}
 }

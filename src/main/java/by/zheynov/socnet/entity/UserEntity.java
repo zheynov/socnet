@@ -48,9 +48,6 @@ public class UserEntity implements Serializable
 	@JoinColumn(name = "profileID")
 	private ProfileEntity profileEntity;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userID")
-	private List<PostEntity> sentPosts;
-
 	@Column(name = "enabled")
 	private boolean enabled;
 
@@ -183,26 +180,6 @@ public class UserEntity implements Serializable
 	public String getEmail()
 	{
 		return email;
-	}
-
-	/**
-	 * Gets sentPosts.
-	 *
-	 * @return Value of sentPosts.
-	 */
-	public List<PostEntity> getSentPosts()
-	{
-		return sentPosts;
-	}
-
-	/**
-	 * Sets new sentPosts.
-	 *
-	 * @param sentPosts New value of sentPosts.
-	 */
-	public void setSentPosts(final List<PostEntity> sentPosts)
-	{
-		this.sentPosts = sentPosts;
 	}
 
 	/**

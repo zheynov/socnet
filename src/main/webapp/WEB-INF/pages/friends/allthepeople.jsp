@@ -5,7 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Friends</title>
+    <title><spring:message code="welcome.page.text.friends"/></title>
     <action:actions/>
 </head>
 <body>
@@ -76,7 +76,7 @@
 
                     <div class="tab-pane" id="photos"></div>
 
-                    <jsp:include page="../contactabout.jsp"/>
+                    <jsp:include page="../../../resources/jsps/contactabout.jsp"/>
 
                     <div class="tab-pane" id="profile"></div>
 

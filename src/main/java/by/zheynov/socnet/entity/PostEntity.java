@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.access.method.P;
+
 /**
  * PostEntity class.
  *
@@ -36,8 +38,8 @@ public class PostEntity implements Serializable
 	private Date postDate;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn(name = "userID")
-	private UserEntity userID;
+	@JoinColumn(name = "profileID")
+	private ProfileEntity profileEntity;
 
 	@Column(name = "text", length = MAX_TEXT_LENGTH)
 	private String text;
@@ -75,7 +77,6 @@ public class PostEntity implements Serializable
 		this.text = text;
 	}
 
-
 	/**
 	 * Sets new postID.
 	 *
@@ -87,26 +88,6 @@ public class PostEntity implements Serializable
 	}
 
 	/**
-	 * Gets userID.
-	 *
-	 * @return Value of userID.
-	 */
-	public UserEntity getUserID()
-	{
-		return userID;
-	}
-
-	/**
-	 * Sets new userID.
-	 *
-	 * @param userID New value of userID.
-	 */
-	public void setUserID(final UserEntity userID)
-	{
-		this.userID = userID;
-	}
-
-	/**
 	 * Gets text.
 	 *
 	 * @return Value of text.
@@ -115,7 +96,6 @@ public class PostEntity implements Serializable
 	{
 		return text;
 	}
-
 
 	/**
 	 * Sets new postDate.
@@ -142,8 +122,28 @@ public class PostEntity implements Serializable
 	 *
 	 * @param photoFileName New value of photoFileName.
 	 */
-	public void setPhotoFileName(String photoFileName)
+	public void setPhotoFileName(final String photoFileName)
 	{
 		this.photoFileName = photoFileName;
+	}
+
+	/**
+	 * Gets profileEntity.
+	 *
+	 * @return Value of profileEntity.
+	 */
+	public ProfileEntity getProfileEntity()
+	{
+		return profileEntity;
+	}
+
+	/**
+	 * Sets new profileEntity.
+	 *
+	 * @param profileEntity New value of profileEntity.
+	 */
+	public void setProfileEntity(final ProfileEntity profileEntity)
+	{
+		this.profileEntity = profileEntity;
 	}
 }

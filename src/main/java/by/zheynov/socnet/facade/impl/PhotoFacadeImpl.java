@@ -54,19 +54,22 @@ public class PhotoFacadeImpl implements PhotoFacade
 	 */
 	public void deletePhoto(final PhotoDTO photoDTO)
 	{
-		photoService.deletePhoto(conversionService.convert(photoDTO, PhotoEntity.class));
+		PhotoEntity photoEntity = conversionService.convert(photoDTO, PhotoEntity.class);
+		photoService.deletePhoto(photoEntity);
 	}
 
 	/**
 	 * Retrieves a list of PhotoDTO objects.
 	 *
+	 * @param profileID the id
+	 *
 	 * @return the List<PhotoDTO>
 	 */
-	public List<PhotoDTO> getAllThePhotos()
+	public List<PhotoDTO> getAllThePhotos(final Long profileID)
 	{
 		List<PhotoDTO> allThePhotoDTOs = new ArrayList<>();
 
-		photoService.getAllThePhotos().forEach(elem -> allThePhotoDTOs.add(conversionService.convert(elem, PhotoDTO.class)));
+		photoService.getAllThePhotos(profileID).forEach(elem -> allThePhotoDTOs.add(conversionService.convert(elem, PhotoDTO.class)));
 
 		return allThePhotoDTOs;
 	}

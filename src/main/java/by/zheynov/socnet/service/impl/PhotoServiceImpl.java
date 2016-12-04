@@ -46,11 +46,14 @@ public class PhotoServiceImpl implements PhotoService
 		File destination = new File(pathToFile + "/photo/" + namePicture + ".jpg");
 
 		BufferedImage imageIO;
-		try {
+		try
+		{
 			photo.transferTo(destination);
 			imageIO = ImageIO.read(destination);
 			ImageIO.write(imageIO, "jpg", destination);
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			System.out.println("!!");
 		}
 		photoEntity.setPhotoFileName("photo/" + namePicture + ".jpg");
@@ -83,12 +86,14 @@ public class PhotoServiceImpl implements PhotoService
 	/**
 	 * Retrieves a list of PhotoEntity objects.
 	 *
+	 * @param profileID the id
+	 *
 	 * @return the List<PhotoEntity>
 	 */
 	@Transactional(readOnly = true)
-	public List<PhotoEntity> getAllThePhotos()
+	public List<PhotoEntity> getAllThePhotos(final Long profileID)
 	{
-		return photoDao.getAllThePhotos();
+		return photoDao.getAllThePhotos(profileID);
 	}
 
 	/**

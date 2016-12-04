@@ -23,8 +23,6 @@
 
     <mvc:resources mapping="/webjars/**" location="/webjars/"/>
 
-
-
     <!--____________________________________Hibernate section_____________________________________________-->
 
     <import resource="classpath:dataBase.xml"/>
@@ -82,6 +80,8 @@
                 <bean class="by.zheynov.socnet.converters.MessageDTOReverseConverter"/>
                 <bean class="by.zheynov.socnet.converters.PhotoDTOConverter"/>
                 <bean class="by.zheynov.socnet.converters.PhotoDTOReverseConverter"/>
+                <bean class="by.zheynov.socnet.converters.PostDTOConverter"/>
+                <bean class="by.zheynov.socnet.converters.PostDTOReverseConverter"/>
             </list>
         </property>
     </bean>

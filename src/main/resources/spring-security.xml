@@ -13,6 +13,7 @@
         <security:intercept-url pattern="/friends/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/messages/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/error/**" access="permitAll()"/>
+        <security:intercept-url pattern="/images/**" access="permitAll()"/>
 
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 

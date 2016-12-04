@@ -56,11 +56,11 @@ CREATE TABLE message (
 -- Table for user's posts
 CREATE TABLE post (
   id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  userID        BIGINT             NOT NULL,
   text          VARCHAR(1024),
   date          DATE               NOT NULL,
   photoFileName VARCHAR(512),
-  FOREIGN KEY (userID) REFERENCES user (id)
+  profileID     BIGINT             NOT NULL,
+  FOREIGN KEY (profileID) REFERENCES profile (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
@@ -86,8 +86,12 @@ CREATE TABLE friend (
 
 -- Table to store photos
 CREATE TABLE photo (
-  id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  photo_file_name VARCHAR(64)        NOT NULL UNIQUE
+  id              BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  photo_file_name VARCHAR(64)        NOT NULL UNIQUE,
+  profileID       BIGINT NOT NULL,
+  FOREIGN KEY (profileID) REFERENCES profile (id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 -- Insert data

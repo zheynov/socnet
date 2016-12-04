@@ -7,6 +7,10 @@
 <html>
 <head>
     <title><spring:message code="welcome.page.text.photoes"/></title>
+    <script type="text/javascript">
+
+
+    </script>
     <action:actions/>
 </head>
 <body>
@@ -42,26 +46,39 @@
 
                     <div class="tab-pane active" id="photos">
 
-                        <form:form method="post" action="/photoupload" enctype="multipart/form-data" commandName="photoDTO">
+                        <div style="margin-left: 20%">
 
-                            <form:input path="photo" type="file" name="file" accept="image/*"/>
+                            <form:form method="post" action="/photos/photoupload/${pageContext.request.userPrincipal.name}"
+                                       enctype="multipart/form-data"
+                                       commandName="photoDTO">
+
+                                <label class="btn btn-default btn-primary">
+                                    <spring:message code="photos.page.text.browse"/>
+                                    <form:input path="photo" type="file" style="display: none;"/>
+                                </label>
+                                <input type="submit" class="btn btn-default"
+                                       value="<spring:message code="photos.page.text.upload"/>">
+                            </form:form>
                             <br/>
-                            <input type="submit" value="Complete">
 
-                        </form:form>
+                            <!--list of images -->
+                            <div id="links">
 
-                        <br/> <br/> <br/>
+                                <c:forEach items="${allThePhotos}" var="photo">
 
-                        <c:forEach items="${allThePhotos}" var="photo">
+                                    <a data-gallery="" href="images/${photo.photoFileName}"> <img
+                                            src="images/${photo.photoFileName}" width="200"> </a>
 
-                            <img src="file:///${homedir}/${photo.photoFileName}" width="320" height="240">
-                            <img src="${photo.photoFileName}" width="320" height="240">
+                                    <a href="/photos/delete/${photo.id}"> <spring:message code="photos.page.text.delete"/> </a>
 
-                        </c:forEach>
+                                </c:forEach>
 
+                            </div>
+
+                            <jsp:include page="../../resources/jsps/photogallery.jsp"/>
+                        </div>
                     </div>
-
-                    <jsp:include page="contactabout.jsp"/>
+                    <jsp:include page="../../resources/jsps/contactabout.jsp"/>
 
                     <div class="tab-pane" id="profile"></div>
 

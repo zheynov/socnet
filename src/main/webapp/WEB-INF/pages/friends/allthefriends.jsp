@@ -81,7 +81,7 @@
 
                     </div>
 
-                    <jsp:include page="../contactabout.jsp"/>
+                    <jsp:include page="../../../resources/jsps/contactabout.jsp"/>
 
                     <div class="tab-pane" id="messages"></div>
 

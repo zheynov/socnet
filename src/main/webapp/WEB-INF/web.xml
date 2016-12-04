@@ -62,22 +62,6 @@
         <location>/WEB-INF/pages/error/500.jsp</location>
     </error-page>
 
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.PNG</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.JPEG</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.jpg</url-pattern>
-    </servlet-mapping>
-
-
     <!--Resolves UTF-8 issues-->
     <filter>
         <filter-name>encodingFilter</filter-name>

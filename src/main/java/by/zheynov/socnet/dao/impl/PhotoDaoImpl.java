@@ -19,7 +19,7 @@ import by.zheynov.socnet.entity.PhotoEntity;
 @Transactional
 public class PhotoDaoImpl extends AbstractBaseDAO implements PhotoDao
 {
-	private static final String GET_ALL_PHOTOS_QUERY = "SELECT * FROM photo";
+	private static final String GET_ALL_PHOTOS_QUERY = "FROM PhotoEntity WHERE profileID = :profileID";
 
 	/**
 	 * Saves.
@@ -60,12 +60,15 @@ public class PhotoDaoImpl extends AbstractBaseDAO implements PhotoDao
 	/**
 	 * Retrieves a list of PhotoEntity objects.
 	 *
+	 * @param profileID the id
+	 *
 	 * @return the List<PhotoEntity>
 	 */
 	@Override
-	public List<PhotoEntity> getAllThePhotos()
+	public List<PhotoEntity> getAllThePhotos(final Long profileID)
 	{
-		Query query = super.getCurrentSession().createNativeQuery(GET_ALL_PHOTOS_QUERY, PhotoEntity.class);
+		Query query = super.getCurrentSession().createQuery(GET_ALL_PHOTOS_QUERY);
+		query.setParameter("profileID", profileID);
 		return query.list();
 	}
 
