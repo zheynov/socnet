@@ -45,7 +45,7 @@
                     <div class="tab-pane" id="photos">
                     </div>
 
-                    <jsp:include page="../../../resources/jsps/contactabout.jsp"/>
+                    <jsp:include page="../additional/contactabout.jsp"/>
 
                     <div class="tab-pane" id="profile">
                     </div>

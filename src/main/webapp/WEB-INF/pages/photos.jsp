@@ -71,10 +71,10 @@
 
                             </div>
 
-                            <jsp:include page="../../resources/jsps/photogallery.jsp"/>
+                            <jsp:include page="additional/photogallery.jsp"/>
                         </div>
                     </div>
-                    <jsp:include page="../../resources/jsps/contactabout.jsp"/>
+                    <jsp:include page="additional/contactabout.jsp"/>
 
                     <div class="tab-pane" id="profile"></div>
 

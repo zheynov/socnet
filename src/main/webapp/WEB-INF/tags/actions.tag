@@ -21,7 +21,7 @@
     <!-- Website Font style -->
     <link href="<c:url value="/resources/css/font-awesome.min.css"/>" type="text/css" rel="stylesheet">
 
-    <jsp:include page="/resources/jsps/navbar.jsp"/>
+    <jsp:include page="/WEB-INF/pages/additional/navbar.jsp"/>
 
     <style>
         .tabs-left > .nav-tabs {
