@@ -53,24 +53,29 @@ CREATE TABLE message (
     ON DELETE CASCADE
 );
 
--- Table for user's posts
-CREATE TABLE post (
-  id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  text          VARCHAR(1024),
-  date          DATE               NOT NULL,
-  photoFileName VARCHAR(512),
-  profileID     BIGINT             NOT NULL,
+-- Table to store photos
+CREATE TABLE photo (
+  id              BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  photo_file_name VARCHAR(64)        NOT NULL UNIQUE,
+  profileID       BIGINT             NOT NULL,
   FOREIGN KEY (profileID) REFERENCES profile (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
--- Table to store the tokens for PersistentTokenRepository ("Remember me" feature)
-CREATE TABLE persistent_logins (
-  username  VARCHAR(64) NOT NULL,
-  series    VARCHAR(64) PRIMARY KEY,
-  token     VARCHAR(64) NOT NULL,
-  last_used TIMESTAMP   NOT NULL
+-- Table for user's posts
+CREATE TABLE post (
+  id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  text                  VARCHAR(1024),
+  date                  DATE               NOT NULL,
+  photoID               BIGINT             NOT NULL,
+  profile_sender_id     BIGINT             NOT NULL,
+  wall_owner_profile_id BIGINT             NOT NULL,
+  FOREIGN KEY (profile_sender_id) REFERENCES profile (id),
+  FOREIGN KEY (wall_owner_profile_id) REFERENCES profile (id),
+  FOREIGN KEY (photoID) REFERENCES photo (id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 -- Table to store friends (ManyToMany)
@@ -84,14 +89,12 @@ CREATE TABLE friend (
   UNIQUE KEY main_profile_id (main_profile_id, friends_profile_id)
 );
 
--- Table to store photos
-CREATE TABLE photo (
-  id              BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  photo_file_name VARCHAR(64)        NOT NULL UNIQUE,
-  profileID       BIGINT NOT NULL,
-  FOREIGN KEY (profileID) REFERENCES profile (id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
+-- Table to store the tokens for PersistentTokenRepository ("Remember me" feature)
+CREATE TABLE persistent_logins (
+  username  VARCHAR(64) NOT NULL,
+  series    VARCHAR(64) PRIMARY KEY,
+  token     VARCHAR(64) NOT NULL,
+  last_used TIMESTAMP   NOT NULL
 );
 
 -- Insert data

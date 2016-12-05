@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.access.method.P;
@@ -38,14 +39,19 @@ public class PostEntity implements Serializable
 	private Date postDate;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinColumn(name = "profileID")
-	private ProfileEntity profileEntity;
+	@JoinColumn(name = "profile_sender_id")
+	private ProfileEntity profileSender;
+
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JoinColumn(name = "wall_owner_profile_id")
+	private ProfileEntity wallOwnerProfile;
 
 	@Column(name = "text", length = MAX_TEXT_LENGTH)
 	private String text;
 
-	@Column(name = "photoFileName")
-	private String photoFileName;
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "photoID")
+	private PhotoEntity photoEntity;
 
 	/**
 	 * Gets postDate.
@@ -107,43 +113,64 @@ public class PostEntity implements Serializable
 		this.postDate = postDate;
 	}
 
+
 	/**
-	 * Gets photoFileName.
+	 * Sets new photoEntity.
 	 *
-	 * @return Value of photoFileName.
+	 * @param photoEntity New value of photoEntity.
 	 */
-	public String getPhotoFileName()
+	public void setPhotoEntity(final PhotoEntity photoEntity)
 	{
-		return photoFileName;
+		this.photoEntity = photoEntity;
 	}
 
 	/**
-	 * Sets new photoFileName.
+	 * Gets photoEntity.
 	 *
-	 * @param photoFileName New value of photoFileName.
+	 * @return Value of photoEntity.
 	 */
-	public void setPhotoFileName(final String photoFileName)
+	public PhotoEntity getPhotoEntity()
 	{
-		this.photoFileName = photoFileName;
+		return photoEntity;
 	}
 
 	/**
-	 * Gets profileEntity.
+	 * Sets new profileSender.
 	 *
-	 * @return Value of profileEntity.
+	 * @param profileSender New value of profileSender.
 	 */
-	public ProfileEntity getProfileEntity()
+	public void setProfileSender(final ProfileEntity profileSender)
 	{
-		return profileEntity;
+		this.profileSender = profileSender;
 	}
 
 	/**
-	 * Sets new profileEntity.
+	 * Gets profileSender.
 	 *
-	 * @param profileEntity New value of profileEntity.
+	 * @return Value of profileSender.
 	 */
-	public void setProfileEntity(final ProfileEntity profileEntity)
+	public ProfileEntity getProfileSender()
 	{
-		this.profileEntity = profileEntity;
+		return profileSender;
+	}
+
+	/**
+	 * Gets wallOwnerProfile.
+	 *
+	 * @return Value of wallOwnerProfile.
+	 */
+	public ProfileEntity getWallOwnerProfile()
+	{
+		return wallOwnerProfile;
+	}
+
+	/**
+	 * Sets new wallOwnerProfile.
+	 *
+	 * @param wallOwnerProfile New value of wallOwnerProfile.
+	 */
+	public void setWallOwnerProfile(final ProfileEntity wallOwnerProfile)
+	{
+		this.wallOwnerProfile = wallOwnerProfile;
 	}
 }

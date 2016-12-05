@@ -11,41 +11,12 @@ import java.util.Date;
 public class PostDTO
 {
 	private static final int HASH_NUMBER = 31;
-	private Long postID;
-	private Date postDate;
-	private ProfileDTO profileDTO;
-	private String text;
-	private String photoFileName;
-
-	/**
-	 * Gets profileDTO.
-	 *
-	 * @return Value of profileDTO.
-	 */
-	public ProfileDTO getProfileDTO()
-	{
-		return profileDTO;
-	}
-
-	/**
-	 * Gets photoFileName.
-	 *
-	 * @return Value of photoFileName.
-	 */
-	public String getPhotoFileName()
-	{
-		return photoFileName;
-	}
-
-	/**
-	 * Sets new profileDTO.
-	 *
-	 * @param profileDTO New value of profileDTO.
-	 */
-	public void setProfileDTO(final ProfileDTO profileDTO)
-	{
-		this.profileDTO = profileDTO;
-	}
+	private Long       postID;
+	private Date       postDate;
+	private ProfileDTO senderProfileDTO;
+	private ProfileDTO wallOwnerProfileDTO;
+	private String     text;
+	private PhotoDTO   photoDTO;
 
 	/**
 	 * Gets text.
@@ -98,16 +69,6 @@ public class PostDTO
 	}
 
 	/**
-	 * Sets new photoFileName.
-	 *
-	 * @param photoFileName New value of photoFileName.
-	 */
-	public void setPhotoFileName(final String photoFileName)
-	{
-		this.photoFileName = photoFileName;
-	}
-
-	/**
 	 * Gets postDate.
 	 *
 	 * @return Value of postDate.
@@ -115,6 +76,66 @@ public class PostDTO
 	public Date getPostDate()
 	{
 		return postDate;
+	}
+
+	/**
+	 * Gets photoDTO.
+	 *
+	 * @return Value of photoDTO.
+	 */
+	public PhotoDTO getPhotoDTO()
+	{
+		return photoDTO;
+	}
+
+	/**
+	 * Sets new photoDTO.
+	 *
+	 * @param photoDTO New value of photoDTO.
+	 */
+	public void setPhotoDTO(final PhotoDTO photoDTO)
+	{
+		this.photoDTO = photoDTO;
+	}
+
+	/**
+	 * Sets new wallOwnerProfileDTO.
+	 *
+	 * @param wallOwnerProfileDTO New value of wallOwnerProfileDTO.
+	 */
+	public void setWallOwnerProfileDTO(final ProfileDTO wallOwnerProfileDTO)
+	{
+		this.wallOwnerProfileDTO = wallOwnerProfileDTO;
+	}
+
+	/**
+	 * Gets wallOwnerProfileDTO.
+	 *
+	 * @return Value of wallOwnerProfileDTO.
+	 */
+	public ProfileDTO getWallOwnerProfileDTO()
+	{
+		return wallOwnerProfileDTO;
+	}
+
+	/**
+	 * Sets new senderProfileDTO.
+	 *
+	 * @param senderProfileDTO New value of senderProfileDTO.
+	 */
+	public void setSenderProfileDTO(final ProfileDTO senderProfileDTO)
+	{
+		this.senderProfileDTO = senderProfileDTO;
+	}
+
+	/**
+	 * Gets senderProfileDTO.
+	 *
+	 * @return Value of senderProfileDTO.
+	 */
+	public ProfileDTO getSenderProfileDTO()
+	{
+		return senderProfileDTO;
 	}
 
 	@Override
@@ -139,7 +160,11 @@ public class PostDTO
 		{
 			return false;
 		}
-		if (!getProfileDTO().equals(postDTO.getProfileDTO()))
+		if (!getSenderProfileDTO().equals(postDTO.getSenderProfileDTO()))
+		{
+			return false;
+		}
+		if (!getWallOwnerProfileDTO().equals(postDTO.getWallOwnerProfileDTO()))
 		{
 			return false;
 		}
@@ -147,8 +172,7 @@ public class PostDTO
 		{
 			return false;
 		}
-		return getPhotoFileName() != null ? getPhotoFileName().equals(postDTO.getPhotoFileName()) :
-						postDTO.getPhotoFileName() == null;
+		return getPhotoDTO() != null ? getPhotoDTO().equals(postDTO.getPhotoDTO()) : postDTO.getPhotoDTO() == null;
 
 	}
 
@@ -157,9 +181,10 @@ public class PostDTO
 	{
 		int result = getPostID().hashCode();
 		result = HASH_NUMBER * result + getPostDate().hashCode();
-		result = HASH_NUMBER * result + getProfileDTO().hashCode();
+		result = HASH_NUMBER * result + getSenderProfileDTO().hashCode();
+		result = HASH_NUMBER * result + getWallOwnerProfileDTO().hashCode();
 		result = HASH_NUMBER * result + (getText() != null ? getText().hashCode() : 0);
-		result = HASH_NUMBER * result + (getPhotoFileName() != null ? getPhotoFileName().hashCode() : 0);
+		result = HASH_NUMBER * result + (getPhotoDTO() != null ? getPhotoDTO().hashCode() : 0);
 		return result;
 	}
 }

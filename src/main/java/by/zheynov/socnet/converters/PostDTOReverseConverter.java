@@ -3,8 +3,10 @@ package by.zheynov.socnet.converters;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import by.zheynov.socnet.dto.PhotoDTO;
 import by.zheynov.socnet.dto.PostDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.entity.PhotoEntity;
 import by.zheynov.socnet.entity.PostEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 
@@ -28,26 +30,50 @@ public class PostDTOReverseConverter implements Converter<PostDTO, PostEntity>
 
 		PostEntity postEntity = new PostEntity();
 
+		//Photo
+		PhotoEntity photoEntity = postEntity.getPhotoEntity();
+
+		PhotoDTO photoDTO = postDTO.getPhotoDTO();
+
+		photoEntity.setPhotoFileName(photoDTO.getPhotoFileName());
+		photoEntity.setId(photoDTO.getId());
+
+		//Sender's profile
+		ProfileEntity senderProfileEntity = new ProfileEntity();
+		ProfileDTO senderProfileDTO = postDTO.getSenderProfileDTO();
+		senderProfileEntity.setId(senderProfileDTO.getProfileID());
+		senderProfileEntity.setFirstname(senderProfileDTO.getFirstname());
+		senderProfileEntity.setLastname(senderProfileDTO.getLastname());
+		senderProfileEntity.setEmail(senderProfileDTO.getEmail());
+		senderProfileEntity.setAge(senderProfileDTO.getAge());
+		senderProfileEntity.setBirthDate(senderProfileDTO.getBirthDate());
+		senderProfileEntity.setSex(senderProfileDTO.getSex());
+		senderProfileEntity.setCity(senderProfileDTO.getCity());
+		senderProfileEntity.setPhoneNumber(senderProfileDTO.getPhoneNumber());
+
+		// Wall owner profile
+		ProfileEntity wallOwnerProfileEntity = new ProfileEntity();
+		ProfileDTO wallOwnerProfileDTO = postDTO.getWallOwnerProfileDTO();
+		wallOwnerProfileEntity.setId(wallOwnerProfileDTO.getProfileID());
+		wallOwnerProfileEntity.setFirstname(wallOwnerProfileDTO.getFirstname());
+		wallOwnerProfileEntity.setLastname(wallOwnerProfileDTO.getLastname());
+		wallOwnerProfileEntity.setEmail(wallOwnerProfileDTO.getEmail());
+		wallOwnerProfileEntity.setAge(wallOwnerProfileDTO.getAge());
+		wallOwnerProfileEntity.setBirthDate(wallOwnerProfileDTO.getBirthDate());
+		wallOwnerProfileEntity.setSex(wallOwnerProfileDTO.getSex());
+		wallOwnerProfileEntity.setCity(wallOwnerProfileDTO.getCity());
+		wallOwnerProfileEntity.setPhoneNumber(wallOwnerProfileDTO.getPhoneNumber());
+
+		//Photo data setting
 		postEntity.setPostID(postDTO.getPostID());
+
+		postEntity.setWallOwnerProfile(wallOwnerProfileEntity);
+		postEntity.setProfileSender(senderProfileEntity);
+
+		postEntity.setPhotoEntity(photoEntity);
+
 		postEntity.setText(postDTO.getText());
 		postEntity.setPostDate(postDTO.getPostDate());
-		postEntity.setPhotoFileName(postDTO.getPhotoFileName());
-
-		ProfileEntity profileEntity = new ProfileEntity();
-
-		ProfileDTO profileDTO = postDTO.getProfileDTO();
-
-		profileEntity.setId(profileDTO.getProfileID());
-		profileEntity.setFirstname(profileDTO.getFirstname());
-		profileEntity.setLastname(profileDTO.getLastname());
-		profileEntity.setEmail(profileDTO.getEmail());
-		profileEntity.setAge(profileDTO.getAge());
-		profileEntity.setBirthDate(profileDTO.getBirthDate());
-		profileEntity.setSex(profileDTO.getSex());
-		profileEntity.setCity(profileDTO.getCity());
-		profileEntity.setPhoneNumber(profileDTO.getPhoneNumber());
-
-		postEntity.setProfileEntity(profileEntity);
 
 		return postEntity;
 	}

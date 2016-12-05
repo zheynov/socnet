@@ -44,9 +44,9 @@
                     <div class="tab-pane" id="photos"></div>
 
 
-                    <div class="tab-pane active" id="profile" style="margin-left: 250px;">
+                    <div class="tab-pane active" id="profile" style="margin-left: 250px; width: 300px">
 
-                        <div class="main-login main-center" style="width: 300px">
+                        <div class="main-login main-center" >
                             <form:form method="POST" action="/editprofile" commandName="profileDTO" class="form-horizontal">
 
                                 <form:hidden path="profileID"/>

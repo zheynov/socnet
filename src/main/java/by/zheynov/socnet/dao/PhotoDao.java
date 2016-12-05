@@ -49,7 +49,7 @@ public interface PhotoDao
 	 *
 	 * @param photoId the id
 	 *
-	 * @return user entity
+	 * @return photo entity
 	 */
 	PhotoEntity getById(Long photoId);
 }

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="action" tagdir="/WEB-INF/tags/" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -9,7 +10,6 @@
     <action:actions/>
 </head>
 <body>
-
 
 <div class="container">
     <div class="row">
@@ -32,23 +32,18 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="wall" style="margin-left: 250px">
-                        <div class="">
-                            <h1><spring:message code="welcome.page.text.wall"/></h1>
-                            <p>Скоро тут будут отображаться постыыы!!</p>
 
+    <%--                        <div align="center">
+                                <form:form action="/makeapost" method="post" commandName="postDTO" enctype="multipart/form-data">
 
-                            <%--                                <div align="center">
-                                                                <form:form action="/makepost" method="post" commandName="newPost" enctype="multipart/form-data">
+                                    <p><form:textarea path="text" rows="6" cols="100" name="text" placeholder="enter text"/></p>
+                                    <form:input path="photo" type="file" name="photo" accept="image/*"
+                                                data-buttonText="Your label here"/>
 
-                                                                    <p><form:textarea path="text" rows="6" cols="100" name="text" placeholder="enter text"/></p>
-                                                                    <form:input path="photo" type="file" name="photo" accept="image/*" data-buttonText="Your label here"/>
+                                    <input type="submit" value="Submit">
+                                </form:form>
+                            </div>--%>
 
-                                                                    <input type="submit" value="Submit">
-                                                                </form:form>
-                                                            </div>--%>
-
-
-                        </div>
                     </div>
 
                     <jsp:include page="additional/contactabout.jsp"/>

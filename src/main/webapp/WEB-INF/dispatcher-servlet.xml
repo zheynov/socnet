@@ -21,7 +21,18 @@
 
     <mvc:annotation-driven/>
 
+    <!--resource mapping-->
     <mvc:resources mapping="/webjars/**" location="/webjars/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/images/**" location="file:${user.home}/"/>
+
+    <!-- _______________________________________ Image upload  ____________________________________________ -->
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="10000000"/>
+    </bean>
 
     <!--____________________________________Hibernate section_____________________________________________-->
 
@@ -86,15 +97,7 @@
         </property>
     </bean>
 
-    <!-- _______________________________________ Image upload  ____________________________________________ -->
 
-    <mvc:resources mapping="/images/**" location="file:${user.home}/"/>
-
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- one of the properties available; the maximum file size in bytes -->
-        <property name="maxUploadSize" value="10000000"/>
-    </bean>
 
 
 </beans>

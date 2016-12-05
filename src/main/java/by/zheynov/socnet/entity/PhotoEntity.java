@@ -32,9 +32,12 @@ public class PhotoEntity
 	@Column(name = "photo_file_name", length = MAX_TEXT_LENGTH)
 	private String photoFileName;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "profileID")
 	private ProfileEntity profileEntity;
+
+	@OneToOne(mappedBy = "photoEntity", fetch = FetchType.EAGER)
+	private PostEntity postEntity;
 
 	/**
 	 * Gets id.
@@ -94,5 +97,25 @@ public class PhotoEntity
 	public void setProfileEntity(final ProfileEntity profileEntity)
 	{
 		this.profileEntity = profileEntity;
+	}
+
+	/**
+	 * Sets new postEntity.
+	 *
+	 * @param postEntity New value of postEntity.
+	 */
+	public void setPostEntity(final PostEntity postEntity)
+	{
+		this.postEntity = postEntity;
+	}
+
+	/**
+	 * Gets postEntity.
+	 *
+	 * @return Value of postEntity.
+	 */
+	public PostEntity getPostEntity()
+	{
+		return postEntity;
 	}
 }

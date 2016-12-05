@@ -11,8 +11,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.controllers
  */
-/*@EnableWebMvc
-@ControllerAdvice*/
+@EnableWebMvc
+@ControllerAdvice
 public class ExceptionsController
 {
 	@ExceptionHandler(Exception.class)

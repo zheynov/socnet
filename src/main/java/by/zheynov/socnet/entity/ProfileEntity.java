@@ -54,8 +54,11 @@ public class ProfileEntity implements Serializable
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileDestinationEntity")
 	private Set<MessageEntity> destinationMessages = new HashSet<MessageEntity>();
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileEntity")
-	private List<PostEntity> sentPosts;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profileSender")
+	private List<PostEntity> sentPostsFromSender;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "wallOwnerProfile")
+	private List<PostEntity> wallOwnerPosts;
 
 	@Id
 	@Column(name = "id")
@@ -374,26 +377,6 @@ public class ProfileEntity implements Serializable
 	}
 
 	/**
-	 * Sets new sentPosts.
-	 *
-	 * @param sentPosts New value of sentPosts.
-	 */
-	public void setSentPosts(final List<PostEntity> sentPosts)
-	{
-		this.sentPosts = sentPosts;
-	}
-
-	/**
-	 * Gets sentPosts.
-	 *
-	 * @return Value of sentPosts.
-	 */
-	public List<PostEntity> getSentPosts()
-	{
-		return sentPosts;
-	}
-
-	/**
 	 * Sets new photos.
 	 *
 	 * @param photos New value of photos.
@@ -411,5 +394,45 @@ public class ProfileEntity implements Serializable
 	public Set<PhotoEntity> getPhotos()
 	{
 		return photos;
+	}
+
+	/**
+	 * Sets new sentPostsFromSender.
+	 *
+	 * @param sentPostsFromSender New value of sentPostsFromSender.
+	 */
+	public void setSentPostsFromSender(final List<PostEntity> sentPostsFromSender)
+	{
+		this.sentPostsFromSender = sentPostsFromSender;
+	}
+
+	/**
+	 * Gets sentPostsFromSender.
+	 *
+	 * @return Value of sentPostsFromSender.
+	 */
+	public List<PostEntity> getSentPostsFromSender()
+	{
+		return sentPostsFromSender;
+	}
+
+	/**
+	 * Sets new wallOwnerPosts.
+	 *
+	 * @param wallOwnerPosts New value of wallOwnerPosts.
+	 */
+	public void setWallOwnerPosts(final List<PostEntity> wallOwnerPosts)
+	{
+		this.wallOwnerPosts = wallOwnerPosts;
+	}
+
+	/**
+	 * Gets wallOwnerPosts.
+	 *
+	 * @return Value of wallOwnerPosts.
+	 */
+	public List<PostEntity> getWallOwnerPosts()
+	{
+		return wallOwnerPosts;
 	}
 }
