@@ -67,7 +67,7 @@ CREATE TABLE photo (
 CREATE TABLE post (
   id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   text                  VARCHAR(1024),
-  date                  DATE               NOT NULL,
+  date                  DATETIME               NOT NULL,
   photoID               BIGINT             NOT NULL,
   profile_sender_id     BIGINT             NOT NULL,
   wall_owner_profile_id BIGINT             NOT NULL,
@@ -125,5 +125,3 @@ INSERT INTO user VALUES (5, 'borya@mail.ru', 'boris',
 INSERT INTO profile VALUES (6, 'Bruce', 'Wayne', '1990-03-18', 'batman@batman.ru', 36, 'male', 'Gotham', 666666);
 INSERT INTO user VALUES (6, 'gmail@mail.ru', 'batman',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 6, 2);
-
-
