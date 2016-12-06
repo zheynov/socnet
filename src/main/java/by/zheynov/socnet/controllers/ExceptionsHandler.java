@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
- * ExceptionsController class.
+ * ExceptionsHandler class.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.controllers
  */
-@EnableWebMvc
-@ControllerAdvice
-public class ExceptionsController
+/*@EnableWebMvc
+@ControllerAdvice*/
+public class ExceptionsHandler
 {
 	@ExceptionHandler(Exception.class)
 	public String handleIOException(Exception ex, Model model) {

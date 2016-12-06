@@ -36,11 +36,13 @@ public class UserDTOReverseConverter implements Converter<UserDTO, UserEntity>
 		userEntity.setPassword(userDTO.getPassword());
 		userEntity.setEnabled(userDTO.isEnabled());
 
-		RoleEntity roleEntity = new RoleEntity();
-		roleEntity.setRole(userDTO.getRoleDTO().getRole());
-		roleEntity.setId(userDTO.getRoleDTO().getId());
-
-		userEntity.setRoleEntity(roleEntity);
+		if (userDTO.getRoleDTO() != null)
+		{
+			RoleEntity roleEntity = new RoleEntity();
+			roleEntity.setRole(userDTO.getRoleDTO().getRole());
+			roleEntity.setId(userDTO.getRoleDTO().getId());
+			userEntity.setRoleEntity(roleEntity);
+		}
 
 		return userEntity;
 	}

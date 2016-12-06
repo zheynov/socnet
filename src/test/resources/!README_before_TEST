@@ -1,0 +1,2 @@
+1) Run StartTestDaoScript.sql script. It's only for FriendDaoTest running
+2) Don't run StartScript.sql. It's just for another test suite (other DAO tests)

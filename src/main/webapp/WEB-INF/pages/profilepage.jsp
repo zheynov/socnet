@@ -49,16 +49,16 @@
                             <h2><spring:message code="welcome.page.text.profile"/></h2>
 
                             <p>
-                                <b> Firstname: </b> ${profileDTO.firstname} <br/>
-                                <b> Lastname:</b> ${profileDTO.lastname} <br/>
-                                <b> Email:</b> ${profileDTO.email} <br/>
-                                <b> Sex:</b> ${profileDTO.sex} <br/>
-                                <b> Date of birth:</b> ${profileDTO.birthDate} <br/>
-                                <b> Age: </b> ${profileDTO.age} <br/>
-                                <b> City: </b> ${profileDTO.city} <br/>
-                                <b> Phone number:</b> ${profileDTO.phoneNumber} <br/>
+                                <b> <spring:message code="profile.page.text.firstname"/>: </b> ${profileDTO.firstname} <br/>
+                                <b> <spring:message code="profile.page.text.lastname"/>:</b> ${profileDTO.lastname} <br/>
+                                <b> <spring:message code="profile.page.text.email"/>:</b> ${profileDTO.email} <br/>
+                                <b> <spring:message code="profile.page.text.gender"/>:</b> ${profileDTO.sex} <br/>
+                                <b> <spring:message code="profile.page.text.dateofbirth"/>:</b> ${profileDTO.birthDate} <br/>
+                                <b> <spring:message code="profile.page.text.age"/>: </b> ${profileDTO.age} <br/>
+                                <b> <spring:message code="profile.page.text.city"/>: </b> ${profileDTO.city} <br/>
+                                <b> <spring:message code="profile.page.text.phone"/>:</b> ${profileDTO.phoneNumber} <br/>
 
-                            <p><a href="/profileedit">Edit profile</a>
+                            <p><a href="/profileedit"><spring:message code="profile.page.text.edit"/>:</a>
 
                     </div>
 

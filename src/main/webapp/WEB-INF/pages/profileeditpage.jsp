@@ -80,8 +80,9 @@
 
                                 <br/>
 
-                                Sex: <form:radiobutton path="sex" value="male"/> male
-                                <form:radiobutton path="sex" value="female"/> female
+                                <spring:message code="profile.page.text.gender"/>: <form:radiobutton path="sex" value="male"/>
+                                <spring:message code="profile.page.text.male"/>
+                                <form:radiobutton path="sex" value="female"/> <spring:message code="profile.page.text.female"/>
                                 <br/> <br/>
 
                                 <form:errors path="phoneNumber"/>
@@ -126,7 +127,8 @@
                                 </div>
                                 <br/>
 
-                                <button type="submit" class="btn btn-default btn-lg btn-block">Complete
+                                <button type="submit" class="btn btn-default btn-lg btn-block"><spring:message
+                                        code="profile.page.text.save"/>
                                 </button>
                             </form:form>
                         </div>
