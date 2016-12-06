@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import by.zheynov.socnet.dto.PhotoDTO;
 import by.zheynov.socnet.dto.PostDTO;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.PhotoFacade;
+import by.zheynov.socnet.facade.ProfileFacade;
 
 /**
  * PostController class.
@@ -24,6 +26,9 @@ public class PostController
 	@Autowired
 	PhotoFacade photoFacade;
 
+	@Autowired
+	ProfileFacade profileFacade;
+
 	/**
 	 * Redirects user to welcomePage URL.
 	 *
@@ -32,8 +37,8 @@ public class PostController
 	@RequestMapping(value = "/welcomePage", method = RequestMethod.GET)
 	public String beforeVisitingWelcomePage(final Model model)
 	{
-		model.addAttribute("postDTO", new PostDTO());
-		model.addAttribute("userDTO", new UserDTO());
+
+		model.addAttribute("allThePosts", profileFacade.getAllTheProfiles());
 		return "/welcome";
 	}
 
@@ -45,6 +50,12 @@ public class PostController
 	@RequestMapping(value = "/makeapost", method = RequestMethod.POST)
 	public String makePost(final Model model, @ModelAttribute("postDTO") PostDTO postDTO)
 	{
+
+
+
+		PhotoDTO photoDTO = new PhotoDTO();
+
+
 
 		return "redirect/welcomePage";
 	}

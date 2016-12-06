@@ -2,6 +2,8 @@ package by.zheynov.socnet.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * PostDTO class.
  *
@@ -11,12 +13,13 @@ import java.util.Date;
 public class PostDTO
 {
 	private static final int HASH_NUMBER = 31;
-	private Long       postID;
-	private Date       postDate;
-	private ProfileDTO senderProfileDTO;
-	private ProfileDTO wallOwnerProfileDTO;
-	private String     text;
-	private PhotoDTO   photoDTO;
+	private Long          postID;
+	private Date          postDate;
+	private ProfileDTO    senderProfileDTO;
+	private ProfileDTO    wallOwnerProfileDTO;
+	private String        text;
+	private PhotoDTO      photoDTO;
+	private MultipartFile photo;
 
 	/**
 	 * Gets text.
@@ -138,6 +141,7 @@ public class PostDTO
 		return senderProfileDTO;
 	}
 
+
 	@Override
 	public boolean equals(final Object o)
 	{
@@ -186,5 +190,25 @@ public class PostDTO
 		result = HASH_NUMBER * result + (getText() != null ? getText().hashCode() : 0);
 		result = HASH_NUMBER * result + (getPhotoDTO() != null ? getPhotoDTO().hashCode() : 0);
 		return result;
+	}
+
+	/**
+	 * Gets photo.
+	 *
+	 * @return Value of photo.
+	 */
+	public MultipartFile getPhoto()
+	{
+		return photo;
+	}
+
+	/**
+	 * Sets new photo.
+	 *
+	 * @param photo New value of photo.
+	 */
+	public void setPhoto(MultipartFile photo)
+	{
+		this.photo = photo;
 	}
 }

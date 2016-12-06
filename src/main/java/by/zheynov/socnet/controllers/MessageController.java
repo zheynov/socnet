@@ -109,7 +109,8 @@ public class MessageController
 						messageFacade.getAllTheMessages(tempSenderProfileDTO.getProfileID(), tempDestinationProfileDTO.getProfileID())
 		);
 
-		return "/messages/sendmessage";
+		return "redirect:/messages/beforesendmessage/" + tempSenderProfileDTO.getUserDTO().getUsername() + "&" +
+						tempDestinationProfileDTO.getProfileID();
 	}
 
 	/**

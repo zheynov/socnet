@@ -33,11 +33,16 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="wall" style="margin-left: 250px">
 
-                        <c:forEach items="${allThePosts}" var="post">
+                        <div align="center">
+                            <form:form action="/makeapost" method="post" commandName="postDTO" enctype="multipart/form-data">
 
+                                <p><form:textarea path="text" rows="6" cols="100" name="text" placeholder="enter text"/></p>
+                                <form:input path="photo" type="file" name="photo" accept="image/*"
+                                            data-buttonText="Your label here"/>
 
-
-                        </c:forEach>
+                                <input type="submit" value="Submit">
+                            </form:form>
+                        </div>
 
                     </div>
 
