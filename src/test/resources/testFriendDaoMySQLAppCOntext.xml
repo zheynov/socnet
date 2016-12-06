@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <bean id="userDao" class="by.zheynov.socnet.dao.impl.UserDaoImpl" parent="abstractDao"/>
-
-
-    <bean id="abstractDao" class="by.zheynov.socnet.dao.impl.AbstractBaseDAO" abstract="true">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <bean id="profileDao" class="by.zheynov.socnet.dao.impl.ProfileDaoImpl" parent="abstractDao"/>
-
-    <bean id="userRoleDao" class="by.zheynov.socnet.dao.impl.UserRoleDaoImpl" parent="abstractDao"/>
-
-    <bean id="friendDao" class="by.zheynov.socnet.dao.impl.FriendDaoImpl" parent="abstractDao"/>
-
-    <bean id="messageDao" class="by.zheynov.socnet.dao.impl.MessageDaoImpl" parent="abstractDao"/>
-
+    <context:component-scan base-package="by.zheynov.socnet.dao"/>
+    <context:component-scan base-package="by.zheynov.socnet.entity"/>
 
     <!-- Data from jdbc.properties-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

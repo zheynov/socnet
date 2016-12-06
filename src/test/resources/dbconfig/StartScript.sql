@@ -57,15 +57,30 @@ CREATE TABLE message (
     ON DELETE CASCADE
 );
 
+
+-- Table to store photos
+CREATE TABLE photo (
+  id     BIGINT NOT NULL AUTO_INCREMENT,
+  photo_file_name VARCHAR(64)        NOT NULL UNIQUE,
+  profileID       BIGINT             NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (profileID) REFERENCES profile (id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
 -- Table for user's posts
 CREATE TABLE post (
   id     BIGINT NOT NULL AUTO_INCREMENT,
-  userID BIGINT NOT NULL,
-  text   VARCHAR(1024),
-  date   DATE   NOT NULL,
-  photo  VARCHAR(512),
+  text                  VARCHAR(1024),
+  date                  DATETIME               NOT NULL,
+  photoID               BIGINT             NOT NULL,
+  profile_sender_id     BIGINT             NOT NULL,
+  wall_owner_profile_id BIGINT             NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (userID) REFERENCES user (id)
+  FOREIGN KEY (profile_sender_id) REFERENCES profile (id),
+  FOREIGN KEY (wall_owner_profile_id) REFERENCES profile (id),
+  FOREIGN KEY (photoID) REFERENCES photo (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
@@ -78,20 +93,7 @@ CREATE TABLE persistent_logins (
   last_used TIMESTAMP   NOT NULL
 );
 
-/*-- Table to store friends (ManyToMany)
-CREATE TABLE friend (
-  id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  main_profile_id       BIGINT             NOT NULL,
-  friends_profile_id    BIGINT             NOT NULL,
-  friend_request_status ENUM ('PENDING_REQUEST', 'APPROVED_REQUEST', 'REJECTED_REQUEST'),
-  FOREIGN KEY (main_profile_id) REFERENCES profile (id),
-  FOREIGN KEY (friends_profile_id) REFERENCES profile (id),
-  UNIQUE KEY main_profile_id (main_profile_id, friends_profile_id)
-);*/
-
 -- Insert data
 
 INSERT INTO socnetdb.user_role VALUES (NULL, 'ROLE_ADMIN');
 INSERT INTO socnetdb.user_role VALUES (NULL, 'ROLE_USER');
-
-

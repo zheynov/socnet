@@ -133,7 +133,7 @@ public class FriendDaoTest
 	public void getByIdTest()
 	{
 		ProfileEntity profileEntityFromDB = profileDao.getById(currentProfileEntity.getId());
-		Set<FriendEntity> friendsOfCurrentProfile = profileEntityFromDB.getFriends();
+		Set<FriendEntity> friendsOfCurrentProfile = profileEntityFromDB.getCurrentProfileFriends();
 
 		FriendEntity friendEntityFromDB = friendsOfCurrentProfile.iterator().next();
 
