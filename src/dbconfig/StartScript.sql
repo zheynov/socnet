@@ -67,7 +67,7 @@ CREATE TABLE photo (
 CREATE TABLE post (
   id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   text                  VARCHAR(1024),
-  date                  DATE               NOT NULL,
+  date                  DATETIME               NOT NULL,
   photoID               BIGINT             NOT NULL,
   profile_sender_id     BIGINT             NOT NULL,
   wall_owner_profile_id BIGINT             NOT NULL,
