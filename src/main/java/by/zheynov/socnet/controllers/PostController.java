@@ -63,7 +63,39 @@ public class PostController
 		senderProfileDTO = profileDTO;
 
 		model.addAttribute("allThePosts", postFacade.getAllThePosts(profileDTO.getProfileID()));
+		model.addAttribute("postDTO", new PostDTO());
 		return "/welcome";
+	}
+
+	/**
+	 * Shows a list of users for post
+	 *
+	 * @return the URL
+	 */
+	@RequestMapping(value = "/posts/showusers", method = RequestMethod.GET)
+	public String showUsersBeforePost(final Model model)
+	{
+		model.addAttribute("allTheProfiles", profileFacade.getAllTheProfiles());
+		return "/posts/postforallpeople";
+	}
+
+	/**
+	 * Sends a post for chosen user
+	 *
+	 * @return the URL
+	 */
+	@RequestMapping(value = "/posts/makeapost/{profileID}", method = RequestMethod.GET)
+	public String initiateAPost(final Model model, @PathVariable("profileID") final String profileID)
+	{
+		ProfileDTO wallOwnerProfileDTO = profileFacade.getProfileById(Long.valueOf(profileID));
+		this.wallOwnerProfileDTO = wallOwnerProfileDTO;
+
+		PostDTO postDTO = new PostDTO();
+		postDTO.setSenderProfileDTO(senderProfileDTO);
+		postDTO.setWallOwnerProfileDTO(wallOwnerProfileDTO);
+
+		model.addAttribute("postDTO", postDTO);
+		return "/posts/sendpost";
 	}
 
 	/**
@@ -85,34 +117,18 @@ public class PostController
 	}
 
 	/**
-	 * Shows a list of users for post
+	 * makes a post to myself.
 	 *
 	 * @return the URL
 	 */
-	@RequestMapping(value = "/posts/showusers", method = RequestMethod.GET)
-	public String showUsersBeforePost(final Model model)
+	@RequestMapping(value = "/posts/sendaposttomyself", method = RequestMethod.POST)
+	public String makePostToMyself(@ModelAttribute("postDTO") final PostDTO postDTO, @RequestParam("photo") final MultipartFile file)
 	{
-		model.addAttribute("allTheProfiles", profileFacade.getAllTheProfiles());
-		return "/posts/postforallpeople";
-	}
-
-	/**
-	 * Initiate a post for chosen user
-	 *
-	 * @return the URL
-	 */
-	@RequestMapping(value = "/posts/makeapost/{profileID}", method = RequestMethod.GET)
-	public String initiateAPost(final Model model, @PathVariable("profileID") final String profileID)
-	{
-		ProfileDTO wallOwnerProfileDTO = profileFacade.getProfileById(Long.valueOf(profileID));
-		this.wallOwnerProfileDTO = wallOwnerProfileDTO;
-
-		PostDTO postDTO = new PostDTO();
 		postDTO.setSenderProfileDTO(senderProfileDTO);
-		postDTO.setWallOwnerProfileDTO(wallOwnerProfileDTO);
-
-		model.addAttribute("postDTO", postDTO);
-		return "/posts/sendpost";
+		postDTO.setWallOwnerProfileDTO(senderProfileDTO);
+		postDTO.setPostDate(new Date());
+		postFacade.createPost(postDTO, file);
+		return "redirect:/welcomePage";
 	}
 
 }

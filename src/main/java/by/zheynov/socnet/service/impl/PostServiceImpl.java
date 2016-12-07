@@ -37,10 +37,11 @@ public class PostServiceImpl implements PostService
 	@Transactional
 	public PostEntity createPost(final PostEntity postEntity, final MultipartFile photo)
 	{
-		UUID namePicture = photoCreationOnHDD.createPhotoOnHDD(photo);
-
-		postEntity.setPhotoFileName("photo/" + namePicture + ".jpg");
-
+		if (photo.getSize() > 0)
+		{
+			UUID namePicture = photoCreationOnHDD.createPhotoOnHDD(photo);
+			postEntity.setPhotoFileName("photo/" + namePicture + ".jpg");
+		}
 		return postDao.createPost(postEntity);
 	}
 

@@ -33,18 +33,20 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="wall" style="margin-left: 250px">
 
-                        <div align="center">
-                            <form:form action="/posts/sendapost" method="post" commandName="postDTO" enctype="multipart/form-data">
+                        <div align="center" class="form-horizontal" style="width: 500px">
 
-                <%--                <form:hidden path="senderProfileDTO"/>
-                                <form:hidden path="wallOwnerProfileDTO"/>--%>
+                            <form:form action="/posts/sendapost" method="post" commandName="postDTO"
+                                       enctype="multipart/form-data">
 
-                                <p><form:textarea path="text" rows="6" cols="100" name="text" placeholder="enter text"/></p>
-                                <form:input path="photo" type="file" name="photo" accept="image/*"
-                                            data-buttonText="Your label here"/>
+                                <spring:message code="messages.page.text.entertext" var="entertext"/>
+                                <form:textarea class="form-control" id="textArea" path="text" rows="6" name="text"
+                                               placeholder="${entertext}"/>
 
-                                <input type="submit" value="Submit">
+                                <form:input path="photo" type="file" name="photo" accept="image/*"/>
+                                <input type="submit" value="<spring:message code="messages.page.text.send.sendmessage"/>">
+
                             </form:form>
+
                         </div>
 
                     </div>

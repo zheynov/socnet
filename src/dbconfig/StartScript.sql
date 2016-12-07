@@ -68,7 +68,7 @@ CREATE TABLE post (
   id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   text                  VARCHAR(1024),
   date                  DATETIME           NOT NULL,
-  photo_file_name       VARCHAR(64)        NOT NULL UNIQUE,
+  photo_file_name       VARCHAR(64) UNIQUE,
   profile_sender_id     BIGINT             NOT NULL,
   wall_owner_profile_id BIGINT             NOT NULL,
   FOREIGN KEY (profile_sender_id) REFERENCES profile (id),
@@ -122,3 +122,15 @@ INSERT INTO user VALUES (5, 'borya@mail.ru', 'boris',
 INSERT INTO profile VALUES (6, 'Bruce', 'Wayne', '1990-03-18', 'batman@batman.ru', 36, 'male', 'Gotham', 666666);
 INSERT INTO user VALUES (6, 'gmail@mail.ru', 'batman',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 6, 2);
+
+INSERT INTO profile VALUES (7, 'uzerr', 'neim', '1980-06-18', 'zhabinka@tut.ru', 36, 'male', 'Жабинка', 049378442);
+INSERT INTO user VALUES (7, 'zhabinka@tut.ru', 'uzerr',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 7, 2);
+
+INSERT INTO profile VALUES (8, 'Armin', 'Van Burren', '1970-12-15', 'armin@armin.com', 55, 'female', 'Amsterdam', 564656466);
+INSERT INTO user VALUES (8, 'armin@armin.com', 'Armin',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 8, 2);
+
+INSERT INTO profile VALUES (9, 'Vladimir', 'Putin', '1953-05-05', 'putin@putin.com', 33, 'male', 'Moscow', 11111111111);
+INSERT INTO user VALUES (9, 'putin@putin.com', 'putin',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 9, 2);

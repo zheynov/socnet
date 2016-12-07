@@ -31,17 +31,55 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="wall" style="margin-left: 250px">
+                    <div class="tab-pane active" id="wall" style="margin-left: 250px; width: 500px">
 
 
-                        <a href="/posts/showusers">Choose user to make a post</a>
-                        <br/> <br/>
+                        <a href="/posts/showusers" class="btn btn-default btn-lg btn-block"><spring:message
+                                code="posts.page.text.choose.wall"/></a>
+                        <br/>
+
+                        <div align="center" class="form-horizontal">
+
+                            <form:form action="/posts/sendaposttomyself" method="post" commandName="postDTO"
+                                       enctype="multipart/form-data">
+
+                                <spring:message code="messages.page.text.entertext" var="entertext"/>
+                                <form:textarea class="form-control" id="textArea" path="text" rows="3" name="text"
+                                               placeholder="${entertext}"/>
+
+                                <form:input path="photo" type="file" name="photo" accept="image/*"/>
+                                <input type="submit" value="<spring:message code="messages.page.text.send.sendmessage"/>">
+
+                            </form:form>
+
+                        </div>
+
                         <c:forEach items="${allThePosts}" var="post">
 
-                            <img src="images/${post.photoFileName}" width="700"> <br/>
-                            Text: ${post.text} <br/>
-                            Date: ${post.postDate} <br/>
-                            Author: ${post.senderProfileDTO.firstname} ${post.senderProfileDTO.lastname} <br/>
+                            <c:choose>
+                                <c:when test="${post.photoFileName.length() gt 1}">
+                                    <img src="images/${post.photoFileName}" style="width: 500px"> <br/>
+                                </c:when>
+                            </c:choose>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <font size="1"> <b> <spring:message code="posts.page.text.author"/>:
+                                    </b> ${post.senderProfileDTO.firstname} ${post.senderProfileDTO.lastname} </font>
+                                    <font size="1"> <b> <spring:message code="posts.page.text.date"/>: </b> ${post.postDate.toLocaleString()}
+                                    </font>
+
+                                </div>
+
+                                <c:choose>
+                                    <c:when test="${post.text.length() gt 1}">
+                                        <div class="panel-body"> ${post.text} <br/>
+                                        </div>
+                                    </c:when>
+                                </c:choose>
+                            </div>
+
 
                         </c:forEach>
 

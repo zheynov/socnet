@@ -33,12 +33,12 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="wall" style="margin-left: 250px">
 
-                        <a href="/welcomePage">Back to my wall</a>
+                        <a href="/welcomePage"><spring:message code="posts.page.text.mywall"/></a>
                         <br/>
                         <c:forEach items="${allTheProfiles}" var="profile">
 
-                            <a href="/posts/makeapost/${profile.profileID}"> Send post
-                                to </a> ${profile.firstname} ${profile.lastname}
+                            <a href="/posts/makeapost/${profile.profileID}"> <spring:message
+                                    code="posts.page.text.postto"/> </a> ${profile.firstname} ${profile.lastname}
                             <br/>
                         </c:forEach>
 
