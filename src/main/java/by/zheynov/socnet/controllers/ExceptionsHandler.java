@@ -1,9 +1,7 @@
 package by.zheynov.socnet.controllers;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * ExceptionsHandler class.

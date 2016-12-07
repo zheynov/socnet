@@ -36,9 +36,6 @@ public class PhotoEntity
 	@JoinColumn(name = "profileID")
 	private ProfileEntity profileEntity;
 
-	@OneToOne(mappedBy = "photoEntity", fetch = FetchType.EAGER)
-	private PostEntity postEntity;
-
 	/**
 	 * Gets id.
 	 *
@@ -97,25 +94,5 @@ public class PhotoEntity
 	public void setProfileEntity(final ProfileEntity profileEntity)
 	{
 		this.profileEntity = profileEntity;
-	}
-
-	/**
-	 * Sets new postEntity.
-	 *
-	 * @param postEntity New value of postEntity.
-	 */
-	public void setPostEntity(final PostEntity postEntity)
-	{
-		this.postEntity = postEntity;
-	}
-
-	/**
-	 * Gets postEntity.
-	 *
-	 * @return Value of postEntity.
-	 */
-	public PostEntity getPostEntity()
-	{
-		return postEntity;
 	}
 }

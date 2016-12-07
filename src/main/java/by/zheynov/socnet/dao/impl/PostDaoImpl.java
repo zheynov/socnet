@@ -21,8 +21,15 @@ public class PostDaoImpl extends AbstractBaseDAO implements PostDao
 {
 
 	private static final String GET_ALL_POSTS_QUERY
-					= "FROM PostEntity WHERE profile_sender_id = :profileSenderID AND wall_owner_profile_id = :wallOwnerProfileID";
+					= "FROM PostEntity WHERE wall_owner_profile_id = :wallOwnerProfileID ORDER BY postDate DESC";
 
+	/**
+	 * Saves.
+	 *
+	 * @param postEntity the entity
+	 *
+	 * @return the entity
+	 */
 	@Override
 	public PostEntity createPost(final PostEntity postEntity)
 	{
@@ -30,28 +37,51 @@ public class PostDaoImpl extends AbstractBaseDAO implements PostDao
 		return postEntity;
 	}
 
+	/**
+	 * Updates.
+	 *
+	 * @param postEntity the entity
+	 */
 	@Override
 	public void updatePost(final PostEntity postEntity)
 	{
 		super.udate(postEntity);
 	}
 
+	/**
+	 * Deletes.
+	 *
+	 * @param postEntity the entity
+	 */
 	@Override
 	public void deletePost(final PostEntity postEntity)
 	{
 		super.delete(postEntity);
 	}
 
+	/**
+	 * Retrieves a list of PhotoEntity objects for wall owner.
+	 *
+	 * @param wallOwnerProfileID the id
+	 *
+	 * @return the List<PostEntity>
+	 */
 	@Override
-	public List<PostEntity> getAllThePosts(final Long profileSenderID, final Long wallOwnerProfileID)
+	public List<PostEntity> getAllThePosts(final Long wallOwnerProfileID)
 	{
 		Query query = super.getCurrentSession().createQuery(GET_ALL_POSTS_QUERY);
-		query.setParameter("profileSenderID", profileSenderID);
 		query.setParameter("wallOwnerProfileID", wallOwnerProfileID);
 
 		return query.list();
 	}
 
+	/**
+	 * Gets PostEntity from database.
+	 *
+	 * @param postId the id
+	 *
+	 * @return post entity
+	 */
 	@Override
 	public PostEntity getById(final Long postId)
 	{

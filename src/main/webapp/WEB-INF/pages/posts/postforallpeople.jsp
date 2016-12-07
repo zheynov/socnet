@@ -33,23 +33,18 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="wall" style="margin-left: 250px">
 
-
-                        <a href="/posts/showusers">Choose user to make a post</a>
-                        <br/> <br/>
-                        <c:forEach items="${allThePosts}" var="post">
-
-                            <img src="images/${post.photoFileName}" width="700"> <br/>
-                            Text: ${post.text} <br/>
-                            Date: ${post.postDate} <br/>
-                            Author: ${post.senderProfileDTO.firstname} ${post.senderProfileDTO.lastname} <br/>
-
-                        </c:forEach>
-
+                        <a href="/welcomePage">Back to my wall</a>
                         <br/>
+                        <c:forEach items="${allTheProfiles}" var="profile">
+
+                            <a href="/posts/makeapost/${profile.profileID}"> Send post
+                                to </a> ${profile.firstname} ${profile.lastname}
+                            <br/>
+                        </c:forEach>
 
                     </div>
 
-                    <jsp:include page="additional/contactabout.jsp"/>
+                    <jsp:include page="../additional/contactabout.jsp"/>
 
                     <div class="tab-pane" id="friends"></div>
 

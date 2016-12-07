@@ -29,12 +29,6 @@ public class PostDTOConverter implements Converter<PostEntity, PostDTO>
 
 		PostDTO postDTO = new PostDTO();
 
-		//Photo data
-		PhotoDTO photoDTO = new PhotoDTO();
-		PhotoEntity photoEntity = postEntity.getPhotoEntity();
-		photoDTO.setPhotoFileName(photoEntity.getPhotoFileName());
-		photoDTO.setId(photoEntity.getId());
-
 		//Sender's  profile
 		ProfileEntity senderProfileEntity = postEntity.getProfileSender();
 		ProfileDTO senderProfileDTO = new ProfileDTO();
@@ -67,7 +61,7 @@ public class PostDTOConverter implements Converter<PostEntity, PostDTO>
 		postDTO.setWallOwnerProfileDTO(wallownerProfileDTO);
 		postDTO.setText(postEntity.getText());
 		postDTO.setPostDate(postEntity.getPostDate());
-		postDTO.setPhotoDTO(photoDTO);
+		postDTO.setPhotoFileName(postEntity.getPhotoFileName());
 
 		return postDTO;
 	}

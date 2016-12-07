@@ -29,10 +29,10 @@ import by.zheynov.socnet.facade.UserFacade;
 public class PhotoController
 {
 	@Autowired
-	PhotoFacade photoFacade;
+	private PhotoFacade photoFacade;
 
 	@Autowired
-	UserFacade userFacade;
+	private UserFacade userFacade;
 
 	/**
 	 * Redirects a list of current users's profiles.

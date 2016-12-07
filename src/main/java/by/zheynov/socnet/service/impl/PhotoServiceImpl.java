@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import by.zheynov.socnet.dao.PhotoDao;
 import by.zheynov.socnet.entity.PhotoEntity;
 import by.zheynov.socnet.service.PhotoService;
+import by.zheynov.socnet.utils.PhotoCreationOnHDD;
 
 /**
  * PhotoServiceImpl class.
@@ -27,7 +28,9 @@ import by.zheynov.socnet.service.PhotoService;
 public class PhotoServiceImpl implements PhotoService
 {
 	@Autowired
-	PhotoDao photoDao;
+	private PhotoDao           photoDao;
+	@Autowired
+	private PhotoCreationOnHDD photoCreationOnHDD;
 
 	/**
 	 * Saves.
@@ -40,22 +43,8 @@ public class PhotoServiceImpl implements PhotoService
 	@Transactional
 	public PhotoEntity createPhoto(final PhotoEntity photoEntity, final MultipartFile photo)
 	{
-		final String pathToFile = System.getProperty("user.home");
-		UUID namePicture = UUID.randomUUID();
+		UUID namePicture = photoCreationOnHDD.createPhotoOnHDD(photo);
 
-		File destination = new File(pathToFile + "/photo/" + namePicture + ".jpg");
-
-		BufferedImage imageIO;
-		try
-		{
-			photo.transferTo(destination);
-			imageIO = ImageIO.read(destination);
-			ImageIO.write(imageIO, "jpg", destination);
-		}
-		catch (IOException e)
-		{
-			System.out.println("!!");
-		}
 		photoEntity.setPhotoFileName("photo/" + namePicture + ".jpg");
 
 		return photoDao.createPhoto(photoEntity);
@@ -108,4 +97,5 @@ public class PhotoServiceImpl implements PhotoService
 	{
 		return photoDao.getById(photoId);
 	}
+
 }

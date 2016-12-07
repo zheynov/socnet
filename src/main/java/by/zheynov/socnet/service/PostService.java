@@ -1,25 +1,28 @@
-package by.zheynov.socnet.dao;
+package by.zheynov.socnet.service;
 
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import by.zheynov.socnet.entity.PostEntity;
 
 /**
- * Post Dao interface.
+ * PostService interface.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
- * @package by.zheynov.socnet.dao
+ * @package by.zheynov.socnet.service
  */
-public interface PostDao
+public interface PostService
 {
 	/**
 	 * Saves.
 	 *
 	 * @param postEntity the entity
+	 * @param photo      the file
 	 *
 	 * @return the entity
 	 */
-	PostEntity createPost(PostEntity postEntity);
+	PostEntity createPost(PostEntity postEntity, MultipartFile photo);
 
 	/**
 	 * Updates.

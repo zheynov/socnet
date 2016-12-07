@@ -30,14 +30,6 @@ public class PostDTOReverseConverter implements Converter<PostDTO, PostEntity>
 
 		PostEntity postEntity = new PostEntity();
 
-		//Photo
-		PhotoEntity photoEntity = postEntity.getPhotoEntity();
-
-		PhotoDTO photoDTO = postDTO.getPhotoDTO();
-
-		photoEntity.setPhotoFileName(photoDTO.getPhotoFileName());
-		photoEntity.setId(photoDTO.getId());
-
 		//Sender's profile
 		ProfileEntity senderProfileEntity = new ProfileEntity();
 		ProfileDTO senderProfileDTO = postDTO.getSenderProfileDTO();
@@ -70,7 +62,7 @@ public class PostDTOReverseConverter implements Converter<PostDTO, PostEntity>
 		postEntity.setWallOwnerProfile(wallOwnerProfileEntity);
 		postEntity.setProfileSender(senderProfileEntity);
 
-		postEntity.setPhotoEntity(photoEntity);
+		postEntity.setPhotoFileName(postDTO.getPhotoFileName());
 
 		postEntity.setText(postDTO.getText());
 		postEntity.setPostDate(postDTO.getPostDate());

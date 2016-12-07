@@ -69,7 +69,8 @@ public class PhotoFacadeImpl implements PhotoFacade
 	{
 		List<PhotoDTO> allThePhotoDTOs = new ArrayList<>();
 
-		photoService.getAllThePhotos(profileID).forEach(elem -> allThePhotoDTOs.add(conversionService.convert(elem, PhotoDTO.class)));
+		photoService.getAllThePhotos(profileID).forEach(elem -> allThePhotoDTOs.add(conversionService.convert(elem, PhotoDTO
+						.class)));
 
 		return allThePhotoDTOs;
 	}

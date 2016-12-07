@@ -49,9 +49,8 @@ public class PostEntity implements Serializable
 	@Column(name = "text", length = MAX_TEXT_LENGTH)
 	private String text;
 
-	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "photoID")
-	private PhotoEntity photoEntity;
+	@Column(name = "photo_file_name")
+	private String photoFileName;
 
 	/**
 	 * Gets postDate.
@@ -114,25 +113,6 @@ public class PostEntity implements Serializable
 	}
 
 
-	/**
-	 * Sets new photoEntity.
-	 *
-	 * @param photoEntity New value of photoEntity.
-	 */
-	public void setPhotoEntity(final PhotoEntity photoEntity)
-	{
-		this.photoEntity = photoEntity;
-	}
-
-	/**
-	 * Gets photoEntity.
-	 *
-	 * @return Value of photoEntity.
-	 */
-	public PhotoEntity getPhotoEntity()
-	{
-		return photoEntity;
-	}
 
 	/**
 	 * Sets new profileSender.
@@ -172,5 +152,25 @@ public class PostEntity implements Serializable
 	public void setWallOwnerProfile(final ProfileEntity wallOwnerProfile)
 	{
 		this.wallOwnerProfile = wallOwnerProfile;
+	}
+
+	/**
+	 * Sets new photoFileName.
+	 *
+	 * @param photoFileName New value of photoFileName.
+	 */
+	public void setPhotoFileName(String photoFileName)
+	{
+		this.photoFileName = photoFileName;
+	}
+
+	/**
+	 * Gets photoFileName.
+	 *
+	 * @return Value of photoFileName.
+	 */
+	public String getPhotoFileName()
+	{
+		return photoFileName;
 	}
 }

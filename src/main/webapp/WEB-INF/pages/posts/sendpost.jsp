@@ -34,7 +34,10 @@
                     <div class="tab-pane active" id="wall" style="margin-left: 250px">
 
                         <div align="center">
-                            <form:form action="/makeapost" method="post" commandName="postDTO" enctype="multipart/form-data">
+                            <form:form action="/posts/sendapost" method="post" commandName="postDTO" enctype="multipart/form-data">
+
+                <%--                <form:hidden path="senderProfileDTO"/>
+                                <form:hidden path="wallOwnerProfileDTO"/>--%>
 
                                 <p><form:textarea path="text" rows="6" cols="100" name="text" placeholder="enter text"/></p>
                                 <form:input path="photo" type="file" name="photo" accept="image/*"
@@ -46,7 +49,7 @@
 
                     </div>
 
-                    <jsp:include page="additional/contactabout.jsp"/>
+                    <jsp:include page="../additional/contactabout.jsp"/>
 
                     <div class="tab-pane" id="friends"></div>
 

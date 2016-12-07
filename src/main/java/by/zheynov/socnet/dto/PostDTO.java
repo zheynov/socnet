@@ -18,7 +18,7 @@ public class PostDTO
 	private ProfileDTO    senderProfileDTO;
 	private ProfileDTO    wallOwnerProfileDTO;
 	private String        text;
-	private PhotoDTO      photoDTO;
+	private String        photoFileName;
 	private MultipartFile photo;
 
 	/**
@@ -82,26 +82,6 @@ public class PostDTO
 	}
 
 	/**
-	 * Gets photoDTO.
-	 *
-	 * @return Value of photoDTO.
-	 */
-	public PhotoDTO getPhotoDTO()
-	{
-		return photoDTO;
-	}
-
-	/**
-	 * Sets new photoDTO.
-	 *
-	 * @param photoDTO New value of photoDTO.
-	 */
-	public void setPhotoDTO(final PhotoDTO photoDTO)
-	{
-		this.photoDTO = photoDTO;
-	}
-
-	/**
 	 * Sets new wallOwnerProfileDTO.
 	 *
 	 * @param wallOwnerProfileDTO New value of wallOwnerProfileDTO.
@@ -141,7 +121,6 @@ public class PostDTO
 		return senderProfileDTO;
 	}
 
-
 	@Override
 	public boolean equals(final Object o)
 	{
@@ -172,11 +151,15 @@ public class PostDTO
 		{
 			return false;
 		}
-		if (getText() != null ? !getText().equals(postDTO.getText()) : postDTO.getText() != null)
+		if (!getText().equals(postDTO.getText()))
 		{
 			return false;
 		}
-		return getPhotoDTO() != null ? getPhotoDTO().equals(postDTO.getPhotoDTO()) : postDTO.getPhotoDTO() == null;
+		if (!getPhotoFileName().equals(postDTO.getPhotoFileName()))
+		{
+			return false;
+		}
+		return getPhoto().equals(postDTO.getPhoto());
 
 	}
 
@@ -187,8 +170,9 @@ public class PostDTO
 		result = HASH_NUMBER * result + getPostDate().hashCode();
 		result = HASH_NUMBER * result + getSenderProfileDTO().hashCode();
 		result = HASH_NUMBER * result + getWallOwnerProfileDTO().hashCode();
-		result = HASH_NUMBER * result + (getText() != null ? getText().hashCode() : 0);
-		result = HASH_NUMBER * result + (getPhotoDTO() != null ? getPhotoDTO().hashCode() : 0);
+		result = HASH_NUMBER * result + getText().hashCode();
+		result = HASH_NUMBER * result + getPhotoFileName().hashCode();
+		result = HASH_NUMBER * result + getPhoto().hashCode();
 		return result;
 	}
 
@@ -210,5 +194,25 @@ public class PostDTO
 	public void setPhoto(MultipartFile photo)
 	{
 		this.photo = photo;
+	}
+
+	/**
+	 * Sets new photoFileName.
+	 *
+	 * @param photoFileName New value of photoFileName.
+	 */
+	public void setPhotoFileName(String photoFileName)
+	{
+		this.photoFileName = photoFileName;
+	}
+
+	/**
+	 * Gets photoFileName.
+	 *
+	 * @return Value of photoFileName.
+	 */
+	public String getPhotoFileName()
+	{
+		return photoFileName;
 	}
 }

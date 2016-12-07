@@ -67,15 +67,12 @@ CREATE TABLE photo (
 CREATE TABLE post (
   id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   text                  VARCHAR(1024),
-  date                  DATETIME               NOT NULL,
-  photoID               BIGINT             NOT NULL,
+  date                  DATETIME           NOT NULL,
+  photo_file_name       VARCHAR(64)        NOT NULL UNIQUE,
   profile_sender_id     BIGINT             NOT NULL,
   wall_owner_profile_id BIGINT             NOT NULL,
   FOREIGN KEY (profile_sender_id) REFERENCES profile (id),
-  FOREIGN KEY (wall_owner_profile_id) REFERENCES profile (id),
-  FOREIGN KEY (photoID) REFERENCES photo (id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
+  FOREIGN KEY (wall_owner_profile_id) REFERENCES profile (id)
 );
 
 -- Table to store friends (ManyToMany)
