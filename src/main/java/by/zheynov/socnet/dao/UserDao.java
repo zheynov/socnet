@@ -27,7 +27,7 @@ public interface UserDao
 	 *
 	 * @param user the entity
 	 */
-	void updateUser(UserEntity user);
+	UserEntity updateUser(UserEntity user);
 
 	/**
 	 * Deletes.

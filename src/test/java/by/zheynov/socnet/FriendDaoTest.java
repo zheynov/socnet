@@ -142,7 +142,7 @@ public class FriendDaoTest
 		Assert.assertEquals(friendEntityFromDB, friendEntities.get(0));
 	}
 
-	@After
+		@After
 	public void deleteProfiles()
 	{
 		profileDao.deleteProfile(currentProfileEntity);

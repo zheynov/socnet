@@ -85,10 +85,16 @@ public class ProfileDaoTest
 		Assert.assertEquals(LIST_SIZE, profileEntityList.size());
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void failUpdateTest() throws Exception {
+		profileDao.updateProfile(null);
+	}
+
 	@After
 	public void deleteProfile()
 	{
 		profileDao.deleteProfile(profileEntity);
 	}
+
 
 }

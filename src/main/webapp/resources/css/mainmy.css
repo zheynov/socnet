@@ -52,7 +52,7 @@
  */
 
 body, html{
-    height: 100%; + position:absolute;
+    height: auto; + position:absolute;
     background-repeat: no-repeat;
     background-color: #d3d3d3;
     font-family: 'Oxygen', sans-serif;
@@ -127,14 +127,18 @@ input::-webkit-input-placeholder {
     overflow: hidden;
 
     /* Украшательство: */
-    background: #eee;
-    border: 1px solid #ccc;
-    font-size: 30px;
+
+    /* position: relative; */
+    /* overflow: hidden; */
+    /* background: #eee; */
+    border: 2px solid #ccc;
+    font-size: 54px;
     line-height: 1;
     text-align: center;
     padding: 20px;
     width: 40px;
 }
+
 
 .file_upload input[type=file] {
     /* Позиционируем правый верхний край

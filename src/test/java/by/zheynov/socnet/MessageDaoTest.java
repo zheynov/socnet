@@ -88,4 +88,9 @@ public class MessageDaoTest
 		Assert.assertEquals(messageEntity, messageEntities.get(0));
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void failGetByIdTest() throws Exception {
+		messageDao.getById(null);
+	}
+
 }

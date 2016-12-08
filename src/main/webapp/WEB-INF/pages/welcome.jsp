@@ -13,11 +13,11 @@
 <body>
 
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
+    <div class="row" >
+        <div class="col-xs-12" >
             <h3><spring:message code="welcome.page.text.menu"/></h3>
             <!-- tabs -->
-            <div class="tabbable tabs-left">
+            <div class="tabbable tabs-left" >
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#wall" data-toggle="tab"><spring:message code="welcome.page.text.wall"/></a></li>
                     <li><a href="/friends"><spring:message code="welcome.page.text.friends"/></a></li>
@@ -32,7 +32,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="wall" style="margin-left: 250px; width: 500px">
+                    <div class="tab-pane active" id="wall" style="margin-left: 250px; width: 600px" >
 
 
                         <a href="/posts/showusers" class="btn btn-default btn-lg btn-block"><spring:message
@@ -59,7 +59,7 @@
 
                             <c:choose>
                                 <c:when test="${post.photoFileName.length() gt 1}">
-                                    <img src="images/${post.photoFileName}" style="width: 500px"> <br/>
+                                    <img src="images/${post.photoFileName}" style="width: 600px"> <br/>
                                 </c:when>
                             </c:choose>
 
@@ -77,7 +77,7 @@
 
                                 <c:choose>
                                     <c:when test="${post.text.length() gt 1}">
-                                        <div class="panel-body"> ${post.text} <br/>
+                                        <div class="panel-body"> ${post.text}
                                         </div>
                                     </c:when>
                                 </c:choose>

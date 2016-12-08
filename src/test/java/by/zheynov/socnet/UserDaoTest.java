@@ -107,6 +107,11 @@ public class UserDaoTest
 		Assert.assertEquals(LIST_SIZE, allTheDaoUsers.size());
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void failUpdateTest() throws Exception {
+		userDao.updateUser(null);
+	}
+
 	@After
 	public void deleteUSerAndProfile()
 	{
