@@ -74,6 +74,7 @@ public class RegistrationController
 			{
 
 				userFacade.createUser(userDTO);
+				model.addAttribute("brandnewuser", userDTO);
 				return "loginpage";
 			}
 			else

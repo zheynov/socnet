@@ -30,12 +30,6 @@
 </head>
 <body>
 
-<%--
-<c:if test="${sessionScope.get('userDTO') ne null}">
-    ${pageContext.forward("/showAllUsers")}
-</c:if>
-action="processLogin"   commandName="userDTO"--%>
-
 <p>
 
 
@@ -56,8 +50,16 @@ action="processLogin"   commandName="userDTO"--%>
         </div>
     </c:if>
 
+    <c:if test="${brandnewuser.username != null}">
+        <div class="alert alert-info" role="alert">
+            <div class="msg"><spring:message code="admin.page.text.accountfor"/>
+                <b>   ${brandnewuser.username} </b>
+                <spring:message code="registration.page.filed.success"/></div>
+        </div>
+        <br/>
+    </c:if>
+
 </div>
-<p>
 
 <div class="container" style="width: 500px">
     <div class="row main table-bordered">

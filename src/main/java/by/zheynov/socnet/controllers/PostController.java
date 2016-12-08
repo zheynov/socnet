@@ -131,4 +131,18 @@ public class PostController
 		return "redirect:/welcomePage";
 	}
 
+	/**
+	 * makes a post.
+	 *
+	 * @return the URL
+	 */
+	@RequestMapping(value = "/posts/deleteapost/{postID}", method = RequestMethod.GET)
+	public String deletePost(@PathVariable("postID") final String postID)
+	{
+		PostDTO postToDelete = postFacade.getById(Long.valueOf(postID));
+		postFacade.deletePost(postToDelete);
+
+		return "redirect:/welcomePage";
+	}
+
 }

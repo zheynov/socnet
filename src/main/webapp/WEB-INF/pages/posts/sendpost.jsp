@@ -42,7 +42,7 @@
                                 <form:textarea class="form-control" id="textArea" path="text" rows="6" name="text"
                                                placeholder="${entertext}"/>
 
-                                <form:input path="photo" type="file" name="photo" accept="image/*"/>
+                                <form:input path="photo" type="file" data-filename-placement="inside" name="photo" accept="image/*"/>
                                 <input type="submit" value="<spring:message code="messages.page.text.send.sendmessage"/>">
 
                             </form:form>

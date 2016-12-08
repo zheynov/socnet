@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
 
@@ -58,4 +59,25 @@ public class AdminController
 		return "/secure/userinfo";
 	}
 
+	/**
+	 * Deletes user.
+	 *
+	 * @param model    the model
+	 * @param username the username
+	 *
+	 * @return userinfo URL
+	 */
+	@RequestMapping(value = "/deletteuser/{username}", method = RequestMethod.GET)
+	public String deleteUser(final Model model, @PathVariable(value = "username") final String username)
+	{
+		UserDTO userDTO = userFacade.getUserByUsername(username);
+		ProfileDTO profileDTO = userDTO.getProfileDTO();
+
+		userFacade.deleteUser(userDTO);
+		profileFacade.deleteProfile(profileDTO);
+
+		model.addAttribute("allTheProfiles", profileFacade.getAllTheProfiles());
+		model.addAttribute("userdeleted", userDTO);
+
+		return "/secure/adminpage";	}
 }

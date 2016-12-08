@@ -33,7 +33,7 @@
                 </ul>
 
                 <div class="tab-content">
-                    <div  id="wall" >
+                    <div id="wall">
                     </div>
 
                     <div class="tab-pane" id="friends">
@@ -51,22 +51,22 @@
                     </div>
 
 
-                    <div class="tab-pane active" id="admin"  style="margin-left: 250px" >
+                    <div class="tab-pane active" id="admin" style="margin-left: 250px">
 
-                            <h3 class="h3"> User credentials: </h3>
+                        <h3 class="h3"> User credentials: </h3>
 
-                            <b>Email: </b> ${userDTO.email} <br/>
-                            <b>Login: </b> ${userDTO.username} <br/>
-                            <b>Password: </b> encrypted <br/>
-                            <b>Account status: </b>
+                        <b>Email: </b> ${userDTO.email} <br/>
+                        <b>Login: </b> ${userDTO.username} <br/>
+                        <b>Password: </b> encrypted <br/>
+                        <b>Account status: </b>
 
-                            <c:choose>
-                                <c:when test="${userDTO.enabled == true}"> active </c:when>
-                                <c:otherwise> disabled </c:otherwise>
-                            </c:choose> <br/> <br/>
-
-                            <p> <a href="/admin/"><spring:message code="admin.page.text.backtomain"/></a>
-                        </div>
+                        <c:choose>
+                            <c:when test="${userDTO.enabled == true}"> active </c:when>
+                            <c:otherwise> disabled </c:otherwise>
+                        </c:choose> <br/> <br/>
+                        <p><a href="/admin/deletteuser/${userDTO.username}"><spring:message code="photos.page.text.deleteuser"/></a>
+                        <p><a href="/admin/"><spring:message code="admin.page.text.backtomain"/></a>
+                    </div>
 
                 </div>
 

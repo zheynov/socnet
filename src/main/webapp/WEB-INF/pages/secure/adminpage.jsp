@@ -10,6 +10,7 @@
 </head>
 <body>
 
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -53,6 +54,15 @@
 
                     <div class="tab-pane active" id="admin" style="margin-left: 250px">
 
+                        <c:if test="${userdeleted.username != null}">
+                            <div class="alert-danger">
+                                <spring:message code="admin.page.text.accountfor"/>
+                                <b>   ${userdeleted.profileDTO.firstname} ${userdeleted.profileDTO.lastname} </b>
+                                <spring:message code="admin.page.text.userdeleted"/>
+                            </div>
+                            <br/>
+                        </c:if>
+
 
                         <div class="alert-info">
                             <p>
@@ -62,7 +72,7 @@
                         </div>
 
 
-                        <h5 align="center"> All the profiles from DB:</h5>
+                        <h5 align="center"> <spring:message code="admin.page.text.allprdb"/>:</h5>
 
                         <p></p>
                         <table class="table table-bordered">

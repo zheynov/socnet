@@ -9,13 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import java.io.Serializable;
 
 import java.util.List;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * UserEntity class.
@@ -44,7 +45,7 @@ public class UserEntity implements Serializable
 	@Column(name = "password", length = TABLE_COLUMN_MAX_LENGTH)
 	private String password;
 
-	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "profileID")
 	private ProfileEntity profileEntity;
 

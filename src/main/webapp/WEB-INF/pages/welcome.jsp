@@ -8,6 +8,7 @@
 <head>
     <title><spring:message code="welcome.page.text.wall"/></title>
     <action:actions/>
+
 </head>
 <body>
 
@@ -47,12 +48,12 @@
                                 <form:textarea class="form-control" id="textArea" path="text" rows="3" name="text"
                                                placeholder="${entertext}"/>
 
-                                <form:input path="photo" type="file" name="photo" accept="image/*"/>
-                                <input type="submit" value="<spring:message code="messages.page.text.send.sendmessage"/>">
+                                <br/><action:fileupload/>
 
                             </form:form>
 
                         </div>
+                        <br/>
 
                         <c:forEach items="${allThePosts}" var="post">
 
@@ -67,8 +68,10 @@
                                 <div class="panel-heading">
                                     <font size="1"> <b> <spring:message code="posts.page.text.author"/>:
                                     </b> ${post.senderProfileDTO.firstname} ${post.senderProfileDTO.lastname} </font>
-                                    <font size="1"> <b> <spring:message code="posts.page.text.date"/>: </b> ${post.postDate.toLocaleString()}
-                                    </font>
+                                    <font size="1"> <b style="margin-left: 7px;"> <spring:message
+                                            code="posts.page.text.date"/>: </b> ${post.postDate.toLocaleString()}
+                                        <a href="/posts/deleteapost/${post.postID}" style="margin-left: 5px;">
+                                            <spring:message code="posts.page.text.delete"/></a> </font>
 
                                 </div>
 

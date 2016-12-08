@@ -58,7 +58,7 @@ public class ProfileServiceImpl implements ProfileService
 	public ProfileEntity getProfileById(final Long profileId)
 	{
 		LOGGER.info(messageSource.getMessage("service.profile.getById", new Object[] {profileId}, Locale.ENGLISH));
-		return (ProfileEntity) profileDao.getById(profileId);
+		return profileDao.getById(profileId);
 	}
 
 	/**
@@ -82,6 +82,7 @@ public class ProfileServiceImpl implements ProfileService
 	public void deleteProfile(final ProfileEntity profileEntity)
 	{
 		LOGGER.info(messageSource.getMessage("service.profile.delete", new Object[] {profileEntity}, Locale.ENGLISH));
+		profileDao.deleteProfile(profileEntity);
 
 	}
 
@@ -93,7 +94,13 @@ public class ProfileServiceImpl implements ProfileService
 	@Transactional(readOnly = true)
 	public List<ProfileEntity> getAllTheProfiles()
 	{
-		return profileDao.getAllTheProfiles();
+		List<ProfileEntity> alltheProfiles = profileDao.getAllTheProfiles();
+		List<ProfileEntity> filteredResultofProfiles = new ArrayList<>();
+
+		alltheProfiles.stream().filter(elem -> !elem.getUserEntity().getUsername().equals("admin")).
+						forEach(filteredResultofProfiles::add);
+
+		return filteredResultofProfiles;
 	}
 
 	/**

@@ -9,7 +9,8 @@
     <title><spring:message code="welcome.page.text.mesagges"/></title>
     <action:actions/>
 </head>
-<body>
+
+<body style="height: 200%; + position:absolute;">
 
 <div class="container">
     <div class="row">

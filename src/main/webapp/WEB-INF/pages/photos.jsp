@@ -8,6 +8,10 @@
 <head>
     <title><spring:message code="welcome.page.text.photoes"/></title>
     <action:actions/>
+    <script>
+        $.enhanceFormsBehaviour()
+    </script>
+
 </head>
 <body>
 
@@ -48,16 +52,10 @@
                                        enctype="multipart/form-data"
                                        commandName="photoDTO">
 
-                                <label class="btn btn-default btn-primary">
-                                    <spring:message code="photos.page.text.browse"/>
-                                    <form:input path="photo" type="file" style="display: none;"/>
-                                </label>
-                                <input type="submit" class="btn btn-default"
-                                       value="<spring:message code="photos.page.text.upload"/>">
+                                <action:photopload /> <br/> <br/>
                             </form:form>
-                            <br/>
-
                             <!--list of images -->
+
                             <div id="links">
 
                                 <c:forEach items="${allThePhotos}" var="photo">

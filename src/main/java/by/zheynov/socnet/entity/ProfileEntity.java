@@ -31,7 +31,7 @@ public class ProfileEntity implements Serializable
 	private static final int TABLE_COLUMN_MAX_LENGTH = 64;
 
 	// OneToOne with UserEntity
-	@OneToOne(mappedBy = "profileEntity", fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "profileEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private UserEntity userEntity;
 
 	// OneToOne with PhotoEntity
