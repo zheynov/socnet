@@ -24,7 +24,8 @@
 
 .tabs-left > .nav-tabs {
     float: left;
-    margin-right: 19px;    border-right: 1px solid #ddd;
+    margin-right: 19px;
+    border-right: 1px solid #ddd;
 }
 
 .tabs-left > .nav-tabs > li > a {
@@ -46,20 +47,20 @@
     *border-right-color: #ffffff;
 }
 
-
 /*
  * Profile edition form
  */
 
-body, html{
-    height: auto; + position:absolute;
+body, html {
+    height: auto;
++ position: absolute;
     background-repeat: no-repeat;
     background-color: #d3d3d3;
     font-family: 'Oxygen', sans-serif;
     font-size: 12px;
 }
 
-.main{
+.main {
     margin-top: 70px;
 }
 
@@ -69,16 +70,16 @@ h1.title {
     font-weight: 400;
 }
 
-hr{
+hr {
     width: 10%;
     color: #fff;
 }
 
-.form-group{
+.form-group {
     margin-bottom: 15px;
 }
 
-label{
+label {
     margin-bottom: 14px;
 }
 
@@ -88,7 +89,7 @@ input::-webkit-input-placeholder {
     padding-top: 3px;
 }
 
-.main-login{
+.main-login {
     background-color: #fff;
     /* shadows and rounded borders */
     -moz-border-radius: 2px;
@@ -100,7 +101,7 @@ input::-webkit-input-placeholder {
 
 }
 
-.main-center{
+.main-center {
     margin-top: 30px;
     margin: 0 auto;
     max-width: 330px;
@@ -108,16 +109,21 @@ input::-webkit-input-placeholder {
 
 }
 
-.login-button{
+.main-center-login {
+    margin-top: 30px;
+    margin: 0 auto;
+    max-width: 330px;
+    padding: 40px 40px;
+}
+
+.login-button {
     margin-top: 3px;
 }
 
-.login-register{
+.login-register {
     font-size: 8px;
     text-align: center;
 }
-
-
 
 .file_upload {
     /* Для того, чтобы спозиционировать input
@@ -139,14 +145,14 @@ input::-webkit-input-placeholder {
     width: 40px;
 }
 
-
 .file_upload input[type=file] {
     /* Позиционируем правый верхний край
        input поверх нашего контейнера.
        Правый верхний потому как именно там
        у нас кнопка. */
     position: absolute;
-    top: 0; right: 0;
+    top: 0;
+    right: 0;
 
     /* Делаем input побольше, чтобы он точно
        перекрыл контейнер. */

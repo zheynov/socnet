@@ -90,7 +90,7 @@ public class LoginController
 	private String getRememberMeTargetUrlFromSession(final HttpServletRequest request)
 	{
 		String targetUrl = "";
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false); // if true returns a new session, otherwise - current ssession
 		if (session != null)
 		{
 			targetUrl = session.getAttribute("targetUrl") == null ? "" : session.getAttribute("targetUrl").toString();
