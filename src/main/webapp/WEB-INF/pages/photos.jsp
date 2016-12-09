@@ -8,10 +8,6 @@
 <head>
     <title><spring:message code="welcome.page.text.photoes"/></title>
     <action:actions/>
-    <script>
-        $.enhanceFormsBehaviour()
-    </script>
-
 </head>
 <body>
 

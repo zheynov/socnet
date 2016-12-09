@@ -1,6 +1,4 @@
-/**
- * Created by ZheynovVV on 08.12.2016.
- */
+
 (function($) {
     $.enhanceFormsBehaviour = function() {
         $('form').enhanceBehaviour();
