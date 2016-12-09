@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,8 @@ import by.zheynov.socnet.utils.PhotoCreationOnHDD;
 @Service("photoService")
 public class PhotoServiceImpl implements PhotoService
 {
+	private static final Logger LOGGER = Logger.getLogger(PhotoServiceImpl.class);
+
 	@Autowired
 	private PhotoDao           photoDao;
 	@Autowired

@@ -21,7 +21,6 @@ import by.zheynov.socnet.service.UserRoleService;
 @Service("userRoleService")
 public class UserRoleServiceImpl implements UserRoleService
 {
-	private final static Logger LOGGER = Logger.getLogger(UserRoleServiceImpl.class);
 	@Autowired
 	private UserRoleDao                           userRoleDao;
 	@Autowired
@@ -38,7 +37,6 @@ public class UserRoleServiceImpl implements UserRoleService
 	public RoleEntity createUserRole(final RoleEntity userRole)
 	{
 		userRoleDao.createUserRole(userRole);
-		LOGGER.info(messageSource.getMessage("service.user.role.save", new Object[] {userRole}, Locale.ENGLISH));
 		return userRole;
 	}
 
@@ -51,7 +49,6 @@ public class UserRoleServiceImpl implements UserRoleService
 	public void updateUserRole(final RoleEntity userRole)
 	{
 		userRoleDao.updateUserRole(userRole);
-		LOGGER.info(messageSource.getMessage("service.user.role.update", new Object[] {userRole}, Locale.ENGLISH));
 	}
 
 	/**
@@ -63,6 +60,5 @@ public class UserRoleServiceImpl implements UserRoleService
 	public void deleteUserRole(final RoleEntity userRole)
 	{
 		userRoleDao.deleteUserRole(userRole);
-		LOGGER.info(messageSource.getMessage("service.user.role.delete", new Object[] {userRole}, Locale.ENGLISH));
 	}
 }

@@ -435,4 +435,5 @@ public class ProfileEntity implements Serializable
 	{
 		return wallOwnerPosts;
 	}
+
 }

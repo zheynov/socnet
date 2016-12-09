@@ -2,6 +2,7 @@ package by.zheynov.socnet.service.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,8 @@ import by.zheynov.socnet.service.MessageService;
 @Service("messageService")
 public class MessageServiceImpl implements MessageService
 {
+	private static final Logger LOGGER = Logger.getLogger(MessageServiceImpl.class);
+
 	@Autowired
 	private MessageDao messageDao;
 

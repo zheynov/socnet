@@ -2,7 +2,9 @@ package by.zheynov.socnet.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,8 @@ import by.zheynov.socnet.service.FriendService;
 @Service("friendService")
 public class FriendServiceImpl implements FriendService
 {
+	private static final Logger LOGGER = Logger.getLogger(FriendServiceImpl.class);
+
 	@Autowired
 	private FriendDao friendDao;
 
@@ -35,6 +39,7 @@ public class FriendServiceImpl implements FriendService
 	public void addFriend(final ProfileEntity currentProfile, final ProfileEntity newFriend)
 	{
 		friendDao.addFriend(currentProfile, newFriend);
+		LOGGER.info("Added new friend request from profileID " + newFriend.getId() +" for profileID " + currentProfile.getId());
 	}
 
 	/**
