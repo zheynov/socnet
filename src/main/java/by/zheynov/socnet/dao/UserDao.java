@@ -26,7 +26,10 @@ public interface UserDao
 	 * Updates.
 	 *
 	 * @param user the entity
+	 *
+	 * @return the entity
 	 */
+
 	UserEntity updateUser(UserEntity user);
 
 	/**

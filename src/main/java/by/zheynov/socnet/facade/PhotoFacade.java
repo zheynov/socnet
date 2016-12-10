@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import by.zheynov.socnet.dto.PhotoDTO;
-import by.zheynov.socnet.entity.PhotoEntity;
 
 /**
  * PhotoFacade interface.
@@ -18,6 +17,7 @@ public interface PhotoFacade
 	/**
 	 * Saves.
 	 *
+	 * @param photo    the photo
 	 * @param photoDTO the dto
 	 */
 	void createPhoto(PhotoDTO photoDTO, MultipartFile photo);

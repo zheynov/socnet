@@ -37,7 +37,7 @@
 
                     <div class="tab-pane" id="friends"></div>
 
-                    <jsp:include page="additional/contactabout.jsp"/>
+                    <jsp:include page="../additional/contactabout.jsp"/>
 
                     <div class="tab-pane" id="messages"></div>
 

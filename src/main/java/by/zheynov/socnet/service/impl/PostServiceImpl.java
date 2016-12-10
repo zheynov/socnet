@@ -34,6 +34,7 @@ public class PostServiceImpl implements PostService
 	 * Saves.
 	 *
 	 * @param postEntity the entity
+	 * @param photo      the photo
 	 *
 	 * @return the entity
 	 */
@@ -45,6 +46,7 @@ public class PostServiceImpl implements PostService
 			UUID namePicture = photoCreationOnHDD.createPhotoOnHDD(photo);
 			postEntity.setPhotoFileName("photo/" + namePicture + ".jpg");
 		}
+		LOGGER.info("Added post for profileID " + postEntity.getWallOwnerProfile().getId());
 		return postDao.createPost(postEntity);
 	}
 
@@ -56,12 +58,19 @@ public class PostServiceImpl implements PostService
 	@Transactional
 	public void updatePost(final PostEntity postEntity)
 	{
+		LOGGER.info("Updated post with ID " + postEntity.getPostID());
 		postDao.updatePost(postEntity);
 	}
 
+	/**
+	 * Deletes.
+	 *
+	 * @param postEntity the entity
+	 */
 	@Transactional
 	public void deletePost(final PostEntity postEntity)
 	{
+		LOGGER.info("Deleted post with ID " + postEntity.getPostID());
 		postDao.deletePost(postEntity);
 	}
 
@@ -75,6 +84,7 @@ public class PostServiceImpl implements PostService
 	@Transactional(readOnly = true)
 	public List<PostEntity> getAllThePosts(final Long wallOwnerProfileID)
 	{
+		LOGGER.info("Got list of posts for profileID " + wallOwnerProfileID);
 		return postDao.getAllThePosts(wallOwnerProfileID);
 	}
 
@@ -88,6 +98,7 @@ public class PostServiceImpl implements PostService
 	@Transactional(readOnly = true)
 	public PostEntity getById(final Long postId)
 	{
+		LOGGER.info("Got posts with ID " + postId);
 		return postDao.getById(postId);
 	}
 }

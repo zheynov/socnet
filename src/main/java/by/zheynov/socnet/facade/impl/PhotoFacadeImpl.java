@@ -31,6 +31,7 @@ public class PhotoFacadeImpl implements PhotoFacade
 	 * Saves.
 	 *
 	 * @param photoDTO the dto
+	 * @param photo    the photo
 	 */
 	public void createPhoto(final PhotoDTO photoDTO, final MultipartFile photo)
 	{

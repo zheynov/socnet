@@ -38,7 +38,7 @@
 
                     <div class="tab-pane" id="friends"></div>
 
-                    <jsp:include page="additional/contactabout.jsp"/>
+                    <jsp:include page="../additional/contactabout.jsp"/>
 
                     <div class="tab-pane" id="messages"></div>
 
@@ -46,19 +46,29 @@
 
                     <div class="tab-pane active" id="profile" style="margin-left: 250px">
 
-                            <h2><spring:message code="welcome.page.text.profile"/></h2>
+                        <h2><spring:message code="welcome.page.text.profile"/></h2>
 
-                            <p>
-                                <b> <spring:message code="profile.page.text.firstname"/>: </b> ${profileDTO.firstname} <br/>
-                                <b> <spring:message code="profile.page.text.lastname"/>:</b> ${profileDTO.lastname} <br/>
-                                <b> <spring:message code="profile.page.text.email"/>:</b> ${profileDTO.email} <br/>
-                                <b> <spring:message code="profile.page.text.gender"/>:</b> ${profileDTO.sex} <br/>
-                                <b> <spring:message code="profile.page.text.dateofbirth"/>:</b> ${profileDTO.birthDate} <br/>
-                                <b> <spring:message code="profile.page.text.age"/>: </b> ${profileDTO.age} <br/>
-                                <b> <spring:message code="profile.page.text.city"/>: </b> ${profileDTO.city} <br/>
-                                <b> <spring:message code="profile.page.text.phone"/>:</b> ${profileDTO.phoneNumber} <br/>
+                        <p>
+                            <b> <spring:message code="profile.page.text.firstname"/>: </b> ${profileDTO.firstname} <br/>
+                            <b> <spring:message code="profile.page.text.lastname"/>:</b> ${profileDTO.lastname} <br/>
+                            <b> <spring:message code="profile.page.text.email"/>:</b> ${profileDTO.email} <br/>
+                            <b> <spring:message code="profile.page.text.gender"/>:</b> ${profileDTO.sex} <br/>
+                            <b> <spring:message code="profile.page.text.dateofbirth"/>:</b> ${profileDTO.birthDate} <br/>
+                            <b> <spring:message code="profile.page.text.age"/>: </b> ${profileDTO.age} <br/>
+                            <b> <spring:message code="profile.page.text.city"/>: </b> ${profileDTO.city} <br/>
+                            <b> <spring:message code="profile.page.text.phone"/>:</b> ${profileDTO.phoneNumber} <br/>
 
-                            <p><a href="/profileedit"><spring:message code="profile.page.text.edit"/>:</a>
+                        <p><a href="/profileedit"><spring:message code="profile.page.text.edit"/></a>
+                        <p><a href="/passwordchange"><spring:message
+                                code="admin.page.text.changepassword"/></a>
+
+                        <c:if test="${passwordchanged != null}">
+                        <div class="alert alert-success" role="alert">
+                            <div class="msg" align="center">
+                                <b> <spring:message code="profile.page.text.password.changed"/> </b>
+                            </div>
+                        </div>
+                        </c:if>
 
                     </div>
 

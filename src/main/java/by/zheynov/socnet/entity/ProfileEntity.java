@@ -381,7 +381,7 @@ public class ProfileEntity implements Serializable
 	 *
 	 * @param photos New value of photos.
 	 */
-	public void setPhotos(Set<PhotoEntity> photos)
+	public void setPhotos(final Set<PhotoEntity> photos)
 	{
 		this.photos = photos;
 	}

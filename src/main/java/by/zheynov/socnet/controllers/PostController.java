@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import by.zheynov.socnet.dto.PhotoDTO;
 import by.zheynov.socnet.dto.PostDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.dto.UserDTO;
-import by.zheynov.socnet.facade.PhotoFacade;
 import by.zheynov.socnet.facade.PostFacade;
 import by.zheynov.socnet.facade.ProfileFacade;
 import by.zheynov.socnet.facade.UserFacade;
@@ -50,6 +48,8 @@ public class PostController
 	/**
 	 * Redirects user to welcomePage URL.
 	 *
+	 * @param model the model
+	 *
 	 * @return the URL
 	 */
 	@RequestMapping(value = "/welcomePage", method = RequestMethod.GET)
@@ -68,7 +68,9 @@ public class PostController
 	}
 
 	/**
-	 * Shows a list of users for post
+	 * Shows a list of users for post.
+	 *
+	 * @param model the model
 	 *
 	 * @return the URL
 	 */
@@ -80,7 +82,10 @@ public class PostController
 	}
 
 	/**
-	 * Sends a post for chosen user
+	 * Sends a post for chosen user.
+	 *
+	 * @param model     the model
+	 * @param profileID the id
 	 *
 	 * @return the URL
 	 */
@@ -101,6 +106,9 @@ public class PostController
 	/**
 	 * makes a post.
 	 *
+	 * @param postDTO the dto
+	 * @param file    the file
+	 *
 	 * @return the URL
 	 */
 	@RequestMapping(value = "/posts/sendapost", method = RequestMethod.POST)
@@ -112,17 +120,20 @@ public class PostController
 
 		postFacade.createPost(postDTO, file);
 
-
 		return "redirect:/welcomePage";
 	}
 
 	/**
 	 * makes a post to myself.
 	 *
+	 * @param file    the file
+	 * @param postDTO the dto
+	 *
 	 * @return the URL
 	 */
 	@RequestMapping(value = "/posts/sendaposttomyself", method = RequestMethod.POST)
-	public String makePostToMyself(@ModelAttribute("postDTO") final PostDTO postDTO, @RequestParam("photo") final MultipartFile file)
+	public String makePostToMyself(@ModelAttribute("postDTO") final PostDTO postDTO,
+	                               @RequestParam("photo") final MultipartFile file)
 	{
 		postDTO.setSenderProfileDTO(senderProfileDTO);
 		postDTO.setWallOwnerProfileDTO(senderProfileDTO);
@@ -133,6 +144,8 @@ public class PostController
 
 	/**
 	 * makes a post.
+	 *
+	 * @param postID the id
 	 *
 	 * @return the URL
 	 */

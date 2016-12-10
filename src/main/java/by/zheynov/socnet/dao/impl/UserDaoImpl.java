@@ -42,6 +42,8 @@ public class UserDaoImpl extends AbstractBaseDAO implements UserDao
 	 * Updates the user in database.
 	 *
 	 * @param user the entity
+	 *
+	 * @return the entity
 	 */
 	public UserEntity updateUser(final UserEntity user)
 	{

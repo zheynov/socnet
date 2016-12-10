@@ -23,7 +23,7 @@ public class MessageDTO implements Serializable
 	 *
 	 * @param messageDate New value of messageDate.
 	 */
-	public void setMessageDate(Date messageDate)
+	public void setMessageDate(final Date messageDate)
 	{
 		this.messageDate = messageDate;
 	}
@@ -43,7 +43,7 @@ public class MessageDTO implements Serializable
 	 *
 	 * @param text New value of text.
 	 */
-	public void setText(String text)
+	public void setText(final String text)
 	{
 		this.text = text;
 	}
@@ -53,7 +53,7 @@ public class MessageDTO implements Serializable
 	 *
 	 * @param id New value of id.
 	 */
-	public void setId(Long id)
+	public void setId(final Long id)
 	{
 		this.id = id;
 	}
@@ -103,7 +103,7 @@ public class MessageDTO implements Serializable
 	 *
 	 * @param senderProfileDTO New value of senderProfileDTO.
 	 */
-	public void setSenderProfileDTO(ProfileDTO senderProfileDTO)
+	public void setSenderProfileDTO(final ProfileDTO senderProfileDTO)
 	{
 		this.senderProfileDTO = senderProfileDTO;
 	}
@@ -113,7 +113,7 @@ public class MessageDTO implements Serializable
 	 *
 	 * @param destinationProfileDTO New value of destinationProfileDTO.
 	 */
-	public void setDestinationProfileDTO(ProfileDTO destinationProfileDTO)
+	public void setDestinationProfileDTO(final ProfileDTO destinationProfileDTO)
 	{
 		this.destinationProfileDTO = destinationProfileDTO;
 	}

@@ -191,7 +191,7 @@ public class PostDTO
 	 *
 	 * @param photo New value of photo.
 	 */
-	public void setPhoto(MultipartFile photo)
+	public void setPhoto(final MultipartFile photo)
 	{
 		this.photo = photo;
 	}
@@ -201,7 +201,7 @@ public class PostDTO
 	 *
 	 * @param photoFileName New value of photoFileName.
 	 */
-	public void setPhotoFileName(String photoFileName)
+	public void setPhotoFileName(final String photoFileName)
 	{
 		this.photoFileName = photoFileName;
 	}

@@ -14,10 +14,6 @@ import javax.persistence.Table;
 
 import java.io.Serializable;
 
-import java.util.List;
-
-import org.hibernate.annotations.Cascade;
-
 /**
  * UserEntity class.
  *

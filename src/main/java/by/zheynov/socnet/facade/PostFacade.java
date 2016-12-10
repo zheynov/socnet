@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import by.zheynov.socnet.dto.PostDTO;
-import by.zheynov.socnet.entity.PostEntity;
 
 /**
  * PostFacade interface.

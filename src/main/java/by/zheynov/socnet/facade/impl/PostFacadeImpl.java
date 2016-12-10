@@ -24,10 +24,9 @@ import by.zheynov.socnet.service.PostService;
 public class PostFacadeImpl implements PostFacade
 {
 	@Autowired
-	PostService postService;
-
+	private PostService       postService;
 	@Autowired
-	ConversionService conversionService;
+	private ConversionService conversionService;
 
 	/**
 	 * Saves.

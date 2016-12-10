@@ -5,10 +5,8 @@ import org.springframework.stereotype.Component;
 
 import by.zheynov.socnet.dto.PhotoDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
-import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.entity.PhotoEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
-import by.zheynov.socnet.entity.UserEntity;
 
 /**
  * PhotoDTOConverter class.
@@ -19,6 +17,14 @@ import by.zheynov.socnet.entity.UserEntity;
 @Component
 public class PhotoDTOConverter implements Converter<PhotoEntity, PhotoDTO>
 {
+
+	/**
+	 * Converts from entity to dto.
+	 *
+	 * @param photoEntity the entity
+	 *
+	 * @return the entity
+	 */
 	@Override
 	public PhotoDTO convert(final PhotoEntity photoEntity)
 	{

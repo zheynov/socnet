@@ -1,12 +1,7 @@
 package by.zheynov.socnet.service.impl;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
-
-import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +34,7 @@ public class PhotoServiceImpl implements PhotoService
 	 * Saves.
 	 *
 	 * @param photoEntity the entity
-	 * @param photo       the MultipartFile
+	 * @param photo       the photo
 	 *
 	 * @return the entity
 	 */
@@ -47,8 +42,8 @@ public class PhotoServiceImpl implements PhotoService
 	public PhotoEntity createPhoto(final PhotoEntity photoEntity, final MultipartFile photo)
 	{
 		UUID namePicture = photoCreationOnHDD.createPhotoOnHDD(photo);
-
 		photoEntity.setPhotoFileName("photo/" + namePicture + ".jpg");
+		LOGGER.info("Saved photo for profileID " + photoEntity.getProfileEntity());
 
 		return photoDao.createPhoto(photoEntity);
 	}
@@ -61,6 +56,7 @@ public class PhotoServiceImpl implements PhotoService
 	@Transactional
 	public void updatePhoto(final PhotoEntity photoEntity)
 	{
+		LOGGER.info("Updated photo with ID " + photoEntity.getId());
 		photoDao.updatePhoto(photoEntity);
 	}
 
@@ -72,6 +68,7 @@ public class PhotoServiceImpl implements PhotoService
 	@Transactional
 	public void deletePhoto(final PhotoEntity photoEntity)
 	{
+		LOGGER.info("Deleted photo with ID " + photoEntity.getId());
 		photoDao.deletePhoto(photoEntity);
 	}
 
@@ -85,6 +82,7 @@ public class PhotoServiceImpl implements PhotoService
 	@Transactional(readOnly = true)
 	public List<PhotoEntity> getAllThePhotos(final Long profileID)
 	{
+		LOGGER.info("Got list of photos for profileID " + profileID);
 		return photoDao.getAllThePhotos(profileID);
 	}
 
@@ -98,6 +96,7 @@ public class PhotoServiceImpl implements PhotoService
 	@Transactional(readOnly = true)
 	public PhotoEntity getById(final Long photoId)
 	{
+		LOGGER.info("Got photo with ID " + photoId);
 		return photoDao.getById(photoId);
 	}
 

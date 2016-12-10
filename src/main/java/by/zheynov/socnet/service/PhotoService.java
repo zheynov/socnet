@@ -18,6 +18,7 @@ public interface PhotoService
 	 * Saves.
 	 *
 	 * @param photoEntity the entity
+	 * @param photo       the photo
 	 *
 	 * @return the entity
 	 */

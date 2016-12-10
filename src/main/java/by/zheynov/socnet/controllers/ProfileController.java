@@ -6,8 +6,11 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,11 +37,13 @@ public class ProfileController
 {
 	@Autowired
 	@Qualifier("profileValidator")
-	private Validator     profileValidator;
+	private Validator       profileValidator;
 	@Autowired
-	private ProfileFacade profileFacade;
+	private ProfileFacade   profileFacade;
 	@Autowired
-	private UserFacade    userFacade;
+	private UserFacade      userFacade;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	/**
 	 * Redirects user to profile page.
@@ -51,7 +56,7 @@ public class ProfileController
 	public String beforeVisitingProfilePage(final Model model)
 	{
 		addProfileDTOToModel(model);
-		return "/profilepage";
+		return "/profile/profilepage";
 	}
 
 	/**
@@ -66,7 +71,7 @@ public class ProfileController
 	{
 		addProfileDTOToModel(model);
 
-		return "/profileeditpage";
+		return "/profile/profileeditpage";
 	}
 
 	/**
@@ -86,14 +91,14 @@ public class ProfileController
 
 		if (result.hasErrors())
 		{
-			return "/profileeditpage";
+			return "/profile/profileeditpage";
 		}
 
 		profileFacade.updateProfile(profileDTO);
 
 		model.addAttribute("profileDTO", profileDTO);
 
-		return "/profilepage";
+		return "/profile/profilepage";
 	}
 
 	/**
@@ -119,6 +124,57 @@ public class ProfileController
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+
+	/**
+	 * Redirects user to password change form.
+	 *
+	 * @param model the model
+	 *
+	 * @return userinfo URL
+	 */
+	@RequestMapping(value = "/passwordchange", method = RequestMethod.GET)
+	public String beforePasswordChange(final Model model)
+	{
+		model.addAttribute("userDTO", new UserDTO());
+
+		return "/profile/passwordchange";
+	}
+
+	/**
+	 * Changes password.
+	 *
+	 * @param userDTO the dto
+	 * @param model   the model
+	 *
+	 * @return userinfo URL
+	 */
+	@RequestMapping(value = "/passwordchange", method = RequestMethod.POST)
+	public String passwordChange(final Model model, @ModelAttribute("userDTO") final UserDTO userDTO)
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetail = (UserDetails) auth.getPrincipal();
+
+		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(userDetail.getUsername());
+
+		if (userDTO.getNewPassword().equals(userDTO.getConfirmPassword()))
+		{
+			currentLoggedUserDTO.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
+			userFacade.updateUser(currentLoggedUserDTO);
+			String passwordchanged = "passwordchanged";
+			model.addAttribute("passwordchanged", passwordchanged);
+			model.addAttribute("profileDTO", currentLoggedUserDTO.getProfileDTO());
+			return "/profile/profilepage";
+		}
+
+		else
+		{
+			String passwordsDoNotMatch = "passwordsDoNotMatch";
+			model.addAttribute("passwordsDoNotMatch", passwordsDoNotMatch);
+			model.addAttribute("userDTO", new UserDTO());
+
+			return "/profile/passwordchange";
+		}
 	}
 
 }

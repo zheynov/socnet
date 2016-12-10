@@ -20,7 +20,6 @@ import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.MessageFacade;
 import by.zheynov.socnet.facade.ProfileFacade;
-import by.zheynov.socnet.facade.UserFacade;
 import by.zheynov.socnet.utils.RequestSplitterForUserAndProfile;
 
 /**
@@ -58,13 +57,13 @@ public class MessageController
 	}
 
 	/*
-	 * Prepares data for sending a message.
-	 *
-	 * @param model   the model
-	 * @param request the currentLoggedUserDTO+derstinationProfileDTO
-	 *
-	 * @return the URL
-	 */
+	* Prepares data for sending a message.
+	*
+	* @param model   the model
+	* @param request the currentLoggedUserDTO+derstinationProfileDTO
+	*
+	* @return the URL
+	*/
 	@RequestMapping(value = "/beforesendmessage/{request}", method = RequestMethod.GET)
 	public String beforeSendingMessage(final Model model, @PathVariable(value = "request") final String request)
 	{
@@ -94,11 +93,13 @@ public class MessageController
 	 *
 	 * @param model      the model
 	 * @param messageDTO the dto
+	 * @param result     the result
 	 *
 	 * @return the URL
 	 */
 	@RequestMapping(value = "/sendmessage", method = RequestMethod.POST)
-	public String sendMessage(final Model model, @ModelAttribute("MessageDTO") MessageDTO messageDTO, BindingResult result)
+	public String sendMessage(final Model model, @ModelAttribute("MessageDTO") final MessageDTO messageDTO,
+	                          final BindingResult result)
 	{
 		messageDTO.setSenderProfileDTO(tempSenderProfileDTO);
 		messageDTO.setDestinationProfileDTO(tempDestinationProfileDTO);

@@ -204,8 +204,6 @@ public class ProfileDTO implements Serializable
 		return age;
 	}
 
-
-
 	/**
 	 * Gets userDTO.
 	 *
@@ -225,7 +223,6 @@ public class ProfileDTO implements Serializable
 	{
 		this.userDTO = userDTO;
 	}
-
 
 	/**
 	 * Compares this ProfileDTO object to the specified Object o.
@@ -280,8 +277,7 @@ public class ProfileDTO implements Serializable
 		{
 			return false;
 		}
-		return getPhoneNumber() != null ? getPhoneNumber().equals(that.getPhoneNumber()): that.getPhoneNumber() == null;
-
+		return getPhoneNumber() != null ? getPhoneNumber().equals(that.getPhoneNumber()) : that.getPhoneNumber() == null;
 	}
 
 	/**

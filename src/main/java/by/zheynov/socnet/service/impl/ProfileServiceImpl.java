@@ -2,7 +2,6 @@ package by.zheynov.socnet.service.impl;
 
 import by.zheynov.socnet.dao.FriendDao;
 import by.zheynov.socnet.dao.ProfileDao;
-import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.FriendRequestApprovalStatus;
 import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.service.ProfileService;

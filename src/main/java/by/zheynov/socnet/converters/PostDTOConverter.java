@@ -3,10 +3,8 @@ package by.zheynov.socnet.converters;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import by.zheynov.socnet.dto.PhotoDTO;
 import by.zheynov.socnet.dto.PostDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
-import by.zheynov.socnet.entity.PhotoEntity;
 import by.zheynov.socnet.entity.PostEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 
@@ -19,6 +17,13 @@ import by.zheynov.socnet.entity.ProfileEntity;
 @Component
 public class PostDTOConverter implements Converter<PostEntity, PostDTO>
 {
+	/**
+	 * * Converts from entity to dto.
+	 *
+	 * @param postEntity the entity
+	 *
+	 * @return the dto
+	 */
 	@Override
 	public PostDTO convert(final PostEntity postEntity)
 	{

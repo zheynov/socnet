@@ -16,6 +16,13 @@ import by.zheynov.socnet.entity.ProfileEntity;
 @Component
 public class MessageDTOReverseConverter implements Converter<MessageDTO, MessageEntity>
 {
+	/**
+	 * Converts from dto to entity.
+	 *
+	 * @param messageDTO the dto
+	 *
+	 * @return the dto
+	 */
 	public MessageEntity convert(final MessageDTO messageDTO)
 	{
 		if (messageDTO == null)
@@ -51,7 +58,6 @@ public class MessageDTOReverseConverter implements Converter<MessageDTO, Message
 		destinationProfileEntity.setCity(messageDTO.getDestinationProfileDTO().getCity());
 		destinationProfileEntity.setPhoneNumber(messageDTO.getDestinationProfileDTO().getPhoneNumber());
 		messageEntity.setProfileDestinationEntity(destinationProfileEntity);
-
 
 		return messageEntity;
 	}

@@ -2,7 +2,6 @@ package by.zheynov.socnet.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class FriendServiceImpl implements FriendService
 	public void addFriend(final ProfileEntity currentProfile, final ProfileEntity newFriend)
 	{
 		friendDao.addFriend(currentProfile, newFriend);
-		LOGGER.info("Added new friend request from profileID " + newFriend.getId() +" for profileID " + currentProfile.getId());
+		LOGGER.info("Added new friend request from profileID " + newFriend.getId() + " for profileID " + currentProfile.getId());
 	}
 
 	/**
@@ -52,10 +51,12 @@ public class FriendServiceImpl implements FriendService
 	public void deleteFriend(final Long loggedUserProfileId, final Long frendProfileId)
 	{
 		friendDao.deleteFriend(loggedUserProfileId, frendProfileId);
+		LOGGER.info("Deleted friend with profileID " + frendProfileId + " from profileID " + loggedUserProfileId);
+
 	}
 
 	/**
-	 * Retrieves a list of Pending friend request.
+	 * Retrieves a list of Pending friend requests.
 	 *
 	 * @param currentLoggedUserProfileId the Id
 	 *
@@ -70,6 +71,7 @@ public class FriendServiceImpl implements FriendService
 						filter(elem -> elem.getStatus() == FriendRequestApprovalStatus.PENDING_REQUEST).
 						         forEach(result::add);
 
+		LOGGER.info("Got list of pending friend requests for profileID " + currentLoggedUserProfileId);
 		return result;
 	}
 
@@ -81,6 +83,7 @@ public class FriendServiceImpl implements FriendService
 	@Transactional(readOnly = true)
 	public List<FriendEntity> getAllThePendingRequests()
 	{
+		LOGGER.info("Got all pending friend requests for all users");
 		return friendDao.getAllThePendingRequests();
 	}
 
@@ -94,6 +97,8 @@ public class FriendServiceImpl implements FriendService
 	public void approveFriendRequest(final Long loggedUserProfileId, final Long frendProfileId)
 	{
 		friendDao.approveFriendRequest(loggedUserProfileId, frendProfileId);
+		LOGGER.info("Approved friend request for profileID " + frendProfileId + " from user with profileID " + loggedUserProfileId);
+
 	}
 
 	/**
@@ -106,6 +111,8 @@ public class FriendServiceImpl implements FriendService
 	public void rejectFriendRequest(final Long loggedUserProfileId, final Long frendProfileId)
 	{
 		friendDao.rejectFriendRequest(loggedUserProfileId, frendProfileId);
+		LOGGER.info("Rejected friend request for profileID " + frendProfileId + " from user with profileID " + loggedUserProfileId);
+
 	}
 
 }

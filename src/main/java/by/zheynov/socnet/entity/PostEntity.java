@@ -12,10 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.springframework.security.access.method.P;
 
 /**
  * PostEntity class.
@@ -112,8 +109,6 @@ public class PostEntity implements Serializable
 		this.postDate = postDate;
 	}
 
-
-
 	/**
 	 * Sets new profileSender.
 	 *
@@ -159,7 +154,7 @@ public class PostEntity implements Serializable
 	 *
 	 * @param photoFileName New value of photoFileName.
 	 */
-	public void setPhotoFileName(String photoFileName)
+	public void setPhotoFileName(final String photoFileName)
 	{
 		this.photoFileName = photoFileName;
 	}

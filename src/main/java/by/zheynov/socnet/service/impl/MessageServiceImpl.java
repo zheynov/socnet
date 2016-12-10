@@ -35,7 +35,10 @@ public class MessageServiceImpl implements MessageService
 	@Transactional
 	public MessageEntity createMessage(final MessageEntity messageEntity)
 	{
+		LOGGER.info("Created message from profileID " + messageEntity.getProfileSenderEntity().getId() + " to prfileID " +
+						            messageEntity.getProfileDestinationEntity().getId());
 		return messageDao.createMessage(messageEntity);
+
 	}
 
 	/**
@@ -48,6 +51,8 @@ public class MessageServiceImpl implements MessageService
 	@Transactional(readOnly = true)
 	public MessageEntity getById(final Long messageId)
 	{
+		LOGGER.info("Got message with ID " + messageId);
+
 		return messageDao.getById(messageId);
 	}
 
@@ -62,8 +67,8 @@ public class MessageServiceImpl implements MessageService
 	@Transactional(readOnly = true)
 	public List<MessageEntity> getAllTheMessages(final Long senderID, final Long destinationID)
 	{
+		LOGGER.info("Got list of messages from profileID  " + senderID + " to profileID " + destinationID);
 		return messageDao.getAllTheMessages(senderID, destinationID);
 	}
-
 
 }

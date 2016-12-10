@@ -33,7 +33,8 @@ public abstract class AbstractBaseDAO
 	/**
 	 * Gets the object from data base by its id.
 	 *
-	 * @param id the id
+	 * @param id    the id
+	 * @param clazz the class
 	 *
 	 * @return the object.
 	 */

@@ -16,6 +16,7 @@ public class UserDTO implements Serializable
 	private String     email;
 	private String     username;
 	private String     password;
+	private String     newPassword;
 	private boolean    enabled;
 	private String     confirmPassword;
 	private ProfileDTO profileDTO;
@@ -182,12 +183,25 @@ public class UserDTO implements Serializable
 	}
 
 	/**
-	 * Compares this UserDTO object to the specified Object o.
+	 * Sets new newPassword.
 	 *
-	 * @param o
-	 *
-	 * @return true if objects are the same, otherwise false
+	 * @param newPassword New value of newPassword.
 	 */
+	public void setNewPassword(final String newPassword)
+	{
+		this.newPassword = newPassword;
+	}
+
+	/**
+	 * Gets newPassword.
+	 *
+	 * @return Value of newPassword.
+	 */
+	public String getNewPassword()
+	{
+		return newPassword;
+	}
+
 	@Override
 	public boolean equals(final Object o)
 	{
@@ -202,51 +216,55 @@ public class UserDTO implements Serializable
 
 		UserDTO userDTO = (UserDTO) o;
 
-		if (enabled != userDTO.enabled)
+		if (isEnabled() != userDTO.isEnabled())
 		{
 			return false;
 		}
-		if (!id.equals(userDTO.id))
+		if (!getId().equals(userDTO.getId()))
 		{
 			return false;
 		}
-		if (!email.equals(userDTO.email))
+		if (!getEmail().equals(userDTO.getEmail()))
 		{
 			return false;
 		}
-		if (!username.equals(userDTO.username))
+		if (!getUsername().equals(userDTO.getUsername()))
 		{
 			return false;
 		}
-		if (!password.equals(userDTO.password))
+		if (!getPassword().equals(userDTO.getPassword()))
 		{
 			return false;
 		}
-		if (confirmPassword != null ? !confirmPassword.equals(userDTO.confirmPassword) : userDTO.confirmPassword != null)
+		if (getNewPassword() != null ? !getNewPassword().equals(userDTO.getNewPassword()) : userDTO.getNewPassword() != null)
 		{
 			return false;
 		}
-
-		return roleDTO.equals(userDTO.roleDTO);
+		if (getConfirmPassword() != null ? !getConfirmPassword().equals(userDTO.getConfirmPassword()) :
+						userDTO.getConfirmPassword() != null)
+		{
+			return false;
+		}
+		if (!getProfileDTO().equals(userDTO.getProfileDTO()))
+		{
+			return false;
+		}
+		return getRoleDTO().equals(userDTO.getRoleDTO());
 
 	}
 
-	/**
-	 * Calculates a hashcode for this object.
-	 *
-	 * @return the hash
-	 */
 	@Override
 	public int hashCode()
 	{
-		int result = id.hashCode();
-		result = HASH_NUMBER * result + email.hashCode();
-		result = HASH_NUMBER * result + username.hashCode();
-		result = HASH_NUMBER * result + password.hashCode();
-		result = HASH_NUMBER * result + (enabled ? 1 : 0);
-		result = HASH_NUMBER * result + (confirmPassword != null ? confirmPassword.hashCode() : 0);
-		result = HASH_NUMBER * result + profileDTO.hashCode();
-		result = HASH_NUMBER * result + roleDTO.hashCode();
+		int result = getId().hashCode();
+		result = HASH_NUMBER * result + getEmail().hashCode();
+		result = HASH_NUMBER * result + getUsername().hashCode();
+		result = HASH_NUMBER * result + getPassword().hashCode();
+		result = HASH_NUMBER * result + (getNewPassword() != null ? getNewPassword().hashCode() : 0);
+		result = HASH_NUMBER * result + (isEnabled() ? 1 : 0);
+		result = HASH_NUMBER * result + (getConfirmPassword() != null ? getConfirmPassword().hashCode() : 0);
+		result = HASH_NUMBER * result + getProfileDTO().hashCode();
+		result = HASH_NUMBER * result + getRoleDTO().hashCode();
 		return result;
 	}
 }

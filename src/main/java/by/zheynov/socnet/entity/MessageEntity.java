@@ -111,7 +111,7 @@ public class MessageEntity implements Serializable
 	 *
 	 * @param profileDestinationEntity New value of profileDestinationEntity.
 	 */
-	public void setProfileDestinationEntity(ProfileEntity profileDestinationEntity)
+	public void setProfileDestinationEntity(final ProfileEntity profileDestinationEntity)
 	{
 		this.profileDestinationEntity = profileDestinationEntity;
 	}
@@ -121,7 +121,7 @@ public class MessageEntity implements Serializable
 	 *
 	 * @param profileSenderEntity New value of profileSenderEntity.
 	 */
-	public void setProfileSenderEntity(ProfileEntity profileSenderEntity)
+	public void setProfileSenderEntity(final ProfileEntity profileSenderEntity)
 	{
 		this.profileSenderEntity = profileSenderEntity;
 	}

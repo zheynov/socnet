@@ -1,4 +1,4 @@
-package by.zheynov.socnet;
+package by.zheynov.socnet.dao;
 
 import java.util.List;
 

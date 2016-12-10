@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class PhotoCreationOnHDD
 {
 	/**
-	 * Creastes photo on HDD
+	 * Creastes photo on HDD.
 	 *
 	 * @param photo the MultipartFile
 	 *

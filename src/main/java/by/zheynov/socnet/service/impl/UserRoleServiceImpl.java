@@ -1,8 +1,5 @@
 package by.zheynov.socnet.service.impl;
 
-import java.util.Locale;
-
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Service;

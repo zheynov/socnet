@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 public class ProfileFacadeImpl implements ProfileFacade
 {
 	@Autowired
-	private ProfileService profileService;
+	private ProfileService    profileService;
 	@Autowired
 	private ConversionService conversionService;
 
@@ -116,7 +116,7 @@ public class ProfileFacadeImpl implements ProfileFacade
 	{
 		Set<ProfileDTO> allTheProfilesDTO = new HashSet<>();
 
-		profileService.getAllTheProfilesOfNonPendingAndNotFriends(currentLoggedUserProfileId,currentLoggedUsername).
+		profileService.getAllTheProfilesOfNonPendingAndNotFriends(currentLoggedUserProfileId, currentLoggedUsername).
 						forEach(element -> allTheProfilesDTO.add(conversionService.convert(element, ProfileDTO.class)));
 
 		return allTheProfilesDTO;

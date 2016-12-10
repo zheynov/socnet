@@ -79,5 +79,7 @@ public class AdminController
 		model.addAttribute("allTheProfiles", profileFacade.getAllTheProfiles());
 		model.addAttribute("userdeleted", userDTO);
 
-		return "/secure/adminpage";	}
+		return "/secure/adminpage";
+	}
+
 }

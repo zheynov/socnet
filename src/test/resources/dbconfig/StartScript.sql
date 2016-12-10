@@ -71,18 +71,15 @@ CREATE TABLE photo (
 
 -- Table for user's posts
 CREATE TABLE post (
-  id     BIGINT NOT NULL AUTO_INCREMENT,
+  id                    BIGINT NOT NULL AUTO_INCREMENT,
   text                  VARCHAR(1024),
-  date                  DATETIME               NOT NULL,
-  photoID               BIGINT             NOT NULL,
+  date                  DATETIME           NOT NULL,
+  photo_file_name       VARCHAR(64) UNIQUE,
   profile_sender_id     BIGINT             NOT NULL,
   wall_owner_profile_id BIGINT             NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (profile_sender_id) REFERENCES profile (id),
-  FOREIGN KEY (wall_owner_profile_id) REFERENCES profile (id),
-  FOREIGN KEY (photoID) REFERENCES photo (id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
+  FOREIGN KEY (wall_owner_profile_id) REFERENCES profile (id)
 );
 
 -- Table to store the tokens for PersistentTokenRepository ("Remember me" feature)

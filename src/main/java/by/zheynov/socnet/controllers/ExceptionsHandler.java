@@ -9,13 +9,23 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.controllers
  */
-/*@EnableWebMvc
-@ControllerAdvice*/
 public class ExceptionsHandler
 {
+	/**
+	 * Intercept exceptions.
+	 *
+	 * @param ex    the exception
+	 * @param model the model
+	 *
+	 * @return the URL
+	 */
 	@ExceptionHandler(Exception.class)
-	public String handleIOException(Exception ex, Model model) {
+	public String handleIOException(final Exception ex, final Model model)
+	{
 		model.addAttribute("ex", ex);
 		return "/error/exceptionpage";
 	}
+
+	/*@EnableWebMvc
+@ControllerAdvice*/
 }

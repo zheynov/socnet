@@ -60,8 +60,9 @@ public class PhotoController
 	/**
 	 * Uploads a photo.
 	 *
-	 * @param photoDTO the dto
-	 * @param file     the MultipartFile file
+	 * @param photoDTO             the dto
+	 * @param file                 the MultipartFile file
+	 * @param currenLoggedUserName the MultipartFile username
 	 *
 	 * @return photos url
 	 */

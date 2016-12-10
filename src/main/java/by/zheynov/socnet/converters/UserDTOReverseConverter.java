@@ -1,7 +1,9 @@
 package by.zheynov.socnet.converters;
 
+import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.dto.UserDTO;
 
+import by.zheynov.socnet.entity.ProfileEntity;
 import by.zheynov.socnet.entity.RoleEntity;
 import by.zheynov.socnet.entity.UserEntity;
 
@@ -35,6 +37,25 @@ public class UserDTOReverseConverter implements Converter<UserDTO, UserEntity>
 		userEntity.setUsername(userDTO.getUsername());
 		userEntity.setPassword(userDTO.getPassword());
 		userEntity.setEnabled(userDTO.isEnabled());
+
+		ProfileEntity profileEntity = new ProfileEntity();
+		ProfileDTO profileDTO = userDTO.getProfileDTO();
+
+		if (profileDTO != null)
+		{
+			profileEntity.setId(profileDTO.getProfileID());
+
+			profileEntity.setFirstname(profileDTO.getFirstname());
+			profileEntity.setLastname(profileDTO.getLastname());
+			profileEntity.setEmail(profileDTO.getEmail());
+			profileEntity.setAge(profileDTO.getAge());
+			profileEntity.setBirthDate(profileDTO.getBirthDate());
+			profileEntity.setSex(profileDTO.getSex());
+			profileEntity.setCity(profileDTO.getCity());
+			profileEntity.setPhoneNumber(profileDTO.getPhoneNumber());
+
+			userEntity.setProfileEntity(profileEntity);
+		}
 
 		if (userDTO.getRoleDTO() != null)
 		{

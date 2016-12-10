@@ -17,7 +17,7 @@ import by.zheynov.socnet.facade.UserFacade;
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.service
  */
-@Component()
+@Component
 public class RequestSplitterForUserAndProfile
 {
 	@Autowired
