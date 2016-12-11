@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <title>Admin dashboard</title>
+    <title><spring:message code="profile.page.text.edition"/></title>
     <action:actions/>
 </head>
 <body>
@@ -52,10 +52,8 @@
                     <div class="tab-pane active" id="profile" style="margin-left: 250px; width: 300px">
 
                         <c:if test="${passwordsDoNotMatch != null}">
-                            <div class="alert alert-danger" role="alert">
-                                <div class="msg">
-                                    <b> <spring:message code="registration.page.text.validation.password.confirmation"/> </b>
-                                </div>
+                            <div align="center" style="color: rgba(131, 34, 40, 0.73)">
+                                <b> <spring:message code="registration.page.text.validation.password.confirmation"/> </b>
                             </div>
                         </c:if>
 
@@ -96,24 +94,29 @@
 
 
                                     <div class="form-group ">
-                                        <button type="submit"
+                                        <button type="submit" style="background-color: rgba(131, 34, 40, 0.73); color: white"
                                                 class="btn btn-default btn-lg btn-block login-button"><spring:message
                                                 code="admin.page.text.changepassword"/></button>
                                     </div>
-
                                 </div>
 
                             </form:form>
 
+
+                            <a href="/beforeprofilepage">
+                                <button class="btn btn-default btn-lg btn-block login-button"><spring:message
+                                        code="welcome.page.text.profilback"/></button>
+                            </a>
+
+
                         </div>
-
-
-                        <div id="admin"></div>
-
-
                     </div>
+
+                    <div id="admin"></div>
                 </div>
+
             </div>
+        </div>
 
 </body>
 </html>

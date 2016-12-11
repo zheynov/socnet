@@ -102,31 +102,6 @@ public class ProfileController
 	}
 
 	/**
-	 * Adds profile to model.
-	 *
-	 * @param model the model
-	 */
-	private void addProfileDTOToModel(final Model model)
-	{
-		//Retrieves current username
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDTO userDTO = userFacade.getUserByUsername(user.getUsername());
-		model.addAttribute("profileDTO", userDTO.getProfileDTO());
-	}
-
-	/**
-	 * @param binder the binder
-	 */
-
-	@InitBinder
-	protected void initBinder(final WebDataBinder binder)
-	{
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		dateFormat.setLenient(true);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-	}
-
-	/**
 	 * Redirects user to password change form.
 	 *
 	 * @param model the model
@@ -157,7 +132,8 @@ public class ProfileController
 
 		UserDTO currentLoggedUserDTO = userFacade.getUserByUsername(userDetail.getUsername());
 
-		if (userDTO.getNewPassword().equals(userDTO.getConfirmPassword()))
+		if (userDTO.getNewPassword().equals(userDTO.getConfirmPassword()) && userDTO.getNewPassword().length() > 0 &&
+						userDTO.getConfirmPassword().length() > 0)
 		{
 			currentLoggedUserDTO.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
 			userFacade.updateUser(currentLoggedUserDTO);
@@ -175,6 +151,31 @@ public class ProfileController
 
 			return "/profile/passwordchange";
 		}
+	}
+
+	/**
+	 * Adds profile to model.
+	 *
+	 * @param model the model
+	 */
+	private void addProfileDTOToModel(final Model model)
+	{
+		//Retrieves current username
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDTO userDTO = userFacade.getUserByUsername(user.getUsername());
+		model.addAttribute("profileDTO", userDTO.getProfileDTO());
+	}
+
+	/**
+	 * @param binder the binder
+	 */
+
+	@InitBinder
+	protected void initBinder(final WebDataBinder binder)
+	{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(true);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
 }

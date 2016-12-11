@@ -6,12 +6,12 @@
         <input type="file"
                style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);
                                                -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-                                               opacity:0;background-color:transparent;color:transparent;'
+                                               opacity:0;'
                name="photo" size=" 40"
                onchange='$("#upload-file-info").html($(this).val());'>
     </a>
     <span class='label label-info' id="upload-file-info"></span>
-    <input type="submit" class="btn btn-default"
+    <input type="submit" class="btn btn-default" style="background-color:rgba(30, 132, 157, 0.75); color: white"
            value="<spring:message code="posts.page.text.send"/>">
 
 </div>

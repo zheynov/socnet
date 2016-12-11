@@ -1,67 +1,89 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
-    <link href="<c:url value="/resources/css/mainmy.css"/>" type="text/css" rel="stylesheet">
-    <link href="<c:url value="/resources/js/disablebutton.js"/>">
-    <link href="<c:url value="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="<c:url value="/resources/css/fontFamilyPassionOne.css"/>" type="text/css" rel="stylesheet">
-    <link href="<c:url value="/resources/css/fontFamilyOxygen.css"/>" type="text/css" rel="stylesheet">
-    <!-- Website Font style -->
-    <link href="<c:url value="/resources/css/font-awesome.min.css"/>" type="text/css" rel="stylesheet">
-    <jsp:include page="/WEB-INF/pages/additional/navbar.jsp"/>
+<link href="<c:url value="/resources/css/mainmy.css"/>" type="text/css" rel="stylesheet">
+<link href="<c:url value="/resources/js/disablebutton.js"/>">
+<link href="<c:url value="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="<c:url value="/resources/css/fontFamilyPassionOne.css"/>" type="text/css" rel="stylesheet">
+<link href="<c:url value="/resources/css/fontFamilyOxygen.css"/>" type="text/css" rel="stylesheet">
+<!-- Website Font style -->
+<link href="<c:url value="/resources/css/font-awesome.min.css"/>" type="text/css" rel="stylesheet">
+<jsp:include page="/WEB-INF/pages/additional/navbar.jsp"/>
 
-    <style>
-        .tabs-left > .nav-tabs {
-            border-bottom: 0;
-        }
+<%--photo gallery--%>
+<link href="<c:url value="/resources/css/bootstrap302.min.css"/>" type="text/css" rel="stylesheet">
+<link href="<c:url value="/resources/css/blueimp-gallery.min.css"/>" type="text/css" rel="stylesheet">
 
-        .tab-content > .tab-pane,
-        .pill-content > .pill-pane {
-            display: none;
-        }
+<script type="text/javascript" src="<c:url value="/resources/js/1102jquery.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/302bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.blueimp-gallery.min.js"/>"></script>
 
-        .tab-content > .active,
-        .pill-content > .active {
-            display: block;
-        }
+<script>
 
-        .tabs-left > .nav-tabs > li {
-            float: none;
-        }
+    $(document).ready(
+            function(){
+                $('input:file').change(
+                        function(){
+                            if ($(this).val()) {
+                                $('input:submit').attr('disabled',false);
+                            }
+                        }
+                );
+            });
+</script>
 
-        .tabs-left > .nav-tabs > li > a {
-            min-width: 74px;
-            margin-right: 0;
-            margin-bottom: 3px;
-        }
+<style>
+    .tabs-left > .nav-tabs {
+        border-bottom: 0;
+    }
 
-        .tabs-left > .nav-tabs {
-            float: left;
-            margin-right: 19px;
-            border-right: 1px solid #ddd;
-        }
+    .tab-content > .tab-pane,
+    .pill-content > .pill-pane {
+        display: none;
+    }
 
-        .tabs-left > .nav-tabs > li > a {
-            margin-right: -1px;
-            -webkit-border-radius: 4px 0 0 4px;
-            -moz-border-radius: 4px 0 0 4px;
-            border-radius: 4px 0 0 4px;
-        }
+    .tab-content > .active,
+    .pill-content > .active {
+        display: block;
+    }
 
-        .tabs-left > .nav-tabs > li > a:hover,
-        .tabs-left > .nav-tabs > li > a:focus {
-            border-color: #eeeeee #dddddd #eeeeee #eeeeee;
-        }
+    .tabs-left > .nav-tabs > li {
+        float: none;
+    }
 
-        .tabs-left > .nav-tabs .active > a,
-        .tabs-left > .nav-tabs .active > a:hover,
-        .tabs-left > .nav-tabs .active > a:focus {
-            border-color: #ddd transparent #ddd #ddd;
-            *border-right-color: lightblue;;
-        }
-    </style>
+    .tabs-left > .nav-tabs > li > a {
+        min-width: 74px;
+        margin-right: 0;
+        margin-bottom: 3px;
+    }
 
-    <script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    .tabs-left > .nav-tabs {
+        float: left;
+        margin-right: 19px;
+        border-right: 1px solid #ddd;
+    }
+
+    .tabs-left > .nav-tabs > li > a {
+        margin-right: -1px;
+        -webkit-border-radius: 4px 0 0 4px;
+        -moz-border-radius: 4px 0 0 4px;
+        border-radius: 4px 0 0 4px;
+    }
+
+    .tabs-left > .nav-tabs > li > a:hover,
+    .tabs-left > .nav-tabs > li > a:focus {
+        border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+    }
+
+    .tabs-left > .nav-tabs .active > a,
+    .tabs-left > .nav-tabs .active > a:hover,
+    .tabs-left > .nav-tabs .active > a:focus {
+        border-color: #ddd transparent #ddd #ddd;
+        *border-right-color: lightblue;;
+    }
+</style>
+
+<script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 

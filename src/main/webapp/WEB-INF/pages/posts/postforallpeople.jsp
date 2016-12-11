@@ -31,10 +31,11 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="wall" style="margin-left: 250px">
+                    <div class="tab-pane active" id="wall" style="margin-left: 250px; width: 500px">
 
-                        <a href="/welcomePage"><spring:message code="posts.page.text.mywall"/></a>
-                        <br/>
+                        <a href="/welcomePage" class="btn btn-default btn-lg btn-block"><spring:message
+                                code="posts.page.text.mywall"/></a> <br/>
+
                         <c:forEach items="${allTheProfiles}" var="profile">
 
                             <a href="/posts/makeapost/${profile.profileID}"> <spring:message

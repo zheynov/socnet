@@ -31,20 +31,23 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="wall" style="margin-left: 250px">
+                    <div class="tab-pane active" id="wall" style="margin-left: 250px; width: 500px">
 
-                        <div align="center" class="form-horizontal" style="width: 500px">
+                        <a href="/posts/showusers" class="btn btn-default btn-lg btn-block"><spring:message
+                                code="posts.page.text.choose.wall"/></a>
+                        <br/>
+
+                        <div align="center" class="form-horizontal" style="">
+
 
                             <form:form action="/posts/sendapost" method="post" commandName="postDTO"
                                        enctype="multipart/form-data">
 
                                 <spring:message code="messages.page.text.entertext" var="entertext"/>
-                                <form:textarea class="form-control" id="textArea" path="text" rows="6" name="text"
+                                <form:textarea class="form-control" id="textArea" path="text" rows="3" name="text"
                                                placeholder="${entertext}"/>
 
-                                <form:input path="photo" type="file" data-filename-placement="inside" name="photo"
-                                            accept="image/*"/>
-                                <input type="submit" value="<spring:message code="messages.page.text.send.sendmessage"/>">
+                                <br/><action:fileupload/>
 
                             </form:form>
 
