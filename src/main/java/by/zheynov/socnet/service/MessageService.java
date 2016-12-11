@@ -31,6 +31,13 @@ public interface MessageService
 	MessageEntity getById(Long messageId);
 
 	/**
+	 * Deletes.
+	 *
+	 * @param messageEntity the entity
+	 */
+	void deleteMessage(MessageEntity messageEntity);
+
+	/**
 	 * Retrieves a list of MessageEntity objects.
 	 *
 	 * @param senderID      the id

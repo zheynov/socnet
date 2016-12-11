@@ -22,6 +22,13 @@ public interface MessageDao
 	MessageEntity createMessage(MessageEntity messageEntity);
 
 	/**
+	 * Deletes.
+	 *
+	 * @param messageEntity the entity
+	 */
+	void deleteMessage(MessageEntity messageEntity);
+
+	/**
 	 * Finds By messageId.
 	 *
 	 * @param messageId the id

@@ -37,6 +37,17 @@ public class MessageDaoImpl extends AbstractBaseDAO implements MessageDao
 	}
 
 	/**
+	 * Deletes.
+	 *
+	 * @param messageEntity the entity
+	 */
+	@Override
+	public void deleteMessage(final MessageEntity messageEntity)
+	{
+		super.delete(messageEntity);
+	}
+
+	/**
 	 * Retrieves a list of MessageEntity objects.
 	 *
 	 * @param senderID      the id

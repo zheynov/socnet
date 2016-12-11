@@ -56,6 +56,12 @@ public class MessageServiceImpl implements MessageService
 		return messageDao.getById(messageId);
 	}
 
+	@Override
+	public void deleteMessage(final MessageEntity messageEntity)
+	{
+		messageDao.deleteMessage(messageEntity);
+	}
+
 	/**
 	 * Retrieves a list of MessageEntity objects.
 	 *
