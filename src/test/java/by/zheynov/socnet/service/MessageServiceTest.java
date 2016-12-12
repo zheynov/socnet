@@ -43,6 +43,8 @@ public class MessageServiceTest
 		messageEntityList = new ArrayList<>();
 		messageEntityList.add(messageEntity);
 
+		// внести даннве в объект
+
 		given(messageService.createMessage(messageEntity)).willReturn(messageEntity); // createMessageServiceTest()
 		given(messageService.getById(anyLong())).willReturn(messageEntity); // getMessageByIdServiceTest()
 		when(messageService.getAllTheMessages(anyLong(), anyLong())).thenReturn(messageEntityList); // getAllTheMessagesServiceTest()

@@ -11,7 +11,10 @@
         <security:intercept-url pattern="/webjars/**" access="permitAll()"/>
         <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/friends/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/posts/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/photos/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/messages/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/profile/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/error/**" access="permitAll()"/>
         <security:intercept-url pattern="/images/**" access="permitAll()"/>
 
@@ -25,6 +28,7 @@
                 authentication-failure-url="/loginpage?error"
                 username-parameter="username"
                 password-parameter="password"/>
+
 
         <security:logout logout-url="/j_spring_security_logout"
                          logout-success-url="/loginpage?logout"

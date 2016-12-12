@@ -74,7 +74,6 @@ public class AdminController
 		ProfileDTO profileDTO = userDTO.getProfileDTO();
 
 		userFacade.deleteUser(userDTO);
-		profileFacade.deleteProfile(profileDTO);
 
 		model.addAttribute("allTheProfiles", profileFacade.getAllTheProfiles());
 		model.addAttribute("userdeleted", userDTO);

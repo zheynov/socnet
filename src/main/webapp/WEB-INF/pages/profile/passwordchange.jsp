@@ -59,7 +59,7 @@
 
                         <br/>
                         <div>
-                            <form:form method="post" action="/passwordchange" commandName="userDTO">
+                            <form:form method="post" action="/profile/passwordchange" commandName="userDTO">
 
                                 <div class="form-group">
 
@@ -103,7 +103,7 @@
                             </form:form>
 
 
-                            <a href="/beforeprofilepage">
+                            <a href="/profile/beforeprofilepage">
                                 <button class="btn btn-default btn-lg btn-block login-button"><spring:message
                                         code="welcome.page.text.profilback"/></button>
                             </a>

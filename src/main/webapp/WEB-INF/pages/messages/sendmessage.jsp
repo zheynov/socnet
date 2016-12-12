@@ -24,7 +24,7 @@
                     <li class="active" data-toggle="tab"><a href="#messages" data-toggle="tab"><spring:message
                             code="welcome.page.text.mesagges"/></a></li>
                     <li><a href="/photos"><spring:message code="welcome.page.text.photoes"/></a></li>
-                    <li><a href="/beforeprofilepage"><spring:message code="welcome.page.text.profile"/></a></li>
+                    <li><a href="/profile/beforeprofilepage"><spring:message code="welcome.page.text.profile"/></a></li>
                     <li><a href="#contact" data-toggle="tab"><spring:message code="welcome.page.text.contacts"/></a></li>
                     <li><a href="#about" data-toggle="tab"><spring:message code="welcome.page.text.about"/></a></li>
                     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">

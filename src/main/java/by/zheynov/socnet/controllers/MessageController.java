@@ -32,6 +32,11 @@ import by.zheynov.socnet.utils.RequestSplitterForUserAndProfile;
 @RequestMapping(value = "/messages")
 public class MessageController
 {
+	private static final ThreadLocal<ProfileDTO> TEMP_SENDER_PROFILE_DTO = new ThreadLocal<ProfileDTO>();
+	private static final ThreadLocal<ProfileDTO> TEMP_DESTINATION_PROFILE_DTO = new ThreadLocal<ProfileDTO>();
+	//http://articles.javatalks.ru/articles/17
+
+
 	@Autowired
 	private ProfileFacade                    profileFacade;
 	@Autowired

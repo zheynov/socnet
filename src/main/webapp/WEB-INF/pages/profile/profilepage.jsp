@@ -58,8 +58,8 @@
                             <b> <spring:message code="profile.page.text.city"/>: </b> ${profileDTO.city} <br/>
                             <b> <spring:message code="profile.page.text.phone"/>:</b> ${profileDTO.phoneNumber} <br/>
 
-                        <p><a href="/profileedit"><spring:message code="profile.page.text.edit"/></a>
-                        <p><a href="/passwordchange"><spring:message
+                        <p><a href="/profile/profileedit"><spring:message code="profile.page.text.edit"/></a>
+                        <p><a href="/profile/passwordchange"><spring:message
                                 code="admin.page.text.changepassword"/></a>
 
                         <c:if test="${passwordchanged != null}">

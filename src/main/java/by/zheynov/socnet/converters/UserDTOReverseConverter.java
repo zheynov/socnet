@@ -36,7 +36,6 @@ public class UserDTOReverseConverter implements Converter<UserDTO, UserEntity>
 		userEntity.setEmail(userDTO.getEmail());
 		userEntity.setUsername(userDTO.getUsername());
 		userEntity.setPassword(userDTO.getPassword());
-		userEntity.setEnabled(userDTO.isEnabled());
 
 		ProfileEntity profileEntity = new ProfileEntity();
 		ProfileDTO profileDTO = userDTO.getProfileDTO();

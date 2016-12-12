@@ -47,7 +47,7 @@
                     <div class="tab-pane active" id="profile" style="margin-left: 250px; width: 300px">
 
                         <div>
-                            <form:form method="POST" action="/editprofile" commandName="profileDTO" class="form-horizontal">
+                            <form:form method="POST" action="/profile/editprofile" commandName="profileDTO" class="form-horizontal">
 
                                 <form:hidden path="profileID"/>
 

@@ -52,7 +52,7 @@ public class ProfileController
 	 *
 	 * @return profilepage URL
 	 */
-	@RequestMapping(value = "/beforeprofilepage", method = RequestMethod.GET)
+	@RequestMapping(value = "/profile/beforeprofilepage", method = RequestMethod.GET)
 	public String beforeVisitingProfilePage(final Model model)
 	{
 		addProfileDTOToModel(model);
@@ -66,7 +66,7 @@ public class ProfileController
 	 *
 	 * @return profilepage URL
 	 */
-	@RequestMapping(value = "/profileedit", method = RequestMethod.GET)
+	@RequestMapping(value = "/profile/profileedit", method = RequestMethod.GET)
 	public String initProfileEdition(final Model model)
 	{
 		addProfileDTOToModel(model);
@@ -83,7 +83,7 @@ public class ProfileController
 	 *
 	 * @return profilepage URL
 	 */
-	@RequestMapping(value = "/editprofile", method = RequestMethod.POST)
+	@RequestMapping(value = "/profile/editprofile", method = RequestMethod.POST)
 	public String editProfile(final Model model, @ModelAttribute("profileDTO") final ProfileDTO profileDTO,
 	                          final BindingResult result)
 	{
@@ -108,7 +108,7 @@ public class ProfileController
 	 *
 	 * @return userinfo URL
 	 */
-	@RequestMapping(value = "/passwordchange", method = RequestMethod.GET)
+	@RequestMapping(value = "/profile/passwordchange", method = RequestMethod.GET)
 	public String beforePasswordChange(final Model model)
 	{
 		model.addAttribute("userDTO", new UserDTO());
@@ -124,7 +124,7 @@ public class ProfileController
 	 *
 	 * @return userinfo URL
 	 */
-	@RequestMapping(value = "/passwordchange", method = RequestMethod.POST)
+	@RequestMapping(value = "/profile/passwordchange", method = RequestMethod.POST)
 	public String passwordChange(final Model model, @ModelAttribute("userDTO") final UserDTO userDTO)
 	{
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
