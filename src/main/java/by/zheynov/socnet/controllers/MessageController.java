@@ -1,15 +1,13 @@
 package by.zheynov.socnet.controllers;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,20 +30,13 @@ import by.zheynov.socnet.utils.RequestSplitterForUserAndProfile;
 @RequestMapping(value = "/messages")
 public class MessageController
 {
-	private static final ThreadLocal<ProfileDTO> TEMP_SENDER_PROFILE_DTO = new ThreadLocal<ProfileDTO>();
-	private static final ThreadLocal<ProfileDTO> TEMP_DESTINATION_PROFILE_DTO = new ThreadLocal<ProfileDTO>();
-	//http://articles.javatalks.ru/articles/17
-
 
 	@Autowired
-	private ProfileFacade                    profileFacade;
+	private ProfileFacade profileFacade;
 	@Autowired
-	private MessageFacade                    messageFacade;
+	private MessageFacade messageFacade;
 	@Autowired
 	private RequestSplitterForUserAndProfile requestSplitterForUserAndProfile;
-
-	private ProfileDTO tempDestinationProfileDTO;
-	private ProfileDTO tempSenderProfileDTO;
 
 	/**
 	 * Shows all the users.
@@ -66,11 +57,13 @@ public class MessageController
 	*
 	* @param model   the model
 	* @param request the currentLoggedUserDTO+derstinationProfileDTO
+	* @param session the session
 	*
 	* @return the URL
 	*/
 	@RequestMapping(value = "/beforesendmessage/{request}", method = RequestMethod.GET)
-	public String beforeSendingMessage(final Model model, @PathVariable(value = "request") final String request)
+	public String beforeSendingMessage(final Model model, @PathVariable(value = "request") final String request,
+	                                   final HttpSession session)
 	{
 		UserDTO currentLoggedUserDTO = (UserDTO) requestSplitterForUserAndProfile.getUserDTOAndProfileDTO(request).get(0);
 
@@ -78,16 +71,16 @@ public class MessageController
 		ProfileDTO senderProfileDTO = currentLoggedUserDTO.getProfileDTO();
 
 		MessageDTO messageDTO = new MessageDTO();
-		tempDestinationProfileDTO = destinationProfileDTO;
-		tempSenderProfileDTO = senderProfileDTO;
-		messageDTO.setMessageDate(new Date());
 
-		model.addAttribute("destinationProfileDTO", tempDestinationProfileDTO);
+		session.setAttribute("destinationProfileDTO", destinationProfileDTO);
+		session.setAttribute("senderProfileDTO", senderProfileDTO);
+
+		model.addAttribute("senderProfileDTO", senderProfileDTO);
+		model.addAttribute("destinationProfileDTO", destinationProfileDTO);
 
 		model.addAttribute("MessageDTO", messageDTO);
-		model.addAttribute(
-						"allTheMessages",
-						messageFacade.getAllTheMessages(senderProfileDTO.getProfileID(), destinationProfileDTO.getProfileID())
+		model.addAttribute("allTheMessages",
+		                   messageFacade.getAllTheMessages(senderProfileDTO.getProfileID(), destinationProfileDTO.getProfileID())
 		);
 
 		return "/messages/sendmessage";
@@ -99,35 +92,29 @@ public class MessageController
 	 * @param model      the model
 	 * @param messageDTO the dto
 	 * @param result     the result
+	 * @param session    the session
 	 *
 	 * @return the URL
 	 */
 	@RequestMapping(value = "/sendmessage", method = RequestMethod.POST)
 	public String sendMessage(final Model model, @ModelAttribute("MessageDTO") final MessageDTO messageDTO,
-	                          final BindingResult result)
+	                          final BindingResult result, final HttpSession session)
 	{
-		messageDTO.setSenderProfileDTO(tempSenderProfileDTO);
-		messageDTO.setDestinationProfileDTO(tempDestinationProfileDTO);
+		messageDTO.setMessageDate(new Date());
+
+		messageDTO.setSenderProfileDTO((ProfileDTO) session.getAttribute("senderProfileDTO"));
+		messageDTO.setDestinationProfileDTO((ProfileDTO) session.getAttribute("destinationProfileDTO"));
+
 		messageFacade.createMessage(messageDTO);
 
-		model.addAttribute(
-						"allTheMessages",
-						messageFacade.getAllTheMessages(tempSenderProfileDTO.getProfileID(), tempDestinationProfileDTO.getProfileID())
+		model.addAttribute("allTheMessages",
+		                   messageFacade.getAllTheMessages(messageDTO.getSenderProfileDTO().getProfileID(),
+		                                                   messageDTO.getDestinationProfileDTO().getProfileID()
+		                   )
 		);
 
-		return "redirect:/messages/beforesendmessage/" + tempSenderProfileDTO.getUserDTO().getUsername() + "&" +
-						tempDestinationProfileDTO.getProfileID();
+		return "redirect:/messages/beforesendmessage/" + messageDTO.getSenderProfileDTO().getUserDTO().getUsername() + "&" +
+						messageDTO.getDestinationProfileDTO().getProfileID();
 	}
 
-	/**
-	 * @param binder the binder
-	 */
-
-	@InitBinder
-	protected void initBinder(final WebDataBinder binder)
-	{
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
-		dateFormat.setLenient(true);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-	}
 }

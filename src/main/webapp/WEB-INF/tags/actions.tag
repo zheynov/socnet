@@ -33,6 +33,24 @@
             });
 </script>
 
+<script type='text/javascript'>
+
+    $(document).ready(function() {
+        $('input[type="submit"]').attr('disabled', true);
+        $('input[type="text"],textarea').on('keyup',function() {
+            var textarea_value = $("#texta").val();
+            var text_value = $('input[name="textField"]').val();
+            if(textarea_value != '' && text_value != '') {
+                $('input[type="submit"]').attr('disabled' , false);
+            }else{
+                $('input[type="submit"]').attr('disabled' , true);
+            }
+        });
+    });
+
+</script>
+
+
 <style>
     .tabs-left > .nav-tabs {
         border-bottom: 0;

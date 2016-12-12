@@ -41,7 +41,7 @@ public class UserEntity implements Serializable
 	@Column(name = "password", length = TABLE_COLUMN_MAX_LENGTH)
 	private String password;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "profileID")
 	private ProfileEntity profileEntity;
 

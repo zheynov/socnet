@@ -45,7 +45,7 @@
                                        enctype="multipart/form-data">
 
                                 <spring:message code="messages.page.text.entertext" var="entertext"/>
-                                <form:textarea class="form-control" id="textArea" path="text" rows="3" name="text"
+                                <form:textarea class="form-control" id="texta" path="text" rows="3" name="text"
                                                placeholder="${entertext}"/>
 
                                 <br/><action:fileupload/>

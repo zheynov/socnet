@@ -43,17 +43,11 @@
 
                         <h3><spring:message
                                 code="messages.page.text.conversationwith"/> ${destinationProfileDTO.firstname} ${destinationProfileDTO.lastname}  </h3>
-                        <form:form method="POST" action="/messages/sendmessage" modelAttribute="MessageDTO">
-
-
-                            <form:hidden path="messageDate"/>
-
+                        <form:form method="POST" action="/messages/sendmessage"  modelAttribute="MessageDTO">
 
                             <spring:message code="messages.page.text.entertext" var="entertext"/>
-                            <p><form:textarea path="text" rows="4" cols="100" maxlength="1023" placeholder="${entertext}"/></p>
+                            <p><form:textarea path="text" id="texta" rows="4" cols="100" maxlength="1023" placeholder="${entertext}"/></p>
 
-                            <form:hidden path="senderProfileDTO"/>
-                            <form:hidden path="destinationProfileDTO"/>
 
                             <a href="/messages/">
                                 <button type="button" class="btn btn-default">
@@ -61,7 +55,7 @@
                             </a>
 
                             <spring:message code="messages.page.text.send.sendmessage" var="send"/>
-                            <button type="submit" class="btn btn-primary login-button">${send}</button>
+                            <input type="submit" class="btn btn-primary login-button"  >
 
 
                         </form:form>

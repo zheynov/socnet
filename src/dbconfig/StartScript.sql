@@ -36,7 +36,6 @@ CREATE TABLE user
   roleID    BIGINT             NOT NULL,
   FOREIGN KEY (profileID) REFERENCES profile (id),
   FOREIGN KEY (roleID) REFERENCES user_role (id)
-    ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 

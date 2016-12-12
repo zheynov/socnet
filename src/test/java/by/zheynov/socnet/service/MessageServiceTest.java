@@ -15,6 +15,7 @@ import by.zheynov.socnet.entity.MessageEntity;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.stubVoid;
 import static org.mockito.Mockito.when;
 
 /**
@@ -48,7 +49,6 @@ public class MessageServiceTest
 		given(messageService.createMessage(messageEntity)).willReturn(messageEntity); // createMessageServiceTest()
 		given(messageService.getById(anyLong())).willReturn(messageEntity); // getMessageByIdServiceTest()
 		when(messageService.getAllTheMessages(anyLong(), anyLong())).thenReturn(messageEntityList); // getAllTheMessagesServiceTest()
-
 	}
 
 	@Test()
@@ -69,6 +69,12 @@ public class MessageServiceTest
 	{
 		Assert.assertEquals(messageEntity, messageService.getAllTheMessages(senderProfileId, destinationProfileId).get(0));
 		Assert.assertNotNull(messageService.getAllTheMessages(senderProfileId, destinationProfileId));
+	}
+
+	@Test()
+	public void deleteMessagesServiceTest()
+	{
+
 	}
 
 }

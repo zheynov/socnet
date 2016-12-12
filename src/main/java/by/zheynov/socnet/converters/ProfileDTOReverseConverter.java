@@ -49,19 +49,23 @@ public class ProfileDTOReverseConverter implements Converter<ProfileDTO, Profile
 		UserEntity userEntity = new UserEntity();
 		UserDTO userDTO = profileDTO.getUserDTO();
 
-		userEntity.setEnabled(userDTO.isEnabled());
-		userEntity.setId(userDTO.getId());
-		userEntity.setEmail(userDTO.getEmail());
-		userEntity.setUsername(userDTO.getUsername());
-		userEntity.setPassword(userDTO.getPassword());
-		userEntity.setProfileEntity(profileEntity);
-
-		if (userDTO.getRoleDTO() != null)
+		if (userDTO != null)
 		{
-			RoleEntity roleEntity = new RoleEntity();
-			roleEntity.setRole(userDTO.getRoleDTO().getRole());
-			roleEntity.setId(userDTO.getRoleDTO().getId());
-			userEntity.setRoleEntity(roleEntity);
+			userEntity.setEnabled(userDTO.isEnabled());
+			userEntity.setId(userDTO.getId());
+			userEntity.setEmail(userDTO.getEmail());
+			userEntity.setUsername(userDTO.getUsername());
+			userEntity.setPassword(userDTO.getPassword());
+			userEntity.setProfileEntity(profileEntity);
+
+			if (userDTO.getRoleDTO() != null)
+			{
+				RoleEntity roleEntity = new RoleEntity();
+				roleEntity.setRole(userDTO.getRoleDTO().getRole());
+				roleEntity.setId(userDTO.getRoleDTO().getId());
+				userEntity.setRoleEntity(roleEntity);
+			}
+
 		}
 
 		profileEntity.setUserEntity(userEntity);
