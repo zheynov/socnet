@@ -39,21 +39,41 @@
 
                     <div class="tab-pane active" id="friends" style="margin-left: 250px">
 
-                        <p><a href="/friends">
-                            <button type="button" class="btn btn-default btn-lg btn-block">
-                                <spring:message code="friend.page.text.friend.managefriends"/></button>
-                        </a></p>
-                        <br/>
-
                         <form:form action="/friends/searchfriends/" method="post" modelAttribute="messageDTO">
-                            <form:input path="text" type="text"/>
-                            <input type="submit" class="btn btn-primary login-button" value="<spring:message code="friend.page.text.friend.search"/>">
-                            <spring:message code="friend.page.text.friend.searchtext"/>
-                        </form:form>
+
+                            <p><a href="/friends">
+                                <button type="button" class="btn btn-default btn-lg btn-block">
+                                    <spring:message code="friend.page.text.friend.managefriends"/></button>
+                            </a></p>
+                            <br/>
 
 
+                            <div class="input-group col-sm-12">
+                                <div class="input-group">
+                                    <spring:message code="friend.page.text.friend.searchtext" var="searchtext"/>
+                                    <form:input type="text" path="text"  placeholder="${searchtext}"
+                                                class="form-control"/>
 
+                                    <span class="input-group-btn">
+                                                <input class="btn btn-secondary" type="submit" id="myText"/>
+                                                    <spring:message code="friend.page.text.friend.search"/>
+                                 </span>
+                                </div>
+                                <br/>
+                            </div>
+
+
+                        </form:form> <br/>
+
+                        <c:if test="${nofriends ne null }">
+                            <div class="warning">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+
+                                <font color="#5f9ea0"> <spring:message code="friend.page.text.friend.noffoundfriend"/> </font>
+                            </div>
+                        </c:if>
                         <br/>
+
 
                         <c:if test="${allTheProfiles.size() gt 0 }">
 

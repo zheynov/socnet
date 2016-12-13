@@ -60,7 +60,7 @@
                                     <a data-gallery="" href="images/${photo.photoFileName}"> <img
                                             src="images/${photo.photoFileName}" width="200"> </a>
 
-                                    <a href="/photos/delete/${photo.id}"> <spring:message code="photos.page.text.delete"/> </a>
+                                    <a href="/photos/delete/${photo.id}"><b><font color="#a52a2a" size="5"> x </font></b> </a>
 
                                 </c:forEach>
 

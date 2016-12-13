@@ -169,7 +169,7 @@ public class ProfileServiceImpl implements ProfileService
 	{
 		String[] params = request.trim().split(" ");
 
-		List<ProfileEntity> result = null;
+		List<ProfileEntity> result = new ArrayList<>();
 
 		if (params.length == 1)
 		{

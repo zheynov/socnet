@@ -95,8 +95,8 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	public List<ProfileEntity> getAllTheProfilesTwoParametres(final String firstname, final String lastname)
 	{
 		Query query = super.getCurrentSession().createQuery(GET_ALL_USER_PROFILES_QUERY_TWO_PARAMETERS);
-		query.setParameter("firstname", firstname+"%");
-		query.setParameter("lastname", lastname+"%");
+		query.setParameter("firstname", "%" + firstname + "%");
+		query.setParameter("lastname", "%" + lastname + "%");
 		return query.list();
 	}
 
@@ -110,7 +110,7 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	public List<ProfileEntity> getAllTheProfilesOneParameter(final String parametr)
 	{
 		Query query = super.getCurrentSession().createQuery(GET_ALL_USER_PROFILES_QUERY_ONE_PARAMETER);
-		query.setParameter("parametr", parametr+"%");
+		query.setParameter("parametr", "%" + parametr + "%");
 		return query.list();
 	}
 

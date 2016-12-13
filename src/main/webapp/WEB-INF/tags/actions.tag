@@ -22,11 +22,11 @@
 <script>
 
     $(document).ready(
-            function(){
+            function () {
                 $('input:file').change(
-                        function(){
+                        function () {
                             if ($(this).val()) {
-                                $('input:submit').attr('disabled',false);
+                                $('input:submit').attr('disabled', false);
                             }
                         }
                 );
@@ -35,18 +35,24 @@
 
 <script type='text/javascript'>
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('input[type="submit"]').attr('disabled', true);
-        $('input[type="text"],textarea').on('keyup',function() {
+        $('input[type="text"],textarea').on('keyup', function () {
             var textarea_value = $("#texta").val();
             var text_value = $('input[name="textField"]').val();
-            if(textarea_value != '' && text_value != '') {
-                $('input[type="submit"]').attr('disabled' , false);
-            }else{
-                $('input[type="submit"]').attr('disabled' , true);
+            if (textarea_value != '' && text_value != '') {
+                $('input[type="submit"]').attr('disabled', false);
+            } else {
+                $('input[type="submit"]').attr('disabled', true);
             }
         });
     });
+
+</script>
+
+<script>
+
+    document.getElementById("myText").disabled = true;
 
 </script>
 

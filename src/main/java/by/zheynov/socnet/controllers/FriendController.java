@@ -206,21 +206,35 @@ public class FriendController
 	 * Finds all the users.
 	 *
 	 * @param messageDTO the dto
-	 * @param model   the model
+	 * @param model      the model
 	 *
 	 * @return the URL
 	 */
 	@RequestMapping(value = "/friends/searchfriends/", method = RequestMethod.POST)
 	public String searchFriend(@ModelAttribute("messageDTO") final MessageDTO messageDTO, final Model model)
 	{
-		List<ProfileDTO> profilesNotFriends = null;
+		List<ProfileDTO> profilesFriends;
 
 		if (messageDTO != null && messageDTO.getText().trim().length() > 0)
 		{
-			profilesNotFriends = profileFacade.getAllTheProfilesOneParameter(messageDTO.getText().trim());
+			profilesFriends = profileFacade.getAllTheProfilesOneParameter(messageDTO.getText().trim());
 		}
 
-		model.addAttribute("allTheProfiles", profilesNotFriends);
+		else
+		{
+			String nofriends = "nofriends";
+			model.addAttribute("nofriends", nofriends);
+			return "/friends/searchfriends";
+		}
+
+		if (profilesFriends.size()==0)
+		{
+			String nofriends = "nofriends";
+			model.addAttribute("nofriends", nofriends);
+			return "/friends/searchfriends";
+		}
+
+		model.addAttribute("allTheProfiles", profilesFriends);
 		model.addAttribute("messageDTO", new MessageDTO());
 		return "/friends/searchfriends";
 	}
