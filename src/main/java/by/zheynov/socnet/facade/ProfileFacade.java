@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import by.zheynov.socnet.dto.ProfileDTO;
+import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
  * Profile facade interface.
@@ -70,5 +71,14 @@ public interface ProfileFacade
 	 * @return list of dto's
 	 */
 	Set<ProfileDTO> getAllTheProfilesOfNonPendingAndNotFriends(Long currentLoggedUserProfileId, String currentLoggedUsername);
+
+	/**
+	 * Retrieves a list of profileEntity objects using reqiest.
+	 *
+	 * @param reqiest the reqiest
+	 *
+	 * @return the List<ProfileDTO>
+	 */
+	List<ProfileDTO> getAllTheProfilesOneParameter(String reqiest);
 
 }

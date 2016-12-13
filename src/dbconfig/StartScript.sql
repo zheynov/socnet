@@ -1,15 +1,15 @@
 DROP DATABASE IF EXISTS socnetDB;
-
+ 
 CREATE DATABASE IF NOT EXISTS socnetDB;
-
+ 
 USE socnetDB;
-
+ 
 -- Table for mapping user and roles
 CREATE TABLE user_role (
   id   BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   role VARCHAR(30)        NOT NULL
 );
-
+ 
 -- Table profile
 CREATE TABLE profile
 (
@@ -23,7 +23,7 @@ CREATE TABLE profile
   city        VARCHAR(30),
   phoneNumber VARCHAR(30)
 );
-
+ 
 -- Table user
 CREATE TABLE user
 (
@@ -38,7 +38,7 @@ CREATE TABLE user
   FOREIGN KEY (roleID) REFERENCES user_role (id)
     ON DELETE CASCADE
 );
-
+ 
 -- Table for user's messages
 CREATE TABLE message (
   id            BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -51,7 +51,7 @@ CREATE TABLE message (
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
-
+ 
 -- Table to store photos
 CREATE TABLE photo (
   id              BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -61,7 +61,7 @@ CREATE TABLE photo (
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
-
+ 
 -- Table for user's posts
 CREATE TABLE post (
   id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -73,7 +73,7 @@ CREATE TABLE post (
   FOREIGN KEY (profile_sender_id) REFERENCES profile (id),
   FOREIGN KEY (wall_owner_profile_id) REFERENCES profile (id)
 );
-
+ 
 -- Table to store friends (ManyToMany)
 CREATE TABLE friend (
   id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -84,7 +84,7 @@ CREATE TABLE friend (
   FOREIGN KEY (friends_profile_id) REFERENCES profile (id),
   UNIQUE KEY main_profile_id (main_profile_id, friends_profile_id)
 );
-
+ 
 -- Table to store the tokens for PersistentTokenRepository ("Remember me" feature)
 CREATE TABLE persistent_logins (
   username  VARCHAR(64) NOT NULL,
@@ -92,44 +92,44 @@ CREATE TABLE persistent_logins (
   token     VARCHAR(64) NOT NULL,
   last_used TIMESTAMP   NOT NULL
 );
-
+ 
 -- Insert data
 INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_ADMIN');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_USER');
-
-
+ 
+ 
 INSERT INTO profile VALUES (1, 'admin', 'nimda', '1911-11-11', 'admin@admin.com', 6, NULL, 'Atlantis', NULL);
 INSERT INTO user VALUES (1, 'admin@admin.com', 'admin',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1, 1);
-
+ 
 INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', '1983-11-25', 'vadim@gmail.com', 33, 'male', 'Minsk', 0293453445);
 INSERT INTO user VALUES (2, 'vadim@gmail.com', 'Vadim',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2, 2);
-
+ 
 INSERT INTO profile VALUES (3, 'Redlaw', 'Redstar', '1988-02-28', 'Redlaw@redlaw.by', 28, 'female', 'New-York', 1116666666);
 INSERT INTO user VALUES (3, 'Redlaw@redlaw.by', 'Redlaw',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 3, 2);
-
+ 
 INSERT INTO profile VALUES (4, 'Костя', 'Тцзю', '1970-05-15', 'kostyan@mail.ru', 46, 'male', 'Sidney', 1022030941001);
 INSERT INTO user VALUES (4, 'kostyan@mail.ru', 'kostyan',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 4, 2);
-
+ 
 INSERT INTO profile VALUES (5, 'Борис', 'Ельцин', '1920-11-05', 'borya@mail.ru', 86, 'male', 'Москва', 564656466);
 INSERT INTO user VALUES (5, 'borya@mail.ru', 'boris',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 5, 2);
-
+ 
 INSERT INTO profile VALUES (6, 'Bruce', 'Wayne', '1990-03-18', 'batman@batman.ru', 36, 'male', 'Gotham', 666666);
 INSERT INTO user VALUES (6, 'gmail@mail.ru', 'batman',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 6, 2);
-
+ 
 INSERT INTO profile VALUES (7, 'uzerr', 'neim', '1980-06-18', 'zhabinka@tut.ru', 36, 'male', 'Жабинка', 049378442);
 INSERT INTO user VALUES (7, 'zhabinka@tut.ru', 'uzerr',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 7, 2);
-
+ 
 INSERT INTO profile VALUES (8, 'Armin', 'Van Burren', '1970-12-15', 'armin@armin.com', 55, 'female', 'Amsterdam', 564656466);
 INSERT INTO user VALUES (8, 'armin@armin.com', 'Armin',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 8, 2);
-
+ 
 INSERT INTO profile VALUES (9, 'Vladimir', 'Putin', '1953-05-05', 'putin@putin.com', 33, 'male', 'Moscow', 11111111111);
 INSERT INTO user VALUES (9, 'putin@putin.com', 'putin',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 9, 2);

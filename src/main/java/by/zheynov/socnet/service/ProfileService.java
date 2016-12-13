@@ -2,6 +2,8 @@ package by.zheynov.socnet.service;
 
 import java.util.List;
 
+import org.hibernate.query.Query;
+
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
@@ -68,7 +70,14 @@ public interface ProfileService
 	 *
 	 * @return list of entities
 	 */
-	List<ProfileEntity> getAllTheProfilesOfNonPendingAndNotFriends(final Long currentLoggedUserProfileId,
-	                                                               final String currentLoggedUsername);
+	List<ProfileEntity> getAllTheProfilesOfNonPendingAndNotFriends(Long currentLoggedUserProfileId, String currentLoggedUsername);
 
+	/**
+	 * Retrieves a list of profileEntity objects using reqiest.
+	 *
+	 * @param request the request
+	 *
+	 * @return the List<ProfileEntity>
+	 */
+	List<ProfileEntity> getAllTheProfilesOneParameter(String request);
 }

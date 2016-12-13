@@ -1,15 +1,18 @@
 package by.zheynov.socnet.controllers;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import by.zheynov.socnet.dto.FriendDTO;
+import by.zheynov.socnet.dto.MessageDTO;
 import by.zheynov.socnet.dto.ProfileDTO;
 import by.zheynov.socnet.dto.UserDTO;
 import by.zheynov.socnet.facade.FriendFacade;
@@ -185,6 +188,41 @@ public class FriendController
 		friendFacade.rejectFriendRequest(currentLoggedUserDTO.getId(), newFriendProfileDTO.getProfileID());
 
 		return "redirect:/friends/";
+	}
+
+	/**
+	 * Redirects to search page.
+	 *
+	 * @return the URL
+	 */
+	@RequestMapping(value = "/friends/searchfriends/", method = RequestMethod.GET)
+	public String visitSearchPage(final Model model)
+	{
+		model.addAttribute("messageDTO", new MessageDTO());
+		return "/friends/searchfriends";
+	}
+
+	/**
+	 * Finds all the users.
+	 *
+	 * @param messageDTO the dto
+	 * @param model   the model
+	 *
+	 * @return the URL
+	 */
+	@RequestMapping(value = "/friends/searchfriends/", method = RequestMethod.POST)
+	public String searchFriend(@ModelAttribute("messageDTO") final MessageDTO messageDTO, final Model model)
+	{
+		List<ProfileDTO> profilesNotFriends = null;
+
+		if (messageDTO != null && messageDTO.getText().trim().length() > 0)
+		{
+			profilesNotFriends = profileFacade.getAllTheProfilesOneParameter(messageDTO.getText().trim());
+		}
+
+		model.addAttribute("allTheProfiles", profilesNotFriends);
+		model.addAttribute("messageDTO", new MessageDTO());
+		return "/friends/searchfriends";
 	}
 
 }

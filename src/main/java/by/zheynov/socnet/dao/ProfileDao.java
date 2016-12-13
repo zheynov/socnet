@@ -52,4 +52,23 @@ public interface ProfileDao
 	 */
 	List<ProfileEntity> getAllTheProfiles();
 
+	/**
+	 * Retrieves a list of profileEntity objects using 2 parameters.
+	 *
+	 * @param firstname the firstname
+	 * @param lastname  the lastname
+	 *
+	 * @return the List<profileEntity>
+	 */
+	List<ProfileEntity> getAllTheProfilesTwoParametres(String firstname, String lastname);
+
+	/**
+	 * Retrieves a list of profileEntity objects using 1 parameter.
+	 *
+	 * @param parametr the parametr
+	 *
+	 * @return the List<profileEntity>
+	 */
+	List<ProfileEntity> getAllTheProfilesOneParameter(String parametr);
+
 }

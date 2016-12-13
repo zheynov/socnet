@@ -55,7 +55,7 @@
                             </a>
 
                             <spring:message code="messages.page.text.send.sendmessage" var="send"/>
-                            <input type="submit" class="btn btn-primary login-button"  >
+                            <input type="submit" class="btn btn-primary login-button" value="${send}" >
 
 
                         </form:form>

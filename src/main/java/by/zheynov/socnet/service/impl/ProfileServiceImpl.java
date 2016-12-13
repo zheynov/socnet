@@ -156,4 +156,29 @@ public class ProfileServiceImpl implements ProfileService
 
 		return allTheFriendProfiles;
 	}
+
+	/**
+	 * Retrieves a list of profileEntity objects using reqiest.
+	 *
+	 * @param request the request
+	 *
+	 * @return the List<ProfileEntity>
+	 */
+	@Override
+	public List<ProfileEntity> getAllTheProfilesOneParameter(final String request)
+	{
+		String[] params = request.trim().split(" ");
+
+		List<ProfileEntity> result = null;
+
+		if (params.length == 1)
+		{
+			result = profileDao.getAllTheProfilesOneParameter(params[0]);
+		}
+		else if (params.length == 2)
+		{
+			result = profileDao.getAllTheProfilesTwoParametres(params[0], params[1]);
+		}
+		return result;
+	}
 }

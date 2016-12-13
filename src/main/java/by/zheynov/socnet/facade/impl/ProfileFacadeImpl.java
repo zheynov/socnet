@@ -121,4 +121,20 @@ public class ProfileFacadeImpl implements ProfileFacade
 
 		return allTheProfilesDTO;
 	}
+
+	/**
+	 * Retrieves a list of profileEntity objects using reqiest.
+	 *
+	 * @param request the request
+	 *
+	 * @return the List<ProfileDTO>
+	 */
+	@Override
+	public List<ProfileDTO> getAllTheProfilesOneParameter(final String request)
+	{
+		List<ProfileDTO> allTheProfilesDTO = new ArrayList<>();
+		profileService.getAllTheProfilesOneParameter(request)
+		              .forEach(element -> allTheProfilesDTO.add(conversionService.convert(element, ProfileDTO.class)));
+		return allTheProfilesDTO;
+	}
 }

@@ -22,6 +22,11 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 {
 	private static final String GET_ALL_USER_PROFILES_QUERY = "SELECT * FROM profile";
 
+	private static final String GET_ALL_USER_PROFILES_QUERY_TWO_PARAMETERS =
+					"FROM ProfileEntity WHERE firstname LIKE :firstname OR " + "lastname LIKE :lastname";
+	private static final String GET_ALL_USER_PROFILES_QUERY_ONE_PARAMETER  =
+					"FROM ProfileEntity WHERE firstname LIKE :parametr OR " + "lastname LIKE :parametr";
+
 	/**
 	 * Saves profile entity to database.
 	 *
@@ -75,6 +80,37 @@ public class ProfileDaoImpl extends AbstractBaseDAO implements ProfileDao
 	public List<ProfileEntity> getAllTheProfiles()
 	{
 		Query query = super.getCurrentSession().createNativeQuery(GET_ALL_USER_PROFILES_QUERY, ProfileEntity.class);
+		return query.list();
+	}
+
+	/**
+	 * Retrieves a list of profileEntity objects using 2 parameters.
+	 *
+	 * @param firstname the firstname
+	 * @param lastname  the lastname
+	 *
+	 * @return the List<profileEntity>
+	 */
+	@Override
+	public List<ProfileEntity> getAllTheProfilesTwoParametres(final String firstname, final String lastname)
+	{
+		Query query = super.getCurrentSession().createQuery(GET_ALL_USER_PROFILES_QUERY_TWO_PARAMETERS);
+		query.setParameter("firstname", firstname+"%");
+		query.setParameter("lastname", lastname+"%");
+		return query.list();
+	}
+
+	/**
+	 * Retrieves a list of profileEntity objects using 1 parameter.
+	 *
+	 * @param parametr the parametr
+	 *
+	 * @return the List<profileEntity>
+	 */
+	public List<ProfileEntity> getAllTheProfilesOneParameter(final String parametr)
+	{
+		Query query = super.getCurrentSession().createQuery(GET_ALL_USER_PROFILES_QUERY_ONE_PARAMETER);
+		query.setParameter("parametr", parametr+"%");
 		return query.list();
 	}
 
