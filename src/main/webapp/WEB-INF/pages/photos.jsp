@@ -46,7 +46,7 @@
                         <div style="margin-left: 20%">
 
                             <form:form method="post" action="/photos/photoupload/${pageContext.request.userPrincipal.name}"
-                                       enctype="multipart/form-data"
+                                       enctype="multipart/form-data"  onsubmit="return Validate(this);"
                                        commandName="photoDTO">
 
                                 <action:photopload/> <br/> <br/>

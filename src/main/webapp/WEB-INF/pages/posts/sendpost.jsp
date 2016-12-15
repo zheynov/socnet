@@ -41,7 +41,7 @@
 
 
                             <form:form action="/posts/sendapost" method="post" commandName="postDTO"
-                                       enctype="multipart/form-data">
+                                       enctype="multipart/form-data" onsubmit="return Validate(this);">
 
                                 <spring:message code="messages.page.text.entertext" var="entertext"/>
                                 <form:textarea class="form-control" id="texta" path="text" rows="3" name="text"
