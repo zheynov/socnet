@@ -93,13 +93,9 @@ public class ProfileServiceImpl implements ProfileService
 	@Transactional(readOnly = true)
 	public List<ProfileEntity> getAllTheProfiles()
 	{
-		List<ProfileEntity> alltheProfiles = profileDao.getAllTheProfiles();
-		List<ProfileEntity> filteredResultofProfiles = new ArrayList<>();
-
-		alltheProfiles.stream().filter(elem -> !elem.getUserEntity().getUsername().equals("admin")).
-						forEach(filteredResultofProfiles::add);
-
-		return filteredResultofProfiles;
+		List<ProfileEntity> allTheProfiles = profileDao.getAllTheProfiles();
+		allTheProfiles.removeIf(elem -> elem.getUserEntity().getUsername().equals("admin"));
+		return allTheProfiles;
 	}
 
 	/**
@@ -179,6 +175,8 @@ public class ProfileServiceImpl implements ProfileService
 		{
 			result = profileDao.getAllTheProfilesTwoParametres(params[0], params[1]);
 		}
+
+		//LOGGER.info("Saved photo for profileID " + photoEntity.getProfileEntity());
 		return result;
 	}
 }
