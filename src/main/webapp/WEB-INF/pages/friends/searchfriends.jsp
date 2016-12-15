@@ -51,12 +51,13 @@
                             <div class="input-group col-sm-12">
                                 <div class="input-group">
                                     <spring:message code="friend.page.text.friend.searchtext" var="searchtext"/>
-                                    <form:input type="text" path="text"  placeholder="${searchtext}"
+                                    <form:input type="text" path="text" placeholder="${searchtext}"
                                                 class="form-control"/>
 
                                     <span class="input-group-btn">
-                                                <input class="btn btn-secondary" type="submit" id="myText"/>
-                                                    <spring:message code="friend.page.text.friend.search"/>
+                                                <input class="btn btn-secondary" type="submit" id="myText"
+                                                       value=" <spring:message code="friend.page.text.friend.search"/>"/>
+
                                  </span>
                                 </div>
                                 <br/>

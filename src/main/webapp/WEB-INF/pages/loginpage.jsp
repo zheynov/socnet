@@ -49,7 +49,8 @@
         </div>
         <div class="main-login main-center">
 
-            <form class="form-horizontal" method="POST" action="<c:url value='/j_spring_security_check' />">
+            <form class="form-horizontal" method="POST" action="<c:url value='/j_spring_security_check'/>"
+                  name="loginForm" onsubmit="return validateLoginForm()">
 
                 <spring:message code="login.page.filed.username" var="username"/>
                 <div class="form-group">
