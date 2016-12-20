@@ -98,20 +98,20 @@ INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_ADMIN');
 INSERT INTO socnetDB.user_role VALUES (NULL, 'ROLE_USER');
  
  
-INSERT INTO profile VALUES (1, 'admin', 'nimda', '1911-11-11', 'admin@admin.com', 6, NULL, 'Atlantis', NULL);
+INSERT INTO profile VALUES (1, 'admin', 'admin', '1911-11-11', 'admin@admin.com', 6, 'male', 'Atlantis', NULL);
 INSERT INTO user VALUES (1, 'admin@admin.com', 'admin',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 1, 1);
  
 INSERT INTO profile VALUES (2, 'Vadim', 'Zheynov', '1983-11-25', 'vadim@gmail.com', 33, 'male', 'Minsk', 0293453445);
 INSERT INTO user VALUES (2, 'vadim@gmail.com', 'Vadim',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 2, 2);
- 
-INSERT INTO profile VALUES (3, 'Redlaw', 'Redstar', '1988-02-28', 'Redlaw@redlaw.by', 28, 'female', 'New-York', 1116666666);
-INSERT INTO user VALUES (3, 'Redlaw@redlaw.by', 'Redlaw',
+
+INSERT INTO profile VALUES (3, 'James', 'Gosling', '1955-05-19', 'gosling@java.com', 61, 'male', 'Calgary', 101010101010);
+INSERT INTO user VALUES (3, 'gosling@java.com', 'gosling',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 3, 2);
  
-INSERT INTO profile VALUES (4, 'Костя', 'Тцзю', '1970-05-15', 'kostyan@mail.ru', 46, 'male', 'Sidney', 1022030941001);
-INSERT INTO user VALUES (4, 'kostyan@mail.ru', 'kostyan',
+INSERT INTO profile VALUES (4, 'Redlaw', 'Redstar', '1988-02-28', 'Redlaw@redlaw.by', 28, 'female', 'New-York', 1116666666);
+INSERT INTO user VALUES (4, 'Redlaw@redlaw.by', 'Redlaw',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 4, 2);
  
 INSERT INTO profile VALUES (5, 'Борис', 'Ельцин', '1920-11-05', 'borya@mail.ru', 86, 'male', 'Москва', 564656466);
@@ -133,3 +133,35 @@ INSERT INTO user VALUES (8, 'armin@armin.com', 'Armin',
 INSERT INTO profile VALUES (9, 'Vladimir', 'Putin', '1953-05-05', 'putin@putin.com', 33, 'male', 'Moscow', 11111111111);
 INSERT INTO user VALUES (9, 'putin@putin.com', 'putin',
                          '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 9, 2);
+
+INSERT INTO profile VALUES (10, 'Ivan', 'Dorn', '1993-06-05', 'dorn@dorn.com', 33, 'male', 'Kiev', 22222222222);
+INSERT INTO user VALUES (10, 'dorn@dorn.com', 'dorn',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 10, 2);
+
+INSERT INTO profile VALUES (11, 'Tony', 'Stark', '1903-07-07', 'iron@man.com', 33, 'male', 'LA', 75476756745);
+INSERT INTO user VALUES (11, 'iron@man.com', 'ironman',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 11, 2);
+
+INSERT INTO profile VALUES (12, 'Janna', 'Dark', '1412-01-01', 'jdark@jdark.by', 25, 'female', 'Ruan', 22244455666);
+INSERT INTO user VALUES (12, 'jdark@jdark.by', 'jdark',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 12, 2);
+
+INSERT INTO profile VALUES (13, 'Don', 'Juan', '1234-02-02', 'juan@juan.by', 25, 'male', 'Madrid', 6757334557);
+INSERT INTO user VALUES (13, 'juan@juan.by', 'juan',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 13, 2);
+
+INSERT INTO profile VALUES (14, 'Hillary', 'Clintorn', '1947-10-26', 'hillary@hillary.com', 25, 'female', 'Washington', 6757334557);
+INSERT INTO user VALUES (14, 'hillary@hillary.com', 'hillary',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 14, 2);
+
+INSERT INTO profile VALUES (15, 'Elton', 'John', '1947-12-12', 'elton@elton.com', 65, 'female', 'London', 23545253557);
+INSERT INTO user VALUES (15, 'elton@elton.com', 'elton',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 15, 2);
+
+INSERT INTO profile VALUES (16, 'Bruce', 'Eckel', '1970-05-15', 'eckel@mail.ru', 46, 'male', 'Minsk', 1022030941001);
+INSERT INTO user VALUES (16, 'eckel@mail.ru', 'eckel',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 16, 2);
+
+INSERT INTO profile VALUES (17, 'Костя', 'Тцзю', '1970-05-15', 'kostyan@mail.ru', 46, 'male', 'Sidney', 1022030941001);
+INSERT INTO user VALUES (17, 'kostyan@mail.ru', 'kostyan',
+                         '$2a$10$DTTv0kjndlTtHbj81VWETOPI.jo4BZYE/5krefGBEY0izb.Je96U6', 1, 17, 2);

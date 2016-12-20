@@ -8,6 +8,7 @@
         <property name="location" value="classpath:jdbc.properties"/>
     </bean>
 
+    <!--Applies persistence exception translation to any bean marked with @Repository-->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
     </bean>
 

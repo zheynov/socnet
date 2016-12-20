@@ -22,6 +22,7 @@
     <mvc:annotation-driven/>
 
     <!--resource mapping-->
+    <!--Configures a handler for serving static resources.  Allows resources to be served out of any path-->
     <mvc:resources mapping="/webjars/**" location="/webjars/"/>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:resources mapping="/images/**" location="file:${user.home}/"/>
@@ -44,7 +45,7 @@
 
     <!--___________________________________Localization section _________________________________________ -->
 
-    <!--MessageSource -->
+    <!--MessageSource. Loads messages from resource files -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <list>
@@ -55,7 +56,10 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
-    <!--Localization -->
+    <!-- _______________________________________ Localization  ____________________________________________ -->
+
+    <!-- Interceptor that allows for changing the current locale on every request, via a configurable request parameter
+    (default parameter name: "locale").-->
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="lang"/>
     </bean>
@@ -64,7 +68,8 @@
         <property name="defaultLocale" value="ru"/>
     </bean>
 
-    <!--Localization -->
+    <!-- implementation that uses a cookie sent back to the user
+    * in case of a custom setting, with a fallback to the specified default locale-->
     <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="interceptors" ref="localeChangeInterceptor"/>
     </bean>
@@ -96,8 +101,6 @@
             </list>
         </property>
     </bean>
-
-
 
 
 </beans>
