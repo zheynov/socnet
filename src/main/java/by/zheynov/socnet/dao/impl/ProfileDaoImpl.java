@@ -1,7 +1,6 @@
 package by.zheynov.socnet.dao.impl;
 
 import java.util.List;
-import java.util.TreeMap;
 
 import by.zheynov.socnet.dao.ProfileDao;
 

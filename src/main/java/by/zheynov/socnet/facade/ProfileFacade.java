@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import by.zheynov.socnet.dto.ProfileDTO;
-import by.zheynov.socnet.entity.ProfileEntity;
 
 /**
  * Profile facade interface.

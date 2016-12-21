@@ -193,6 +193,8 @@ public class FriendController
 	/**
 	 * Redirects to search page.
 	 *
+	 * @param model the model
+	 *
 	 * @return the URL
 	 */
 	@RequestMapping(value = "/friends/searchfriends/", method = RequestMethod.GET)
@@ -227,7 +229,7 @@ public class FriendController
 			return "/friends/searchfriends";
 		}
 
-		if (profilesFriends.size()==0)
+		if (profilesFriends.size() == 0)
 		{
 			String nofriends = "nofriends";
 			model.addAttribute("nofriends", nofriends);

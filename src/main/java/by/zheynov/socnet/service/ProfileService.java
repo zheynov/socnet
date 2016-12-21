@@ -2,8 +2,6 @@ package by.zheynov.socnet.service;
 
 import java.util.List;
 
-import org.hibernate.query.Query;
-
 import by.zheynov.socnet.entity.ProfileEntity;
 
 /**

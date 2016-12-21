@@ -36,7 +36,6 @@ CREATE TABLE user
   roleID    BIGINT             NOT NULL,
   FOREIGN KEY (profileID) REFERENCES profile (id),
   FOREIGN KEY (roleID) REFERENCES user_role (id)
-    ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
@@ -53,16 +52,26 @@ CREATE TABLE message (
     ON DELETE CASCADE
 );
 
--- Table for user's posts
-CREATE TABLE post (
-  id     BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  userID BIGINT             NOT NULL,
-  text   VARCHAR(1024),
-  date   DATE               NOT NULL,
-  photo  VARCHAR(512),
-  FOREIGN KEY (userID) REFERENCES user (id)
+-- Table to store photos
+CREATE TABLE photo (
+  id              BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  photo_file_name VARCHAR(64)        NOT NULL UNIQUE,
+  profileID       BIGINT             NOT NULL,
+  FOREIGN KEY (profileID) REFERENCES profile (id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
+);
+
+-- Table for user's posts
+CREATE TABLE post (
+  id                    BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  text                  VARCHAR(1024),
+  date                  DATETIME           NOT NULL,
+  photo_file_name       VARCHAR(64) UNIQUE,
+  profile_sender_id     BIGINT             NOT NULL,
+  wall_owner_profile_id BIGINT             NOT NULL,
+  FOREIGN KEY (profile_sender_id) REFERENCES profile (id),
+  FOREIGN KEY (wall_owner_profile_id) REFERENCES profile (id)
 );
 
 -- Table to store the tokens for PersistentTokenRepository ("Remember me" feature)

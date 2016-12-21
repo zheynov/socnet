@@ -1,7 +1,6 @@
 package by.zheynov.socnet.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -9,15 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import by.zheynov.socnet.entity.FriendEntity;
 import by.zheynov.socnet.entity.FriendRequestApprovalStatus;
-import by.zheynov.socnet.entity.MessageEntity;
 import by.zheynov.socnet.entity.ProfileEntity;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
