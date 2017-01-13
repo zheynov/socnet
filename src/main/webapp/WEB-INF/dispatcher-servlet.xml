@@ -60,11 +60,13 @@
 
     <!-- Interceptor that allows for changing the current locale on every request, via a configurable request parameter
     (default parameter name: "locale").-->
-    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+    <!-- It intercepts any changes in locale. These changes will be saved in cookie files -->
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="lang"/>
     </bean>
 
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+    <!-- CookieLocaleResolver class for storage locale changes in cookies. -->
+       <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="ru"/>
     </bean>
 
@@ -76,6 +78,7 @@
 
     <!--Localization -->
     <mvc:interceptors>
+
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="lang"/>
         </bean>
