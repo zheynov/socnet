@@ -61,12 +61,12 @@
     <!-- Interceptor that allows for changing the current locale on every request, via a configurable request parameter
     (default parameter name: "locale").-->
     <!-- It intercepts any changes in locale. These changes will be saved in cookie files -->
-    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="lang"/>
     </bean>
 
     <!-- CookieLocaleResolver class for storage locale changes in cookies. -->
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+       <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="ru"/>
     </bean>
 
