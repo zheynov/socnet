@@ -3,13 +3,14 @@ package by.zheynov.socnet.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Profile data transfer object.
  *
  * @author Vadim Zheynov <V.Zheynov@sam-solutions.com>
  * @package by.zheynov.socnet.dto
  */
-
 public class ProfileDTO implements Serializable
 {
 	private static final int HASH_NUMBER = 31;

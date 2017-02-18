@@ -17,6 +17,7 @@
         <security:intercept-url pattern="/profile/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/error/**" access="permitAll()"/>
         <security:intercept-url pattern="/images/**" access="permitAll()"/>
+        <security:intercept-url pattern="/userprofile/**" access="permitAll()"/>
 
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 

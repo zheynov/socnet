@@ -174,6 +174,20 @@
             <version>1.10.19</version>
         </dependency>
 
+        <!--  For JSON format -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
+        <!--  for XML include -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api-osgi</artifactId>
+            <version>2.2.7</version>
+        </dependency>
+
 
     </dependencies>
 
